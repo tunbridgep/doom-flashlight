@@ -1,0 +1,32 @@
+class Battery : Inventory
+{
+
+    int battery_level;
+    int battery_max;
+    int battery_minimum_threshold;
+    int battery_use_per_tic;
+    int battery_charge_per_tic;
+
+    protected int NumBatterryRecharges()
+    {
+        //return owner.CountInv("Actor");
+        return 0;
+    }
+    
+    protected void DrainOrRechargeBattery(FlashlightBeam beam)
+    {
+        if (beam.on)
+            battery_level -= battery_use_per_tic;
+        else if (battery_level < battery_max)
+            battery_level += battery_charge_per_tic;
+        
+        if (battery_level <= 0)
+        {
+            battery_level = 0;
+            beam.Deactivate(owner);
+        }
+        
+        if (battery_level > battery_max)
+            battery_level = battery_max;
+    }
+}

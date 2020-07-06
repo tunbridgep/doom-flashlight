@@ -1,0 +1,19 @@
+FlickerLight FLZRE
+{
+    color 1.0 0.3 0.3
+    size 242
+    secondarySize 240
+    Chance 0.05
+    offset 0 16 0
+}
+
+object ActiveFlare
+{
+    frame FLZR { light FLZRE }
+}
+
+object ActiveFlareProjectile
+{
+    frame FLZR { light FLZRE }
+}
+

@@ -1,0 +1,34 @@
+class FlashlightSetup : EventHandler
+{
+
+    Array<FlashlightBeam> beams;
+
+    override void PlayerEntered(PlayerEvent e)
+    {
+        Debug.LogVerbose("Creating beam for "..e.PlayerNumber);
+        
+        FlashlightBeam beam = FlashlightBeam(Actor.Spawn("FlashlightBeam"));
+        beam.FollowPlayer(players[e.PlayerNumber]);
+        beam.Activate(null);
+        beams.Insert(e.PlayerNumber,beam);
+        
+        GiveFlashlight(e.PlayerNumber,beam);
+    }
+    
+    void GiveFlashlight(int playernumber, FlashlightBeam be)
+    {
+        PlayerPawn pp = players[playernumber].mo;
+        Flashlight fl = Flashlight(pp.GiveInventoryType("Flashlight"));
+        Battery bt = Battery(pp.GiveInventoryType("Battery"));
+        fl.beam = be;
+        fl.player = pp;
+        fl.battery = bt;
+    }
+    
+    FlashlightBeam GetBeam(int PlayerNumber)
+    {
+        FlashlightBeam beam = beams[PlayerNumber];
+        
+        return beam;
+    }
+}

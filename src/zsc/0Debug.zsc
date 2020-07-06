@@ -1,0 +1,37 @@
+class Debug
+{
+
+    const mod_name = "[Flashlight Mod]";
+    const debug_cvar = "flashlight_debug";
+    
+    const debug_level_none = 0;
+    const debug_level_normal = 1;
+    const debug_level_verbose = 2;
+
+    private static void printDebug(String text)
+    {
+        Console.printf(mod_name.." "..text);
+    }
+    
+    private static int getDebugLevel()
+    {
+        return CVar.GetCvar(debug_cvar).GetInt();
+    }
+
+    static void Log(String text)
+    {
+        if (getDebugLevel() > debug_level_none)
+        {
+            printDebug(text);
+        }
+    }
+    
+    static void LogVerbose(String text)
+    {
+        if (getDebugLevel() > debug_level_normal)
+        {
+            printDebug(text);
+        }
+    }
+
+}

@@ -1,0 +1,8 @@
+class Math
+{
+    static int Round (double num)
+    {
+        int result = (num - floor(num) > 0.5) ? ceil(num) : floor(num);
+        return result;
+    }
+}

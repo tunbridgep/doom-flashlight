@@ -1,0 +1,4 @@
+addkeysection "Flashlight" FlashlightSection
+   addmenukey "Toggle Flashlight" toggleflashlight_bind
+   alias toggleflashlight_bind "pukename ToggleFlashlight"
+   defaultbind J toggleflashlight_bind
