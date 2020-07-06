@@ -1,13 +1,23 @@
 //storage
 user string flashlight_lastweap = "";
 
-//flashlight settings
-user int flashlight_battery_display = 0;
+//battery settings
+user int flashlight_battery_display = 1;
+server int flashlight_battery_max = 350;
+server int flashlight_battery_min_threshold = 35;
+server int flashlight_battery_use_per_tic = 1;
+server int flashlight_battery_charge_per_tic = 1;
 
 //map alteration
 server int flashlight_darken_mode = 1;
-server int flashlight_darken_amount = 32;
+server int flashlight_darken_amount = 48;
 server int flashlight_darken_threshold = 96;
+server bool flashlight_replace_sky = false;
+
+//stealth monsters
+server int flashlight_stealth_monster_chance = 0;
+server int flashlight_stealth_monster_threshold = 96;
+server bool flashlight_stealth_monster_require_threshold = true;
 
 //misc
 server int flashlight_debug = 0;

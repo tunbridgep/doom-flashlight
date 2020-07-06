@@ -3,32 +3,45 @@ class DarkenMap : EventHandler
     enum DarkenMode
 	{
 		EVERYTHING = 0,
-		BELOW_THRESHOLD = 1
+		SIMPLE_THRESHOLD = 1,
 	};
 
     void DarkenMap(DarkenMode mode, int amount, int threshold)
     {
-        int modified_sectors = 0; 
-        
+        int modified_sectors = 0;
         int nsectors = level.sectors.size();
+      
         for (int i = 0; i < nsectors;i++)
         {
-        
             int light_level = level.sectors[i].lightLevel;
             
             if (light_level < threshold || mode == EVERYTHING)
             {
-                level.sectors[i].lightLevel -= amount;
+                int new_level = Math.Clamp(light_level - amount,0,255);
+                level.sectors[i].lightLevel = new_level;
                 modified_sectors++;
+                Debug.LogVerbose("Darkened Sector with light level "..light_level.." to "..new_level);
             }
-            
-
-            //String lls = String.Format("%u",light_level);
-            //Debug.Log(lls);
         }
         Debug.LogVerbose(modified_sectors.." sectors were darkened");
     }
-
+    
+    void StealthMonsters(Actor monster,int chance, int threshold, bool require_threshold)
+    {
+        int light_level = monster.cursector.lightlevel;
+        if (light_level <= threshold || !require_threshold)
+        {
+            int dice = random(0, 100);
+            Debug.Log("Rolled a "..dice);
+            
+            if (dice <= chance)
+            {
+                Debug.Log("Monster "..monster.GetTag().." says hello from sector with light level of "..light_level);
+                monster.bSTEALTH = true;
+            }
+        }
+    }
+    
     override void WorldLoaded(WorldEvent e)
     {
         if (e.IsReopen)
@@ -39,5 +52,17 @@ class DarkenMap : EventHandler
         int amount = CVar.FindCVar("flashlight_darken_amount").GetInt();
         
         DarkenMap(mode,amount,threshold);
+    }
+    
+    override void WorldThingSpawned(WorldEvent e)
+    {
+        if (e.Thing.bISMONSTER)
+        {
+            int stealth_monster_chance = CVar.FindCVar("flashlight_stealth_monster_chance").GetInt();
+            int stealth_monster_threshold = CVar.FindCVar("flashlight_stealth_monster_threshold").GetInt();
+            bool stealth_require_threshold = CVar.FindCVar("flashlight_stealth_monster_require_threshold").GetBool();
+        
+            StealthMonsters(e.Thing,stealth_monster_chance,stealth_monster_threshold,stealth_require_threshold);
+        }
     }
 }

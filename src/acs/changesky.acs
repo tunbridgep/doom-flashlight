@@ -1,0 +1,14 @@
+#library "changesky"
+#include "zcommon.acs"
+
+#define CVAR_CHANGE_SKY "flashlight_replace_sky"
+
+script "ChangeSky" OPEN
+{
+    bool change = GetCvar(CVAR_CHANGE_SKY);
+    
+    if (change)
+    {
+        ChangeSky("DARKSKY","DARKSKY");
+    }
+}

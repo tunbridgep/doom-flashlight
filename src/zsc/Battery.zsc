@@ -14,7 +14,13 @@ class Battery : Inventory
         Recharge();
     }
 
-    protected int numBatterryRecharges()
+    protected int numBatteryRecharges()
+    {
+        //return owner.CountInv("Actor");
+        return 0;
+    }
+    
+    protected int numBatteryUpgrades()
     {
         //return owner.CountInv("Actor");
         return 0;
@@ -22,10 +28,10 @@ class Battery : Inventory
     
     protected void updateFromCVars()
     {
-        battery_max = 350;
-        battery_minimum_threshold = 300;
-        battery_use_per_tic = 1;
-        battery_charge_per_tic = 1;
+        battery_max = CVar.FindCVar("flashlight_battery_max").GetInt();
+        battery_minimum_threshold = CVar.FindCVar("flashlight_battery_min_threshold").GetInt();
+        battery_use_per_tic = CVar.FindCVar("flashlight_battery_use_per_tic").GetInt();
+        battery_charge_per_tic = CVar.FindCVar("flashlight_battery_charge_per_tic").GetInt();
     }
     
     void Recharge()
