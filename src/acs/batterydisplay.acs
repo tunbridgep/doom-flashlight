@@ -72,11 +72,6 @@ function void DrawBatteryIcon(str icon)
     int text_w;
     int text_h;
 
-    if (position == BATTERY_POSITION_LEFT_CORNER)
-        HudMessage(s:"A";HUDMSG_PLAIN, -999, CR_RED, 0.0,0.0,ONE_TIC);
-    else
-        HudMessage(s:"A";HUDMSG_PLAIN, -999, CR_RED, 1.0,0.0,ONE_TIC);
-
     SetFont("CONFONT");
     if (position == BATTERY_POSITION_CROSSHAIR)
     {
