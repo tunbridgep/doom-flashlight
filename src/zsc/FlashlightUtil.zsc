@@ -1,3 +1,7 @@
 class FlashlightSetup : EventHandler
 {
+    override void PlayerEntered(PlayerEvent e)
+    {
+
+    }    
 }

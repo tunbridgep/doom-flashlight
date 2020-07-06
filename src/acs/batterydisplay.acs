@@ -3,6 +3,11 @@
 
 #define ONE_TIC 1873
 
+#define CVAR_BATTERY_POSITION "flashlight_battery_display"
+#define BATTERY_POSITION_LEFT_CORNER 0
+#define BATTERY_POSITION_RIGHT_CORNER 1
+#define BATTERY_POSITION_CROSSHAIR 2
+
 function str GetBatteryLevelIcon(int level, int max, bool red)
 {
     int one_sixth = max / 6;
@@ -58,27 +63,52 @@ function str GetBatteryRechargeLevelString(void)
 
 function void DrawBatteryIcon(str icon)
 {
-    SetFont(icon);
-    int position = 0;
 
-    if (position)
-        HudMessage(s:"A";HUDMSG_PLAIN, -999, CR_RED, 0.5,0.60,ONE_TIC);
-    else
+    int position = GetCVar(CVAR_BATTERY_POSITION);
+    int separation = 0.01;
+    
+    int battery_w;
+    int battery_h;
+    int text_w;
+    int text_h;
+
+    if (position == BATTERY_POSITION_LEFT_CORNER)
         HudMessage(s:"A";HUDMSG_PLAIN, -999, CR_RED, 0.0,0.0,ONE_TIC);
+    else
+        HudMessage(s:"A";HUDMSG_PLAIN, -999, CR_RED, 1.0,0.0,ONE_TIC);
 
     SetFont("CONFONT");
-    if (position)
+    if (position == BATTERY_POSITION_CROSSHAIR)
     {
-        HudMessage(s:GetFlaresString();HUDMSG_PLAIN, -996, CR_YELLOW, 0.515,0.622,ONE_TIC);
-        HudMessage(s:GetBatteryUpgradeLevelString();HUDMSG_PLAIN, -998, CR_YELLOW, 0.515,0.612,ONE_TIC);
-        HudMessage(s:GetBatteryRechargeLevelString();HUDMSG_PLAIN, -997, CR_YELLOW, 0.515,0.602,ONE_TIC);
+        battery_w = 0.5;
+        battery_h = 0.6;
+        text_w = 0.515;
+        text_h = 0.622;
     }
-    else
+    else if (position == BATTERY_POSITION_LEFT_CORNER)
     {
-        HudMessage(s:GetFlaresString();HUDMSG_PLAIN, -996, CR_YELLOW, 0.023,0.050,ONE_TIC);
-        HudMessage(s:GetBatteryUpgradeLevelString();HUDMSG_PLAIN, -998, CR_YELLOW, 0.023,0.040,ONE_TIC);
-        HudMessage(s:GetBatteryRechargeLevelString();HUDMSG_PLAIN, -997, CR_YELLOW, 0.023,0.030,ONE_TIC);
+        battery_w = 0.0;
+        battery_h = 0.0;
+        text_w = 0.023;
+        text_h = 0.05;
     }
+    
+    else if (position == BATTERY_POSITION_RIGHT_CORNER)
+    {
+        battery_w = 1.0;
+        battery_h = 0.0;
+        text_w = 0.977;
+        text_h = 0.05;
+    }
+    
+    //draw battery
+    SetFont(icon);
+    HudMessage(s:"A";HUDMSG_PLAIN, -999, CR_RED, battery_w,battery_h,ONE_TIC);
+    
+    SetFont("CONFONT");
+    HudMessage(s:GetFlaresString();HUDMSG_PLAIN, -996, CR_YELLOW, text_w,text_h,ONE_TIC);
+    HudMessage(s:GetBatteryUpgradeLevelString();HUDMSG_PLAIN, -998, CR_YELLOW, text_w,text_h - separation,ONE_TIC);
+    HudMessage(s:GetBatteryRechargeLevelString();HUDMSG_PLAIN, -997, CR_YELLOW, text_w,text_h - separation - separation,ONE_TIC);
 }
 
 script "draw_battery" (int level, int max, int red)

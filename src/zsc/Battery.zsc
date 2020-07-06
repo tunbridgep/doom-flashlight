@@ -23,7 +23,7 @@ class Battery : Inventory
     protected void updateFromCVars()
     {
         battery_max = 350;
-        battery_minimum_threshold = 35;
+        battery_minimum_threshold = 300;
         battery_use_per_tic = 1;
         battery_charge_per_tic = 1;
     }

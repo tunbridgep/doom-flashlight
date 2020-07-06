@@ -1,2 +1,3 @@
 server int flashlight_debug = 0;
 user string flashlight_lastweap = "";
+user int flashlight_battery_display = 0;

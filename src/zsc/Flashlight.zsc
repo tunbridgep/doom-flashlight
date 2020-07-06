@@ -2,6 +2,7 @@ class FlashlightBase : Weapon abstract
 {
     FlashlightBeam beam;
     Battery battery;
+    int red_battery_frames;
     
     Default
     {
@@ -37,9 +38,15 @@ class FlashlightBase : Weapon abstract
         Setup();
         if (!beam.IsOn())
         {
-            owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
             if (CanTurnOn())
+            {
+                owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
                 beam.Activate(invoker);
+            }
+            else
+            {
+                red_battery_frames = 5;
+            }
         }
     }
     
@@ -68,7 +75,9 @@ class FlashlightBase : Weapon abstract
 
         battery.SetInUse(beam.IsOn());
             
-        owner.ACS_NamedExecute("draw_battery",0,battery.GetLevel(),battery.GetMax(),1);
+        owner.ACS_NamedExecute("draw_battery",0,battery.GetLevel(),battery.GetMax(),red_battery_frames);
+        
+        red_battery_frames = Math.Clamp(red_battery_frames - 1,0,5);
     }
     
     void Setup()
@@ -88,6 +97,11 @@ class FlashlightBase : Weapon abstract
             Debug.LogVerbose("Recreating battery");
             battery = Battery(owner.GiveInventoryType("Battery"));
         }
+    }
+    
+    override void OnDrop(Actor dropper)
+    {
+        beam.Deactivate(dropper);
     }
 }
 
