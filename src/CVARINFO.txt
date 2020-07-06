@@ -1,3 +1,13 @@
-server int flashlight_debug = 0;
+//storage
 user string flashlight_lastweap = "";
+
+//flashlight settings
 user int flashlight_battery_display = 0;
+
+//map alteration
+server int flashlight_darken_mode = 1;
+server int flashlight_darken_amount = 32;
+server int flashlight_darken_threshold = 96;
+
+//misc
+server int flashlight_debug = 0;

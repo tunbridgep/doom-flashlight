@@ -1,0 +1,43 @@
+class DarkenMap : EventHandler
+{
+    enum DarkenMode
+	{
+		EVERYTHING = 0,
+		BELOW_THRESHOLD = 1
+	};
+
+    void DarkenMap(DarkenMode mode, int amount, int threshold)
+    {
+        int modified_sectors = 0; 
+        
+        int nsectors = level.sectors.size();
+        for (int i = 0; i < nsectors;i++)
+        {
+        
+            int light_level = level.sectors[i].lightLevel;
+            
+            if (light_level < threshold || mode == EVERYTHING)
+            {
+                level.sectors[i].lightLevel -= amount;
+                modified_sectors++;
+            }
+            
+
+            //String lls = String.Format("%u",light_level);
+            //Debug.Log(lls);
+        }
+        Debug.LogVerbose(modified_sectors.." sectors were darkened");
+    }
+
+    override void WorldLoaded(WorldEvent e)
+    {
+        if (e.IsReopen)
+            return;
+            
+        DarkenMode mode = CVar.FindCVar("flashlight_darken_mode").GetInt();
+        int threshold = CVar.FindCVar("flashlight_darken_threshold").GetInt();
+        int amount = CVar.FindCVar("flashlight_darken_amount").GetInt();
+        
+        DarkenMap(mode,amount,threshold);
+    }
+}
