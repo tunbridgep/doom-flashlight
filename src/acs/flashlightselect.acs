@@ -1,0 +1,36 @@
+#library "flashlightselect"
+#include "zcommon.acs"
+
+#define FLASHLIGHT_OBJECT "Flashlight"
+#define CVAR_SWAP_WEAPON "flashlight_lastweap"
+
+script "FlashlightStart" ENTER
+{
+    str lastweap = GetCVarString(CVAR_SWAP_WEAPON);
+    str weap = GetWeapon();
+    
+    bool selected_flashlight = weap == FLASHLIGHT_OBJECT;
+    
+    if (!selected_flashlight)
+        SetCVarString(CVAR_SWAP_WEAPON,weap);
+}
+
+script "ToggleFlashlight" (void) net
+{
+    str lastweap = GetCVarString(CVAR_SWAP_WEAPON);
+    str weap = GetWeapon();
+    
+    bool has_flashlight = CheckInventory(FLASHLIGHT_OBJECT);
+    bool selected_flashlight = weap == FLASHLIGHT_OBJECT;
+    bool selected_last = weap == lastweap;
+    
+    if (selected_flashlight)
+    {
+        SetWeapon(lastweap);
+    }
+    else if (has_flashlight && weap != FLASHLIGHT_OBJECT)
+    {
+        SetCVarString(CVAR_SWAP_WEAPON,weap);
+        SetWeapon(FLASHLIGHT_OBJECT);
+    }
+}

@@ -1,0 +1,149 @@
+class FlashlightBase : Weapon abstract
+{
+    FlashlightBeam beam;
+    Battery battery;
+    
+    Default
+    {
+        Weapon.selectionorder 4000;
+        Inventory.PickupSound "misc/gettool";
+        Inventory.Amount 1;
+        Inventory.MaxAmount 1;
+        Scale 1.0;
+        +Weapon.NOALERT;
+        +Weapon.NOAUTOFIRE;
+        +Weapon.NOAUTOAIM;
+        +Inventory.ALWAYSPICKUP;
+        +WEAPON.WIMPY_WEAPON;
+        +WEAPON.NO_AUTO_SWITCH;
+        +WEAPON.NOAUTOAIM;
+        +WEAPON.NOAUTOFIRE;
+        +COUNTITEM;
+    }
+    
+    protected bool CanTurnOn()
+    {
+        if (beam.IsOn())
+            return false;
+        if (battery.ValueBelowThreshold())
+            return false;
+        if (battery.IsEmpty())
+            return false;
+        return true;
+    }
+    
+    protected void TryTurnOn(Actor invoker)
+    {
+        Setup();
+        if (!beam.IsOn())
+        {
+            owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
+            if (CanTurnOn())
+                beam.Activate(invoker);
+        }
+    }
+    
+    protected void TryTurnOff(Actor invoker)
+    {
+        Setup();
+        if (beam.IsOn())
+        {
+            owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
+            beam.Deactivate(invoker);
+        }
+    }
+    
+    protected void TryToggle(Actor invoker)
+    {
+        if (beam.IsOn())
+            TryTurnOff(invoker);
+        else
+            TryTurnOn(invoker);
+    }
+    
+    protected void BatteryControl(Actor invoker)
+    {
+        if (battery.IsEmpty())
+            TryTurnOff(invoker);
+
+        battery.SetInUse(beam.IsOn());
+            
+        owner.ACS_NamedExecute("draw_battery",0,battery.GetLevel(),battery.GetMax(),1);
+    }
+    
+    void Setup()
+    {
+        if (beam == null)
+        {
+            Debug.LogVerbose("Recreating beam");
+        
+            PlayerPawn player = PlayerPawn(owner);
+        
+            beam = FlashlightBeam(Actor.Spawn("FlashlightBeam"));
+            beam.FollowPlayer(player);
+        }
+        
+        if (battery == null)
+        {
+            Debug.LogVerbose("Recreating battery");
+            battery = Battery(owner.GiveInventoryType("Battery"));
+        }
+    }
+}
+
+
+class Flashlight : FlashlightBase
+{
+
+    Default
+    {
+        Inventory.PickupMessage "Picked up a flashlight.";
+    }
+
+	States 
+	{ 
+	    Spawn: 
+		    HFFL A -1;
+    		Loop;
+	    Select:
+            TNT1 A 1 A_Raise(999);
+            Loop;
+        Ready:
+            FLIT TRPNL 1;
+            FLIT J 1
+            {
+               invoker.TryTurnOn(invoker);
+            }
+        RealReady:
+            FLIT I 1
+            {
+                A_WeaponReady(WRF_ALLOWRELOAD);
+                invoker.BatteryControl(invoker);
+            }
+            Goto RealReady;
+        Deselect:
+            FLIT IJLNPRT 1
+            {
+                invoker.TryTurnOff(invoker);
+            }
+            FLIT A 1 A_Lower(999);
+            Loop;
+        Fire: 
+            FLIT I 1
+            {
+                invoker.TryToggle(invoker);
+            }
+            Goto RealReady;
+        AltFire: 
+            FLIT I 1 ACS_NamedExecute("use_flare",0);
+            Goto RealReady;
+        Reload:
+            //FLIT I 0 A_JumpIfInventory("FlashlightBatteryRecharge",1,"RefillBattery");
+            Goto RealReady;
+        RefillBattery:
+            FLIT IJLNPRT 1;
+            FLIT T 15;
+            FLIT TRPNLJ 1;
+            Goto RealReady;
+	}
+}

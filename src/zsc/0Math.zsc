@@ -5,4 +5,13 @@ class Math
         int result = (num - floor(num) > 0.5) ? ceil(num) : floor(num);
         return result;
     }
+    
+    static int Clamp (int value, int clamp_min, int clamp_max)
+    {
+        if (value < clamp_min)
+            return clamp_min;
+        if (value > clamp_max)
+            return clamp_max;
+        return value;
+    }
 }

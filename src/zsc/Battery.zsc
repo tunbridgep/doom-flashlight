@@ -1,32 +1,72 @@
 class Battery : Inventory
 {
 
-    int battery_level;
-    int battery_max;
-    int battery_minimum_threshold;
-    int battery_use_per_tic;
-    int battery_charge_per_tic;
+    private int battery_level;
+    private int battery_max;
+    private int battery_minimum_threshold;
+    private int battery_use_per_tic;
+    private int battery_charge_per_tic;
+    
+    private bool inUse;
 
-    protected int NumBatterryRecharges()
+    override void BeginPlay()
+    {
+        Recharge();
+    }
+
+    protected int numBatterryRecharges()
     {
         //return owner.CountInv("Actor");
         return 0;
     }
     
-    protected void DrainOrRechargeBattery(FlashlightBeam beam)
+    protected void updateFromCVars()
     {
-        if (beam.on)
-            battery_level -= battery_use_per_tic;
-        else if (battery_level < battery_max)
-            battery_level += battery_charge_per_tic;
-        
-        if (battery_level <= 0)
-        {
-            battery_level = 0;
-            beam.Deactivate(owner);
-        }
-        
-        if (battery_level > battery_max)
-            battery_level = battery_max;
+        battery_max = 350;
+        battery_minimum_threshold = 35;
+        battery_use_per_tic = 1;
+        battery_charge_per_tic = 1;
+    }
+    
+    void Recharge()
+    {
+        updateFromCvars();
+        battery_level = battery_max;
+    }
+    
+    bool IsEmpty()
+    {
+        return battery_level == 0;
+    }
+    
+    void SetInUse(bool use)
+    {
+        inUse = use;
+    }
+    
+    bool ValueBelowThreshold()
+    {
+        updateFromCvars();
+        return battery_level < battery_minimum_threshold;
+    }
+    
+    int GetLevel()
+    {
+        return battery_level;
+    }
+    
+    int GetMax()
+    {
+        return battery_max;
+    }
+    
+    override void Tick()
+    {
+        updateFromCvars();
+        if (inUse)
+            battery_level = Math.Clamp(battery_level - battery_use_per_tic,0,battery_max);
+        else
+            battery_level = Math.Clamp(battery_level + battery_charge_per_tic,0,battery_max);
+        super.Tick();
     }
 }

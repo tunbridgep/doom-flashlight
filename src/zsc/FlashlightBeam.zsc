@@ -1,12 +1,14 @@
 class FlashlightBeam : Spotlight
 {
-    PlayerInfo toFollow;
-    bool on;
-    vector3 offset;
+    private PlayerPawn toFollow;
+    private bool on;
+    private bool ready;
+    private vector3 offset;
     
-    void FollowPlayer(PlayerInfo p)
+    void FollowPlayer(PlayerPawn pp)
     {
-        toFollow = p;
+        toFollow = pp;
+        ready = true;
     }
     
     private void SetParameters()
@@ -25,17 +27,22 @@ class FlashlightBeam : Spotlight
         args[2] = flashlight_color.b;
         args[3] = flashlight_intensity;
         
-        offset = (0,0,toFollow.mo.ViewHeight);
+        offset = (0,0,toFollow.ViewHeight);
+    }
+    
+    bool IsOn()
+    {
+        return on;
     }
     
     override void Activate(Actor activator)
     {
-        if (toFollow != null)
+        if (ready)
         {
             SetParameters();
             on = true;
+            super.Activate(activator);
         }
-        super.Activate(activator);
     }
     
     override void DeActivate(Actor activator)
@@ -46,12 +53,12 @@ class FlashlightBeam : Spotlight
     
     override void Tick()
     {
-        if (on)
+        if (on && ready)
         {
-            A_SetAngle(toFollow.mo.angle, 0);
-            A_SetPitch(toFollow.mo.Pitch, SPF_INTERPOLATE);
+            A_SetAngle(toFollow.angle, 0);
+            A_SetPitch(toFollow.Pitch, SPF_INTERPOLATE);
             
-            vector3 pos = (toFollow.mo.pos.x + offset.x, toFollow.mo.pos.y + offset.y, toFollow.mo.pos.z + offset.z);
+            vector3 pos = (toFollow.pos.x + offset.x, toFollow.pos.y + offset.y, toFollow.pos.z + offset.z);
             
             SetOrigin(pos, true);
         }
