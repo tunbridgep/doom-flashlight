@@ -33,4 +33,8 @@ script "ToggleFlashlight" (void) net
         SetCVarString(CVAR_SWAP_WEAPON,weap);
         SetWeapon(FLASHLIGHT_OBJECT);
     }
+    else
+    {
+        Print(s:"You do not have a flashlight");
+    }
 }

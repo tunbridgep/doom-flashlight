@@ -3,7 +3,7 @@ user string flashlight_lastweap = "";
 
 //flashlight settings
 user Color flashlight_color = "FF FF FF";
-user int flashlight_intensity = 128;
+user int flashlight_intensity = 255;
 user float flashlight_inner_angle = 12.0;
 user float flashlight_outer_angle = 26.0;
 

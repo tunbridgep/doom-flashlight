@@ -1,15 +1,29 @@
 class FlashlightReplacers : EventHandler
 {
 
-    void ReplaceThing(Actor original,String checkclass, String replacement, int chance)
+    Class<Actor> shotgunclass;
+    Class<Actor> shellboxclass;
+    Class<Actor> chaingunclass;
+    Class<Actor> rocketammoclass;
+    Class<Actor> clipboxclass;
+    Class<Actor> rocketboxclass;
+    Class<Actor> berserkclass;
+    Class<Actor> backpackclass;
+    Class<Actor> infraredclass;
+    Class<Actor> soulsphereclass;
+    Class<Actor> blursphereclass;
+    Class<Actor> megasphereclass;
+
+    void ReplaceThing(Actor original,Class<Actor> checkclass, String replacement, int chance)
     {
         int dice = random(0, 100);
     
-        if (original.GetClass() is checkclass && dice <= chance)
+        if (original && original.GetClass() is checkclass && dice <= chance)
         //if (original.CheckClass(checkclass,AAPTR_DEFAULT,true))
+        //if (original)
         {
             let newthing = Actor.Spawn(replacement);
-
+            
             newthing.A_SetAngle(original.angle, 0);
             newthing.A_SetPitch(original.pitch, SPF_INTERPOLATE);
             newthing.SetOrigin(original.pos, true);
@@ -21,8 +35,71 @@ class FlashlightReplacers : EventHandler
             Debug.LogVerbose("Replaced "..original.GetTag().." with a "..replacement.." (rolled a "..dice.." out of "..chance..")");
         }
     }
+      
+    override void OnRegister()
+    {
+        shotgunclass = "Shotgun";
+        shellboxclass = "Shellbox";
+        chaingunclass = "Chaingun";
+        rocketammoclass = "RocketAmmo";
+        clipboxclass = "ClipBox";
+        rocketboxclass = "RocketBox";
+        berserkclass = "Berserk";
+        infraredclass = "Infrared";
+        backpackclass = "Backpack";
+        soulsphereclass = "Soulsphere";
+        blursphereclass = "Blursphere";
+        megasphereclass = "Megasphere";
+    }
+      
+    override void CheckReplacement(ReplaceEvent e)
+    {
     
+        if (e.Replacee is shotgunclass && e.replacement)
+            shotgunclass = e.replacement;
+        else if (e.Replacee is shellboxclass && e.replacement)
+            shellboxclass = e.replacement;
+        else if (e.Replacee is chaingunclass && e.replacement)
+            chaingunclass = e.replacement;
+        else if (e.Replacee is rocketammoclass && e.replacement)
+            rocketammoclass = e.replacement;
+        else if (e.Replacee is clipboxclass && e.replacement)
+            clipboxclass = e.replacement;
+        else if (e.Replacee is rocketboxclass && e.replacement)
+            rocketboxclass = e.replacement;
+        else if (e.Replacee is berserkclass && e.replacement)
+            berserkclass = e.replacement;
+        else if (e.Replacee is infraredclass && e.replacement)
+            infraredclass = e.replacement;
+        else if (e.Replacee is backpackclass && e.replacement)
+            backpackclass = e.replacement;
+        else if (e.Replacee is soulsphereclass && e.replacement)
+            soulsphereclass = e.replacement;
+        else if (e.Replacee is blursphereclass && e.replacement)
+            blursphereclass = e.replacement;
+        else if (e.Replacee is megasphereclass && e.replacement)
+            megasphereclass = e.replacement;
+    
+    }
+    
+    //TODO: Fix this garbage
     override void WorldThingSpawned(WorldEvent e)
+    {
+        Actor a = e.Thing;
+        
+        //We have a delicate situation here - This is called on EVERY actor spawn,
+        //meaning we would replace things like dropped weapons (shotguns). This is bad,
+        //because zombiemen will drop flashlights instead of shotguns
+        //But we can't just do it once at the start either, because many mods (Brutal Doom, PB etc)
+        //like to use "spawners" to create their objects, so we should wait a little bit (1 second)
+        //and then discard anything spawned after the initial bit        
+        if (a.SpawnTime <= 5)
+        {
+            DoReplacement(a);
+        }
+    }
+    
+    void DoReplacement(Actor a)
     {
         let spawn_flashlight = CVar.FindCVar("flashlight_spawn_flashlight").GetInt();
         let spawn_flashlight_chance = CVar.FindCVar("flashlight_spawn_flashlight_chance").GetInt();
@@ -30,13 +107,13 @@ class FlashlightReplacers : EventHandler
         switch (spawn_flashlight)
         {
             case 1:
-                ReplaceThing(e.Thing,"Shotgun","Flashlight",spawn_flashlight_chance);
+                ReplaceThing(a,shotgunclass,"Flashlight",spawn_flashlight_chance);
                 break;
             case 2:
-                ReplaceThing(e.Thing,"Shellbox","Flashlight",spawn_flashlight_chance);
+                ReplaceThing(a,shellboxclass,"Flashlight",spawn_flashlight_chance);
                 break;
             case 3:
-                ReplaceThing(e.Thing,"Chaingun","Flashlight",spawn_flashlight_chance);
+                ReplaceThing(a,chaingunclass,"Flashlight",spawn_flashlight_chance);
                 break;
         }
         
@@ -46,36 +123,37 @@ class FlashlightReplacers : EventHandler
         switch (spawn_flares)
         {
             case 1:
-                ReplaceThing(e.Thing,"RocketAmmo","Flare",spawn_flares_chance);
+                ReplaceThing(a,rocketammoclass,"Flare",spawn_flares_chance);
                 break;
         }
-        
+
+
         let spawn_flare_boxes = CVar.FindCVar("flashlight_spawn_flare_boxes").GetInt();
         let spawn_flare_boxes_chance = CVar.FindCVar("flashlight_spawn_flare_boxes_chance").GetInt();
         
         switch (spawn_flare_boxes)
         {
             case 1:
-                ReplaceThing(e.Thing,"ClipBox","FlareBox",spawn_flare_boxes_chance);
+                ReplaceThing(a,clipboxclass,"FlareBox",spawn_flare_boxes_chance);
                 break;
             case 2:
-                ReplaceThing(e.Thing,"RocketBox","FlareBox",spawn_flare_boxes_chance);
+                ReplaceThing(a,rocketboxclass,"FlareBox",spawn_flare_boxes_chance);
                 break;
         }
-        
+
         let spawn_headlamp = CVar.FindCVar("flashlight_spawn_headlamp").GetInt();
         let spawn_headlamp_chance = CVar.FindCVar("flashlight_spawn_headlamp_chance").GetInt();
         
         switch (spawn_headlamp)
         {
             case 1:
-                ReplaceThing(e.Thing,"Berserk","Flashlight",spawn_headlamp_chance);
+                ReplaceThing(a,berserkclass,"Flashlight",spawn_headlamp_chance);
                 break;
             case 2:
-                ReplaceThing(e.Thing,"Infrared","Flashlight",spawn_headlamp_chance);
+                ReplaceThing(a,infraredclass,"Flashlight",spawn_headlamp_chance);
                 break;
             case 3:
-                ReplaceThing(e.Thing,"Backpack","Flashlight",spawn_headlamp_chance);
+                ReplaceThing(a,backpackclass,"Flashlight",spawn_headlamp_chance);
                 break;
         }
         
@@ -85,16 +163,16 @@ class FlashlightReplacers : EventHandler
         switch (spawn_battery_recharge)
         {
             case 1:
-                ReplaceThing(e.Thing,"Backpack","FlashlightBatteryRecharge",spawn_battery_recharge_chance);
+                ReplaceThing(a,backpackclass,"FlashlightBatteryRecharge",spawn_battery_recharge_chance);
                 break;
             case 2:
-                ReplaceThing(e.Thing,"Soulsphere","FlashlightBatteryRecharge",spawn_battery_recharge_chance);
+                ReplaceThing(a,soulsphereclass,"FlashlightBatteryRecharge",spawn_battery_recharge_chance);
                 break;
             case 3:
-                ReplaceThing(e.Thing,"Blursphere","FlashlightBatteryRecharge",spawn_battery_recharge_chance);
+                ReplaceThing(a,blursphereclass,"FlashlightBatteryRecharge",spawn_battery_recharge_chance);
                 break;
             case 4:
-                ReplaceThing(e.Thing,"Megasphere","FlashlightBatteryRecharge",spawn_battery_recharge_chance);
+                ReplaceThing(a,megasphereclass,"FlashlightBatteryRecharge",spawn_battery_recharge_chance);
                 break;
         }
         
@@ -105,16 +183,16 @@ class FlashlightReplacers : EventHandler
         switch (spawn_battery_upgrade)
         {
             case 1:
-                ReplaceThing(e.Thing,"Backpack","FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
+                ReplaceThing(a,backpackclass,"FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
                 break;
             case 2:
-                ReplaceThing(e.Thing,"Soulsphere","FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
+                ReplaceThing(a,soulsphereclass,"FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
                 break;
             case 3:
-                ReplaceThing(e.Thing,"Blursphere","FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
+                ReplaceThing(a,blursphereclass,"FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
                 break;
             case 4:
-                ReplaceThing(e.Thing,"Megasphere","FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
+                ReplaceThing(a,megasphereclass,"FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
                 break;
         }
     }
