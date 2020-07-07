@@ -48,17 +48,30 @@ function str GetBatteryLevelIcon(int level, int max, bool red)
 
 function str GetFlaresString(void)
 {
-    return "0";
+    int flares = CheckInventory("Flare");
+    return StrParam(d:flares);
 }
 
 function str GetBatteryUpgradeLevelString(void)
 {
-    return "0";
+    int upgrades = CheckInventory("FlashlightBatteryUpgrade");
+    
+    switch (upgrades)
+    {
+        case 1:
+            return "+";
+        case 2:
+            return "++";
+        case 3:
+            return "+++";
+    }
+    return StrParam(d:upgrades);
 }
 
 function str GetBatteryRechargeLevelString(void)
 {
-    return "0";
+    int recharges = CheckInventory("FlashlightBatteryRecharge");
+    return StrParam(d:recharges);
 }
 
 function void DrawBatteryIcon(str icon)

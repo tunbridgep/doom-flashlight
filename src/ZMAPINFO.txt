@@ -2,4 +2,5 @@ GameInfo
 {
     AddEventHandlers = "FlashlightSetup"
     AddEventHandlers = "DarkenMap"
+    AddEventHandlers = "FlashlightReplacers"
 }

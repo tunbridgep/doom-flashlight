@@ -1,0 +1,99 @@
+Class Flare : CustomInventory
+{
+    Default
+    {
+        Radius 4;
+        Height 18;
+        +INVENTORY.INVBAR;
+        +INVENTORY.HUBPOWER;
+        +INVENTORY.PERSISTENTPOWER;
+        Inventory.MaxAmount 30;
+        Inventory.InterHubAmount 30;
+        Inventory.Icon "FLARINV";
+        Inventory.PickupMessage "You picked up a flare.";
+    }
+    
+    States
+    {
+        Spawn:
+            FLZR D -1;
+            Stop;
+        Use:
+            TNT1 A 1 A_FireProjectile("ActiveFlareProjectile");
+            Stop;
+    }
+}
+
+Class ActiveFlare : Actor //You can give this a DoomEdNum, to place it in a map editor
+{
+    Default
+    {
+        Radius 22;
+        Height 11;
+    }
+    States
+    {
+        Spawn:
+            FLZR A 0 Bright;
+            FLZR A 0 Bright A_StartSound("Flare/Loop");
+            FLZR AB 1 Bright;
+            Goto Spawn+2;
+    }
+}
+
+Class ActiveFlareProjectile : ActiveFlare
+{
+    Default
+    {
+        BounceType "Doom";
+        Projectile;
+        Speed 20;
+        +MISSILE;
+        -NOGRAVITY;
+        -BLOODSPLATTER;
+        -EXTREMEDEATH;
+        +EXPLODEONWATER;
+        +SKYEXPLODE;
+        +BOUNCEONFLOORS;
+        +BOUNCEONWALLS;
+        +BOUNCEONCEILINGS;
+        -NOTELEPORT;
+        +THRUSPECIES;
+        Gravity 1.0;
+        BounceFactor 0.25;
+        WallBounceFactor 0.15;
+    }
+    
+    States
+    {
+        Spawn:
+            FLZR A 0 Bright;
+            FLZR A 0 Bright A_StartSound("Flare/Light");
+            FLZR A 0 Bright A_StartSound("Flare/Loop");
+            FLZR AB 1 Bright;
+            Goto Spawn+3;
+        Death:
+            FLZR A 1 A_SpawnItemEx("ActiveFlare");
+            Stop;
+
+    }
+}
+
+Class FlareBox : CustomInventory
+{
+    Default
+    {
+        Radius 28;
+        Height 16;
+        Inventory.PickupMessage "You picked up a box of flares.";
+    }
+    States
+    {
+        Spawn:
+            FLZR C -1;
+            Stop;
+        Pickup:
+            TNT1 A 1 A_GiveInventory ("Flare", 5);
+            Stop;
+    }
+}

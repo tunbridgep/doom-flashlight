@@ -17,7 +17,7 @@ class DarkenMap : EventHandler
             
             if (light_level < threshold || mode == EVERYTHING)
             {
-                int new_level = Math.Clamp(light_level - amount,0,255);
+                int new_level = Math.ClampMin(light_level - amount,0);
                 level.sectors[i].lightLevel = new_level;
                 modified_sectors++;
                 Debug.LogVerbose("Darkened Sector with light level "..light_level.." to "..new_level);
@@ -32,11 +32,11 @@ class DarkenMap : EventHandler
         if (light_level <= threshold || !require_threshold)
         {
             int dice = random(0, 100);
-            Debug.Log("Rolled a "..dice);
+            //Debug.Log("Rolled a "..dice);
             
             if (dice <= chance)
             {
-                Debug.Log("Monster "..monster.GetTag().." says hello from sector with light level of "..light_level);
+                Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant in sector with light level of "..light_level);
                 monster.bSTEALTH = true;
             }
         }

@@ -1,0 +1,121 @@
+class FlashlightReplacers : EventHandler
+{
+
+    void ReplaceThing(Actor original,String checkclass, String replacement, int chance)
+    {
+        int dice = random(0, 100);
+    
+        if (original.GetClass() is checkclass && dice <= chance)
+        //if (original.CheckClass(checkclass,AAPTR_DEFAULT,true))
+        {
+            let newthing = Actor.Spawn(replacement);
+
+            newthing.A_SetAngle(original.angle, 0);
+            newthing.A_SetPitch(original.pitch, SPF_INTERPOLATE);
+            newthing.SetOrigin(original.pos, true);
+            
+            newthing.ChangeTID(original.tid);
+            newthing.Special = original.Special;
+            original.Destroy();
+            
+            Debug.LogVerbose("Replaced "..original.GetTag().." with a "..replacement.." (rolled a "..dice.." out of "..chance..")");
+        }
+    }
+    
+    override void WorldThingSpawned(WorldEvent e)
+    {
+        let spawn_flashlight = CVar.FindCVar("flashlight_spawn_flashlight").GetInt();
+        let spawn_flashlight_chance = CVar.FindCVar("flashlight_spawn_flashlight_chance").GetInt();
+        
+        switch (spawn_flashlight)
+        {
+            case 1:
+                ReplaceThing(e.Thing,"Shotgun","Flashlight",spawn_flashlight_chance);
+                break;
+            case 2:
+                ReplaceThing(e.Thing,"Shellbox","Flashlight",spawn_flashlight_chance);
+                break;
+            case 3:
+                ReplaceThing(e.Thing,"Chaingun","Flashlight",spawn_flashlight_chance);
+                break;
+        }
+        
+        let spawn_flares = CVar.FindCVar("flashlight_spawn_flares").GetInt();
+        let spawn_flares_chance = CVar.FindCVar("flashlight_spawn_flares_chance").GetInt();
+        
+        switch (spawn_flares)
+        {
+            case 1:
+                ReplaceThing(e.Thing,"RocketAmmo","Flare",spawn_flares_chance);
+                break;
+        }
+        
+        let spawn_flare_boxes = CVar.FindCVar("flashlight_spawn_flare_boxes").GetInt();
+        let spawn_flare_boxes_chance = CVar.FindCVar("flashlight_spawn_flare_boxes_chance").GetInt();
+        
+        switch (spawn_flare_boxes)
+        {
+            case 1:
+                ReplaceThing(e.Thing,"ClipBox","FlareBox",spawn_flare_boxes_chance);
+                break;
+            case 2:
+                ReplaceThing(e.Thing,"RocketBox","FlareBox",spawn_flare_boxes_chance);
+                break;
+        }
+        
+        let spawn_headlamp = CVar.FindCVar("flashlight_spawn_headlamp").GetInt();
+        let spawn_headlamp_chance = CVar.FindCVar("flashlight_spawn_headlamp_chance").GetInt();
+        
+        switch (spawn_headlamp)
+        {
+            case 1:
+                ReplaceThing(e.Thing,"Berserk","Flashlight",spawn_headlamp_chance);
+                break;
+            case 2:
+                ReplaceThing(e.Thing,"Infrared","Flashlight",spawn_headlamp_chance);
+                break;
+            case 3:
+                ReplaceThing(e.Thing,"Backpack","Flashlight",spawn_headlamp_chance);
+                break;
+        }
+        
+        let spawn_battery_recharge = CVar.FindCVar("flashlight_spawn_battery_recharges").GetInt();
+        let spawn_battery_recharge_chance = CVar.FindCVar("flashlight_spawn_battery_recharges_chance").GetInt();
+        
+        switch (spawn_battery_recharge)
+        {
+            case 1:
+                ReplaceThing(e.Thing,"Backpack","FlashlightBatteryRecharge",spawn_battery_recharge_chance);
+                break;
+            case 2:
+                ReplaceThing(e.Thing,"Soulsphere","FlashlightBatteryRecharge",spawn_battery_recharge_chance);
+                break;
+            case 3:
+                ReplaceThing(e.Thing,"Blursphere","FlashlightBatteryRecharge",spawn_battery_recharge_chance);
+                break;
+            case 4:
+                ReplaceThing(e.Thing,"Megasphere","FlashlightBatteryRecharge",spawn_battery_recharge_chance);
+                break;
+        }
+        
+        
+        let spawn_battery_upgrade = CVar.FindCVar("flashlight_spawn_battery_upgrades").GetInt();
+        let spawn_battery_upgrade_chance = CVar.FindCVar("flashlight_spawn_battery_upgrades_chance").GetInt();
+        
+        switch (spawn_battery_upgrade)
+        {
+            case 1:
+                ReplaceThing(e.Thing,"Backpack","FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
+                break;
+            case 2:
+                ReplaceThing(e.Thing,"Soulsphere","FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
+                break;
+            case 3:
+                ReplaceThing(e.Thing,"Blursphere","FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
+                break;
+            case 4:
+                ReplaceThing(e.Thing,"Megasphere","FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
+                break;
+        }
+    }
+}

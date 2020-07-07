@@ -1,0 +1,34 @@
+class FlashlightBatteryUpgrade : Inventory
+{
+    Default
+    {
+        +INVENTORY.UNDROPPABLE;
+        +INVENTORY.HUBPOWER;
+        +INVENTORY.PERSISTENTPOWER;
+        +INVENTORY.KEEPDEPLETED;
+        +INVENTORY.UNTOSSABLE;
+        +INVENTORY.IGNORESKILL;
+        -INVENTORY.INVBAR;
+        +NOGRAVITY;
+        +COUNTITEM;
+        Inventory.PickupSound "misc/gettool" ;
+	    Inventory.PickupMessage "Picked up a Flashlight Battery Expander.";
+        Inventory.InterHubAmount 10;
+        Inventory.MaxAmount 10;
+        Inventory.Amount 1;
+    }
+	States 
+	{ 
+	    Spawn: 
+		    CELP A -1;
+    		Loop;
+    }
+}
+
+class FlashlightBatteryRecharge : FlashlightBatteryUpgrade
+{
+    Default
+    {
+        Inventory.PickupMessage "Picked up a Flashlight Battery Recharge.";
+    }
+}

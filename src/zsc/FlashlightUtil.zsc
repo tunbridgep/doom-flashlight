@@ -2,6 +2,21 @@ class FlashlightSetup : EventHandler
 {
     override void PlayerEntered(PlayerEvent e)
     {
-
+        PlayerPawn player = players[e.PlayerNumber].mo;
+    
+        let start_item = CVar.FindCVar("flashlight_start_with_flashlight").GetInt();
+        let start_flares = CVar.FindCVar("flashlight_start_with_flares").GetInt();
+        
+        switch (start_item)
+        {
+            case 1:
+                player.GiveInventory("Flashlight",1);
+                break;
+            case 2:
+                player.GiveInventory("Flashlight",1);
+                break;
+        }
+        
+        player.GiveInventory("Flare",start_flares);
     }    
 }

@@ -2,7 +2,6 @@ class FlashlightBase : Weapon abstract
 {
     FlashlightBeam beam;
     Battery battery;
-    int red_battery_frames;
     
     Default
     {
@@ -42,10 +41,11 @@ class FlashlightBase : Weapon abstract
             {
                 owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
                 beam.Activate(invoker);
+                battery.SetInUse(true);
             }
             else
             {
-                red_battery_frames = 5;
+                battery.SetRed(5);
             }
         }
     }
@@ -57,6 +57,7 @@ class FlashlightBase : Weapon abstract
         {
             owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
             beam.Deactivate(invoker);
+            battery.SetInUse(false);
         }
     }
     
@@ -72,12 +73,18 @@ class FlashlightBase : Weapon abstract
     {
         if (battery.IsEmpty())
             TryTurnOff(invoker);
-
-        battery.SetInUse(beam.IsOn());
             
-        owner.ACS_NamedExecute("draw_battery",0,battery.GetLevel(),battery.GetMax(),red_battery_frames);
-        
-        red_battery_frames = Math.Clamp(red_battery_frames - 1,0,5);
+        battery.DrawIndicator();
+    }
+    
+    protected void UseFlare()
+    {
+        Inventory flare = owner.FindInventory("Flare",true);
+        if (flare)
+        {
+            flare.Use(false);
+            owner.TakeInventory("Flare",1);
+        }
     }
     
     void Setup()
@@ -149,15 +156,22 @@ class Flashlight : FlashlightBase
             }
             Goto RealReady;
         AltFire: 
-            FLIT I 1 ACS_NamedExecute("use_flare",0);
+            FLIT I 1
+            {
+                invoker.UseFlare();
+            }
             Goto RealReady;
         Reload:
-            //FLIT I 0 A_JumpIfInventory("FlashlightBatteryRecharge",1,"RefillBattery");
+            FLIT I 1 A_JumpIf(invoker.battery.CanUseRecharger(),"RefillBattery");
             Goto RealReady;
         RefillBattery:
             FLIT IJLNPRT 1;
             FLIT T 15;
-            FLIT TRPNLJ 1;
+            FLIT TRPNL 1;
+            FLIT J 1
+            {
+                invoker.battery.UseRecharger();
+            }
             Goto RealReady;
 	}
 }

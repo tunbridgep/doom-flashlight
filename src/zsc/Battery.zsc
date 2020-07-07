@@ -6,24 +6,30 @@ class Battery : Inventory
     private int battery_minimum_threshold;
     private int battery_use_per_tic;
     private int battery_charge_per_tic;
+    private int red_tics;
     
     private bool inUse;
 
     override void BeginPlay()
     {
-        Recharge();
+        updateFromCVars();
+        battery_level = GetMax();
     }
 
     protected int numBatteryRecharges()
     {
-        //return owner.CountInv("Actor");
-        return 0;
+        int re;
+        if (owner != null)
+            re = owner.CountInv("FlashlightBatteryRecharge");
+        return re;
     }
     
     protected int numBatteryUpgrades()
     {
-        //return owner.CountInv("Actor");
-        return 0;
+        int re;
+        if (owner != null)
+            re = owner.CountInv("FlashlightBatteryUpgrade");
+        return re;
     }
     
     protected void updateFromCVars()
@@ -33,11 +39,34 @@ class Battery : Inventory
         battery_use_per_tic = CVar.FindCVar("flashlight_battery_use_per_tic").GetInt();
         battery_charge_per_tic = CVar.FindCVar("flashlight_battery_charge_per_tic").GetInt();
     }
-    
-    void Recharge()
+
+    bool CanUseRecharger()
     {
-        updateFromCvars();
-        battery_level = battery_max;
+        return numBatteryrecharges() > 0;
+    }
+    
+    void SetRed(int tics)
+    {
+        red_tics = tics;
+    }
+    
+    void DrawIndicator()
+    {
+        if (owner != null)
+        {
+            owner.ACS_NamedExecute("draw_battery",0,battery_level,GetMax(),red_tics);
+            red_tics = Math.ClampMin(red_tics - 1,0);
+        }
+    }
+
+    void UseRecharger()
+    {
+        if (CanUseRecharger())
+        {
+            updateFromCvars();
+            battery_level = GetMax();
+            owner.TakeInventory("FlashlightBatteryRecharge",1);
+        }
     }
     
     bool IsEmpty()
@@ -63,16 +92,16 @@ class Battery : Inventory
     
     int GetMax()
     {
-        return battery_max;
+        return battery_max + (1 * numBatteryUpgrades());
     }
     
     override void Tick()
     {
         updateFromCvars();
         if (inUse)
-            battery_level = Math.Clamp(battery_level - battery_use_per_tic,0,battery_max);
+            battery_level = Math.Clamp(battery_level - battery_use_per_tic,0,GetMax());
         else
-            battery_level = Math.Clamp(battery_level + battery_charge_per_tic,0,battery_max);
+            battery_level = Math.Clamp(battery_level + battery_charge_per_tic,0,GetMax());
         super.Tick();
     }
 }

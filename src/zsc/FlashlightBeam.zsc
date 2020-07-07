@@ -13,11 +13,13 @@ class FlashlightBeam : Spotlight
     
     private void SetParameters()
     {
-        Color flashlight_color = "FF FF FF";
-        int flashlight_intensity = 128;
+        PlayerInfo info = players[toFollow.PlayerNumber()];
+               
+        Color flashlight_color = CVar.GetCVar("flashlight_color",info).GetString();
+        int flashlight_intensity = CVar.GetCVar("flashlight_intensity",info).GetInt();
 
-        float flashlight_inner = 12.0;
-        float flashlight_outer = 26.0;
+        float flashlight_inner = CVar.GetCVar("flashlight_inner_angle",info).GetFloat();
+        float flashlight_outer = CVar.GetCVar("flashlight_outer_angle",info).GetFloat();
         
         self.SpotInnerAngle = flashlight_inner;
         self.SpotOuterAngle = flashlight_outer;
