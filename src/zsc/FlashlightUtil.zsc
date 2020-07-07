@@ -7,6 +7,9 @@ class FlashlightSetup : EventHandler
         let start_item = CVar.FindCVar("flashlight_start_with_flashlight").GetInt();
         let start_flares = CVar.FindCVar("flashlight_start_with_flares").GetInt();
         
+        if (player.CheckInventory("FlashlightStartToken",1))
+            return;
+        
         switch (start_item)
         {
             case 1:
@@ -18,5 +21,6 @@ class FlashlightSetup : EventHandler
         }
         
         player.GiveInventory("Flare",start_flares);
-    }    
+        player.GiveInventory("FlashlightStartToken",1);
+    }
 }
