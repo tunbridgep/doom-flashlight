@@ -1,7 +1,0 @@
-class FlashlightMenu : OptionMenu
-{
-}
-
-class FlashlightMenuItem : OptionMenuItem
-{
-}

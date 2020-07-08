@@ -1,0 +1,29 @@
+OptionValue DarkenStyle
+{
+    0, "Disabled"
+    1, "Darken Entire Map"
+    2, "Darken Below Threshold"
+}
+
+OptionMenu "Flashlight"
+{
+    Title "Flashlight"
+    Class "FlashlightMenu"
+    
+    StaticText " "
+    StaticText "Flashlight Options", 1
+    ColorPicker "Color", "flashlight_color"
+    StaticText " "
+    StaticText "Map Lighting", 1
+    FlashlightOption "Darken Mode","Test Option","flashlight_darken_mode",DarkenStyle
+    FlashlightSlider "Darken Amount (Relative)", "Test 1", "flashlight_darken_amount", 0,300,5
+    FlashlightSlider "Light Threshold (Non-Relative)", "Test 2", "flashlight_darken_threshold", 0,255,5
+    StaticText " "
+    FlashlightConditionalDescription "This is a test", -2
+}
+
+AddOptionMenu "OptionsMenu"
+{
+    StaticText " "
+    Submenu "Flashlight", "Flashlight"
+}

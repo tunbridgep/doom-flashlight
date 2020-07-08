@@ -1,0 +1,110 @@
+//===========================================================================
+//
+// Adapted from Nash's Tilt++ Menu, hut with significant changes
+// I don't normally like to use other people's code without
+// explicitly asking for permission, but the Zdoom wiki
+// has virtually no documentation on the subject
+//
+//===========================================================================
+
+mixin class Conditional
+{
+    bool disabled;
+    
+    void Disable(bool d)
+    {
+        disabled = d;
+    }
+    
+    protected void DrawDisabledText(String text, int y, int color, Font font)
+    {
+        Screen.DrawText (font, color,
+				(Screen.GetWidth() - font.StringWidth (text) * CleanXfac_1) / 2,
+				y,
+				text,
+				DTA_CleanNoMove_1, true);
+    }
+    
+    override bool Selectable()
+	{
+	    return !disabled;
+	}
+	
+	override int Draw(OptionMenuDescriptor desc, int y, int indent, bool selected)
+	{
+	    if (!disabled)
+	    {
+	        return super.Draw(desc,y,indent,selected);
+		}
+		else
+		{
+            DrawDisabledText("Not available",y,OptionMenuSettings.mFontColorValue,Menu.OptionFont());
+            return indent;
+		}
+	}
+}
+
+class OptionMenuItemFlashlightConditionalDescription : OptionMenuItemStaticText
+{
+	OptionMenuItemFlashlightConditionalDescription Init(String label, int cr = -1)
+	{
+		Super.Init(label, cr);
+		return self;
+	}
+}
+
+class OptionMenuItemFlashlightOption : OptionMenuItemOption
+{
+	String mTooltip;
+
+	OptionMenuItemFlashlightOption Init(String label, String tooltip, Name command, Name values, CVar graycheck = null, int center = 0)
+	{
+		mTooltip = tooltip;
+		Super.Init(label, command, values, graycheck, center);
+		return self;
+	}
+}
+
+class OptionMenuItemFlashlightSlider : OptionMenuItemSlider
+{
+    
+	mixin Conditional;
+	OptionMenuItemFlashlightSlider Init(String label, String tooltip, Name command, double min, double max, double step, int showval = 1)
+	{
+		//mTooltip = tooltip;
+		Super.Init(label, command, min, max, step, showval);
+		return self;
+	}
+}
+
+class FlashlightMenu : OptionMenu
+{ 
+    override void Drawer ()
+	{
+		Super.Drawer();
+
+		String tt;
+
+		if (mDesc.mSelectedItem > 0)
+		{
+			if (mDesc.mItems[mDesc.mSelectedItem] is "OptionMenuItemFlashlightOption")
+			{
+				tt = StringTable.Localize(OptionMenuItemFlashlightOption(mDesc.mItems[mDesc.mSelectedItem]).mTooltip);
+			}
+
+			if (mDesc.mItems[mDesc.mSelectedItem] is "OptionMenuItemFlashlightSlider")
+			{
+				//tt = StringTable.Localize(OptionMenuItemFlashlightSlider(mDesc.mItems[mDesc.mSelectedItem]).mTooltip);
+			}
+		}
+
+		if (tt.Length() > 0)
+		{
+			Screen.DrawText (OptionFont(), OptionMenuSettings.mFontColorValue,
+				(Screen.GetWidth() - OptionFont().StringWidth (tt) * CleanXfac_1) / 2,
+				BigFont.GetHeight() * CleanYfac_1 * 2.5,
+				tt,
+				DTA_CleanNoMove_1, true);
+		}
+	}
+}
