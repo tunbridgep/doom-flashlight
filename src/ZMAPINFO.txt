@@ -1,5 +1,6 @@
 GameInfo
 {
+    AddEventHandlers = "StealthSpawner"
     AddEventHandlers = "FlashlightSetup"
     AddEventHandlers = "DarkenMap"
     AddEventHandlers = "FlashlightReplacers"
