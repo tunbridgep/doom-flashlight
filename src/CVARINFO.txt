@@ -3,12 +3,13 @@ user string flashlight_lastweap = "";
 
 //flashlight settings
 user Color flashlight_color = "FF FF FF";
-user int flashlight_intensity = 255;
-user float flashlight_inner_angle = 12.0;
-user float flashlight_outer_angle = 26.0;
+user cheat int flashlight_intensity = 255;
+user cheat float flashlight_inner_angle = 16.0;
+user cheat float flashlight_outer_angle = 32.0;
 
 //battery settings
 user int flashlight_battery_display = 1;
+server int flashlight_battery_mode = 1;
 server int flashlight_battery_max = 350;
 server int flashlight_battery_min_threshold = 35;
 server int flashlight_battery_use_per_tic = 1;
@@ -16,32 +17,32 @@ server int flashlight_battery_charge_per_tic = 1;
 
 //map alteration
 server int flashlight_darken_mode = 2;
-server int flashlight_darken_amount = 48;
-server int flashlight_darken_threshold = 96;
+server int flashlight_darken_amount = 16;
+server int flashlight_darken_threshold = 128;
 server bool flashlight_replace_sky = false;
 
 //stealth monsters
-server int flashlight_stealth_monster_chance = 0;
+server int flashlight_stealth_monster_chance = 20;
 server int flashlight_stealth_monster_threshold = 96;
-server bool flashlight_stealth_monster_require_threshold = true;
+server int flashlight_stealth_monster_mode = 0;
 
 //replacers
 server int flashlight_spawn_flashlight = 1;
 server int flashlight_spawn_flashlight_chance = 25;
-server int flashlight_spawn_headlamp = 1;
+server int flashlight_spawn_headlamp = 0;
 server int flashlight_spawn_headlamp_chance = 25;
-server int flashlight_spawn_battery_upgrades = 1;
-server int flashlight_spawn_battery_upgrades_chance = 25;
-server int flashlight_spawn_battery_recharges = 1;
-server int flashlight_spawn_battery_recharges_chance = 25;
-server int flashlight_spawn_flares = 1;
-server int flashlight_spawn_flares_chance = 25;
-server int flashlight_spawn_flare_boxes = 1;
-server int flashlight_spawn_flare_boxes_chance = 25;
+server int flashlight_spawn_flare = 1;
+server int flashlight_spawn_flare_chance = 25;
+server int flashlight_spawn_battery_upgrade = 1;
+server int flashlight_spawn_battery_upgrade_chance = 25;
+server int flashlight_spawn_battery_recharge = 1;
+server int flashlight_spawn_battery_recharge_chance = 25;
+server int flashlight_spawn_flare_box = 1;
+server int flashlight_spawn_flare_box_chance = 25;
 
 //start-game settings
-server int flashlight_start_with_flashlight = 0;
-server int flashlight_start_with_flares = 5;
+server int flashlight_starting_item = 0;
+server int flashlight_starting_flares = 5;
 
 //misc
 server int flashlight_debug = 0;

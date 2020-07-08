@@ -9,69 +9,121 @@
 
 mixin class Conditional
 {
-    bool disabled;
-    
-    void Disable(bool d)
-    {
-        disabled = d;
-    }
+    int condition_min;
+    int condition_max;
+    String disabled_text;
+ 	Cvar conditional;
     
     protected void DrawDisabledText(String text, int y, int color, Font font)
     {
         Screen.DrawText (font, color,
 				(Screen.GetWidth() - font.StringWidth (text) * CleanXfac_1) / 2,
 				y,
-				text,
+				StringTable.Localize(text),
 				DTA_CleanNoMove_1, true);
+    }
+
+    protected bool CheckCondition()
+    {
+        if (conditional)
+        {
+            int val = conditional.GetInt();
+            bool conditional_min = val >= condition_min;
+            bool conditional_max = condition_max <= 0 ? true : val <= condition_max;
+       	    return conditional_min && conditional_max;
+       	}
+       	return true;
     }
     
     override bool Selectable()
 	{
-	    return !disabled;
+    	return CheckCondition();
 	}
 	
 	override int Draw(OptionMenuDescriptor desc, int y, int indent, bool selected)
 	{
-	    if (!disabled)
+	    if (CheckCondition())
 	    {
 	        return super.Draw(desc,y,indent,selected);
 		}
 		else
 		{
-            DrawDisabledText("Not available",y,OptionMenuSettings.mFontColorValue,Menu.OptionFont());
+		    String text = disabled_text == "" ? "$DISABLED" : disabled_text;
+            DrawDisabledText(text,y,OptionMenuSettings.mFontColorValue,Menu.OptionFont());
             return indent;
 		}
 	}
 }
 
-class OptionMenuItemFlashlightConditionalDescription : OptionMenuItemStaticText
+class OptionMenuItemFlashlightDynamicText : OptionMenuItemStaticText
 {
-	OptionMenuItemFlashlightConditionalDescription Init(String label, int cr = -1)
+
+    Cvar c;
+    String labels[7];
+
+    OptionMenuItemFlashlightDynamicText Init(int color, CVar condition, String l0, String l1, String l2, String l3 = "", String l4 = "", String l5 = "", String l6 = "")
+    {
+        c = condition;
+        labels[0] = l0;
+        labels[1] = l1;
+        labels[2] = l2;
+        labels[3] = l3;
+        labels[4] = l4;
+        labels[5] = l5;
+        labels[6] = l6;
+    
+        Super.Init(l0,color);
+        return self;
+    }
+    
+    private String calculateText()
+    {
+        if (c)
+        {
+            int val = c.GetInt();
+            for (int i = 0;i < labels.size();i++)
+            {
+                if (val == i)
+                    return labels[i];
+            }
+        }
+        return labels[0];
+    }
+    
+    override int Draw(OptionMenuDescriptor desc, int y, int indent, bool selected)
 	{
-		Super.Init(label, cr);
-		return self;
+	    mLabel = calculateText();
+		return Super.Draw(desc,y,indent,selected);
 	}
 }
 
 class OptionMenuItemFlashlightOption : OptionMenuItemOption
 {
-	String mTooltip;
+    mixin Conditional;
 
-	OptionMenuItemFlashlightOption Init(String label, String tooltip, Name command, Name values, CVar graycheck = null, int center = 0)
+	OptionMenuItemFlashlightOption Init(String label, Name command, Name values, CVar graycheck = null, int center = 0, Cvar conditionalcmd = null, String disabledtext = "", int conditionmin = 0, int conditionmax = 0)
 	{
-		mTooltip = tooltip;
+  	    conditional = conditionalcmd;
+	    condition_min = conditionmin;
+	    condition_max = conditionmax;
+	    disabled_text = disabledtext;
+	
 		Super.Init(label, command, values, graycheck, center);
 		return self;
 	}
 }
 
 class OptionMenuItemFlashlightSlider : OptionMenuItemSlider
-{
-    
+{ 
 	mixin Conditional;
-	OptionMenuItemFlashlightSlider Init(String label, String tooltip, Name command, double min, double max, double step, int showval = 1)
+	
+	OptionMenuItemFlashlightSlider Init(String label, Name command, double min, double max, double step, int showval = 1, Cvar conditionalcmd = null, String disabledtext = "", int conditionmin = 0, int conditionmax = 0)
 	{
-		//mTooltip = tooltip;
+	    conditional = conditionalcmd;
+	    condition_min = conditionmin;
+	    condition_max = conditionmax;
+	    disabled_text = disabledtext;
+	
 		Super.Init(label, command, min, max, step, showval);
 		return self;
 	}
@@ -82,6 +134,8 @@ class FlashlightMenu : OptionMenu
     override void Drawer ()
 	{
 		Super.Drawer();
+		
+        /*
 
 		String tt;
 
@@ -106,5 +160,6 @@ class FlashlightMenu : OptionMenu
 				tt,
 				DTA_CleanNoMove_1, true);
 		}
+		*/
 	}
 }

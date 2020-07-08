@@ -1,25 +1,192 @@
 OptionValue DarkenStyle
 {
-    0, "Disabled"
-    1, "Darken Entire Map"
-    2, "Darken Below Threshold"
+    0, "$FLASHLIGHT_DISABLED"
+    1, "$FLASHLIGHT_DARKEN_MODE_1"
+    2, "$FLASHLIGHT_DARKEN_MODE_2"
+}
+
+OptionValue StartingItem
+{
+    0, "$FLASHLIGHT_NOTHING"
+    1, "$FLASHLIGHT_START_ITEM_1"
+    2, "$FLASHLIGHT_START_ITEM_2"
+}
+
+OptionValue StealthMonsterMode
+{
+    0, "$FLASHLIGHT_DISABLED"
+    1, "$STEALTH_MONSTER_SETTING_1"
+    2, "$STEALTH_MONSTER_SETTING_2"
+    3, "$STEALTH_MONSTER_SETTING_3"
+    4, "$STEALTH_MONSTER_SETTING_4"
+}
+
+OptionValue FlashlightSpawn
+{
+    0, "$FLASHLIGHT_DISABLED"
+    1, "$FLASHLIGHT_SHOTGUN"
+    2, "$FLASHLIGHT_SHELLBOX"
+    3, "$FLASHLIGHT_CHAINGUN"
+}
+
+OptionValue FlareSpawn
+{
+    0, "$FLASHLIGHT_DISABLED"
+    1, "$FLASHLIGHT_ROCKET"
+}
+
+OptionValue FlareBoxSpawn
+{
+    0, "$FLASHLIGHT_DISABLED"
+    1, "$FLASHLIGHT_CLIPBOX"
+    2, "$FLASHLIGHT_ROCKETBOX"
+}
+
+OptionValue BatterySpawn
+{
+    0, "$FLASHLIGHT_DISABLED"
+    1, "$FLASHLIGHT_BACKPACK"
+    2, "$FLASHLIGHT_SOULSPHERE"
+    3, "$FLASHLIGHT_BLURPSHERE"
+    4, "$FLASHLIGHT_MEGASPHERE"
+}
+
+OptionValue BatteryPosition
+{
+    0, "$FLASHLIGHT_DISABLED"
+    1, "$FLASHLIGHT_BATTERY_TOP_LEFT"
+    2, "$FLASHLIGHT_BATTERY_TOP_RIGHT"
+    3, "$FLASHLIGHT_BATTERY_CROSSHAIR"
+}
+
+OptionMenu "FlashlightSettings"
+{
+    Title "$FLASHLIGHT_SETTINGS_MENU_TITLE"
+    StaticText "Flashlight Options", 1
+    ColorPicker "$FLASHLIGHT_COLOR", "flashlight_color"
+    Slider "$FLASHLIGHT_INNER_ANGLE", "flashlight_inner_angle",0,80,0.1
+    Slider "$FLASHLIGHT_OUTER_ANGLE", "flashlight_outer_angle",0,80,0.1
+    StaticText " "
+    StaticText "$FLASHLIGHT_SETTINGS_DESC_1"
+    StaticText "$FLASHLIGHT_SETTINGS_DESC_2"
+    StaticText " "
+    StaticText "$FLASHLIGHT_SETTINGS_DESC_3"
+    StaticText "$FLASHLIGHT_SETTINGS_DESC_4"
+    StaticText "$FLASHLIGHT_SETTINGS_DESC_5"
+}
+
+OptionMenu "FlashlightMapOptions"
+{
+    Class "FlashlightMenu"
+    Title "$FLASHLIGHT_MAP_OPTIONS_MENU_TITLE"
+    
+    StaticText "$FLASHLIGHT_DARKEN_HEADING", 1
+    StaticText "$FLASHLIGHT_DARKEN_MODE_DESC_1"
+    StaticText "$FLASHLIGHT_DARKEN_MODE_DESC_2"
+    StaticText "$FLASHLIGHT_DARKEN_MODE_DESC_3"
+    StaticText "$FLASHLIGHT_DARKEN_MODE_DESC_4"
+    StaticText ""
+    Option "$FLASHLIGHT_MODE","flashlight_darken_mode", DarkenStyle
+    FlashlightSlider "$FLASHLIGHT_AMOUNT","flashlight_darken_amount", 0,300,5,1,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",1
+    FlashlightSlider "$FLASHLIGHT_THRESHOLD","flashlight_darken_threshold",0,255,5,1,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",2,0
+    FlashlightDynamicText 0,"flashlight_darken_mode","$FLASHLIGHT_FEATURE_DISABLED","$FLASHLIGHT_DARKEN_MODE_DESC_5","$FLASHLIGHT_DARKEN_MODE_DESC_6"
+    FlashlightDynamicText 0,"flashlight_darken_mode","","$FLASHLIGHT_DARKEN_MODE_DESC_7","$FLASHLIGHT_DARKEN_MODE_DESC_8"
+
+    StaticText ""    
+    StaticText "$FLASHLIGHT_REPLACE_SKY_HEADING", 1
+    StaticText "$FLASHLIGHT_REPLACE_SKY_DESC_1"
+    StaticText "$FLASHLIGHT_REPLACE_SKY_DESC_2"
+    StaticText "$FLASHLIGHT_REPLACE_SKY_DESC_3"
+    StaticText "$FLASHLIGHT_REPLACE_SKY_DESC_4"
+    StaticText ""
+    Option "$FLASHLIGHT_REPLACE_SKY","flashlight_replace_sky", YesNo
+}
+
+OptionMenu "BatteryOptions"
+{
+    Class "FlashlightMenu"
+    Title "$FLASHLIGHT_BATTERY_MENU_TITLE"
+    StaticText ""
+    StaticText "$FLASHLIGHT_BATTERY_DESC_1"
+    StaticText "$FLASHLIGHT_BATTERY_DESC_2"
+    StaticText "$FLASHLIGHT_BATTERY_DESC_3"
+    StaticText "$FLASHLIGHT_BATTERY_DESC_4"
+    StaticText "$FLASHLIGHT_BATTERY_DESC_5"
+    StaticText "$FLASHLIGHT_BATTERY_DESC_6"
+    Option "$FLASHLIGHT_BATTERY_DISPLAY","flashlight_battery_display", BatteryPosition
+    Slider "$FLASHLIGHT_BATTERY_MAX","flashlight_battery_max",0,2000,1
+    Slider "$FLASHLIGHT_BATTERY_MIN","flashlight_battery_min_threshold",0,350,1
+    Slider "$FLASHLIGHT_BATTERY_USE","flashlight_battery_use_per_tic",0,100,1
+    Slider "$FLASHLIGHT_BATTERY_CHARGE","flashlight_battery_charge_per_tic",0,100,1
+}
+
+OptionMenu "FlashlightSpawnOptions"
+{
+    Class "FlashlightMenu"
+    Title "$FLASHLIGHT_SPAWN_MENU_TITLE"
+    StaticText ""
+    StaticText "$FLASHLIGHT_STEALTH_HEADING", 1
+    StaticText "$FLASHLIGHT_STEALTH_DESC_1"
+    StaticText "$FLASHLIGHT_STEALTH_DESC_2"
+    StaticText "$FLASHLIGHT_STEALTH_DESC_3"
+    StaticText "$FLASHLIGHT_STEALTH_DESC_4"
+    StaticText "$FLASHLIGHT_STEALTH_DESC_5"
+    StaticText "$FLASHLIGHT_STEALTH_DESC_6"
+    StaticText ""
+    Option "$FLASHLIGHT_MODE","flashlight_stealth_monster_mode", StealthMonsterMode
+    FlashlightSlider "$FLASHLIGHT_CHANCE","flashlight_stealth_monster_chance", 0,255,5,1,"flashlight_stealth_monster_mode","$FLASHLIGHT_MENU_NOOP",1
+    FlashlightSlider "$FLASHLIGHT_THRESHOLD","flashlight_stealth_monster_threshold", 0,255,5,1,"flashlight_stealth_monster_mode","$FLASHLIGHT_MENU_NOOP",3,4
+    FlashlightDynamicText 0,"flashlight_stealth_monster_mode","$FLASHLIGHT_FEATURE_DISABLED","$FLASHLIGHT_STEALTH_DESC_SMALL","$FLASHLIGHT_STEALTH_DESC_ALL","$FLASHLIGHT_STEALTH_DESC_SMALL","$FLASHLIGHT_STEALTH_DESC_ALL"
+    FlashlightDynamicText 0,"flashlight_stealth_monster_mode","","","","$FLASHLIGHT_STEALTH_DESC_THRESH","$FLASHLIGHT_STEALTH_DESC_THRESH"
+    StaticText ""
+    StaticText "$FLASHLIGHT_REPLACERS_HEADING_FLASHLIGHT", 1
+    Option "$FLASHLIGHT_SPAWN_ITEM","flashlight_spawn_flashlight", FlashlightSpawn
+    FlashlightSlider "$FLASHLIGHT_CHANCE","flashlight_spawn_flashlight_chance", 0,100,5,1,"flashlight_spawn_flashlight","$FLASHLIGHT_MENU_NOOP",1
+    StaticText "$FLASHLIGHT_SPAWN_FLASHLIGHT_DEFAULT"
+    StaticText "$FLASHLIGHT_SPAWN_FLASHLIGHT_DEFAULT_2"
+    StaticText ""
+    StaticText "$FLASHLIGHT_REPLACERS_HEADING_FLARE", 1
+    Option "$FLASHLIGHT_SPAWN_ITEM","flashlight_spawn_flare", FlareSpawn
+    FlashlightSlider "$FLASHLIGHT_CHANCE","flashlight_spawn_flare_chance", 0,100,5,1,"flashlight_spawn_flare","$FLASHLIGHT_MENU_NOOP",1
+    StaticText "$FLASHLIGHT_SPAWN_FLARE_DEFAULT"
+    StaticText "$FLASHLIGHT_SPAWN_FLARE_DEFAULT_2"
+    StaticText ""
+    StaticText "$FLASHLIGHT_REPLACERS_HEADING_FLARE_BOX", 1
+    Option "$FLASHLIGHT_SPAWN_ITEM","flashlight_spawn_flare_box", FlareboxSpawn
+    FlashlightSlider "$FLASHLIGHT_CHANCE","flashlight_spawn_flare_box_chance", 0,100,5,1,"flashlight_spawn_flare_box","$FLASHLIGHT_MENU_NOOP",1
+    StaticText "$FLASHLIGHT_SPAWN_FLARE_BOX_DEFAULT"
+    StaticText "$FLASHLIGHT_SPAWN_FLARE_BOX_DEFAULT_2"
+    StaticText ""
+    StaticText "$FLASHLIGHT_REPLACERS_HEADING_BATTERY_UPGRADE", 1
+    Option "$FLASHLIGHT_SPAWN_ITEM","flashlight_spawn_battery_upgrade", BatterySpawn
+    FlashlightSlider "$FLASHLIGHT_CHANCE","flashlight_spawn_battery_upgrade_chance", 0,100,5,1,"flashlight_spawn_battery_upgrade","$FLASHLIGHT_MENU_NOOP",1
+    StaticText "$FLASHLIGHT_SPAWN_BATTERY_UPGRADE_DEFAULT"
+    StaticText "$FLASHLIGHT_SPAWN_BATTERY_UPGRADE_DEFAULT_2"
+    StaticText ""
+    StaticText "$FLASHLIGHT_REPLACERS_HEADING_BATTERY_RECHARGE", 1
+    Option "$FLASHLIGHT_SPAWN_ITEM","flashlight_spawn_battery_recharge", BatterySpawn
+    FlashlightSlider "$FLASHLIGHT_CHANCE","flashlight_spawn_battery_recharge_chance", 0,100,5,1,"flashlight_spawn_battery_recharge","$FLASHLIGHT_MENU_NOOP",1
+    StaticText "$FLASHLIGHT_SPAWN_BATTERY_RECHARGE_DEFAULT"
+    StaticText "$FLASHLIGHT_SPAWN_BATTERY_RECHARGE_DEFAULT_2"
 }
 
 OptionMenu "Flashlight"
 {
-    Title "Flashlight"
-    Class "FlashlightMenu"
+    Title "$FLASHLIGHT_MAIN_MENU_TITLE"
     
-    StaticText " "
-    StaticText "Flashlight Options", 1
-    ColorPicker "Color", "flashlight_color"
-    StaticText " "
-    StaticText "Map Lighting", 1
-    FlashlightOption "Darken Mode","Test Option","flashlight_darken_mode",DarkenStyle
-    FlashlightSlider "Darken Amount (Relative)", "Test 1", "flashlight_darken_amount", 0,300,5
-    FlashlightSlider "Light Threshold (Non-Relative)", "Test 2", "flashlight_darken_threshold", 0,255,5
-    StaticText " "
-    FlashlightConditionalDescription "This is a test", -2
+    SubMenu "$FLASHLIGHT_SETTINGS_SUBMENU", "FlashlightSettings"
+    SubMenu "$FLASHLIGHT_MAP_OPTIONS_SUBMENU", "FlashlightMapOptions"
+    SubMenu "$FLASHLIGHT_BATTERY_SUBMENU", "BatteryOptions"
+    SubMenu "$FLASHLIGHT_SPAWN_SUBMENU", "FlashlightSpawnOptions"
+    
+    StaticText ""
+    StaticText "$FLASHLIGHT_START_HEADING", 1
+    StaticText "$FLASHLIGHT_START_DESC_1"
+    StaticText "$FLASHLIGHT_START_DESC_2"
+    StaticText "$FLASHLIGHT_START_DESC_3"
+    Option "$FLASHLIGHT_START_ITEM","flashlight_starting_item", StartingItem
+    Slider "$FLASHLIGHT_START_FLARES","flashlight_starting_flares", 0,20,1
+    
 }
 
 AddOptionMenu "OptionsMenu"

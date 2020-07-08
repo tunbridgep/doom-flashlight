@@ -4,8 +4,8 @@ class FlashlightSetup : EventHandler
     {
         PlayerPawn player = players[e.PlayerNumber].mo;
     
-        let start_item = CVar.FindCVar("flashlight_start_with_flashlight").GetInt();
-        let start_flares = CVar.FindCVar("flashlight_start_with_flares").GetInt();
+        let start_item = CVar.FindCVar("flashlight_starting_item").GetInt();
+        let start_flares = CVar.FindCVar("flashlight_starting_flares").GetInt();
         
         if (player.CheckInventory("FlashlightStartToken",1))
             return;

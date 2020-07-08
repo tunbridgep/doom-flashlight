@@ -117,8 +117,8 @@ class FlashlightReplacers : EventHandler
                 break;
         }
         
-        let spawn_flares = CVar.FindCVar("flashlight_spawn_flares").GetInt();
-        let spawn_flares_chance = CVar.FindCVar("flashlight_spawn_flares_chance").GetInt();
+        let spawn_flares = CVar.FindCVar("flashlight_spawn_flare").GetInt();
+        let spawn_flares_chance = CVar.FindCVar("flashlight_spawn_flare_chance").GetInt();
         
         switch (spawn_flares)
         {
@@ -128,8 +128,8 @@ class FlashlightReplacers : EventHandler
         }
 
 
-        let spawn_flare_boxes = CVar.FindCVar("flashlight_spawn_flare_boxes").GetInt();
-        let spawn_flare_boxes_chance = CVar.FindCVar("flashlight_spawn_flare_boxes_chance").GetInt();
+        let spawn_flare_boxes = CVar.FindCVar("flashlight_spawn_flare_box").GetInt();
+        let spawn_flare_boxes_chance = CVar.FindCVar("flashlight_spawn_flare_box_chance").GetInt();
         
         switch (spawn_flare_boxes)
         {
@@ -157,8 +157,8 @@ class FlashlightReplacers : EventHandler
                 break;
         }
         
-        let spawn_battery_recharge = CVar.FindCVar("flashlight_spawn_battery_recharges").GetInt();
-        let spawn_battery_recharge_chance = CVar.FindCVar("flashlight_spawn_battery_recharges_chance").GetInt();
+        let spawn_battery_recharge = CVar.FindCVar("flashlight_spawn_battery_recharge").GetInt();
+        let spawn_battery_recharge_chance = CVar.FindCVar("flashlight_spawn_battery_recharge_chance").GetInt();
         
         switch (spawn_battery_recharge)
         {
@@ -177,8 +177,8 @@ class FlashlightReplacers : EventHandler
         }
         
         
-        let spawn_battery_upgrade = CVar.FindCVar("flashlight_spawn_battery_upgrades").GetInt();
-        let spawn_battery_upgrade_chance = CVar.FindCVar("flashlight_spawn_battery_upgrades_chance").GetInt();
+        let spawn_battery_upgrade = CVar.FindCVar("flashlight_spawn_battery_upgrade").GetInt();
+        let spawn_battery_upgrade_chance = CVar.FindCVar("flashlight_spawn_battery_upgrade_chance").GetInt();
         
         switch (spawn_battery_upgrade)
         {
