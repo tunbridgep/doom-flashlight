@@ -6,6 +6,67 @@ OptionValue FlashlightProfile
     3, "$FLASHLIGHT_PROFILE_3"
 }
 
+OptionValue FlashlightOptions
+{
+    0, "$FLASHLIGHT_NOTHING"
+    1, "$FLASHLIGHT_SPAWN_FLASHLIGHT_1"
+    2, "$FLASHLIGHT_SPAWN_FLASHLIGHT_2"
+    3, "$FLASHLIGHT_SPAWN_FLASHLIGHT_3"
+}
+
+OptionValue NotImplementedOptions
+{
+    0, "$FLASHLIGHT_NOT_IMPLEMENTED"
+}
+
+OptionValue FlareOptions
+{
+    0, "$FLASHLIGHT_NOTHING"
+    1, "$FLASHLIGHT_SPAWN_FLARE_1"
+}
+
+OptionValue FlareBoxOptions
+{
+    0, "$FLASHLIGHT_NOTHING"
+    1, "$FLASHLIGHT_SPAWN_FLARE_BOX_1"
+    2, "$FLASHLIGHT_SPAWN_FLARE_BOX_2"
+    3, "$FLASHLIGHT_SPAWN_FLARE_BOX_3"
+}
+
+OptionValue BatteryOptions
+{
+    0, "$FLASHLIGHT_NOTHING"
+    1, "$FLASHLIGHT_SPAWN_BATTERY_1"
+    2, "$FLASHLIGHT_SPAWN_BATTERY_2"
+    3, "$FLASHLIGHT_SPAWN_BATTERY_3"
+    4, "$FLASHLIGHT_SPAWN_BATTERY_4"
+}
+
+OptionValue StealthMonsterOptions
+{
+    0, "$FLASHLIGHT_DISABLED"
+    1, "$FLASHLIGHT_STEALTH_MONSTERS_1"
+    2, "$FLASHLIGHT_STEALTH_MONSTERS_2"
+    3, "$FLASHLIGHT_STEALTH_MONSTERS_3"
+    4, "$FLASHLIGHT_STEALTH_MONSTERS_4"
+}
+
+OptionValue BatteryDisplayOptions
+{
+    0, "$FLASHLIGHT_DISABLED"
+    1, "$FLASHLIGHT_BATTERY_DISPLAY_1"
+    2, "$FLASHLIGHT_BATTERY_DISPLAY_2"
+    3, "$FLASHLIGHT_BATTERY_DISPLAY_3"
+}
+
+OptionValue DarkenModes
+{
+    0, "$FLASHLIGHT_DISABLED"
+    1, "$FLASHLIGHT_DARKEN_MODE_1"
+    2, "$FLASHLIGHT_DARKEN_MODE_2"
+    3, "$FLASHLIGHT_DARKEN_MODE_3"
+}
+
 OptionMenu "FlashlightCredits"
 {
     Title "$FLASHLIGHT_CREDITS_TITLE"
@@ -25,12 +86,96 @@ OptionMenu "FlashlightCredits"
     StaticText "$FLASHLIGHT_CREDITS_FOOTER", 1
 }
 
+OptionMenu "FlashlightGameplayOptions"
+{
+    Title "$FLASHLIGHT_GAMEPLAY_SETTINGS"
+    StaticText "$FLASHLIGHT_STEALTH_HEADER", 1
+    Option "$FLASHLIGHT_STEALTH_MONSTERS", "flashlight_stealth_monster_mode", StealthMonsterOptions
+    FlashlightSlider "$FLASHLIGHT_CHANCE", "flashlight_stealth_monster_chance", 0,100,1,0,"flashlight_stealth_monster_mode","$FLASHLIGHT_MENU_NOOP"
+    FlashlightSlider "$FLASHLIGHT_THRESHOLD", "flashlight_stealth_monster_threshold", 0,100,1,0,"flashlight_stealth_monster_mode","$FLASHLIGHT_MENU_NOOP",3
+    FlashlightDynamicText -1, "flashlight_stealth_monster_mode", "$FLASHLIGHT_DISABLED", "$FLASHLIGHT_STEALTH_SMALL_DESC", "$FLASHLIGHT_STEALTH_ALL_DESC", "$FLASHLIGHT_STEALTH_SMALL_THRESH_DESC", "$FLASHLIGHT_STEALTH_THRESH_DESC"
+    StaticText ""
+    StaticText "$FLASHLIGHT_BATTERY_HEADER", 1
+    FlashlightOption "$FLASHLIGHT_BATTERY_DISPLAY", "flashlight_battery_display", BatteryDisplayOptions, "flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
+    FlashlightSlider "$FLASHLIGHT_BATTERY_MAX", "flashlight_battery_max", 0,3500,35,0,"flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
+    FlashlightSlider "$FLASHLIGHT_BATTERY_MIN_THRESHOLD", "flashlight_battery_min_threshold", 0,3500,35,0,"flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
+    FlashlightSlider "$FLASHLIGHT_BATTERY_USE", "flashlight_battery_use_per_tic", 0,1,100,0,"flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
+    FlashlightSlider "$FLASHLIGHT_BATTERY_CHARGE", "flashlight_battery_charge_per_tic", 0,1,100,0,"flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
+    StaticText "$FLASHLIGHT_BATTERY_DESC1"
+    StaticText "$FLASHLIGHT_BATTERY_DESC2"
+}
+
+OptionMenu "FlashlightLightingOptions"
+{
+    Title "$FLASHLIGHT_LIGHTING_SETTINGS"
+    StaticText "$FLASHLIGHT_DARKEN_NODE_HEADER", 1
+    Option "$FLASHLIGHT_DARKEN_MODE", "flashlight_darken_mode", DarkenModes
+    FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_LINEAR_AMOUNT", "flashlight_darken_linear_amount", 0,255,1,0,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",1,1
+    FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_PARABOLA_CURVE", "flashlight_darken_parabola_curve_point", 0,255,1,0,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",2,2
+    FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_PARABOLA_BRIGHTNESS", "flashlight_darken_parabola_brightness_factor", 0,255,1,0,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",2,2
+    FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_PARABOLA_ADJUST", "flashlight_darken_parabola_adjust", 0,255,1,0,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",2,2
+    FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_DIVIDE_AMOUNT", "flashlight_darken_divide_amount", 1,20,0.1,1,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",3
+    FlashlightDynamicText -1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_LINEAR_DESC1", "$FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC1", "$FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC1"
+    FlashlightDynamicText -1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_LINEAR_DESC2", "$FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC2", "$FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC2"
+    FlashlightDynamicText -1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_LINEAR_DESC3", "$FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC3", "$FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC3"
+    FlashlightDynamicText -1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_LINEAR_DESC4", "$FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC4", "$FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC4"
+    FlashlightDynamicText -1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_LINEAR_DESC5", "$FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC5", "$FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC5"
+    FlashlightDynamicText 1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_SEE_README", "$FLASHLIGHT_DARKEN_MODE_SEE_README", "$FLASHLIGHT_DARKEN_MODE_SEE_README"
+    StaticText ""
+    StaticText "$FLASHLIGHT_REPLACE_SKY_HEADER", 1
+    Option "$FLASHLIGHT_REPLACE_SKY", "flashlight_replace_sky", YesNo
+    StaticText "$FLASHLIGHT_REAPLCE_SKY_DESC1"
+    StaticText "$FLASHLIGHT_REAPLCE_SKY_DESC2"
+}
+
+OptionMenu "FlashlightSpawnOptions"
+{
+    Title "$FLASHLIGHT_SPAWN_SETTINGS"
+    StaticText "$FLASHLIGHT_START_HEADER", 1
+    Option "$FLASHLIGHT_STARTING_ITEM", flashlight_starting_item, YesNo
+    Slider "$FLASHLIGHT_STARTING_FLARES", "flashlight_starting_flares", 0,20,1
+    StaticText " "
+    StaticText "$FLASHLIGHT_SPAWN_HEADER", 1
+    StaticText "$FLASHLIGHT_SPAWN_DESC1"
+    StaticText "$FLASHLIGHT_SPAWN_DESC2"
+    StaticText "$FLASHLIGHT_SPAWN_DESC3"
+    Option "$FLASHLIGHT_FLASHLIGHT", flashlight_spawn_flashlight, FlashlightOptions
+    FlashlightSlider "$FLASHLIGHT_CHANCE", "flashlight_spawn_flashlight_chance", 0,100,1,0,"flashlight_spawn_flashlight","$FLASHLIGHT_MENU_NOOP"
+    Option "$FLASHLIGHT_HEADLAMP", flashlight_spawn_headlamp, NotImplementedOptions
+    FlashlightSlider "$FLASHLIGHT_CHANCE", "flashlight_spawn_headlamp_chance", 0,100,1,0,"flashlight_spawn_headlamp","$FLASHLIGHT_MENU_NOOP"
+    Option "$FLASHLIGHT_FLARE", flashlight_spawn_flare, FlareOptions
+    FlashlightSlider "$FLASHLIGHT_CHANCE", "flashlight_spawn_flare_chance", 0,100,1,0,"flashlight_spawn_flare","$FLASHLIGHT_MENU_NOOP"
+    Option "$FLASHLIGHT_FLARE_BOX", flashlight_spawn_flare_box, FlareBoxOptions
+    FlashlightSlider "$FLASHLIGHT_CHANCE", "flashlight_spawn_flare_box_chance", 0,100,1,0,"flashlight_spawn_flare_box","$FLASHLIGHT_MENU_NOOP"
+    Option "$FLASHLIGHT_BATTERY_UPGRADE", flashlight_spawn_battery_upgrade, BatteryOptions
+    FlashlightSlider "$FLASHLIGHT_CHANCE", "flashlight_spawn_battery_upgrade_chance", 0,100,1,0,"flashlight_spawn_battery_upgrade","$FLASHLIGHT_MENU_NOOP"
+    Option "$FLASHLIGHT_BATTERY_RECHARGE", flashlight_spawn_battery_recharge, BatteryOptions
+    FlashlightSlider "$FLASHLIGHT_CHANCE", "flashlight_spawn_battery_recharge_chance", 0,100,1,0,"flashlight_spawn_battery_recharge","$FLASHLIGHT_MENU_NOOP"
+    StaticText " "
+    StaticText "$FLASHLIGHT_DROP_HEADER", 1
+    Option "$FLASHLIGHT_DROP_FLASHLIGHT", "flashlight_enemies_drop_flashlights", YesNo
+    FlashlightSlider "$FLASHLIGHT_CHANCE", "flashlight_enemies_drop_flashlights_chance", 0,100,1,0,"flashlight_enemies_drop_flashlights","$FLASHLIGHT_MENU_NOOP"
+    Option "$FLASHLIGHT_DROP_FLARE", "flashlight_enemies_drop_flares", YesNo
+    FlashlightSlider "$FLASHLIGHT_CHANCE", "flashlight_enemies_drop_flares_chance", 0,100,1,0,"flashlight_enemies_drop_flares","$FLASHLIGHT_MENU_NOOP"
+    StaticText "$FLASHLIGHT_DROP_DESC1"
+    StaticText "$FLASHLIGHT_DROP_DESC2"
+}
+
 OptionMenu "FlashlightAdvanced"
 {
+    Title "$FLASHLIGHT_ADVANCED_SETTINGS"
     SubMenu "$FLASHLIGHT_SPAWN_SETTINGS", "FlashlightSpawnOptions"
     SubMenu "$FLASHLIGHT_GAMEPLAY_SETTINGS", "FlashlightGameplayOptions"
-    SubMenu "$FLASHLIGHT_FLASHLIGHT_SETTINGS", "FlashlightFlashlightOptions"
     SubMenu "$FLASHLIGHT_LIGHTING_SETTINGS", "FlashlightLightingOptions"
+    StaticText ""
+    StaticText "$FLASHLIGHT_FLASHLIGHT_HEADER", 1
+    ColorPicker "$FLASHLIGHT_COLOR", "flashlight_color"
+    Slider "$FLASHLIGHT_INTENSITY", "flashlight_intensity", 0,255,1
+    Slider "$FLASHLIGHT_INNER_ANGLE", "flashlight_inner_angle", 0,64,0.1,2
+    Slider "$FLASHLIGHT_OUTER_ANGLE", "flashlight_outer_angle", 0,64,0.1,2
+    StaticText "$FLASHLIGHT_FLASHLIGHT_DESC1"
+    StaticText "$FLASHLIGHT_FLASHLIGHT_DESC2"
+    StaticText "$FLASHLIGHT_FLASHLIGHT_DESC3", 1
 }
 
 OptionMenu "FlashlightBase"
@@ -45,6 +190,15 @@ OptionMenu "FlashlightBase"
     Option "$FLASHLIGHT_PROFILE", "flashlight_profile_temp", FlashlightProfile
     FlashlightApplyProfile "$FLASHLIGHT_APPLY"
     StaticText ""
+    StaticText "$FLASHLIGHT_PROFILE_CUR", 1
+    FlashlightDynamicText -1, "flashlight_profile", "$FLASHLIGHT_PROFILE_0_DESC", "$FLASHLIGHT_PROFILE_1_DESC", "$FLASHLIGHT_PROFILE_2_DESC", "$FLASHLIGHT_PROFILE_3_DESC"
+    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC2", "$FLASHLIGHT_PROFILE_2_DESC2", "$FLASHLIGHT_PROFILE_3_DESC2"
+    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC3", "$FLASHLIGHT_PROFILE_2_DESC3", "$FLASHLIGHT_PROFILE_3_DESC3"
+    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC4", "$FLASHLIGHT_PROFILE_2_DESC4", "$FLASHLIGHT_PROFILE_3_DESC4"
+    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC5", "$FLASHLIGHT_PROFILE_2_DESC5", "$FLASHLIGHT_PROFILE_3_DESC5"
+    FlashlightDynamicText -1, "flashlight_profile", "", "", "", "$FLASHLIGHT_PROFILE_NOTFAIR"
+    StaticText""
+    StaticText "$FLASHLIGHT_PROFILE", 1
     FlashlightDynamicText -1, "flashlight_profile_temp", "$FLASHLIGHT_PROFILE_0_DESC", "$FLASHLIGHT_PROFILE_1_DESC", "$FLASHLIGHT_PROFILE_2_DESC", "$FLASHLIGHT_PROFILE_3_DESC"
     FlashlightDynamicText -1, "flashlight_profile_temp", "","$FLASHLIGHT_PROFILE_1_DESC2", "$FLASHLIGHT_PROFILE_2_DESC2", "$FLASHLIGHT_PROFILE_3_DESC2"
     FlashlightDynamicText -1, "flashlight_profile_temp", "","$FLASHLIGHT_PROFILE_1_DESC3", "$FLASHLIGHT_PROFILE_2_DESC3", "$FLASHLIGHT_PROFILE_3_DESC3"
@@ -60,5 +214,5 @@ OptionMenu "FlashlightBase"
 AddOptionMenu "OptionsMenu"
 {
     StaticText ""
-    Submenu "Flashlight", "FlashlightBase"
+    Submenu "$FLASHLIGHT_MAIN_MENU_TITLE", "FlashlightBase"
 }

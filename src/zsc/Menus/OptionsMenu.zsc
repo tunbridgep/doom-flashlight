@@ -109,7 +109,7 @@ class OptionMenuItemFlashlightOption : OptionMenuItemOption
 {
     mixin Conditional;
 
-	OptionMenuItemFlashlightOption Init(String label, Name command, Name values, CVar graycheck = null, int center = 0, Cvar conditionalcmd = null, String disabledtext = "", int conditionmin = 0, int conditionmax = 0)
+	OptionMenuItemFlashlightOption Init(String label, Name command, Name values, Cvar conditionalcmd = null, String disabledtext = "", int conditionmin = 1, int conditionmax = 0, CVar graycheck = null, int center = 0 )
 	{
   	    conditional = conditionalcmd;
 	    condition_min = conditionmin;
@@ -125,7 +125,7 @@ class OptionMenuItemFlashlightSlider : OptionMenuItemSlider
 { 
 	mixin Conditional;
 	
-	OptionMenuItemFlashlightSlider Init(String label, Name command, double min, double max, double step, int showval = 1, Cvar conditionalcmd = null, String disabledtext = "", int conditionmin = 0, int conditionmax = 0)
+	OptionMenuItemFlashlightSlider Init(String label, Name command, double min, double max, double step, int showval = 1, Cvar conditionalcmd = null, String disabledtext = "", int conditionmin = 1, int conditionmax = 0)
 	{
 	    conditional = conditionalcmd;
 	    condition_min = conditionmin;

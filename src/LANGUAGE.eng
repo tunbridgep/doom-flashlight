@@ -1,0 +1,17 @@
+[eng]
+
+FLASHLIGHT_NO_FLASHLIGHT = "You don't have a torch";
+FLASHLIGHT_PICKUP = "Picked up a torch";
+
+FLASHLIGHT_FLASHLIGHT = "Torch";
+FLASHLIGHT_COLOR = "Colour";
+
+FLASHLIGHT_MAIN_MENU_TITLE = "Torch Mod Settings";
+FLASHLIGHT_CREDITS_TITLE = "Torch Mod Credits";
+FLASHLIGHT_FLASHLIGHT_HEADER = "Torch Settings";
+FLASHLIGHT_BATTERY_DESC2 = "Torch can not be reactivated below the minumum.";
+FLASHLIGHT_STARTING_ITEM = "Start with Torch";
+FLASHLIGHT_PROFILE_2_DESC5 = "Former Humans drop Flares and Torches";
+FLASHLIGHT_PROFILE_3_DESC5 = "Former Humans drop Flares and Torches with high frequency";
+FLASHLIGHT_CREDITS_HEADER = "Torch Mod";
+FLASHLIGHT_DROP_FLASHLIGHT = "Enemies Drop Torches";

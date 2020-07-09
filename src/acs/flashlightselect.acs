@@ -35,6 +35,6 @@ script "ToggleFlashlight" (void) net
     }
     else
     {
-        Print(s:"You do not have a flashlight");
+        Print(l:"FLASHLIGHT_NO_FLASHLIGHT");
     }
 }

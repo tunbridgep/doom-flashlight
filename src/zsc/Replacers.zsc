@@ -160,6 +160,9 @@ class FlashlightReplacers : EventHandler
                 ReplaceThing(a,clipboxclass,"FlareBox",spawn_flare_boxes_chance);
                 break;
             case 2:
+                ReplaceThing(a,shellboxclass,"FlareBox",spawn_flare_boxes_chance);
+                break;
+            case 3:
                 ReplaceThing(a,rocketboxclass,"FlareBox",spawn_flare_boxes_chance);
                 break;
         }
@@ -169,6 +172,7 @@ class FlashlightReplacers : EventHandler
         
         switch (spawn_headlamp)
         {
+            /*
             case 1:
                 ReplaceThing(a,berserkclass,"Flashlight",spawn_headlamp_chance);
                 break;
@@ -178,6 +182,7 @@ class FlashlightReplacers : EventHandler
             case 3:
                 ReplaceThing(a,backpackclass,"Flashlight",spawn_headlamp_chance);
                 break;
+            */
         }
         
         let spawn_battery_recharge = CVar.FindCVar("flashlight_spawn_battery_recharge").GetInt();

@@ -40,6 +40,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
         CVar.GetCvar("flashlight_stealth_monster_mode").ResetToDefault();
         CVar.GetCvar("flashlight_darken_mode").ResetToDefault();
         CVar.GetCvar("flashlight_stealth_monster_chance").ResetToDefault();
+        CVar.GetCvar("flashlight_battery_mode").ResetToDefault();
         CVar.GetCvar("flashlight_battery_max").ResetToDefault();
         CVar.GetCvar("flashlight_battery_min_threshold").ResetToDefault();
         CVar.GetCvar("flashlight_battery_use_per_tic").ResetToDefault();

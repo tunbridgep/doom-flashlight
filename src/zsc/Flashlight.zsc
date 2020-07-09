@@ -118,7 +118,8 @@ class Flashlight : FlashlightBase
 
     Default
     {
-        Inventory.PickupMessage "Picked up a flashlight.";
+        Inventory.PickupMessage "$FLASHLIGHT_PICKUP";
+        Tag "$FLASHLIGHT_FLASHLIGHT";
     }
 
 	States 

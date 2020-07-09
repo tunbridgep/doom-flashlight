@@ -1,26 +1,142 @@
 [enu default]
 
+//In-Game Text
+FLASHLIGHT_NO_FLASHLIGHT = "You don't have a flashlight";
+FLASHLIGHT_PICKUP = "Picked up a flashlight";
+
 //basics
 FLASHLIGHT_DISABLED = "Disabled";
+FLASHLIGHT_NOT_IMPLEMENTED = "Not Implemented Yet";
 FLASHLIGHT_MENU_NOOP = "Control Disabled";
-FLASHLIGHT_FEATURE_DISABLED = "Current: Feature Disabled";
 FLASHLIGHT_CHANCE = "Chance";
+FLASHLIGHT_DROP_CHANCE = "Drop Chance";
 FLASHLIGHT_THRESHOLD = "Threshold";
 FLASHLIGHT_AMOUNT = "Amount";
 FLASHLIGHT_COLOR = "Color";
 FLASHLIGHT_MODE = "Mode";
 FLASHLIGHT_NOTHING = "Nothing";
-FLASHLIGHT_APPLY = "Apply Settings";
+FLASHLIGHT_APPLY = "Apply New Profile";
+FLASHLIGHT_FLASHLIGHT = "Flashlight";
+FLASHLIGHT_HEADLAMP = "Headlamp";
+FLASHLIGHT_FLARE = "Flare";
+FLASHLIGHT_FLARE_BOX = "Flare Box";
+FLASHLIGHT_BATTERY_UPGRADE = "Battery Upgrade";
+FLASHLIGHT_BATTERY_RECHARGE = "Battery Recharger";
 
 //Submenus
 FLASHLIGHT_ADVANCED_SETTINGS = "Advanced Settings";
+FLASHLIGHT_SPAWN_SETTINGS = "Spawn and Item Replacement Settings";
+FLASHLIGHT_GAMEPLAY_SETTINGS = "Gameplay Settings";
+FLASHLIGHT_LIGHTING_SETTINGS = "Lighting Settings";
 FLASHLIGHT_CREDITS = "Show Credits";
 
 //Menu Titles
-FLASHLIGHT_MAIN_MENU_TITLE = "Flashlight Settings";
+FLASHLIGHT_MAIN_MENU_TITLE = "Flashlight Mod Settings";
+FLASHLIGHT_CREDITS_TITLE = "Flashlight Mod Credits";
+
+//Headers
+FLASHLIGHT_DROP_HEADER = "Item Drop Settings";
+FLASHLIGHT_SPAWN_HEADER = "Item Spawning Settings";
+FLASHLIGHT_START_HEADER = "New Game Settings";
+FLASHLIGHT_BATTERY_HEADER = "Battery Settings";
+FLASHLIGHT_STEALTH_HEADER = "Stealth Monster Settings";
+FLASHLIGHT_DARKEN_NODE_HEADER = "Lighting Curve Settings";
+FLASHLIGHT_REPLACE_SKY_HEADER = "Texture Replacement";
+FLASHLIGHT_FLASHLIGHT_HEADER = "Flashlight Settings";
+
+//Replacer Option Settings
+FLASHLIGHT_SPAWN_FLASHLIGHT_1 = "Shotgun";
+FLASHLIGHT_SPAWN_FLASHLIGHT_2 = "Box of Shells";
+FLASHLIGHT_SPAWN_FLASHLIGHT_3 = "Chain Gun";
+FLASHLIGHT_SPAWN_FLARE_1 = "Rocket";
+FLASHLIGHT_SPAWN_FLARE_BOX_1 = "Box of Bullets";
+FLASHLIGHT_SPAWN_FLARE_BOX_2 = "Box of Shells";
+FLASHLIGHT_SPAWN_FLARE_BOX_3 = "Box of Rockets";
+FLASHLIGHT_SPAWN_BATTERY_1 = "Backpack";
+FLASHLIGHT_SPAWN_BATTERY_2 = "Soulsphere";
+FLASHLIGHT_SPAWN_BATTERY_3 = "Blursphere";
+FLASHLIGHT_SPAWN_BATTERY_4 = "Megasphere";
+
+//Stealth Monster Options
+FLASHLIGHT_STEALTH_MONSTERS = "Spawn Stealth Monsters";
+FLASHLIGHT_STEALTH_MONSTERS_1 = "Small Monsters Only";
+FLASHLIGHT_STEALTH_MONSTERS_2 = "All Monsters";
+FLASHLIGHT_STEALTH_MONSTERS_3 = "Small Monsters Only (Ambush)";
+FLASHLIGHT_STEALTH_MONSTERS_4 = "All Monsters (Ambush)";
+FLASHLIGHT_STEALTH_SMALL_DESC = "Only low tier enemies can spawn as stealth monsters";
+FLASHLIGHT_STEALTH_ALL_DESC = "All enemy types can spawn as stealth monsters";
+FLASHLIGHT_STEALTH_SMALL_THRESH_DESC = "Low tier enemy types can spawn as stealth monsters if in a sector darker than the threshold";
+FLASHLIGHT_STEALTH_THRESH_DESC = "All enemy types can spawn as stealth monsters if in a sector darker than the threshold";
+
+//Battery Options
+FLASHLIGHT_BATTERY_DISPLAY_1 = "Top Left";
+FLASHLIGHT_BATTERY_DISPLAY_2 = "Top Right";
+FLASHLIGHT_BATTERY_DISPLAY_3 = "Below Crosshair";
+FLASHLIGHT_BATTERY_DISPLAY = "Battery Display Location";
+FLASHLIGHT_BATTERY_MAX = "Maximum Battery";
+FLASHLIGHT_BATTERY_MIN_THRESHOLD = "Minimum required battery";
+FLASHLIGHT_BATTERY_USE = "Battery Use Rate (tics)";
+FLASHLIGHT_BATTERY_CHARGE = "Battery Charge Rate (tics)";
+FLASHLIGHT_BATTERY_DESC1 = "Battery is required to use the flashlight.";
+FLASHLIGHT_BATTERY_DESC2 = "Flashlight can not be reactivated below the minumum.";
+
+//Darken Modes and Level Alteration
+FLASHLIGHT_DARKEN_MODE = "Light Alteration Mode";
+FLASHLIGHT_DARKEN_MODE_1 = "Subtractive";
+FLASHLIGHT_DARKEN_MODE_2 = "Parabolic";
+FLASHLIGHT_DARKEN_MODE_3 = "Division Based";
+FLASHLIGHT_DARKEN_MODE_LINEAR_AMOUNT = "Subtraction Amount";
+FLASHLIGHT_DARKEN_MODE_PARABOLA_CURVE = "Parabolic Curve Point";
+FLASHLIGHT_DARKEN_MODE_PARABOLA_BRIGHTNESS = "Parabolic Curve Brightness Factor";
+FLASHLIGHT_DARKEN_MODE_PARABOLA_ADJUST = "Parabolic Adjustment";
+FLASHLIGHT_DARKEN_MODE_DIVIDE_AMOUNT = "Divide Amount";
+
+FLASHLIGHT_DARKEN_MODE_LINEAR_DESC1 = "Lower light levels in all sectors based on";
+FLASHLIGHT_DARKEN_MODE_LINEAR_DESC2 = "the Subtraction amount. This is the simplest";
+FLASHLIGHT_DARKEN_MODE_LINEAR_DESC3 = "and most basic lighting mode. Designed for maps";
+FLASHLIGHT_DARKEN_MODE_LINEAR_DESC4 = "with a large amount of light levels to maintain";
+FLASHLIGHT_DARKEN_MODE_LINEAR_DESC5 = "consistency.";
+
+FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC1 = "Change light levels in all sectors based on";
+FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC2 = "a parabolic arc. The curve point determines the";
+FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC3 = "light level that will have the largest effect, with the";
+FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC4 = "brightness determining the effect of the curve. Designed to";
+FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC5 = "emphasise dark areas on maps with consistent lighting";
+
+FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC1 = "Change light levels in all sectors based on";
+FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC2 = "dividing the light level by the division amount.";
+FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC3 = "This will consistently make everything dark, and is the recommended";
+FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC4 = "setting for 'night mode', as all sectors will be consistently dark,";
+FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC5 = "even in brightly lit maps";
+
+FLASHLIGHT_DARKEN_MODE_SEE_README = "See the included README file for more information about alteration modes";
+
+//Sky Replacement
+FLASHLIGHT_REPLACE_SKY = "Replace Sky";
+FLASHLIGHT_REAPLCE_SKY_DESC1 = "Replace the sky with a night-time sky";
+FLASHLIGHT_REAPLCE_SKY_DESC2 = "This helps with contrast when the level is dark";
+
+//Flashlight Settings
+FLASHLIGHT_INTENSITY = "Intensity";
+FLASHLIGHT_INNER_ANGLE = "Inner Angle";
+FLASHLIGHT_OUTER_ANGLE = "Inner Angle";
+FLASHLIGHT_FLASHLIGHT_DESC1 = "Inner and Outer angles control the size of the beam,";
+FLASHLIGHT_FLASHLIGHT_DESC2 = "while intensity controls it's brightness.";
+FLASHLIGHT_FLASHLIGHT_DESC3 = "Modifying these settings could unbalance gameplay!";
+
+//Gameplay and Spawn Settings
+FLASHLIGHT_STARTING_ITEM = "Start with Flashlight";
+FLASHLIGHT_STARTING_FLARES = "Starting Flares";
+FLASHLIGHT_DROP_FLASHLIGHT = "Enemies Drop Flashlights";
+FLASHLIGHT_DROP_FLARE = "Enemies Drop Flares";
+FLASHLIGHT_DROP_DESC1 = "Possessed Humans can drop additional items on death,";
+FLASHLIGHT_DROP_DESC2 = "based on a chance value. They may drop multiple items.";
+FLASHLIGHT_SPAWN_DESC1 = "Items can spawn by replacing other items";
+FLASHLIGHT_SPAWN_DESC2 = "based on their chance value. If the same item can be replaced";
+FLASHLIGHT_SPAWN_DESC3 = "by multiple others, one will be chosen randomly";
 
 //Profiles
-FLASHLIGHT_PROFILE = "Apply Profile";
+FLASHLIGHT_PROFILE = "Selected Profile";
 FLASHLIGHT_PROFILE_CUR = "Current Profile";
 FLASHLIGHT_PROFILE_0 = "Mod disabled";
 FLASHLIGHT_PROFILE_1 = "Night Mode";

@@ -45,7 +45,7 @@ class StealthSpawner : EventHandler
     
     override void WorldThingSpawned(WorldEvent e)
     {
-        if (e.Thing.bISMONSTER)
+        if (e.Thing.bISMONSTER && e.Thing.SpawnTime <= 5)
         {
             int stealth_monster_chance = CVar.FindCVar("flashlight_stealth_monster_chance").GetInt();
             int stealth_monster_threshold = CVar.FindCVar("flashlight_stealth_monster_threshold").GetInt();
