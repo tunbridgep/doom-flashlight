@@ -72,9 +72,9 @@ FLASHLIGHT_SETTINGS_DESC_5 = "Default Outer Value: 32.0";
 
 //Darken modes
 FLASHLIGHT_DARKEN_HEADING = "Map Lighting";
-FLASHLIGHT_DARKEN_MODE = "Darken Mode";
-FLASHLIGHT_DARKEN_MODE_1 = "Darken Entire Map";
-FLASHLIGHT_DARKEN_MODE_2 = "Darken Below Threshold";
+FLASHLIGHT_DARKEN_MODE = "Lighting Mode";
+FLASHLIGHT_DARKEN_MODE_1 = "Linear";
+FLASHLIGHT_DARKEN_MODE_2 = "Parabolic";
 
 FLASHLIGHT_DARKEN_MODE_DESC_1 = "Darken the map, similar to mods like DarkDoom,";
 FLASHLIGHT_DARKEN_MODE_DESC_2 = "to make the flashlight more useful";

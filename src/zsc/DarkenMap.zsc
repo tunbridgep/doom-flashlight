@@ -2,28 +2,74 @@ class DarkenMap : EventHandler
 {
     enum DarkenMode
 	{
-		EVERYTHING = 0,
-		SIMPLE_THRESHOLD = 1,
+	    DISABLED = 0,
+		SIMPLE = 1,
+		PARABOLA = 2,
 	};
 
-    void DarkenMap(DarkenMode mode, int amount, int threshold)
+    //darkens based on a curve - the closer it is to the threshold, the less it gets darkened
+    int DarkenParabola(int curve, int brightness, int light_level, int adjust)
+    {             
+        //Please see the spreadsheet in the docs folder
+        //curve == t and brightness == v light_level == in and adjust = p;
+        //on the spreadsheet
+        
+        //brightness needs to start at 1 and end at 254 to prevent divide by 0
+        curve = Math.Clamp(curve,1,254);
+        
+        int o;
+        
+        if (light_level <= curve)
+        {
+            //(in * v/t)
+            float fcurve = curve;
+            float fbrightness = brightness;
+            float v_over_t = fbrightness / fcurve;
+            o = (v_over_t * light_level);
+        }
+        else
+        {
+            //p + v + ( 255 - v ) * ( in - t ) / ( 255 - t )
+            int a = 255 - brightness;
+            int b = light_level - curve;
+            int c = 255 - curve;
+            
+            o = brightness + ((a * b) / c);
+            
+            if (o < light_level)
+                o = Math.ClampMax(o + adjust,light_level);
+        }
+        return Math.Clamp(o,0,255);
+    }
+    
+    int DarkenSimple(int light_level, int brightness)
     {
+        return Math.Clamp(light_level - brightness,0,255);
+    }
+
+    void DarkenMap(DarkenMode mode, int curve, int brightness, int linear_amount, int adjust)
+    {
+        if (mode == DISABLED)
+            return;
+
         int modified_sectors = 0;
         int nsectors = level.sectors.size();
       
         for (int i = 0; i < nsectors;i++)
         {
             int light_level = level.sectors[i].lightLevel;
+            int new_level = light_level;
             
-            if (light_level < threshold || mode == EVERYTHING)
-            {
-                int new_level = Math.ClampMin(light_level - amount,0);
-                level.sectors[i].lightLevel = new_level;
-                modified_sectors++;
-                Debug.LogVerbose("Darkened Sector with light level "..light_level.." to "..new_level);
-            }
+            if (mode == PARABOLA)
+                new_level = DarkenParabola(curve,brightness,light_level,adjust);
+            else if (mode == SIMPLE)
+                new_level = DarkenSimple(light_level,linear_amount);
+            
+            level.sectors[i].lightLevel = new_level;
+            modified_sectors++;
+            Debug.LogVerbose("Darkened Sector with light level "..light_level.." to "..new_level);
         }
-        Debug.LogVerbose(modified_sectors.." sectors were darkened");
+        Debug.Log(modified_sectors.." sectors were darkened");
     }
     
     override void WorldLoaded(WorldEvent e)
@@ -32,9 +78,11 @@ class DarkenMap : EventHandler
             return;
             
         DarkenMode mode = CVar.FindCVar("flashlight_darken_mode").GetInt();
-        int threshold = CVar.FindCVar("flashlight_darken_threshold").GetInt();
-        int amount = CVar.FindCVar("flashlight_darken_amount").GetInt();
+        int curve = CVar.FindCVar("flashlight_darken_parabola_curve_point").GetInt();
+        int brightness = CVar.FindCVar("flashlight_darken_parabola_brightness_factor").GetInt();
+        int adjust = CVar.FindCVar("flashlight_darken_parabola_adjust").GetInt();
+        int linear_amount = CVar.FindCVar("flashlight_darken_linear_amount").GetInt();
         
-        DarkenMap(mode,amount,threshold);
+        DarkenMap(mode,curve,brightness,linear_amount,adjust);
     }
 }

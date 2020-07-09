@@ -17,8 +17,10 @@ server int flashlight_battery_charge_per_tic = 1;
 
 //map alteration
 server int flashlight_darken_mode = 2;
-server int flashlight_darken_amount = 16;
-server int flashlight_darken_threshold = 128;
+server int flashlight_darken_parabola_brightness_factor = 80;
+server int flashlight_darken_parabola_curve_point = 96;
+server int flashlight_darken_parabola_adjust = 15;
+server int flashlight_darken_linear_amount = 40;
 server bool flashlight_replace_sky = false;
 
 //stealth monsters

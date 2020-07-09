@@ -21,4 +21,11 @@ class Math
             return clamp_min;
         return value;
     }
+    
+    static int ClampMax(int value, int clamp_max)
+    {
+        if (value > clamp_max)
+            return clamp_max;
+        return value;
+    }
 }
