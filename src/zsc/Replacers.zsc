@@ -93,7 +93,7 @@ class FlashlightReplacers : EventHandler
         //But we can't just do it once at the start either, because many mods (Brutal Doom, PB etc)
         //like to use "spawners" to create their objects, so we should wait a little bit (1 second)
         //and then discard anything spawned after the initial bit        
-        if (a.SpawnTime <= 5)
+        if (a.GetLevelSpawnTime() <= 5)
         {
             DoReplacement(a);
             bool dropflash = CVar.FindCVar("flashlight_enemies_drop_flashlights").GetBool();

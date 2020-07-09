@@ -71,6 +71,7 @@ class FlashlightBase : Weapon abstract
     
     protected void BatteryControl(Actor invoker)
     {
+        Setup();
         if (battery.IsEmpty())
             TryTurnOff(invoker);
             
@@ -102,7 +103,9 @@ class FlashlightBase : Weapon abstract
         if (battery == null)
         {
             Debug.LogVerbose("Recreating battery");
-            battery = Battery(owner.GiveInventoryType("Battery"));
+            battery = Battery(owner.FindInventory("Battery"));
+            if (!battery)
+                battery = Battery(owner.GiveInventoryType("Battery"));
         }
     }
     
