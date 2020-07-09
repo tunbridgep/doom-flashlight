@@ -128,38 +128,3 @@ class OptionMenuItemFlashlightSlider : OptionMenuItemSlider
 		return self;
 	}
 }
-
-class FlashlightMenu : OptionMenu
-{ 
-    override void Drawer ()
-	{
-		Super.Drawer();
-		
-        /*
-
-		String tt;
-
-		if (mDesc.mSelectedItem > 0)
-		{
-			if (mDesc.mItems[mDesc.mSelectedItem] is "OptionMenuItemFlashlightOption")
-			{
-				tt = StringTable.Localize(OptionMenuItemFlashlightOption(mDesc.mItems[mDesc.mSelectedItem]).mTooltip);
-			}
-
-			if (mDesc.mItems[mDesc.mSelectedItem] is "OptionMenuItemFlashlightSlider")
-			{
-				//tt = StringTable.Localize(OptionMenuItemFlashlightSlider(mDesc.mItems[mDesc.mSelectedItem]).mTooltip);
-			}
-		}
-
-		if (tt.Length() > 0)
-		{
-			Screen.DrawText (OptionFont(), OptionMenuSettings.mFontColorValue,
-				(Screen.GetWidth() - OptionFont().StringWidth (tt) * CleanXfac_1) / 2,
-				BigFont.GetHeight() * CleanYfac_1 * 2.5,
-				tt,
-				DTA_CleanNoMove_1, true);
-		}
-		*/
-	}
-}

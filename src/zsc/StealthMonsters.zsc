@@ -37,7 +37,7 @@ class StealthSpawner : EventHandler
             
             if (dice <= chance)
             {
-                Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant in sector with light level of "..light_level.." based on a roll of "..dice.." ("..chance.."% chance)");
+                Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant in sector with light level of "..light_level.." based on a roll of "..dice.." ("..chance.."\% chance)");
                 monster.bSTEALTH = true;
             }
         }

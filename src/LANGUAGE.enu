@@ -10,104 +10,45 @@ FLASHLIGHT_AMOUNT = "Amount";
 FLASHLIGHT_COLOR = "Color";
 FLASHLIGHT_MODE = "Mode";
 FLASHLIGHT_NOTHING = "Nothing";
+FLASHLIGHT_APPLY = "Apply Settings";
 
-//Battery Stuff
-FLASHLIGHT_BATTERY_HEADING = "Battery Settings";
-FLASHLIGHT_BATTERY_DISPLAY = "Battery Display Position";
-FLASHLIGHT_BATTERY_TOP_LEFT = "Top Left";
-FLASHLIGHT_BATTERY_TOP_RIGHT = "Top Right";
-FLASHLIGHT_BATTERY_CROSSHAIR = "Below Crosshair";
-FLASHLIGHT_BATTERY_MAX = "Maximum Charge";
-FLASHLIGHT_BATTERY_MIN = "Minimum Charge for use";
-FLASHLIGHT_BATTERY_USE = "Drain Rate";
-FLASHLIGHT_BATTERY_CHARGE = "Charge Rate";
+//Submenus
+FLASHLIGHT_ADVANCED_SETTINGS = "Advanced Settings";
+FLASHLIGHT_CREDITS = "Show Credits";
 
-//Menus
+//Menu Titles
 FLASHLIGHT_MAIN_MENU_TITLE = "Flashlight Settings";
-FLASHLIGHT_SETTINGS_SUBMENU = "Flashlight Options";
-FLASHLIGHT_SETTINGS_MENU_TITLE = "Flashlight Options";
-FLASHLIGHT_MAP_OPTIONS_MENU_TITLE = "Map Settings";
-FLASHLIGHT_MAP_OPTIONS_SUBMENU = "Map Options";
-FLASHLIGHT_SPAWN_MENU_TITLE = "Spawning Settings";
-FLASHLIGHT_BATTERY_MENU_TITLE = "Battery Settings";
-FLASHLIGHT_SPAWN_SUBMENU = "Configure Spawning";
-FLASHLIGHT_BATTERY_SUBMENU = "Battery Options";
 
-//Starting Options
-FLASHLIGHT_START_HEADING = "Starting Items";
-FLASHLIGHT_START_DESC_1 = "Determines what players will start the game with";
-FLASHLIGHT_START_DESC_2 = "Default Item: Nothing";
-FLASHLIGHT_START_DESC_3 = "Default Flares: 5";
-FLASHLIGHT_START_ITEM = "Starting Item";
-FLASHLIGHT_START_FLARES = "Starting Flares";
-FLASHLIGHT_START_ITEM_1 = "Flashlight";
-FLASHLIGHT_START_ITEM_2 = "Headlamp (Not implemented yet!)";
+//Profiles
+FLASHLIGHT_PROFILE = "Apply Profile";
+FLASHLIGHT_PROFILE_1 = "Night Mode";
+FLASHLIGHT_PROFILE_2 = "Darker Darkness";
+FLASHLIGHT_PROFILE_3 = "The Long Dark";
 
-//Item Replacements
-FLASHLIGHT_REPLACERS_HEADING_FLASHLIGHT = "Flashlight Spawning";
-FLASHLIGHT_REPLACERS_HEADING_FLARE = "Flare Spawning";
-FLASHLIGHT_REPLACERS_HEADING_FLARE_BOX = "Flare Box Spawning";
-FLASHLIGHT_REPLACERS_HEADING_BATTERY_UPGRADE = "Battery Upgrade Spawning";
-FLASHLIGHT_REPLACERS_HEADING_BATTERY_RECHARGE = "Battery Recharge Spawning";
-FLASHLIGHT_SPAWN_ITEM = "Replace Item";
-FLASHLIGHT_SHOTGUN = "Shotgun";
-FLASHLIGHT_SHELLBOX = "Shell Box";
-FLASHLIGHT_CHAINGUN = "Chaingun";
-FLASHLIGHT_ROCKET = "Rocket";
-FLASHLIGHT_CLIPBOX = "Clip Box";
-FLASHLIGHT_ROCKETBOX = "Box of Rockets";
-FLASHLIGHT_BACKPACK = "Backpack";
-FLASHLIGHT_SOULSPHERE = "Soulsphere";
-FLASHLIGHT_BLURSPHERE = "Blursphere";
-FLASHLIGHT_MEGASPHERE = "MegaSphere";
+FLASHLIGHT_PROFILE_NOTFAIR = "This profile isn't even remotely fair!";
 
-//Flashlight Settings
-FLASHLIGHT_INNER_ANGLE = "Inner Angle";
-FLASHLIGHT_OUTER_ANGLE = "Outer Angle";
-FLASHLIGHT_SETTINGS_DESC_1 = "Inner Angle and Outer angle determine the size of the flashlight beam.";
-FLASHLIGHT_SETTINGS_DESC_2 = "These should be left at their default values for gameplay reasons.";
-FLASHLIGHT_SETTINGS_DESC_3 = "Default Color Value: White";
-FLASHLIGHT_SETTINGS_DESC_4 = "Default Inner Value: 16.0";
-FLASHLIGHT_SETTINGS_DESC_5 = "Default Outer Value: 32.0";
+FLASHLIGHT_PROFILE_1_DESC = "Darken the map on a linear scale and uses a nighttime sky";
+FLASHLIGHT_PROFILE_1_DESC2 = "Start with a flashlight";
+FLASHLIGHT_PROFILE_1_DESC3 = "No Stealth Monsters";
+FLASHLIGHT_PROFILE_1_DESC4 = "Normal Battery Use";
 
-//Darken modes
-FLASHLIGHT_DARKEN_HEADING = "Map Lighting";
-FLASHLIGHT_DARKEN_MODE = "Lighting Mode";
-FLASHLIGHT_DARKEN_MODE_1 = "Linear";
-FLASHLIGHT_DARKEN_MODE_2 = "Parabolic";
+FLASHLIGHT_PROFILE_2_DESC = "Darken dark areas of the map using a parabolic scale.";
+FLASHLIGHT_PROFILE_2_DESC2 = "Start with 5 flares";
+FLASHLIGHT_PROFILE_2_DESC3 = "No Stealth Monsters";
+FLASHLIGHT_PROFILE_2_DESC4 = "Normal Battery Use";
 
-FLASHLIGHT_DARKEN_MODE_DESC_1 = "Darken the map, similar to mods like DarkDoom,";
-FLASHLIGHT_DARKEN_MODE_DESC_2 = "to make the flashlight more useful";
-FLASHLIGHT_DARKEN_MODE_DESC_3 = "Default Amount: 16";
-FLASHLIGHT_DARKEN_MODE_DESC_4 = "Default Threshold: 128";
-FLASHLIGHT_DARKEN_MODE_DESC_5 = "Current: Darken the entire map by the specified amount, regardless of threshold";
-FLASHLIGHT_DARKEN_MODE_DESC_7 = "This is effectively 'night mode' as everything will be darker";
-FLASHLIGHT_DARKEN_MODE_DESC_6 = "Current: Darken all sectors with brightness below the threshold by the specified amount";
-FLASHLIGHT_DARKEN_MODE_DESC_8 = "This will only darken areas that are already dark";
+FLASHLIGHT_PROFILE_3_DESC = "Map is nearly pitch black";
+FLASHLIGHT_PROFILE_3_DESC2 = "Start with nothing";
+FLASHLIGHT_PROFILE_3_DESC3 = "All enemies are Stealth Monsters";
+FLASHLIGHT_PROFILE_3_DESC4 = "Battery has a large capacity, does not recharge";
 
-//Replace Sky
-FLASHLIGHT_REPLACE_SKY_HEADING = "Sky Replacement";
-FLASHLIGHT_REPLACE_SKY = "Replace Sky";
-FLASHLIGHT_REPLACE_SKY_DESC_1 = "Replaces the sky in the map, recommended";
-FLASHLIGHT_REPLACE_SKY_DESC_2 = "if darkening the entire map or playing a dark mapset";
-FLASHLIGHT_REPLACE_SKY_DESC_3 = "Not compatible with maps that set their sky via mapinfo";
-FLASHLIGHT_REPLACE_SKY_DESC_4 = "such as Eviternity";
+FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
 
-//Stealth Monsters
-FLASHLIGHT_STEALTH_HEADING = "Stealth Monsters";
+//Credits
 
-STEALTH_MONSTER_SETTING_1 = "Small Monsters Only";
-STEALTH_MONSTER_SETTING_2 = "All Monsters";
-STEALTH_MONSTER_SETTING_3 = "Small Monsters Only, with Threshold";
-STEALTH_MONSTER_SETTING_4 = "All Monsters, with Threshold";
+FLASHLIGHT_CREDITS_SPRITES = "Sprites Used";
+FLASHLIGHT_CREDITS_ADDITIONAL = "Additional Credits";
 
-FLASHLIGHT_STEALTH_DESC_1 = "Dynamically replace monsters with stealth variants,";
-FLASHLIGHT_STEALTH_DESC_2 = "including monsters added by mods and in different IWADs,";
-FLASHLIGHT_STEALTH_DESC_3 = "based on the specified chance";
-FLASHLIGHT_STEALTH_DESC_4 = "Default Value: Disabled";
-FLASHLIGHT_STEALTH_DESC_5 = "Default Chance: 20%";
-FLASHLIGHT_STEALTH_DESC_6 = "Default Threshold: 96";
-
-FLASHLIGHT_STEALTH_DESC_SMALL = "Current: Only small monsters can become Stealth monsters";
-FLASHLIGHT_STEALTH_DESC_ALL = "Current: All monsters can become Stealth monsters";
-FLASHLIGHT_STEALTH_DESC_THRESH = "if they spawn in an area darker than their threshold (Ambush mode)";
+FLASHLIGHT_CREDITS_SOUNDS = "Additional Sounds from id Software, Epic Games and 3D Realms.";
+FLASHLIGHT_CREDITS_FOOTER = "Please see CREDITS.TXT inside the archive for full licenses and credits";
+FLASHLIGHT_CREDITS_SPOTLIGHT_CODE = "Spotlight code based on Steve's Flashlight";

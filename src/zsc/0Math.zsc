@@ -29,3 +29,13 @@ class Math
         return value;
     }
 }
+
+class Mathf
+{
+    static float ClampMin(double value, double clamp_min)
+    {
+        if (value < clamp_min)
+            return clamp_min;
+        return value;
+    }
+}
