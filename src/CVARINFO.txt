@@ -1,6 +1,7 @@
 //storage
 user noarchive string flashlight_lastweap = "";
 nosave noarchive int flashlight_profile_temp = 0;
+server cheat int flashlight_profile = 0;
 
 //flashlight settings
 user Color flashlight_color = "FF FF FF";
@@ -21,8 +22,8 @@ server int flashlight_darken_mode = 0;
 server int flashlight_darken_parabola_brightness_factor = 80;
 server int flashlight_darken_parabola_curve_point = 96;
 server int flashlight_darken_parabola_adjust = 15;
-server int flashlight_darken_linear_amount = 40;
-server float flashlight_darken_divide_amount = 2.5;
+server int flashlight_darken_linear_amount = 45;
+server float flashlight_darken_divide_amount = 2.2;
 server bool flashlight_replace_sky = false;
 
 //stealth monsters
@@ -32,7 +33,7 @@ server int flashlight_stealth_monster_mode = 0;
 
 //replacers
 server int flashlight_spawn_flashlight = 0;
-server int flashlight_spawn_flashlight_chance = 25;
+server int flashlight_spawn_flashlight_chance = 15;
 server int flashlight_spawn_headlamp = 0;
 server int flashlight_spawn_headlamp_chance = 25;
 server int flashlight_spawn_flare = 0;
@@ -43,6 +44,10 @@ server int flashlight_spawn_battery_recharge = 0;
 server int flashlight_spawn_battery_recharge_chance = 25;
 server int flashlight_spawn_flare_box = 0;
 server int flashlight_spawn_flare_box_chance = 25;
+server bool flashlight_enemies_drop_flashlights = false;
+server bool flashlight_enemies_drop_flares = false;
+server int flashlight_enemies_drop_flashlights_chance = 3;
+server int flashlight_enemies_drop_flares_chance = 5;
 
 //start-game settings
 server int flashlight_starting_item = 0;

@@ -2,9 +2,10 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 {
     enum Profile
 	{
-	    NIGHT_MODE = 0,
-		DARKER_DARKNESS = 1,
-		HELL_MODE = 2,
+	    DISABLED = 0,
+	    NIGHT_MODE = 1,
+		DARKER_DARKNESS = 2,
+		HELL_MODE = 3,
 	};
 
     OptionMenuItemFlashlightApplyProfile Init(String text, int color = -1)
@@ -32,8 +33,12 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
     
     void SelectProfile(Profile p)
     {
+        //This is our display variable for our current profile
+        CVar.GetCvar("flashlight_profile").SetInt(p);
+        
         //reset most things to default
         CVar.GetCvar("flashlight_stealth_monster_mode").ResetToDefault();
+        CVar.GetCvar("flashlight_darken_mode").ResetToDefault();
         CVar.GetCvar("flashlight_stealth_monster_chance").ResetToDefault();
         CVar.GetCvar("flashlight_battery_max").ResetToDefault();
         CVar.GetCvar("flashlight_battery_min_threshold").ResetToDefault();
@@ -41,35 +46,61 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
         CVar.GetCvar("flashlight_battery_charge_per_tic").ResetToDefault();
         CVar.GetCvar("flashlight_spawn_battery_upgrade_chance").ResetToDefault();
         CVar.GetCvar("flashlight_spawn_battery_recharge_chance").ResetToDefault();
+          
+        CVar.GetCvar("flashlight_spawn_flare_box").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_flashlight").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_headlamp").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_flare").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_battery_upgrade").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_battery_recharge").ResetToDefault();
+
+        CVar.GetCvar("flashlight_starting_flares").ResetToDefault();
+        CVar.GetCvar("flashlight_starting_item").ResetToDefault();
+        CVar.GetCvar("flashlight_replace_sky").ResetToDefault();
         
-        //common stuff - only gets activated the first time we select a profile
-        CVar.GetCvar("flashlight_spawn_battery_upgrade").SetInt(1);
-        CVar.GetCvar("flashlight_spawn_battery_recharge").SetInt(1);
-        CVar.GetCvar("flashlight_spawn_flare_box").SetInt(1);
-    
-        if (p == 0)
+        CVar.GetCvar("flashlight_enemies_drop_flashlights").ResetToDefault();
+        CVar.GetCvar("flashlight_enemies_drop_flares").ResetToDefault();
+        CVar.GetCvar("flashlight_enemies_drop_flashlights_chance").ResetToDefault();
+        CVar.GetCvar("flashlight_enemies_drop_flares_chance").ResetToDefault();
+        
+        CVar.GetCvar("flashlight_darken_divide_amount").ResetToDefault();
+        
+        
+        
+        if (p != DISABLED)
         {
-            CVar.GetCvar("flashlight_darken_mode").SetInt(1);
-            CVar.GetCvar("flashlight_starting_item").SetInt(1);
-            CVar.GetCvar("flashlight_starting_flares").SetInt(0);
-            CVar.GetCvar("flashlight_spawn_flashlight").SetInt(0);
-            CVar.GetCvar("flashlight_replace_sky").SetBool(true);
-            CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(0);
+            //common stuff - only gets activated the first time we select a profile
+            CVar.GetCvar("flashlight_spawn_battery_upgrade").SetInt(1);
+            CVar.GetCvar("flashlight_spawn_battery_recharge").SetInt(1);
+            CVar.GetCvar("flashlight_spawn_flare_box").SetInt(1);
         }
-        else if (p == 1)
+        
+        if (p == NIGHT_MODE)
+        {
+            CVar.GetCvar("flashlight_darken_mode").SetInt(3);
+            CVar.GetCvar("flashlight_starting_item").SetInt(1);
+            CVar.GetCvar("flashlight_replace_sky").SetBool(true);
+            CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
+        }
+        else if (p == DARKER_DARKNESS)
         {
             CVar.GetCvar("flashlight_darken_mode").SetInt(2);
             CVar.GetCvar("flashlight_starting_item").SetInt(0);
             CVar.GetCvar("flashlight_starting_flares").SetInt(5);
-            CVar.GetCvar("flashlight_replace_sky").SetBool(false);
-            CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(0);
+            CVar.GetCvar("flashlight_spawn_flashlight").SetInt(1);
+            CVar.GetCvar("flashlight_enemies_drop_flashlights").SetBool(true);
+            CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
         }
-        else if (p == 2)
+        else if (p == HELL_MODE)
         {
             CVar.GetCvar("flashlight_darken_mode").SetInt(3);
+            CVar.GetCvar("flashlight_darken_divide_amount").SetFloat(3.2);
             CVar.GetCvar("flashlight_starting_item").SetInt(0);
-            CVar.GetCvar("flashlight_starting_flares").SetInt(5);
             CVar.GetCvar("flashlight_replace_sky").SetBool(true);
+            CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
+            CVar.GetCvar("flashlight_enemies_drop_flares_chance").SetInt(15);
+            CVar.GetCvar("flashlight_enemies_drop_flashlights").SetBool(true);
+            CVar.GetCvar("flashlight_enemies_drop_flashlights_chance").SetInt(15);
             
             //Stealth Monster settings
             CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(2);

@@ -96,6 +96,29 @@ class FlashlightReplacers : EventHandler
         if (a.SpawnTime <= 5)
         {
             DoReplacement(a);
+            bool dropflash = CVar.FindCVar("flashlight_enemies_drop_flashlights").GetBool();
+            bool dropflare = CVar.FindCVar("flashlight_enemies_drop_flares").GetBool();
+            int dropflash_chance = CVar.FindCVar("flashlight_enemies_drop_flashlights_chance").GetInt();
+            int dropflare_chance = CVar.FindCVar("flashlight_enemies_drop_flares_chance").GetInt();
+            
+            if (dropflash)
+                DoAddDropItem(a,"FlashlightDropper",dropflash_chance);
+            if (dropflare)
+                DoAddDropItem(a,"FlareDropper",dropflare_chance);
+        }
+    }
+    
+    void DoAddDropItem(Actor a, string dropitem, int chance)
+    {
+        int dice = random(0, 100);
+        
+        if (a is "Zombieman" || a is "ShotgunGuy" || a is "ChaingunGuy" || a.Species == "Former_Human")
+        {
+            if (dice <= chance)
+            {
+                Debug.LogVerbose("Adding a "..dropitem.." to "..a.GetTag());
+                a.GiveInventory(dropitem,1);
+            }
         }
     }
     

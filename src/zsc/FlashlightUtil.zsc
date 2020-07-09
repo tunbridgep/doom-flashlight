@@ -20,7 +20,8 @@ class FlashlightSetup : EventHandler
                 break;
         }
         
-        player.GiveInventory("Flare",start_flares);
+        if (start_flares > 0)
+            player.GiveInventory("Flare",start_flares);
         player.GiveInventory("FlashlightStartToken",1);
     }
 }

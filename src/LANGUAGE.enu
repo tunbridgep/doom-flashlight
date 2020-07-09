@@ -21,30 +21,41 @@ FLASHLIGHT_MAIN_MENU_TITLE = "Flashlight Settings";
 
 //Profiles
 FLASHLIGHT_PROFILE = "Apply Profile";
+FLASHLIGHT_PROFILE_CUR = "Current Profile";
+FLASHLIGHT_PROFILE_0 = "Mod disabled";
 FLASHLIGHT_PROFILE_1 = "Night Mode";
 FLASHLIGHT_PROFILE_2 = "Darker Darkness";
 FLASHLIGHT_PROFILE_3 = "The Long Dark";
 
 FLASHLIGHT_PROFILE_NOTFAIR = "This profile isn't even remotely fair!";
 
+FLASHLIGHT_PROFILE_0_DESC = "All features disabled";
+
 FLASHLIGHT_PROFILE_1_DESC = "Darken the map on a linear scale and uses a nighttime sky";
 FLASHLIGHT_PROFILE_1_DESC2 = "Start with a flashlight";
 FLASHLIGHT_PROFILE_1_DESC3 = "No Stealth Monsters";
 FLASHLIGHT_PROFILE_1_DESC4 = "Normal Battery Use";
+FLASHLIGHT_PROFILE_1_DESC5 = "Former Humans drop Flares";
 
 FLASHLIGHT_PROFILE_2_DESC = "Darken dark areas of the map using a parabolic scale.";
 FLASHLIGHT_PROFILE_2_DESC2 = "Start with 5 flares";
 FLASHLIGHT_PROFILE_2_DESC3 = "No Stealth Monsters";
 FLASHLIGHT_PROFILE_2_DESC4 = "Normal Battery Use";
+FLASHLIGHT_PROFILE_2_DESC5 = "Former Humans drop Flares and Flashlights";
 
 FLASHLIGHT_PROFILE_3_DESC = "Map is nearly pitch black";
 FLASHLIGHT_PROFILE_3_DESC2 = "Start with nothing";
 FLASHLIGHT_PROFILE_3_DESC3 = "All enemies are Stealth Monsters";
-FLASHLIGHT_PROFILE_3_DESC4 = "Battery has a large capacity, does not recharge";
+FLASHLIGHT_PROFILE_3_DESC4 = "Battery has a large capacity but does not recharge";
+FLASHLIGHT_PROFILE_3_DESC5 = "Former Humans drop Flares and Flashlights with high frequency";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
+FLASHLIGHT_PROFILE_WARNING2 = "Settings will take effect on next map load";
 
 //Credits
+
+FLASHLIGHT_CREDITS_HEADER = "Flashlight Mod";
+FLASHLIGHT_CREDITS_HEADER2 = "A Gameplay mod by Paul 'Sarge945' Tunbridge";
 
 FLASHLIGHT_CREDITS_SPRITES = "Sprites Used";
 FLASHLIGHT_CREDITS_ADDITIONAL = "Additional Credits";

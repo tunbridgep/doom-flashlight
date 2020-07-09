@@ -55,6 +55,14 @@ mixin class Conditional
 	}
 }
 
+class OptionMenuItemFlashlightOptionReadOnly : OptionMenuItemOption
+{
+    override bool Selectable()
+	{
+    	return false;
+	}
+}
+
 class OptionMenuItemFlashlightDynamicText : OptionMenuItemStaticText
 {
 
