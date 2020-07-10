@@ -1,0 +1,15 @@
+class ActorUtil play
+{
+    static void MoveToActor(Actor source, Actor dest, vector3 offset = (0,0,0))
+    {
+        if (!source || !dest)
+            return;
+
+        source.A_SetAngle(dest.angle, 0);
+        source.A_SetPitch(dest.Pitch, SPF_INTERPOLATE);
+        
+        vector3 pos = (dest.pos.x + offset.x, dest.pos.y + offset.y, dest.pos.z + offset.z);
+        
+        source.SetOrigin(pos, true);
+    }
+}

@@ -1,0 +1,11 @@
+class Config play
+{
+}
+
+class FlareConfig
+{
+    static int GetBurnTime()
+    {
+        return CVar.GetCVar("flashlight_flare_burn_time").GetInt() * 35;
+    }
+}

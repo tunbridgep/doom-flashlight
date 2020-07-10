@@ -4,8 +4,8 @@ flashlight/click		FSHLITE
 Flare/Light	FLARLITE
 Flare/Loop	FLARLOOP
 
-$Volume Flare/Light 0.5
-$Volume Flare/Loop 0.5
+//$Volume Flare/Light 0.5
+//$Volume Flare/Loop 0.5
 $Limit Flare/Loop 5
 
 //FireWand

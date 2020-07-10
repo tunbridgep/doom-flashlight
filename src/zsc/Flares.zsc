@@ -1,4 +1,4 @@
-Class Flare : CustomInventory
+class Flare : CustomInventory
 {
     Default
     {
@@ -24,8 +24,66 @@ Class Flare : CustomInventory
     }
 }
 
-Class ActiveFlare : Actor //You can give this a DoomEdNum, to place it in a map editor
+class FlareBox : CustomInventory
 {
+    Default
+    {
+        Radius 28;
+        Height 16;
+        Inventory.PickupMessage "You picked up a box of flares.";
+    }
+    States
+    {
+        Spawn:
+            FLZR C -1;
+            Stop;
+        Pickup:
+            TNT1 A 1 A_GiveInventory ("Flare", 5);
+            Stop;
+    }
+}
+
+class FlareLight : PointLightFlicker
+{
+    Actor toFollow;
+    override void BeginPlay()
+    {
+        args[LIGHT_RED] = 255;
+        args[LIGHT_GREEN] = 77;
+        args[LIGHT_BLUE] = 77;
+        args[LIGHT_INTENSITY] = 242;
+        args[LIGHT_SECONDARY_INTENSITY] = 240;
+        bATTENUATE = true;
+    }
+    
+    override void Tick()
+    {
+        ActorUtil.MoveToActor(self,toFollow);
+        Super.Tick();
+    }
+}
+
+class FlareBase : Actor abstract
+{
+    FlareLight pointLight;
+    
+    protected void GenerateDynamicLight()
+    {
+        if (!pointLight)
+        {
+            Debug.LogVerbose("Creating dynamic light for flare");
+            pointLight = FlareLight(Actor.Spawn("FlareLight"));
+            if (pointLight)
+                pointLight.toFollow = self;
+        }
+    }
+    
+    protected void RemoveDynamicLight()
+    {
+        if (pointLight)
+            pointLight.Destroy();
+    }
+
     Default
     {
         Radius 22;
@@ -34,15 +92,65 @@ Class ActiveFlare : Actor //You can give this a DoomEdNum, to place it in a map 
     States
     {
         Spawn:
-            FLZR A 0 Bright;
-            FLZR A 0 Bright A_StartSound("Flare/Loop");
-            FLZR AB 1 Bright;
-            Goto Spawn+2;
+            FLZR A 0;
+            FLZR A 1
+            {
+                GenerateDynamicLight();
+            }
+            Goto PostSpawn;
+        PostSpawn:    
+            FLZR A 1 Bright A_PlaySoundEx("Flare/Loop", "SoundSlot7", 1, -1);
+            Goto Flicker;
+        Flicker:
+            FLZR AB random(1,3) Bright;
+            Goto Flicker;
     }
 }
 
-Class ActiveFlareProjectile : ActiveFlare
+class ActiveFlare : FlareBase
 {
+    int burntime;
+    
+    override void BeginPlay()
+    {
+        burntime = FlareConfig.GetBurnTime();
+    }
+    
+    override void Tick()
+    {
+        burntime--;
+        if (burntime < 0)
+        {
+            SetStateLabel("BurnedOut");
+        }
+        Super.Tick();
+    }
+    
+    States
+    {
+        BurnedOut:
+            FLZR E -1
+            {
+                RemoveDynamicLight();
+                A_StopSound(7);
+            }
+            Stop;
+    }
+}
+class ActiveFlareProjectile : FlareBase
+{
+   
+    private void GenerateStationaryFlare()
+    {
+        let flare = ActiveFlare(Actor.Spawn("ActiveFlare",pos));
+        if (flare)
+        {
+            pointLight.toFollow = flare;
+            flare.pointLight = pointLight;
+        }
+        self.Destroy();
+    }
+
     Default
     {
         BounceType "Doom";
@@ -59,6 +167,7 @@ Class ActiveFlareProjectile : ActiveFlare
         +BOUNCEONCEILINGS;
         -NOTELEPORT;
         +THRUSPECIES;
+        +THRUGHOST;
         Gravity 1.0;
         BounceFactor 0.25;
         WallBounceFactor 0.15;
@@ -67,33 +176,16 @@ Class ActiveFlareProjectile : ActiveFlare
     States
     {
         Spawn:
-            FLZR A 0 Bright;
-            FLZR A 0 Bright A_StartSound("Flare/Light");
-            FLZR A 0 Bright A_StartSound("Flare/Loop");
-            FLZR AB 1 Bright;
-            Goto Spawn+3;
+            FLZR A 0;
+            FLZR A 1 Bright
+            {
+                GenerateDynamicLight();
+                A_PlaySound("Flare/Light");
+            }
+            Goto PostSpawn;
         Death:
-            FLZR A 1 A_SpawnItemEx("ActiveFlare");
+            FLZR A 1 GenerateStationaryFlare();
             Stop;
 
-    }
-}
-
-Class FlareBox : CustomInventory
-{
-    Default
-    {
-        Radius 28;
-        Height 16;
-        Inventory.PickupMessage "You picked up a box of flares.";
-    }
-    States
-    {
-        Spawn:
-            FLZR C -1;
-            Stop;
-        Pickup:
-            TNT1 A 1 A_GiveInventory ("Flare", 5);
-            Stop;
     }
 }
