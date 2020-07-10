@@ -74,7 +74,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
         
         
         
-        if (p != DISABLED)
+        if (p != DISABLED && p != FLARES_ONLY_MODE)
         {
             //common stuff - only gets activated the first time we select a profile
             CVar.GetCvar("flashlight_spawn_battery_upgrade").SetInt(1);
