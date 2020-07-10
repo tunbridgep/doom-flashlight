@@ -25,6 +25,7 @@ FLASHLIGHT_PROFILE_1_DESC2 = "Start with a torch";
 FLASHLIGHT_PROFILE_2_DESC2 = "Except torches are completely disabled";
 FLASHLIGHT_PROFILE_3_DESC5 = "Former Humans drop Flares and Torches";
 FLASHLIGHT_PROFILE_4_DESC5 = "Former Humans drop Flares and Torches with high frequency";
+FLASHLIGHT_PROFILE_5_DESC2 = "Start with a Torch";
 
 //Battery Stuff
 FLASHLIGHT_BATTERY_DESC1 = "Battery is required to use the torch.";
