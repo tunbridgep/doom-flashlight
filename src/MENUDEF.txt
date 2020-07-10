@@ -74,8 +74,8 @@ OptionMenu "FlashlightCredits"
 {
     Title "$FLASHLIGHT_CREDITS_TITLE"
     StaticText "$FLASHLIGHT_CREDITS_HEADER", 1
+    StaticText "$FLASHLIGHT_VERSION", 1
     StaticText "$FLASHLIGHT_CREDITS_HEADER2", 1
-    StaticText ""
     StaticText ""
     StaticText "$FLASHLIGHT_CREDITS_SPRITES", 1
     StaticText "Flare by scalliano"
@@ -88,7 +88,7 @@ OptionMenu "FlashlightCredits"
     StaticText ""
     StaticText "$FLASHLIGHT_CREDITS_FOOTER", 1
     StaticText ""
-    StaticText "$FLASHLIGHT_GO_BACK"
+    StaticText "$FLASHLIGHT_GO_BACK", White
 }
 
 OptionMenu "FlashlightGameplayOptions"

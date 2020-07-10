@@ -6,6 +6,7 @@ FLASHLIGHT_NO_FLASHLIGHT_OR_FLARES = "You don't have a flashlight or flares";
 FLASHLIGHT_PICKUP = "Picked up a flashlight";
 
 //basics
+FLASHLIGHT_VERSION = "Version 1.0 Alpha";
 FLASHLIGHT_DISABLED = "Disabled";
 FLASHLIGHT_NOT_IMPLEMENTED = "Not Implemented Yet";
 FLASHLIGHT_MENU_NOOP = "Control Disabled";
@@ -30,7 +31,7 @@ FLASHLIGHT_ADVANCED_SETTINGS = "Advanced Settings";
 FLASHLIGHT_SPAWN_SETTINGS = "Spawn and Item Replacement Settings";
 FLASHLIGHT_GAMEPLAY_SETTINGS = "Gameplay Settings";
 FLASHLIGHT_LIGHTING_SETTINGS = "Lighting Settings";
-FLASHLIGHT_CREDITS = "Show Credits";
+FLASHLIGHT_CREDITS = "Show Credits/About";
 
 //Menu Titles
 FLASHLIGHT_MAIN_MENU_TITLE = "Flashlight Mod Settings";
