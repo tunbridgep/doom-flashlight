@@ -1,6 +1,7 @@
 [eng]
 
 FLASHLIGHT_NO_FLASHLIGHT = "You don't have a torch";
+FLASHLIGHT_NO_FLASHLIGHT_OR_FLARES = "You don't have a torch or flares";
 FLASHLIGHT_PICKUP = "Picked up a torch";
 
 FLASHLIGHT_FLASHLIGHT = "Torch";
@@ -11,7 +12,17 @@ FLASHLIGHT_CREDITS_TITLE = "Torch Mod Credits";
 FLASHLIGHT_FLASHLIGHT_HEADER = "Torch Settings";
 FLASHLIGHT_BATTERY_DESC2 = "Torch can not be reactivated below the minumum.";
 FLASHLIGHT_STARTING_ITEM = "Start with Torch";
-FLASHLIGHT_PROFILE_2_DESC5 = "Former Humans drop Flares and Torches";
-FLASHLIGHT_PROFILE_3_DESC5 = "Former Humans drop Flares and Torches with high frequency";
 FLASHLIGHT_CREDITS_HEADER = "Torch Mod";
 FLASHLIGHT_DROP_FLASHLIGHT = "Enemies Drop Torches";
+
+FLASHLIGHT_AUTO_USE_FLARES = "Torch button uses flares";
+FLASHLIGHT_AUTO_USE_FLARES_DESC = "If no torch is available, selecting the torch uses a flare instead";
+FLASHLIGHT_KEY_BIND = "Torch Select Key";
+
+FLASHLIGHT_PROFILE_1_DESC2 = "Start with a torch";
+FLASHLIGHT_PROFILE_2_DESC2 = "Except torches are completely disabled";
+FLASHLIGHT_PROFILE_3_DESC5 = "Former Humans drop Flares and Torches";
+FLASHLIGHT_PROFILE_4_DESC5 = "Former Humans drop Flares and Torches with high frequency";
+
+//Battery Stuff
+FLASHLIGHT_BATTERY_DESC1 = "Battery is required to use the torch.";

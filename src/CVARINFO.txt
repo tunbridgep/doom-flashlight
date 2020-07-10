@@ -8,6 +8,7 @@ user Color flashlight_color = "FF FF FF";
 user cheat int flashlight_intensity = 255;
 user cheat float flashlight_inner_angle = 16.0;
 user cheat float flashlight_outer_angle = 32.0;
+user bool flashlight_auto_use_flare = false;
 
 //battery settings
 user int flashlight_battery_display = 1;
@@ -23,7 +24,7 @@ server int flashlight_darken_parabola_brightness_factor = 80;
 server int flashlight_darken_parabola_curve_point = 96;
 server int flashlight_darken_parabola_adjust = 15;
 server int flashlight_darken_linear_amount = 45;
-server float flashlight_darken_divide_amount = 2.2;
+server float flashlight_darken_divide_amount = 4.7;
 server bool flashlight_replace_sky = false;
 
 //stealth monsters
