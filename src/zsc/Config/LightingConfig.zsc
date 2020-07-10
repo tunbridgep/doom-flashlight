@@ -1,0 +1,56 @@
+class LightingConfig : ConfigBase
+{
+    static LightingMode GetMode()
+    {
+        return CVar.GetCVar("flashlight_darken_mode").GetInt();
+    }
+    
+    static void GetLinearModeInfo(out LinearInfo info)
+    {
+        info.amount = CVar.GetCVar("flashlight_darken_linear_amount").GetInt();
+    }
+    
+    static void GetParabolaModeInfo(out ParabolaInfo info)
+    {
+        info.curve = CVar.GetCVar("flashlight_darken_parabola_curve_point").GetInt();
+        info.brightness = CVar.GetCVar("flashlight_darken_parabola_brightness_factor").GetInt();
+        info.adjust = CVar.GetCVar("flashlight_darken_parabola_adjust").GetInt();
+    }
+    
+    static void GetDivideModeInfo(out DivideInfo info)
+    {
+        info.divide = CVar.GetCVar("flashlight_darken_divide_amount").GetInt();
+        info.additional = CVar.GetCVar("flashlight_darken_divide_additional").GetInt();
+    }
+    
+    static bool GetReplaceSky()
+    {
+        return CVar.GetCVar("flashlight_replace_sky").GetBool();
+    }
+}
+
+enum LightingMode
+{
+    LIGHTING_DISABLED = 0,
+	LIGHTING_SIMPLE = 1,
+	LIGHTING_PARABOLA = 2,
+	LIGHTING_DIVIDE = 3
+}
+
+struct LinearInfo
+{
+    int amount;
+}
+
+struct ParabolaInfo
+{
+    int curve;
+    int brightness;
+    int adjust;
+}
+
+struct DivideInfo
+{
+    int divide;
+    int additional;
+}

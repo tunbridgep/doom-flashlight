@@ -1,15 +1,8 @@
 class DarkenMap : EventHandler
 {
-    enum DarkenMode
-	{
-	    DISABLED = 0,
-		SIMPLE = 1,
-		PARABOLA = 2,
-		DIVIDE = 3,
-	};
 
     //darkens based on a curve - the closer it is to the threshold, the less it gets darkened
-    int DarkenParabola(int curve, int brightness, int light_level, int adjust)
+    int DarkenParabola(int light_level, int curve, int brightness, int adjust)
     {             
         //Please see the spreadsheet in the docs folder
         //curve == t and brightness == v light_level == in and adjust = p;
@@ -52,26 +45,23 @@ class DarkenMap : EventHandler
         int o = Math.Round(light_level / multiplier) - additional;
         return Math.Clamp(o,0,255);
     }
-
-    void DarkenMap(DarkenMode mode, int curve, int brightness, int linear_amount, int adjust, float divisor, int divide_additional)
+    
+    void DarkenMap(LightingMode mode, LinearInfo li, ParabolaInfo pi, DivideInfo di)
     {
-        if (mode == DISABLED)
-            return;
-
-        int modified_sectors = 0;
         int nsectors = level.sectors.size();
+        int modified_sectors = 0;
       
         for (int i = 0; i < nsectors;i++)
         {
             int light_level = level.sectors[i].lightLevel;
             int new_level = light_level;
             
-            if (mode == PARABOLA)
-                new_level = DarkenParabola(curve,brightness,light_level,adjust);
-            else if (mode == SIMPLE)
-                new_level = DarkenSimple(light_level,linear_amount);
-            else if (mode == DIVIDE)
-                new_level = DarkenDivide(light_level,divisor,divide_additional);
+            if (mode == LIGHTING_PARABOLA)
+                new_level = DarkenParabola(light_level,pi.curve,pi.brightness,pi.adjust);
+            else if (mode == LIGHTING_SIMPLE)
+                new_level = DarkenSimple(light_level,li.amount);
+            else if (mode == LIGHTING_DIVIDE)
+                new_level = DarkenDivide(light_level,di.divide,di.additional);
             
             level.sectors[i].lightLevel = new_level;
             modified_sectors++;
@@ -82,17 +72,15 @@ class DarkenMap : EventHandler
     
     override void WorldLoaded(WorldEvent e)
     {
-        if (e.IsReopen)
-            return;
-            
-        DarkenMode mode = CVar.FindCVar("flashlight_darken_mode").GetInt();
-        int curve = CVar.FindCVar("flashlight_darken_parabola_curve_point").GetInt();
-        int brightness = CVar.FindCVar("flashlight_darken_parabola_brightness_factor").GetInt();
-        int adjust = CVar.FindCVar("flashlight_darken_parabola_adjust").GetInt();
-        int linear_amount = CVar.FindCVar("flashlight_darken_linear_amount").GetInt();
-        float divisor = CVar.FindCVar("flashlight_darken_divide_amount").GetFloat();
-        int divide_additional = CVar.FindCVar("flashlight_darken_divide_additional").GetInt();
+        LightingMode mode = LightingConfig.GetMode();
+        LinearInfo linearinfo;
+        LightingConfig.GetLinearModeInfo(linearinfo);
+        ParabolaInfo parabolainfo;
+        LightingConfig.GetParabolaModeInfo(parabolainfo);
+        DivideInfo divideinfo;
+        LightingConfig.GetDivideModeInfo(divideinfo);
         
-        DarkenMap(mode,curve,brightness,linear_amount,adjust,divisor,divide_additional);
+        if (mode != LIGHTING_DISABLED && !e.IsReopen)
+            DarkenMap(mode,linearinfo,parabolainfo,divideinfo);
     }
 }

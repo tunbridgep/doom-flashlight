@@ -1,0 +1,14 @@
+class DebugConfig : ConfigBase
+{
+    static DebugLevel GetLevel()
+    {
+        return CVar.GetCVar("flashlight_debug").GetInt();
+    }
+}
+
+enum DebugLevel
+{
+    DEBUG_DISABLED = 0,
+    DEBUG_NORMAL = 1,
+    DEBUG_VERBOSE = 2
+}

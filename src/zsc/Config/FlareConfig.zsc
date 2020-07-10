@@ -1,8 +1,4 @@
-class Config play
-{
-}
-
-class FlareConfig
+class FlareConfig : ConfigBase
 {
     static int GetBurnTime()
     {
