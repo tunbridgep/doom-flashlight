@@ -1,10 +1,12 @@
 OptionValue FlashlightProfile
 {
-    0, "$FLASHLIGHT_PROFILE_0"
-    1, "$FLASHLIGHT_PROFILE_1"
-    2, "$FLASHLIGHT_PROFILE_2"
-    3, "$FLASHLIGHT_PROFILE_3"
-    4, "$FLASHLIGHT_PROFILE_4"
+    0, "$FLASHLIGHT_PROFILE_NONE"
+    1, "$FLASHLIGHT_PROFILE_NIGHT_MODE"
+    2, "$FLASHLIGHT_PROFILE_TACTICAL"
+    3, "$FLASHLIGHT_PROFILE_DARKER_DARK"
+    6, "$FLASHLIGHT_PROFILE_AMBUSH_MODE"
+    5, "$FLASHLIGHT_PROFILE_DOOM_3"
+    4, "$FLASHLIGHT_PROFILE_HELL"
 }
 
 OptionValue FlashlightOptions
@@ -92,6 +94,10 @@ OptionMenu "FlashlightCredits"
 OptionMenu "FlashlightGameplayOptions"
 {
     Title "$FLASHLIGHT_GAMEPLAY_SETTINGS"
+    StaticText "$FLASHLIGHT_START_HEADER", 1
+    Option "$FLASHLIGHT_STARTING_ITEM", flashlight_starting_item, YesNo
+    Slider "$FLASHLIGHT_STARTING_FLARES", "flashlight_starting_flares", 0,20,1
+    StaticText " "
     StaticText "$FLASHLIGHT_STEALTH_HEADER", 1
     Option "$FLASHLIGHT_STEALTH_MONSTERS", "flashlight_stealth_monster_mode", StealthMonsterOptions
     FlashlightSlider "$FLASHLIGHT_CHANCE", "flashlight_stealth_monster_chance", 0,100,1,0,"flashlight_stealth_monster_mode","$FLASHLIGHT_MENU_NOOP"
@@ -99,11 +105,12 @@ OptionMenu "FlashlightGameplayOptions"
     FlashlightDynamicText -1, "flashlight_stealth_monster_mode", "$FLASHLIGHT_DISABLED", "$FLASHLIGHT_STEALTH_SMALL_DESC", "$FLASHLIGHT_STEALTH_ALL_DESC", "$FLASHLIGHT_STEALTH_SMALL_THRESH_DESC", "$FLASHLIGHT_STEALTH_THRESH_DESC"
     StaticText ""
     StaticText "$FLASHLIGHT_BATTERY_HEADER", 1
+    Option "$FLASHLIGHT_BATTERY_MODE", "flashlight_battery_mode", YesNo
     FlashlightOption "$FLASHLIGHT_BATTERY_DISPLAY", "flashlight_battery_display", BatteryDisplayOptions, "flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
     FlashlightSlider "$FLASHLIGHT_BATTERY_MAX", "flashlight_battery_max", 0,3500,35,0,"flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
     FlashlightSlider "$FLASHLIGHT_BATTERY_MIN_THRESHOLD", "flashlight_battery_min_threshold", 0,3500,35,0,"flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
-    FlashlightSlider "$FLASHLIGHT_BATTERY_USE", "flashlight_battery_use_per_tic", 0,1,100,0,"flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
-    FlashlightSlider "$FLASHLIGHT_BATTERY_CHARGE", "flashlight_battery_charge_per_tic", 0,1,100,0,"flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
+    FlashlightSlider "$FLASHLIGHT_BATTERY_USE", "flashlight_battery_use_per_tic", 0,100,1,0,"flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
+    FlashlightSlider "$FLASHLIGHT_BATTERY_CHARGE", "flashlight_battery_charge_per_tic", 0,100,1,0,"flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
     StaticText "$FLASHLIGHT_BATTERY_DESC1"
     StaticText "$FLASHLIGHT_BATTERY_DESC2"
 }
@@ -134,10 +141,6 @@ OptionMenu "FlashlightLightingOptions"
 OptionMenu "FlashlightSpawnOptions"
 {
     Title "$FLASHLIGHT_SPAWN_SETTINGS"
-    StaticText "$FLASHLIGHT_START_HEADER", 1
-    Option "$FLASHLIGHT_STARTING_ITEM", flashlight_starting_item, YesNo
-    Slider "$FLASHLIGHT_STARTING_FLARES", "flashlight_starting_flares", 0,20,1
-    StaticText " "
     StaticText "$FLASHLIGHT_SPAWN_HEADER", 1
     StaticText "$FLASHLIGHT_SPAWN_DESC1"
     StaticText "$FLASHLIGHT_SPAWN_DESC2"
@@ -196,22 +199,22 @@ OptionMenu "FlashlightBase"
     StaticText ""
     StaticText "$FLASHLIGHT_PROFILE_CUR", 1
     FlashlightOptionReadOnly "$FLASHLIGHT_PROFILE_CUR", "flashlight_profile", FlashlightProfile
-    FlashlightDynamicText -1, "flashlight_profile", "$FLASHLIGHT_PROFILE_0_DESC", "$FLASHLIGHT_PROFILE_1_DESC", "$FLASHLIGHT_PROFILE_2_DESC", "$FLASHLIGHT_PROFILE_3_DESC", "$FLASHLIGHT_PROFILE_4_DESC"
-    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC2", "$FLASHLIGHT_PROFILE_2_DESC2", "$FLASHLIGHT_PROFILE_3_DESC2", "$FLASHLIGHT_PROFILE_4_DESC2"
-    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC3", "$FLASHLIGHT_PROFILE_2_DESC3", "$FLASHLIGHT_PROFILE_3_DESC3", "$FLASHLIGHT_PROFILE_4_DESC3"
-    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC4", "$FLASHLIGHT_PROFILE_2_DESC4", "$FLASHLIGHT_PROFILE_3_DESC4", "$FLASHLIGHT_PROFILE_4_DESC4"
-    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC5", "$FLASHLIGHT_PROFILE_2_DESC5", "$FLASHLIGHT_PROFILE_3_DESC5", "$FLASHLIGHT_PROFILE_4_DESC5"
-    FlashlightDynamicText Red, "flashlight_profile", "", "", "", "", "$FLASHLIGHT_PROFILE_NOTFAIR"
+    FlashlightDynamicText -1, "flashlight_profile", "$FLASHLIGHT_PROFILE_0_DESC", "$FLASHLIGHT_PROFILE_1_DESC", "$FLASHLIGHT_PROFILE_2_DESC", "$FLASHLIGHT_PROFILE_3_DESC", "$FLASHLIGHT_PROFILE_4_DESC", "$FLASHLIGHT_PROFILE_5_DESC", "$FLASHLIGHT_PROFILE_6_DESC"
+    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC2", "$FLASHLIGHT_PROFILE_2_DESC2", "$FLASHLIGHT_PROFILE_3_DESC2", "$FLASHLIGHT_PROFILE_4_DESC2", "$FLASHLIGHT_PROFILE_5_DESC2", "$FLASHLIGHT_PROFILE_6_DESC2"
+    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC3", "$FLASHLIGHT_PROFILE_2_DESC3", "$FLASHLIGHT_PROFILE_3_DESC3", "$FLASHLIGHT_PROFILE_4_DESC3", "$FLASHLIGHT_PROFILE_5_DESC3", "$FLASHLIGHT_PROFILE_6_DESC3"
+    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC4", "$FLASHLIGHT_PROFILE_2_DESC4", "$FLASHLIGHT_PROFILE_3_DESC4", "$FLASHLIGHT_PROFILE_4_DESC4", "$FLASHLIGHT_PROFILE_5_DESC4", "$FLASHLIGHT_PROFILE_6_DESC4"
+    FlashlightDynamicText -1, "flashlight_profile", "","$FLASHLIGHT_PROFILE_1_DESC5", "$FLASHLIGHT_PROFILE_2_DESC5", "$FLASHLIGHT_PROFILE_3_DESC5", "$FLASHLIGHT_PROFILE_4_DESC5", "$FLASHLIGHT_PROFILE_5_DESC5", "$FLASHLIGHT_PROFILE_6_DESC5"
+    FlashlightDynamicText Red, "flashlight_profile", "", "", "", "", "$FLASHLIGHT_PROFILE_NOTFAIR", "", ""
     StaticText""
     StaticText "$FLASHLIGHT_PROFILE", 1
     Option "$FLASHLIGHT_PROFILE", "flashlight_profile_temp", FlashlightProfile
     FlashlightApplyProfile "$FLASHLIGHT_APPLY", White
-    FlashlightDynamicText -1, "flashlight_profile_temp", "$FLASHLIGHT_PROFILE_0_DESC", "$FLASHLIGHT_PROFILE_1_DESC", "$FLASHLIGHT_PROFILE_2_DESC", "$FLASHLIGHT_PROFILE_3_DESC", "$FLASHLIGHT_PROFILE_4_DESC"
-    FlashlightDynamicText -1, "flashlight_profile_temp", "","$FLASHLIGHT_PROFILE_1_DESC2", "$FLASHLIGHT_PROFILE_2_DESC2", "$FLASHLIGHT_PROFILE_3_DESC2", "$FLASHLIGHT_PROFILE_4_DESC2"
-    FlashlightDynamicText -1, "flashlight_profile_temp", "","$FLASHLIGHT_PROFILE_1_DESC3", "$FLASHLIGHT_PROFILE_2_DESC3", "$FLASHLIGHT_PROFILE_3_DESC3", "$FLASHLIGHT_PROFILE_4_DESC3"
-    FlashlightDynamicText -1, "flashlight_profile_temp", "","$FLASHLIGHT_PROFILE_1_DESC4", "$FLASHLIGHT_PROFILE_2_DESC4", "$FLASHLIGHT_PROFILE_3_DESC4", "$FLASHLIGHT_PROFILE_4_DESC4"
-    FlashlightDynamicText -1, "flashlight_profile_temp", "","$FLASHLIGHT_PROFILE_1_DESC5", "$FLASHLIGHT_PROFILE_2_DESC5", "$FLASHLIGHT_PROFILE_3_DESC5", "$FLASHLIGHT_PROFILE_4_DESC5"
-    FlashlightDynamicText Red, "flashlight_profile_temp", "", "", "", "", "$FLASHLIGHT_PROFILE_NOTFAIR"
+    FlashlightDynamicText -1, "flashlight_profile_temp", "$FLASHLIGHT_PROFILE_0_DESC", "$FLASHLIGHT_PROFILE_1_DESC", "$FLASHLIGHT_PROFILE_2_DESC", "$FLASHLIGHT_PROFILE_3_DESC", "$FLASHLIGHT_PROFILE_4_DESC", "$FLASHLIGHT_PROFILE_5_DESC", "$FLASHLIGHT_PROFILE_6_DESC"
+    FlashlightDynamicText -1, "flashlight_profile_temp", "","$FLASHLIGHT_PROFILE_1_DESC2", "$FLASHLIGHT_PROFILE_2_DESC2", "$FLASHLIGHT_PROFILE_3_DESC2", "$FLASHLIGHT_PROFILE_4_DESC2", "$FLASHLIGHT_PROFILE_5_DESC2", "$FLASHLIGHT_PROFILE_6_DESC2"
+    FlashlightDynamicText -1, "flashlight_profile_temp", "","$FLASHLIGHT_PROFILE_1_DESC3", "$FLASHLIGHT_PROFILE_2_DESC3", "$FLASHLIGHT_PROFILE_3_DESC3", "$FLASHLIGHT_PROFILE_4_DESC3", "$FLASHLIGHT_PROFILE_5_DESC3", "$FLASHLIGHT_PROFILE_6_DESC3"
+    FlashlightDynamicText -1, "flashlight_profile_temp", "","$FLASHLIGHT_PROFILE_1_DESC4", "$FLASHLIGHT_PROFILE_2_DESC4", "$FLASHLIGHT_PROFILE_3_DESC4", "$FLASHLIGHT_PROFILE_4_DESC4", "$FLASHLIGHT_PROFILE_5_DESC4", "$FLASHLIGHT_PROFILE_6_DESC4"
+    FlashlightDynamicText -1, "flashlight_profile_temp", "","$FLASHLIGHT_PROFILE_1_DESC5", "$FLASHLIGHT_PROFILE_2_DESC5", "$FLASHLIGHT_PROFILE_3_DESC5", "$FLASHLIGHT_PROFILE_4_DESC5", "$FLASHLIGHT_PROFILE_5_DESC5", "$FLASHLIGHT_PROFILE_6_DESC5"
+    FlashlightDynamicText Red, "flashlight_profile_temp", "", "", "", "", "$FLASHLIGHT_PROFILE_NOTFAIR", "", ""
     StaticText""
     StaticText "$FLASHLIGHT_PROFILE_WARNING", 1
     StaticText "$FLASHLIGHT_PROFILE_WARNING2", 1

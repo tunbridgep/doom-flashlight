@@ -72,6 +72,7 @@ FLASHLIGHT_STEALTH_SMALL_THRESH_DESC = "Low tier enemy types can spawn as stealt
 FLASHLIGHT_STEALTH_THRESH_DESC = "All enemy types can spawn as stealth monsters if in a sector darker than the threshold";
 
 //Battery Options
+FLASHLIGHT_BATTERY_MODE = "Battery Enabled";
 FLASHLIGHT_BATTERY_DISPLAY_1 = "Top Left";
 FLASHLIGHT_BATTERY_DISPLAY_2 = "Top Right";
 FLASHLIGHT_BATTERY_DISPLAY_3 = "Below Crosshair";
@@ -144,11 +145,14 @@ FLASHLIGHT_SPAWN_DESC3 = "by multiple others, one will be chosen randomly";
 //Profiles
 FLASHLIGHT_PROFILE = "Selected Profile";
 FLASHLIGHT_PROFILE_CUR = "Current Profile";
-FLASHLIGHT_PROFILE_0 = "Mod disabled";
-FLASHLIGHT_PROFILE_1 = "Night Mode";
-FLASHLIGHT_PROFILE_2 = "Tactical";
-FLASHLIGHT_PROFILE_3 = "Darker Darkness";
-FLASHLIGHT_PROFILE_4 = "The Long Dark";
+
+FLASHLIGHT_PROFILE_NONE = "Mod disabled";
+FLASHLIGHT_PROFILE_NIGHT_MODE = "Night Mode";
+FLASHLIGHT_PROFILE_TACTICAL = "Tactical";
+FLASHLIGHT_PROFILE_DARKER_DARK = "Darker Darkness";
+FLASHLIGHT_PROFILE_DOOM_3 = "Doom 3 Style";
+FLASHLIGHT_PROFILE_HELL = "The Long Dark";
+FLASHLIGHT_PROFILE_AMBUSH_MODE = "Ambush Mode";
 
 FLASHLIGHT_PROFILE_NOTFAIR = "This profile isn't even remotely fair!";
 
@@ -177,6 +181,18 @@ FLASHLIGHT_PROFILE_4_DESC2 = "Start with nothing";
 FLASHLIGHT_PROFILE_4_DESC3 = "All enemies are Stealth Monsters";
 FLASHLIGHT_PROFILE_4_DESC4 = "Battery has a large capacity but does not recharge";
 FLASHLIGHT_PROFILE_4_DESC5 = "Former Humans drop Flares and Flashlights with high frequency";
+
+FLASHLIGHT_PROFILE_5_DESC = "Similar to Night Mode but with 'Doom 3' style settings";
+FLASHLIGHT_PROFILE_5_DESC2 = "Start with a flashlight";
+FLASHLIGHT_PROFILE_5_DESC3 = "No Stealth Monsters";
+FLASHLIGHT_PROFILE_5_DESC4 = "Unlimited Battery Use";
+FLASHLIGHT_PROFILE_5_DESC5 = "Flares unavailable";
+
+FLASHLIGHT_PROFILE_6_DESC = "Settings are the same as Darker Darkness profile";
+FLASHLIGHT_PROFILE_6_DESC2 = "But small enemies in dark areas";
+FLASHLIGHT_PROFILE_6_DESC3 = "May become Stealth Monsters";
+FLASHLIGHT_PROFILE_6_DESC4 = "";
+FLASHLIGHT_PROFILE_6_DESC5 = "";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
 FLASHLIGHT_PROFILE_WARNING2 = "Settings will take effect on next map load";

@@ -7,6 +7,8 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 	    FLARES_ONLY_MODE = 2,
 		DARKER_DARKNESS = 3,
 		HELL_MODE = 4,
+		DOOM_3_STYLE = 5,
+		AMBUSH_MODE = 6,
 	};
 
     OptionMenuItemFlashlightApplyProfile Init(String text, int color = -1)
@@ -87,6 +89,16 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             CVar.GetCvar("flashlight_replace_sky").SetBool(true);
             CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
         }
+        else if (p == DOOM_3_STYLE)
+        {
+            CVar.GetCvar("flashlight_darken_mode").SetInt(3);
+            CVar.GetCvar("flashlight_darken_divide_amount").ResetToDefault();
+            CVar.GetCvar("flashlight_starting_item").SetInt(1);
+            CVar.GetCvar("flashlight_replace_sky").SetBool(true);
+            CVar.GetCvar("flashlight_spawn_battery_upgrade").ResetToDefault();
+            CVar.GetCvar("flashlight_spawn_battery_recharge").ResetToDefault();
+            CVar.GetCvar("flashlight_battery_mode").SetInt(0);
+        }
         else if (p == FLARES_ONLY_MODE)
         {
             CVar.GetCvar("flashlight_darken_mode").SetInt(3);
@@ -98,14 +110,16 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
             CVar.GetCvar("flashlight_enemies_drop_flares_chance").SetInt(15);
         }
-        else if (p == DARKER_DARKNESS)
+        else if (p == DARKER_DARKNESS || p == AMBUSH_MODE)
         {
             CVar.GetCvar("flashlight_darken_mode").SetInt(2);
             CVar.GetCvar("flashlight_starting_item").SetInt(0);
             CVar.GetCvar("flashlight_starting_flares").SetInt(5);
-            CVar.GetCvar("flashlight_spawn_flashlight").SetInt(1);
             CVar.GetCvar("flashlight_enemies_drop_flashlights").SetBool(true);
             CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
+            if (p == AMBUSH_MODE)
+                CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(3);
+                
         }
         else if (p == HELL_MODE)
         {
