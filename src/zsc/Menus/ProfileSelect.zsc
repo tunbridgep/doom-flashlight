@@ -112,6 +112,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             CVar.GetCvar("flashlight_battery_min_threshold").SetInt(0);
             CVar.GetCvar("flashlight_battery_use_per_tic").SetInt(1);
             CVar.GetCvar("flashlight_battery_charge_per_tic").SetInt(0);
+            CVar.GetCvar("flashlight_battery_max").SetInt(1050);
         }
         else if (p == DOOM_3_STYLE) //map is dark, start with flashlight, unlimited battery
         {

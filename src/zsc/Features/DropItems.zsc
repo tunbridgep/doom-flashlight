@@ -1,10 +1,53 @@
 class DropItemConfig : EventHandler
 {
+    Class<Actor> shotgunguy;
+    Class<Actor> chaingunguy;
+    Class<Actor> zombieman;
+
+    override void OnRegister()
+    {
+        shotgunguy = "ShotgunGuy";
+        chaingunguy = "ChaingunGuy";
+        zombieman = "Zombieman";
+    }
+
+    override void CheckReplacement(ReplaceEvent e)
+    {
+        if (e.Replacee is shotgunguy && e.replacement)
+            shotgunguy = e.replacement;
+        else if (e.Replacee is chaingunguy && e.replacement)
+            chaingunguy = e.replacement;
+        else if (e.Replacee is zombieman && e.replacement)
+            zombieman = e.replacement;
+    }
+
+    //This will give us more compatibility with other mods.
+    //See here: https://zdoom.org/wiki/ZScript_classes
+    private bool is_Class(Actor a, String classname)
+    {
+        Class<Actor> cls = classname;
+        if (cls)
+        {
+            return a is cls;
+        }
+        return false;
+    }
+
     private void DoAddDropItem(Actor a, string dropitem, int chance)
     {
         int dice = random(0, 100);
         
-        if (a is "Zombieman" || a is "ShotgunGuy" || a is "ChaingunGuy" || a.Species == "Former_Human")
+        string classname = "MissingNameOfClass";
+        
+        //Checking for zombie-men type enemies is DUMB!
+        //No mod really wants to actually define them properly
+        //So now we have this big list of garbage
+        if ( a is "ZombieMan" || a is "ShotgunGuy" || a is "ChaingunGuy"
+        || a is zombieman || a is chaingunguy || a is shotgunguy
+        || a.Species == "Former Human" || is_Class(a,"SuicideBomber")
+        || is_Class(a,"ZombieMan1") || is_Class(a,"ShotgunGuy1") || is_Class(a,"ChaingunGuy1")
+        || is_Class(a,"PB_ZombieMan") || is_Class(a,"PB_ShotgunGuy") || is_Class(a,"PB_ChaingunGuy")
+        || is_Class(a,"PB_ZombieScientist") || is_Class(a,"ZSpecOpsMachinegun"))
         {
             if (dice <= chance)
             {
@@ -18,7 +61,7 @@ class DropItemConfig : EventHandler
     {
         Actor a = e.Thing;
         
-        if (a && a.GetLevelSpawnTime() <= 5)
+        if (a && a.GetLevelSpawnTime() <= 5 && a.bIsMonster)
         {
             bool dropflash = CVar.FindCVar("flashlight_enemies_drop_flashlights").GetBool();
             bool dropflare = CVar.FindCVar("flashlight_enemies_drop_flares").GetBool();
