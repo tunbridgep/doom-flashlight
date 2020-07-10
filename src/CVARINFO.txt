@@ -10,7 +10,8 @@ user cheat float flashlight_inner_angle = 16.0;
 user cheat float flashlight_outer_angle = 32.0;
 
 //flare settings
-server cheat int flashlight_flare_burn_time = 60;
+server cheat int flashlight_flare_burn_time = 5;
+user Color flashlight_flare_color = "FF 4D 4D";
 user bool flashlight_auto_use_flare = false;
 
 //battery settings

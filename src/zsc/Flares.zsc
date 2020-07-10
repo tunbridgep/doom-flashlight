@@ -46,11 +46,14 @@ class FlareBox : CustomInventory
 class FlareLight : PointLightFlicker
 {
     Actor toFollow;
+    Vector3 offset;
+    
     override void BeginPlay()
     {
-        args[LIGHT_RED] = 255;
-        args[LIGHT_GREEN] = 77;
-        args[LIGHT_BLUE] = 77;
+        Color color = FlareConfig.GetColor();
+        args[LIGHT_RED] = color.r;
+        args[LIGHT_GREEN] = color.g;
+        args[LIGHT_BLUE] = color.b;
         args[LIGHT_INTENSITY] = 242;
         args[LIGHT_SECONDARY_INTENSITY] = 240;
         bATTENUATE = true;
@@ -58,7 +61,7 @@ class FlareLight : PointLightFlicker
     
     override void Tick()
     {
-        ActorUtil.MoveToActor(self,toFollow);
+        ActorUtil.MoveToActor(self,toFollow,offset);
         Super.Tick();
     }
 }
@@ -143,7 +146,7 @@ class ActiveFlareProjectile : FlareBase
     private void GenerateStationaryFlare()
     {
         let flare = ActiveFlare(Actor.Spawn("ActiveFlare",pos));
-        if (flare)
+        if (flare && pointlight)
         {
             pointLight.toFollow = flare;
             flare.pointLight = pointLight;

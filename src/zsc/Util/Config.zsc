@@ -8,4 +8,10 @@ class FlareConfig
     {
         return CVar.GetCVar("flashlight_flare_burn_time").GetInt() * 35;
     }
+    
+    static Color GetColor()
+    {
+        PlayerInfo myinfo = players[consoleplayer];
+        return CVar.GetCVar("flashlight_flare_color",myinfo).GetString();
+    }
 }
