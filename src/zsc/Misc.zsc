@@ -13,22 +13,3 @@ class FlashlightStartToken : Inventory
         Inventory.MaxAmount 1;
     }
 }
-
-//This item will drop a flashlight upon it's owner dying
-class FlashlightDropper : FlashlightStartToken
-{
-    override void OwnerDied()
-    {
-        owner.A_DropItem("Flashlight");
-        super.OwnerDied();
-    }
-}
-
-class FlareDropper : FlashlightStartToken
-{
-    override void OwnerDied()
-    {
-        owner.A_DropItem("Flare");
-        super.OwnerDied();
-    }
-}

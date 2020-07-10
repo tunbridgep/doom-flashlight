@@ -1,0 +1,80 @@
+class DropItemConfig : EventHandler
+{
+    private void DoAddDropItem(Actor a, string dropitem, int chance)
+    {
+        int dice = random(0, 100);
+        
+        if (a is "Zombieman" || a is "ShotgunGuy" || a is "ChaingunGuy" || a.Species == "Former_Human")
+        {
+            if (dice <= chance)
+            {
+                Debug.LogVerbose("Adding a "..dropitem.." to "..a.GetTag());
+                a.GiveInventory(dropitem,1);
+            }
+        }
+    }
+    
+    override void WorldThingSpawned(WorldEvent e)
+    {
+        Actor a = e.Thing;
+        
+        if (a && a.GetLevelSpawnTime() <= 5)
+        {
+            bool dropflash = CVar.FindCVar("flashlight_enemies_drop_flashlights").GetBool();
+            bool dropflare = CVar.FindCVar("flashlight_enemies_drop_flares").GetBool();
+            bool dropbattery = CVar.FindCVar("flashlight_enemies_drop_battery").GetBool();
+            bool dropbattery_exp = CVar.FindCVar("flashlight_enemies_drop_battery_expander").GetBool();
+            int dropflash_chance = CVar.FindCVar("flashlight_enemies_drop_flashlights_chance").GetInt();
+            int dropflare_chance = CVar.FindCVar("flashlight_enemies_drop_flares_chance").GetInt();
+            int dropbattery_chance = CVar.FindCVar("flashlight_enemies_drop_battery_chance").GetInt();
+            int dropbattery_exp_chance = CVar.FindCVar("flashlight_enemies_drop_battery_expander_chance").GetInt();
+
+            
+            if (dropflash)
+                DoAddDropItem(a,"FlashlightDropper",dropflash_chance);
+            if (dropflare)
+                DoAddDropItem(a,"FlareDropper",dropflare_chance);
+            if (dropbattery)
+                DoAddDropItem(a,"BatteryDropper",dropbattery_chance);
+            if (dropbattery_exp)
+                DoAddDropItem(a,"BatteryExpanderDropper",dropbattery_exp_chance);
+        }
+    }
+}
+
+//This item will drop a flashlight upon it's owner dying
+class FlashlightDropper : FlashlightStartToken
+{
+    override void OwnerDied()
+    {
+        owner.A_DropItem("Flashlight");
+        super.OwnerDied();
+    }
+}
+
+class FlareDropper : FlashlightStartToken
+{
+    override void OwnerDied()
+    {
+        owner.A_DropItem("Flare");
+        super.OwnerDied();
+    }
+}
+
+class BatteryDropper : FlashlightStartToken
+{
+    override void OwnerDied()
+    {
+        owner.A_DropItem("FlashlightBatteryRecharge");
+        super.OwnerDied();
+    }
+}
+
+class BatteryExpanderDropper : FlashlightStartToken
+{
+    override void OwnerDied()
+    {
+        owner.A_DropItem("FlashlightBatteryUpgrade");
+        super.OwnerDied();
+    }
+}

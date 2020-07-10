@@ -37,7 +37,7 @@ class StealthSpawner : EventHandler
             
             if (dice <= chance)
             {
-                Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant in sector with light level of "..light_level.." based on a roll of "..dice.." ("..chance.."\% chance)");
+                Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant in sector with light level of "..light_level.." based on a roll of "..dice.." ("..chance.." percent chance)");
                 monster.bSTEALTH = true;
             }
         }
@@ -45,13 +45,14 @@ class StealthSpawner : EventHandler
     
     override void WorldThingSpawned(WorldEvent e)
     {
-        if (e.Thing.bISMONSTER && e.Thing.GetLevelSpawnTime() <= 5)
+        Actor a = e.Thing;
+        if (a && a.bISMONSTER && a.GetLevelSpawnTime() <= 5)
         {
             int stealth_monster_chance = CVar.FindCVar("flashlight_stealth_monster_chance").GetInt();
             int stealth_monster_threshold = CVar.FindCVar("flashlight_stealth_monster_threshold").GetInt();
             int stealth_monster_mode = CVar.FindCVar("flashlight_stealth_monster_mode").GetInt();
         
-            StealthMonsters(e.Thing,stealth_monster_mode,stealth_monster_chance,stealth_monster_threshold);
+            StealthMonsters(a,stealth_monster_mode,stealth_monster_chance,stealth_monster_threshold);
         }
     }
 

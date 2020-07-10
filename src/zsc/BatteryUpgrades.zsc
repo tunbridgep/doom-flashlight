@@ -12,10 +12,11 @@ class FlashlightBatteryUpgrade : Inventory
         +NOGRAVITY;
         +COUNTITEM;
         Inventory.PickupSound "misc/gettool" ;
-	    Inventory.PickupMessage "Picked up a Flashlight Battery Expander.";
+	    Inventory.PickupMessage "$FLASHLIGHT_BATT_EXP_PICKUP";
         Inventory.InterHubAmount 10;
         Inventory.MaxAmount 10;
         Inventory.Amount 1;
+        Scale 0.4;
     }
 	States 
 	{ 
@@ -29,6 +30,6 @@ class FlashlightBatteryRecharge : FlashlightBatteryUpgrade
 {
     Default
     {
-        Inventory.PickupMessage "Picked up a Flashlight Battery Recharge.";
+        Inventory.PickupMessage "$FLASHLIGHT_BATT_PICKUP";
     }
 }

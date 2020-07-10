@@ -6,6 +6,8 @@ FLASHLIGHT_PICKUP = "Picked up a torch";
 
 FLASHLIGHT_FLASHLIGHT = "Torch";
 FLASHLIGHT_COLOR = "Colour";
+FLASHLIGHT_BATT_PICKUP = "Picked up a Torch Battery";
+FLASHLIGHT_BATT_EXP_PICKUP = "Picked up a Torch Battery Upgrade";
 
 FLASHLIGHT_MAIN_MENU_TITLE = "Torch Mod Settings";
 FLASHLIGHT_CREDITS_TITLE = "Torch Mod Credits";

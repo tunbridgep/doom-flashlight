@@ -20,21 +20,22 @@ server int flashlight_battery_charge_per_tic = 1;
 
 //map alteration
 server int flashlight_darken_mode = 0;
-server int flashlight_darken_parabola_brightness_factor = 80;
-server int flashlight_darken_parabola_curve_point = 96;
-server int flashlight_darken_parabola_adjust = 15;
+server int flashlight_darken_parabola_brightness_factor = 10;
+server int flashlight_darken_parabola_curve_point = 84;
+server int flashlight_darken_parabola_adjust = 16;
 server int flashlight_darken_linear_amount = 45;
-server float flashlight_darken_divide_amount = 4.7;
+server float flashlight_darken_divide_amount = 5;
+server int flashlight_darken_divide_additional = 0;
 server bool flashlight_replace_sky = false;
 
 //stealth monsters
 server int flashlight_stealth_monster_chance = 20;
-server int flashlight_stealth_monster_threshold = 96;
+server int flashlight_stealth_monster_threshold = 24;
 server int flashlight_stealth_monster_mode = 0;
 
 //replacers
 server int flashlight_spawn_flashlight = 0;
-server int flashlight_spawn_flashlight_chance = 15;
+server int flashlight_spawn_flashlight_chance = 25;
 server int flashlight_spawn_headlamp = 0;
 server int flashlight_spawn_headlamp_chance = 25;
 server int flashlight_spawn_flare = 0;
@@ -47,8 +48,12 @@ server int flashlight_spawn_flare_box = 0;
 server int flashlight_spawn_flare_box_chance = 25;
 server bool flashlight_enemies_drop_flashlights = false;
 server bool flashlight_enemies_drop_flares = false;
+server bool flashlight_enemies_drop_battery = false;
+server bool flashlight_enemies_drop_battery_expander = false;
 server int flashlight_enemies_drop_flashlights_chance = 3;
-server int flashlight_enemies_drop_flares_chance = 5;
+server int flashlight_enemies_drop_flares_chance = 3;
+server int flashlight_enemies_drop_battery_chance = 1;
+server int flashlight_enemies_drop_battery_expander_chance = 1;
 
 //start-game settings
 server int flashlight_starting_item = 0;

@@ -4,6 +4,8 @@
 FLASHLIGHT_NO_FLASHLIGHT = "You don't have a flashlight";
 FLASHLIGHT_NO_FLASHLIGHT_OR_FLARES = "You don't have a flashlight or flares";
 FLASHLIGHT_PICKUP = "Picked up a flashlight";
+FLASHLIGHT_BATT_PICKUP = "Picked up a Flashlight Battery";
+FLASHLIGHT_BATT_EXP_PICKUP = "Picked up a Flashlight Battery Upgrade";
 
 //basics
 FLASHLIGHT_VERSION = "Version 1.0 Alpha";
@@ -95,6 +97,7 @@ FLASHLIGHT_DARKEN_MODE_PARABOLA_CURVE = "Parabolic Curve Point";
 FLASHLIGHT_DARKEN_MODE_PARABOLA_BRIGHTNESS = "Parabolic Curve Brightness Factor";
 FLASHLIGHT_DARKEN_MODE_PARABOLA_ADJUST = "Parabolic Adjustment";
 FLASHLIGHT_DARKEN_MODE_DIVIDE_AMOUNT = "Divide Amount";
+FLASHLIGHT_DARKEN_MODE_DIVIDE_ADDITIONAL = "Additional Amount";
 
 FLASHLIGHT_DARKEN_MODE_LINEAR_DESC1 = "Lower light levels in all sectors based on";
 FLASHLIGHT_DARKEN_MODE_LINEAR_DESC2 = "the Subtraction amount. This is the simplest";
@@ -137,6 +140,8 @@ FLASHLIGHT_STARTING_ITEM = "Start with Flashlight";
 FLASHLIGHT_STARTING_FLARES = "Starting Flares";
 FLASHLIGHT_DROP_FLASHLIGHT = "Enemies Drop Flashlights";
 FLASHLIGHT_DROP_FLARE = "Enemies Drop Flares";
+FLASHLIGHT_DROP_BATTERY = "Enemies Drop Batteries";
+FLASHLIGHT_DROP_BATTERY_EXPANDER = "Enemies Drop Battery Upgrades";
 FLASHLIGHT_DROP_DESC1 = "Possessed Humans can drop additional items on death,";
 FLASHLIGHT_DROP_DESC2 = "based on a chance value. They may drop multiple items.";
 FLASHLIGHT_SPAWN_DESC1 = "Items can spawn by replacing other items";
@@ -153,7 +158,8 @@ FLASHLIGHT_PROFILE_TACTICAL = "Tactical";
 FLASHLIGHT_PROFILE_DARKER_DARK = "Darker Darkness";
 FLASHLIGHT_PROFILE_DOOM_3 = "Doom 3 Style";
 FLASHLIGHT_PROFILE_HELL = "The Long Dark";
-FLASHLIGHT_PROFILE_AMBUSH_MODE = "Ambush Mode";
+FLASHLIGHT_PROFILE_AMBUSH_MODE = "Lying in Wait...";
+FLASHLIGHT_PROFILE_DRAIN_MODE = "...Ready to Strike";
 
 FLASHLIGHT_PROFILE_NOTFAIR = "This profile isn't even remotely fair!";
 
@@ -189,11 +195,17 @@ FLASHLIGHT_PROFILE_5_DESC3 = "No Stealth Monsters";
 FLASHLIGHT_PROFILE_5_DESC4 = "Unlimited Battery Use";
 FLASHLIGHT_PROFILE_5_DESC5 = "Flares unavailable";
 
-FLASHLIGHT_PROFILE_6_DESC = "Settings are the same as Darker Darkness profile";
+FLASHLIGHT_PROFILE_6_DESC = "Settings are the same as Night Mode profile";
 FLASHLIGHT_PROFILE_6_DESC2 = "But small enemies in dark areas";
 FLASHLIGHT_PROFILE_6_DESC3 = "May become Stealth Monsters";
 FLASHLIGHT_PROFILE_6_DESC4 = "";
 FLASHLIGHT_PROFILE_6_DESC5 = "";
+
+FLASHLIGHT_PROFILE_7_DESC = "Dark areas are darker";
+FLASHLIGHT_PROFILE_7_DESC2 = "Your battery doesn't recharge, enemies have a chance";
+FLASHLIGHT_PROFILE_7_DESC3 = "to drop batteries when killed";
+FLASHLIGHT_PROFILE_7_DESC4 = "All small enemies are stealth monsters when in darkness";
+FLASHLIGHT_PROFILE_7_DESC5 = "Flares unavailable";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
 FLASHLIGHT_PROFILE_WARNING2 = "Settings will take effect on next map load";
