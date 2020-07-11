@@ -76,7 +76,6 @@ class FlashlightReplacers : EventHandler
         chanceBatterRe = ReplacerConfig.GetBatteryRechargeChance();
     }
     
-    //TODO: Fix this garbage
     override void WorldThingSpawned(WorldEvent e)
     {        
         Actor a = e.Thing;
