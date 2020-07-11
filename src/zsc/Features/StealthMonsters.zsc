@@ -1,58 +1,30 @@
 class StealthSpawner : EventHandler
 {
+    const max_health_small = 100;
 
-    enum StealthMonsterMode
+    void StealthMonsters(Actor monster)
     {
-        DISABLED = 0,
-        SMALL_ONLY = 1,
-        ALL = 2,
-        SMALL_ONLY_THRESH = 3,
-        ALL_THRESH = 4
-    };
-    
-    void StealthMonsters(Actor monster,StealthMonsterMode mode, int chance, int threshold)
-    {
-        if (mode == DISABLED)
-            return;
-
         int light_level = monster.cursector.lightlevel;
         int hp = monster.health;
         
-        bool thresh = mode == ALL_THRESH || mode == SMALL_ONLY_THRESH;
-        bool health_check = mode == SMALL_ONLY || mode == SMALL_ONLY_THRESH;
+        bool in_threshold = !StealthMonsterConfig.UsesThreshold() || light_level <= StealthMonsterConfig.GetThreshold();
+        bool small = !StealthMonsterConfig.IsSmallOnly() || hp <= max_health_small;
         
-        bool check1 = false;
-        bool check2 = false;
-        
-        if (!thresh || light_level <= threshold)
-            check1 = true;
+        let dice = StealthMonsterConfig.GetChance();
             
-        if (!health_check || hp < 100)
-            check2 = true; 
-        
-        if (check1 && check2)
-        {
-            int dice = random(0, 100);
-            //Debug.Log("Rolled a "..dice);
-            
-            if (dice <= chance)
-            {
-                Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant in sector with light level of "..light_level.." based on a roll of "..dice.." ("..chance.." percent chance)");
-                monster.bSTEALTH = true;
-            }
+        if (in_threshold && small && dice.Roll())
+        {           
+            Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant in sector with light level of "..light_level.." based on a roll of "..dice.GetLastRoll().." ("..dice.GetChance().." percent chance)");
+            monster.bSTEALTH = true;
         }
     }
     
     override void WorldThingSpawned(WorldEvent e)
     {
         Actor a = e.Thing;
-        if (a && a.bISMONSTER && a.GetLevelSpawnTime() <= 5)
+        if (a && a.bISMONSTER && a.GetLevelSpawnTime() <= 5 && StealthMonsterConfig.IsEnabled())
         {
-            int stealth_monster_chance = CVar.FindCVar("flashlight_stealth_monster_chance").GetInt();
-            int stealth_monster_threshold = CVar.FindCVar("flashlight_stealth_monster_threshold").GetInt();
-            int stealth_monster_mode = CVar.FindCVar("flashlight_stealth_monster_mode").GetInt();
-        
-            StealthMonsters(a,stealth_monster_mode,stealth_monster_chance,stealth_monster_threshold);
+            StealthMonsters(a);
         }
     }
 

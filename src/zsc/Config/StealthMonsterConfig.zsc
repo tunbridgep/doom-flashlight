@@ -1,0 +1,45 @@
+class StealthMonsterConfig : ConfigBase
+{
+    static StealthMonsterMode GetMode()
+    {
+        return CVar.GetCVar("flashlight_stealth_monster_mode").GetInt();
+    }
+    
+    static bool IsEnabled()
+    {
+        return GetMode() != STEALTH_DISABLED;
+    }
+    
+    static bool UsesThreshold()
+    {
+        StealthMonsterMode mode = GetMode();
+        return mode == STEALTH_SMALL_ONLY_THRESH || mode == STEALTH_ALL_THRESH;
+    }
+    
+    static int GetThreshold()
+    {
+        return CVar.GetCVar("flashlight_stealth_monster_threshold").GetInt();
+    }
+    
+    static bool IsSmallOnly()
+    {
+        StealthMonsterMode mode = GetMode();
+        return mode == STEALTH_SMALL_ONLY_THRESH || mode == STEALTH_SMALL_ONLY;
+    }
+    
+    static ChanceValue GetChance()
+    {
+        ChanceValue c = new("ChanceValue");            
+        c.SetChance(CVar.GetCVar("flashlight_stealth_monster_chance").GetInt());
+        return c;
+    }
+}
+
+enum StealthMonsterMode
+{
+    STEALTH_DISABLED = 0,
+    STEALTH_SMALL_ONLY = 1,
+    STEALTH_ALL = 2,
+    STEALTH_SMALL_ONLY_THRESH = 3,
+    STEALTH_ALL_THRESH = 4
+};
