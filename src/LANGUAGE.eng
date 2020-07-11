@@ -21,11 +21,14 @@ FLASHLIGHT_AUTO_USE_FLARES = "Torch button uses flares";
 FLASHLIGHT_AUTO_USE_FLARES_DESC = "If no torch is available, selecting the torch uses a flare instead";
 FLASHLIGHT_KEY_BIND = "Torch Select Key";
 
-FLASHLIGHT_PROFILE_1_DESC2 = "Start with a torch";
-FLASHLIGHT_PROFILE_2_DESC2 = "Except torches are completely disabled";
-FLASHLIGHT_PROFILE_3_DESC5 = "Former Humans drop Flares and Torches";
-FLASHLIGHT_PROFILE_4_DESC5 = "Former Humans drop Flares and Torches with high frequency";
-FLASHLIGHT_PROFILE_5_DESC2 = "Start with a Torch";
+//Profile Text
+FLASHLIGHT_PROFILE_START_FLASHLIGHT = "Start with a Torch";
+FLASHLIGHT_PROFILE_START_FLARES_ONLY = "Start with Flares. Torches are disabled";
+FLASHLIGHT_PROFILE_START_FLASHLIGHT_ONLY = "Start with a Torch. Flares are disabled";
+
+FLASHLIGHT_PROFILE_DROP_BOTH = "Former Humans drop Flares and Torches";
+
+FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Torch when selecting it";
 
 //Battery Stuff
 FLASHLIGHT_BATTERY_DESC1 = "Battery is required to use the torch.";

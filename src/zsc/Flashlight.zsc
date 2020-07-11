@@ -78,7 +78,8 @@ class FlashlightBase : Weapon abstract
         battery.DrawIndicator();
     }
     
-    protected void UseFlare()
+    /*
+    static void UseFlare()
     {
         Inventory flare = owner.FindInventory("Flare",true);
         if (flare)
@@ -87,6 +88,7 @@ class FlashlightBase : Weapon abstract
             owner.TakeInventory("Flare",1);
         }
     }
+    */
     
     void Setup()
     {
@@ -137,7 +139,10 @@ class Flashlight : FlashlightBase
             FLIT TRPNL 1;
             FLIT J 1
             {
-               invoker.TryTurnOn(invoker);
+                if (FlashlightConfig.GetAutoUse())
+                {
+                    invoker.TryTurnOn(invoker);
+                }
             }
         RealReady:
             FLIT I 1
@@ -162,7 +167,8 @@ class Flashlight : FlashlightBase
         AltFire: 
             FLIT I 1
             {
-                invoker.UseFlare();
+                //invoker.UseFlare();
+                ACS_NamedExecute("UseFlare",0);
             }
             Goto RealReady;
         Reload:

@@ -5,19 +5,22 @@ server cheat int flashlight_profile = 0;
 
 //flashlight settings
 user Color flashlight_color = "FF FF FF";
-user cheat int flashlight_intensity = 255;
+user cheat int flashlight_intensity = 512;
 user cheat float flashlight_inner_angle = 16.0;
 user cheat float flashlight_outer_angle = 32.0;
+user bool flashlight_auto_use_flashlight = true;
 
 //flare settings
-server cheat int flashlight_flare_burn_time = 5;
+server cheat int flashlight_flare_burn_time = 60;
 user Color flashlight_flare_color = "FF 4D 4D";
 user bool flashlight_auto_use_flare = false;
+user bool flashlight_flare_show_count = false;
+server bool flashlight_flare_show_inventory = true;
 
 //battery settings
 user int flashlight_battery_display = 1;
 server int flashlight_battery_mode = 1;
-server int flashlight_battery_max = 350;
+server int flashlight_battery_max = 1575;
 server int flashlight_battery_min_threshold = 35;
 server int flashlight_battery_use_per_tic = 1;
 server int flashlight_battery_charge_per_tic = 1;
@@ -54,8 +57,8 @@ server bool flashlight_enemies_drop_flashlights = false;
 server bool flashlight_enemies_drop_flares = false;
 server bool flashlight_enemies_drop_battery = false;
 server bool flashlight_enemies_drop_battery_expander = false;
-server int flashlight_enemies_drop_flashlights_chance = 3;
-server int flashlight_enemies_drop_flares_chance = 3;
+server int flashlight_enemies_drop_flashlights_chance = 6;
+server int flashlight_enemies_drop_flares_chance = 9;
 server int flashlight_enemies_drop_battery_chance = 1;
 server int flashlight_enemies_drop_battery_expander_chance = 1;
 

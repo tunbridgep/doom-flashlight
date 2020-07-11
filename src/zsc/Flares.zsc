@@ -4,13 +4,20 @@ class Flare : CustomInventory
     {
         Radius 4;
         Height 18;
-        +INVENTORY.INVBAR;
+        //+INVENTORY.INVBAR;
         +INVENTORY.HUBPOWER;
         +INVENTORY.PERSISTENTPOWER;
         Inventory.MaxAmount 30;
         Inventory.InterHubAmount 30;
         Inventory.Icon "FLARINV";
         Inventory.PickupMessage "You picked up a flare.";
+    }
+    
+    //this would update in real-time, but the game is a bit weird when it comes to 
+    //override void Tick()
+    override void BeginPlay()
+    {
+        self.bINVBAR = FlareConfig.GetAppearInInventory();
     }
     
     States

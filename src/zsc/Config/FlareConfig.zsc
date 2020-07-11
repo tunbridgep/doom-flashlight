@@ -5,9 +5,20 @@ class FlareConfig : ConfigBase
         return CVar.GetCVar("flashlight_flare_burn_time").GetInt() * 35;
     }
     
+    static bool GetAppearInInventory()
+    {
+        return CVar.GetCVar("flashlight_flare_show_inventory").GetBool();
+    }
+    
     static Color GetColor()
     {
         PlayerInfo myinfo = players[consoleplayer];
         return CVar.GetCVar("flashlight_flare_color",myinfo).GetString();
+    }
+    
+    static bool GetShowCount()
+    {
+        PlayerInfo myinfo = players[consoleplayer];
+        return CVar.GetCVar("flashlight_show_flare_count",myinfo).GetBool();
     }
 }

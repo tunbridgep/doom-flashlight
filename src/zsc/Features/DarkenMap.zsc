@@ -53,17 +53,19 @@ class DarkenMap : EventHandler
       
         for (int i = 0; i < nsectors;i++)
         {
-            int light_level = level.sectors[i].lightLevel;
-            int new_level = light_level;
+            int average = (level.sectors[i].GetCeilingLight() + level.sectors[i].GetFloorLight()) / 2;
+            int light_level = level.sectors[i].GetLightLevel();            
+
+            int new_level = average;
             
             if (mode == LIGHTING_PARABOLA)
-                new_level = DarkenParabola(light_level,pi.curve,pi.brightness,pi.adjust);
+                new_level = DarkenParabola(average,pi.curve,pi.brightness,pi.adjust);
             else if (mode == LIGHTING_SIMPLE)
-                new_level = DarkenSimple(light_level,li.amount);
+                new_level = DarkenSimple(average,li.amount);
             else if (mode == LIGHTING_DIVIDE)
-                new_level = DarkenDivide(light_level,di.divide,di.additional);
+                new_level = DarkenDivide(average,di.divide,di.additional);
             
-            level.sectors[i].lightLevel = new_level;
+            level.sectors[i].SetLightLevel(new_level);
             modified_sectors++;
             Debug.LogVerbose("Darkened Sector with light level "..light_level.." to "..new_level);
         }

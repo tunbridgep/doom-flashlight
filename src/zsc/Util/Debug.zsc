@@ -11,7 +11,7 @@ class Debug
     
     static void Log(String text)
     {
-        if (DebugConfig.GetLevel() == DEBUG_NORMAL)
+        if (DebugConfig.GetLevel() >= DEBUG_NORMAL)
             printDebug(text);
     }
     

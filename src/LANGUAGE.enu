@@ -6,6 +6,8 @@ FLASHLIGHT_NO_FLASHLIGHT_OR_FLARES = "You don't have a flashlight or flares";
 FLASHLIGHT_PICKUP = "Picked up a flashlight";
 FLASHLIGHT_BATT_PICKUP = "Picked up a Flashlight Battery";
 FLASHLIGHT_BATT_EXP_PICKUP = "Picked up a Flashlight Battery Upgrade";
+FLASHLIGHT_FLARES_REMAIN = "Flares remaining";
+FLASHLIGHT_NO_FLARES_REMAIN = "No Flares";
 
 //basics
 FLASHLIGHT_VERSION = "Version 1.0 Alpha";
@@ -27,6 +29,14 @@ FLASHLIGHT_FLARE_BOX = "Flare Box";
 FLASHLIGHT_BATTERY_UPGRADE = "Battery Upgrade";
 FLASHLIGHT_BATTERY_RECHARGE = "Battery Recharger";
 FLASHLIGHT_GO_BACK = "Press Escape to Go Back";
+
+//Flare Settings
+FLASHLIGHT_FLARE_BURN_TIME = "Burn Time";
+FLASHLIGHT_FLARE_BURN_TIME_DESC = "How long flares will remain burning for (in seconds)";
+FLASHLIGHT_FLARE_SHOW_MSG = "Show Count on Use";
+FLASHLIGHT_FLARE_SHOW_MSG_DESC = "Show the number of flares remaining on use";
+FLASHLIGHT_FLARE_INVENTORY = "Show in Inventory";
+FLASHLIGHT_FLARE_INVENTORY_DESC = "Show flares in the inventory bar";
 
 //Submenus
 FLASHLIGHT_ADVANCED_SETTINGS = "Advanced Settings";
@@ -53,6 +63,7 @@ FLASHLIGHT_STEALTH_HEADER = "Stealth Monster Settings";
 FLASHLIGHT_DARKEN_NODE_HEADER = "Lighting Curve Settings";
 FLASHLIGHT_REPLACE_SKY_HEADER = "Texture Replacement";
 FLASHLIGHT_FLASHLIGHT_HEADER = "Flashlight Settings";
+FLASHLIGHT_FLARE_HEADER = "Flare Settings";
 FLASHLIGHT_CONTROLS_HEADER = "Control Settings";
 FLASHLIGHT_CALIBRATION_HEADER = "Calibration Settings";
 
@@ -134,12 +145,13 @@ FLASHLIGHT_REAPLCE_SKY_DESC2 = "This helps with contrast when the level is dark"
 FLASHLIGHT_INTENSITY = "Intensity";
 FLASHLIGHT_INNER_ANGLE = "Inner Angle";
 FLASHLIGHT_OUTER_ANGLE = "Inner Angle";
-FLASHLIGHT_FLASHLIGHT_DESC1 = "Inner and Outer angles control the size of the beam,";
-FLASHLIGHT_FLASHLIGHT_DESC2 = "while intensity controls it's brightness.";
-FLASHLIGHT_FLASHLIGHT_DESC3 = "Modifying these settings could unbalance gameplay!";
+FLASHLIGHT_FLASHLIGHT_DESC1 = "Inner and Outer angles control the size of the beam.";
+FLASHLIGHT_FLASHLIGHT_DESC2 = "Intensity controls it's brightness and how far it travels.";
 FLASHLIGHT_AUTO_USE_FLARES = "Flashlight button uses flares";
 FLASHLIGHT_AUTO_USE_FLARES_DESC = "If no flashlight is available, selecting the flashlight uses a flare instead";
 FLASHLIGHT_KEY_BIND = "Flashlight Select Key";
+FLASHLIGHT_AUTO_USE = "Turn On Automatically";
+FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Flashlight when selecting it";
 
 //Gameplay and Spawn Settings
 FLASHLIGHT_STARTING_ITEM = "Start with Flashlight";
@@ -169,49 +181,32 @@ FLASHLIGHT_PROFILE_DRAIN_MODE = "...Ready to Strike";
 
 FLASHLIGHT_PROFILE_NOTFAIR = "This profile isn't even remotely fair!";
 
-FLASHLIGHT_PROFILE_0_DESC = "All features disabled";
+FLASHLIGHT_PROFILE_DISABLED = "All features disabled";
 
-FLASHLIGHT_PROFILE_1_DESC = "Darken the map on a linear scale and uses a nighttime sky";
-FLASHLIGHT_PROFILE_1_DESC2 = "Start with a flashlight";
-FLASHLIGHT_PROFILE_1_DESC3 = "No Stealth Monsters";
-FLASHLIGHT_PROFILE_1_DESC4 = "Normal Battery Use";
-FLASHLIGHT_PROFILE_1_DESC5 = "Former Humans drop Flares";
+FLASHLIGHT_PROFILE_DARK_NIGHT = "Darkens the entire map and uses a nighttime sky";
+FLASHLIGHT_PROFILE_DARK_AREAS = "Darkens dark areas of the map";
+FLASHLIGHT_PROFILE_DARK_EXTREME = "Map is nearly completely black";
 
-FLASHLIGHT_PROFILE_2_DESC = "Settings are the same as Night Mode";
-FLASHLIGHT_PROFILE_2_DESC2 = "Except flashlights are completely disabled";
-FLASHLIGHT_PROFILE_2_DESC3 = "You will have to rely on flares only";
-FLASHLIGHT_PROFILE_2_DESC4 = "Flares and Flare Boxes spawn on the map";
-FLASHLIGHT_PROFILE_2_DESC5 = "Former Humans drop Flares at an increased rate";
+FLASHLIGHT_PROFILE_START_FLASHLIGHT = "Start with a Flashlight";
+FLASHLIGHT_PROFILE_START_FLARES = "Start with Flares";
+FLASHLIGHT_PROFILE_START_FLARES_ONLY = "Start with Flares. Flashlights are disabled";
+FLASHLIGHT_PROFILE_START_FLASHLIGHT_ONLY = "Start with a Flashlight. Flares are disabled";
+FLASHLIGHT_PROFILE_START_NOTHING = "Start with nothing";
 
-FLASHLIGHT_PROFILE_3_DESC = "Darken dark areas of the map using a parabolic scale.";
-FLASHLIGHT_PROFILE_3_DESC2 = "Start with 5 flares";
-FLASHLIGHT_PROFILE_3_DESC3 = "No Stealth Monsters";
-FLASHLIGHT_PROFILE_3_DESC4 = "Normal Battery Use";
-FLASHLIGHT_PROFILE_3_DESC5 = "Former Humans drop Flares and Flashlights";
+FLASHLIGHT_PROFILE_STEALTH_NONE = "No Stealth Monsters";
+FLASHLIGHT_PROFILE_STEALTH_DARK = "Stealth Monsters in Dark Areas";
+FLASHLIGHT_PROFILE_STEALTH_ALL = "All enemies are Stealth Monsters";
 
-FLASHLIGHT_PROFILE_4_DESC = "Map is nearly pitch black";
-FLASHLIGHT_PROFILE_4_DESC2 = "Start with nothing";
-FLASHLIGHT_PROFILE_4_DESC3 = "All enemies are Stealth Monsters";
-FLASHLIGHT_PROFILE_4_DESC4 = "Battery has a large capacity but does not recharge";
-FLASHLIGHT_PROFILE_4_DESC5 = "Former Humans drop Flares and Flashlights with high frequency";
+FLASHLIGHT_PROFILE_BATTERY_NORMAL = "Normal Battery Use";
+FLASHLIGHT_PROFILE_BATTERY_NOCHARGE = "Battery does not recharge";
+FLASHLIGHT_PROFILE_BATTERY_NOCHARGE_BIG = "Battery does not recharge but has a large capacity";
+FLASHLIGHT_PROFILE_BATTERY_UNLIMITED = "Unlimited Battery Use";
+FLASHLIGHT_PROFILE_SPAWN_FLARES = "Flares and Flare Boxes spawn on the map";
 
-FLASHLIGHT_PROFILE_5_DESC = "Similar to Night Mode but with 'Doom 3' style settings";
-FLASHLIGHT_PROFILE_5_DESC2 = "Start with a flashlight";
-FLASHLIGHT_PROFILE_5_DESC3 = "No Stealth Monsters";
-FLASHLIGHT_PROFILE_5_DESC4 = "Unlimited Battery Use";
-FLASHLIGHT_PROFILE_5_DESC5 = "Flares unavailable";
-
-FLASHLIGHT_PROFILE_6_DESC = "Settings are the same as Night Mode profile";
-FLASHLIGHT_PROFILE_6_DESC2 = "But small enemies in dark areas";
-FLASHLIGHT_PROFILE_6_DESC3 = "May become Stealth Monsters";
-FLASHLIGHT_PROFILE_6_DESC4 = "";
-FLASHLIGHT_PROFILE_6_DESC5 = "";
-
-FLASHLIGHT_PROFILE_7_DESC = "Dark areas are darker";
-FLASHLIGHT_PROFILE_7_DESC2 = "Your battery doesn't recharge, enemies have a chance";
-FLASHLIGHT_PROFILE_7_DESC3 = "to drop batteries when killed";
-FLASHLIGHT_PROFILE_7_DESC4 = "All small enemies are stealth monsters when in darkness";
-FLASHLIGHT_PROFILE_7_DESC5 = "Flares unavailable";
+FLASHLIGHT_PROFILE_DROP_FLARES = "Former Humans drop Flares";
+FLASHLIGHT_PROFILE_DROP_BOTH = "Former Humans drop Flares and Flashlights";
+FLASHLIGHT_PROFILE_DROP_FLARES_INCREASED = "Former Humans drop Flares at an increased rate";
+FLASHLIGHT_PROFILE_DROP_BATTERIES = "Former Humans drop Batteries";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
 FLASHLIGHT_PROFILE_WARNING2 = "Settings will take effect on next map load";

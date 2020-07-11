@@ -5,6 +5,7 @@
 #define FLARE_OBJECT "Flare"
 #define CVAR_SWAP_WEAPON "flashlight_lastweap"
 #define CVAR_USE_FLARES "flashlight_auto_use_flare"
+#define CVAR_SHOW_MSG "flashlight_flare_show_count"
 
 script "FlashlightStart" ENTER
 {
@@ -15,6 +16,21 @@ script "FlashlightStart" ENTER
     
     if (!selected_flashlight)
         SetCVarString(CVAR_SWAP_WEAPON,weap);
+}
+
+script "UseFlare" (void) net
+{
+    if (GetCVar(CVAR_SHOW_MSG))
+    {
+        str printstring;
+        int flares = CheckInventory(FLARE_OBJECT);
+        if (flares)
+            printstring = StrParam(d:flares - 1,s:" ",l:"FLASHLIGHT_FLARES_REMAIN");
+        else
+            printstring = StrParam(l:"FLASHLIGHT_NO_FLARES_REMAIN");
+        print(s:printstring);
+    }
+    UseInventory(FLARE_OBJECT);
 }
 
 script "ToggleFlashlight" (void) net
@@ -40,7 +56,7 @@ script "ToggleFlashlight" (void) net
     }
     else if (has_flares && use_flares)
     {
-        UseInventory(FLARE_OBJECT);
+        ACS_NamedExecute("UseFlare",0);
     }
     else if (!has_flares && use_flares)
     {

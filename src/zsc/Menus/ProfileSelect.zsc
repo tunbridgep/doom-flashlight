@@ -112,7 +112,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             CVar.GetCvar("flashlight_battery_min_threshold").SetInt(0);
             CVar.GetCvar("flashlight_battery_use_per_tic").SetInt(1);
             CVar.GetCvar("flashlight_battery_charge_per_tic").SetInt(0);
-            CVar.GetCvar("flashlight_battery_max").SetInt(1050);
+            CVar.GetCvar("flashlight_battery_max").SetInt(2100);
         }
         else if (p == DOOM_3_STYLE) //map is dark, start with flashlight, unlimited battery
         {
@@ -163,7 +163,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             CVar.GetCvar("flashlight_stealth_monster_chance").SetInt(100);
             
             //battery settings
-            CVar.GetCvar("flashlight_battery_max").SetInt(35000);
+            CVar.GetCvar("flashlight_battery_max").SetInt(350000);
             CVar.GetCvar("flashlight_spawn_flashlight").SetInt(1);
             CVar.GetCvar("flashlight_battery_min_threshold").SetInt(0);
             CVar.GetCvar("flashlight_battery_use_per_tic").SetInt(1);
