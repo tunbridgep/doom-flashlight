@@ -1,0 +1,93 @@
+class ReplacerConfig : ConfigBase
+{
+    static FlashlightReplacement GetFlashlightItem()
+    {
+        return CVar.GetCVar("flashlight_spawn_flashlight").GetInt();
+    }
+    
+    static ChanceValue GetFlashlightChance()
+    {
+        ChanceValue c = new("ChanceValue");            
+        c.SetChance(CVar.GetCVar("flashlight_spawn_flashlight_chance").GetInt());
+        return c;
+    }
+    
+    static FlareReplacement GetFlareItem()
+    {
+        return CVar.GetCVar("flashlight_spawn_flare").GetInt();
+    }
+    
+    static ChanceValue GetFlareChance()
+    {
+        ChanceValue c = new("ChanceValue");            
+        c.SetChance(CVar.GetCVar("flashlight_spawn_flare_chance").GetInt());
+        return c;
+    }
+    
+    static FlareBoxReplacement GetFlareBoxItem()
+    {
+        return CVar.GetCVar("flashlight_spawn_flare_box").GetInt();
+    }
+    
+    static ChanceValue GetFlareBoxChance()
+    {
+        ChanceValue c = new("ChanceValue");            
+        c.SetChance(CVar.GetCVar("flashlight_spawn_flare_box_chance").GetInt());
+        return c;
+    }
+    
+    static BatteryReplacement GetBatteryRechargeItem()
+    {
+        return CVar.GetCVar("flashlight_spawn_battery_recharge").GetInt();
+    }
+    
+    static ChanceValue GetBatteryRechargeChance()
+    {
+        ChanceValue c = new("ChanceValue");            
+        c.SetChance(CVar.GetCVar("flashlight_spawn_battery_recharge_chance").GetInt());
+        return c;
+    }
+    
+    static BatteryReplacement GetBatteryUpgradeItem()
+    {
+        return CVar.GetCVar("flashlight_spawn_battery_upgrade").GetInt();
+    }
+    
+    static ChanceValue GetBatteryUpgradeChance()
+    {
+        ChanceValue c = new("ChanceValue");            
+        c.SetChance(CVar.GetCVar("flashlight_spawn_battery_upgrade_chance").GetInt());
+        return c;
+    }
+}
+
+enum FlashlightReplacement
+{
+    REPLACE_FLASHLIGHT_DISABLED = 0,
+    REPLACE_FLASHLIGHT_SHOTGUN = 1,
+    REPLACE_FLASHLIGHT_SHELLBOX = 2,
+    REPLACE_FLASHLIGHT_CHAINGUN = 3,
+}
+
+enum FlareReplacement
+{
+    REPLACE_FLARE_DISABLED = 0,
+    REPLACE_FLARE_ROCKET = 1,
+}
+
+enum FlareBoxReplacement
+{
+    REPLACE_FLAREBOX_DISABLED = 0,
+    REPLACE_FLAREBOX_CLIPBOX = 1,
+    REPLACE_FLAREBOX_SHELLBOX = 2,
+    REPLACE_FLAREBOX_ROCKETBOX = 3,
+}
+
+enum BatteryReplacement
+{
+    REPLACE_BATTERY_DISABLED = 0,
+    REPLACE_BATTERY_BACKPACK = 1,
+    REPLACE_BATTERY_SOULSPHERE = 2,
+    REPLACE_BATTERY_BLURSPHERE = 3,
+    REPLACE_BATTERY_MEGASPHERE = 4,
+}

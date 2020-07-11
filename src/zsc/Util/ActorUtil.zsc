@@ -12,4 +12,26 @@ class ActorUtil play
         
         source.SetOrigin(pos, true);
     }
+    
+    static void ReplaceActor(Actor original, String replacement, ChanceValue chance = null)
+    {
+        bool roll = !chance || chance.Roll();
+        if (original && !original.bDestroyed && roll)
+        {
+            let newthing = Actor.Spawn(replacement,original.pos);
+            newthing.A_SetAngle(original.angle, 0);
+            newthing.A_SetPitch(original.pitch, SPF_INTERPOLATE);
+            newthing.SetOrigin(original.pos, true);
+            
+            newthing.ChangeTID(original.tid);
+            newthing.Special = original.Special;
+            
+            if (chance)
+                Debug.LogVerbose("Replaced "..original.GetTag().." with a "..replacement.." (rolled a "..chance.GetLastRoll().." out of "..chance.GetChance()..")");
+            else
+                Debug.LogVerbose("Replaced "..original.GetTag().." with a "..replacement);
+                
+            original.Destroy();
+        }
+    }
 }

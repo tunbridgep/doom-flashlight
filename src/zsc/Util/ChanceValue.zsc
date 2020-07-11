@@ -1,0 +1,29 @@
+class ChanceValue
+{
+    protected int chance;
+    const max = 100;
+    const min = 1;
+    
+    protected int last_roll;
+
+    void SetChance(int chance)
+    {
+        self.chance = chance;
+    }
+    
+    bool Roll()
+    {
+        last_roll = random(min, max);
+        return last_roll < chance;
+    }
+    
+    int GetLastRoll()
+    {
+        return last_roll;
+    }
+    
+    int GetChance()
+    {
+        return chance;
+    }
+}

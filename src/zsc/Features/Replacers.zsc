@@ -13,29 +13,13 @@ class FlashlightReplacers : EventHandler
     Class<Actor> soulsphereclass;
     Class<Actor> blursphereclass;
     Class<Actor> megasphereclass;
-
-    private bool ReplaceThing(Actor original,Class<Actor> checkclass, String replacement, int chance)
-    {
-        int dice = random(0, 100);
     
-        if (original && original.GetClass() is checkclass && dice <= chance)
-        {
-            let newthing = Actor.Spawn(replacement);
-            
-            newthing.A_SetAngle(original.angle, 0);
-            newthing.A_SetPitch(original.pitch, SPF_INTERPOLATE);
-            newthing.SetOrigin(original.pos, true);
-            
-            newthing.ChangeTID(original.tid);
-            newthing.Special = original.Special;
-            original.Destroy();
-            
-            Debug.LogVerbose("Replaced "..original.GetTag().." with a "..replacement.." (rolled a "..dice.." out of "..chance..")");
-            return true;
-        }
-        return false;
-    }
-      
+    ChanceValue chanceFlash;
+    ChanceValue chanceFlare;
+    ChanceValue chanceFlareB;
+    ChanceValue chanceBatterUp;
+    ChanceValue chanceBatterRe;
+    
     override void OnRegister()
     {
         shotgunclass = "Shotgun";
@@ -82,6 +66,16 @@ class FlashlightReplacers : EventHandler
     
     }
     
+    //do this every map rather than OnRegister so that we can chance mid-campaign
+    override void WorldLoaded(WorldEvent e)
+    {
+        chanceFlash = ReplacerConfig.GetFlashlightChance();
+        chanceFlare = ReplacerConfig.GetFlareChance();
+        chanceFlareB = ReplacerConfig.GetFlareBoxChance();
+        chanceBatterUp = ReplacerConfig.GetBatteryUpgradeChance();
+        chanceBatterRe = ReplacerConfig.GetBatteryRechargeChance();
+    }
+    
     //TODO: Fix this garbage
     override void WorldThingSpawned(WorldEvent e)
     {        
@@ -97,100 +91,34 @@ class FlashlightReplacers : EventHandler
             DoReplacement(a);
         }
     }
-    
+          
     void DoReplacement(Actor a)
     {
-        bool replaced = false;
-        let spawn_flashlight = CVar.FindCVar("flashlight_spawn_flashlight").GetInt();
-        let spawn_flashlight_chance = CVar.FindCVar("flashlight_spawn_flashlight_chance").GetInt();
+        class<Actor> ac = a.GetClass();
         
-        switch (spawn_flashlight)
-        {
-            case 1:
-                replaced = ReplaceThing(a,shotgunclass,"Flashlight",spawn_flashlight_chance);
-                break;
-            case 2:
-                replaced = ReplaceThing(a,shellboxclass,"Flashlight",spawn_flashlight_chance);
-                break;
-            case 3:
-                replaced = ReplaceThing(a,chaingunclass,"Flashlight",spawn_flashlight_chance);
-                break;
-        }
-        if (replaced)
-            return;
+        if ((ac is shotgunclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_SHOTGUN)
+        || (ac is shellboxclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_SHELLBOX)
+        || (ac is chaingunclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_CHAINGUN))
+            ActorUtil.ReplaceActor(a,"Flashlight",chanceFlash);
         
-        let spawn_flares = CVar.FindCVar("flashlight_spawn_flare").GetInt();
-        let spawn_flares_chance = CVar.FindCVar("flashlight_spawn_flare_chance").GetInt();
+        if (ac is rocketammoclass && ReplacerConfig.GetFlareItem() == REPLACE_FLARE_ROCKET)
+            ActorUtil.ReplaceActor(a,"Flare",chanceFlare);
+            
+        if ((ac is shellboxclass && ReplacerConfig.GetFlareBoxItem() == REPLACE_FLAREBOX_SHELLBOX)
+        || (ac is clipboxclass && ReplacerConfig.GetFlareBoxItem() == REPLACE_FLAREBOX_CLIPBOX)
+        || (ac is rocketboxclass && ReplacerConfig.GetFlareBoxItem() == REPLACE_FLAREBOX_ROCKETBOX))
+            ActorUtil.ReplaceActor(a,"FlareBox",chanceFlareB);
         
-        switch (spawn_flares)
-        {
-            case 1:
-                replaced = ReplaceThing(a,rocketammoclass,"Flare",spawn_flares_chance);
-                break;
-        }
-        if (replaced)
-            return;
-
-
-        let spawn_flare_boxes = CVar.FindCVar("flashlight_spawn_flare_box").GetInt();
-        let spawn_flare_boxes_chance = CVar.FindCVar("flashlight_spawn_flare_box_chance").GetInt();
+        if ((ac is backpackclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_BACKPACK)
+        || (ac is soulsphereclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_SOULSPHERE)
+        || (ac is blursphereclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_BLURSPHERE)
+        || (ac is megasphereclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_MEGASPHERE))
+            ActorUtil.ReplaceActor(a,"FlashlightBatteryRecharge",chanceBatterRe);
         
-        switch (spawn_flare_boxes)
-        {
-            case 1:
-                replaced = ReplaceThing(a,clipboxclass,"FlareBox",spawn_flare_boxes_chance);
-                break;
-            case 2:
-                replaced = ReplaceThing(a,shellboxclass,"FlareBox",spawn_flare_boxes_chance);
-                break;
-            case 3:
-                replaced = ReplaceThing(a,rocketboxclass,"FlareBox",spawn_flare_boxes_chance);
-                break;
-        }
-        if (replaced)
-            return;
-        
-        let spawn_battery_recharge = CVar.FindCVar("flashlight_spawn_battery_recharge").GetInt();
-        let spawn_battery_recharge_chance = CVar.FindCVar("flashlight_spawn_battery_recharge_chance").GetInt();
-        
-        switch (spawn_battery_recharge)
-        {
-            case 1:
-                replaced = ReplaceThing(a,backpackclass,"FlashlightBatteryRecharge",spawn_battery_recharge_chance);
-                break;
-            case 2:
-                replaced = ReplaceThing(a,soulsphereclass,"FlashlightBatteryRecharge",spawn_battery_recharge_chance);
-                break;
-            case 3:
-                replaced = ReplaceThing(a,blursphereclass,"FlashlightBatteryRecharge",spawn_battery_recharge_chance);
-                break;
-            case 4:
-                replaced = ReplaceThing(a,megasphereclass,"FlashlightBatteryRecharge",spawn_battery_recharge_chance);
-                break;
-        }
-        if (replaced)
-            return;
-        
-        
-        let spawn_battery_upgrade = CVar.FindCVar("flashlight_spawn_battery_upgrade").GetInt();
-        let spawn_battery_upgrade_chance = CVar.FindCVar("flashlight_spawn_battery_upgrade_chance").GetInt();
-        
-        switch (spawn_battery_upgrade)
-        {
-            case 1:
-                replaced = ReplaceThing(a,backpackclass,"FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
-                break;
-            case 2:
-                replaced = ReplaceThing(a,soulsphereclass,"FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
-                break;
-            case 3:
-                replaced = ReplaceThing(a,blursphereclass,"FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
-                break;
-            case 4:
-                replaced = ReplaceThing(a,megasphereclass,"FlashlightBatteryUpgrade",spawn_battery_upgrade_chance);
-                break;
-        }
-        if (replaced)
-            return;
+        if ((ac is backpackclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_BACKPACK)
+        || (ac is soulsphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_SOULSPHERE)
+        || (ac is blursphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_BLURSPHERE)
+        || (ac is megasphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_MEGASPHERE))
+            ActorUtil.ReplaceActor(a,"FlashlightBatteryUpgrade",chanceBatterUp);
     }
 }
