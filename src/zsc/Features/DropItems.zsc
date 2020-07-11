@@ -1,4 +1,4 @@
-class DropItemConfig : EventHandler
+class DropItems : EventHandler
 {
     Class<Actor> shotgunguy;
     Class<Actor> chaingunguy;
@@ -21,66 +21,44 @@ class DropItemConfig : EventHandler
             zombieman = e.replacement;
     }
 
-    //This will give us more compatibility with other mods.
-    //See here: https://zdoom.org/wiki/ZScript_classes
-    private bool is_Class(Actor a, String classname)
+    //Checking for zombie-men type enemies is DUMB!
+    //No mod really wants to actually define them properly
+    //So now we have this big list of garbage
+    private bool IsZombieman(Actor a)
     {
-        Class<Actor> cls = classname;
-        if (cls)
-        {
-            return a is cls;
-        }
-        return false;
+        return a.bIsMonster && ( a is "ZombieMan" || a is "ShotgunGuy" || a is "ChaingunGuy"
+        || a is zombieman || a is chaingunguy || a is shotgunguy
+        || a.Species == "Former Human" || ActorUtil.isClass(a,"SuicideBomber")
+        || ActorUtil.isClass(a,"ZombieMan1") || ActorUtil.isClass(a,"ShotgunGuy1") || ActorUtil.isClass(a,"ChaingunGuy1")
+        || ActorUtil.isClass(a,"PB_ZombieMan") || ActorUtil.isClass(a,"PB_ShotgunGuy") || ActorUtil.isClass(a,"PB_ChaingunGuy")
+        || ActorUtil.isClass(a,"PB_ZombieScientist") || ActorUtil.isClass(a,"ZSpecOpsMachinegun"));
     }
 
-    private void DoAddDropItem(Actor a, string dropitem, int chance)
+    private void AddDropItem(Actor a, string dropitem)
     {
-        int dice = random(0, 100);
-        
-        string classname = "MissingNameOfClass";
-        
-        //Checking for zombie-men type enemies is DUMB!
-        //No mod really wants to actually define them properly
-        //So now we have this big list of garbage
-        if ( a is "ZombieMan" || a is "ShotgunGuy" || a is "ChaingunGuy"
-        || a is zombieman || a is chaingunguy || a is shotgunguy
-        || a.Species == "Former Human" || is_Class(a,"SuicideBomber")
-        || is_Class(a,"ZombieMan1") || is_Class(a,"ShotgunGuy1") || is_Class(a,"ChaingunGuy1")
-        || is_Class(a,"PB_ZombieMan") || is_Class(a,"PB_ShotgunGuy") || is_Class(a,"PB_ChaingunGuy")
-        || is_Class(a,"PB_ZombieScientist") || is_Class(a,"ZSpecOpsMachinegun"))
-        {
-            if (dice <= chance)
-            {
-                Debug.LogVerbose("Adding a "..dropitem.." to "..a.GetTag());
-                a.GiveInventory(dropitem,1);
-            }
-        }
+        Debug.LogVerbose("Adding a "..dropitem.." to "..a.GetTag());
+        a.GiveInventory(dropitem,1);
     }
     
     override void WorldThingSpawned(WorldEvent e)
     {
         Actor a = e.Thing;
         
-        if (a && a.GetLevelSpawnTime() <= 5 && a.bIsMonster)
+        if (a && a.GetLevelSpawnTime() <= 5 && isZombieman(a))
         {
-            bool dropflash = CVar.FindCVar("flashlight_enemies_drop_flashlights").GetBool();
-            bool dropflare = CVar.FindCVar("flashlight_enemies_drop_flares").GetBool();
-            bool dropbattery = CVar.FindCVar("flashlight_enemies_drop_battery").GetBool();
-            bool dropbattery_exp = CVar.FindCVar("flashlight_enemies_drop_battery_expander").GetBool();
-            int dropflash_chance = CVar.FindCVar("flashlight_enemies_drop_flashlights_chance").GetInt();
-            int dropflare_chance = CVar.FindCVar("flashlight_enemies_drop_flares_chance").GetInt();
-            int dropbattery_chance = CVar.FindCVar("flashlight_enemies_drop_battery_chance").GetInt();
-            int dropbattery_exp_chance = CVar.FindCVar("flashlight_enemies_drop_battery_expander_chance").GetInt();
-
+            ChanceValue dropflash = DropItemConfig.GetFlashlightChance();
+            ChanceValue dropflare = DropItemConfig.GetFlareChance();
+            ChanceValue dropbattery = DropItemConfig.GetBatteryRechargeChance();
+            ChanceValue dropbattery_exp = DropItemConfig.GetBatteryUpgradeChance();
             
-            if (dropflash)
-                DoAddDropItem(a,"FlashlightDropper",dropflash_chance);
-            if (dropflare)
-                DoAddDropItem(a,"FlareDropper",dropflare_chance);
-            if (dropbattery)
-                DoAddDropItem(a,"BatteryDropper",dropbattery_chance);
-            if (dropbattery_exp)
-                DoAddDropItem(a,"BatteryExpanderDropper",dropbattery_exp_chance);
+            if (dropflash && dropflash.Roll())
+                AddDropItem(a,"FlashlightDropper");
+            if (dropflare && dropflare.Roll())
+                AddDropItem(a,"FlareDropper");
+            if (dropbattery && dropbattery.Roll())
+                AddDropItem(a,"BatteryDropper");
+            if (dropbattery_exp && dropbattery_exp.Roll())
+                AddDropItem(a,"BatteryExpanderDropper");
         }
     }
 }

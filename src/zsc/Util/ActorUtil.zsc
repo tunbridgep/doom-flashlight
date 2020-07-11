@@ -34,4 +34,16 @@ class ActorUtil play
             original.Destroy();
         }
     }
+    
+    //This will give us more compatibility with other mods.
+    //See here: https://zdoom.org/wiki/ZScript_classes
+    static bool isClass(Actor a, String classname)
+    {
+        Class<Actor> cls = classname;
+        if (cls)
+        {
+            return a is cls;
+        }
+        return false;
+    }
 }

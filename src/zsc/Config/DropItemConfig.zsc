@@ -1,0 +1,42 @@
+class DropItemConfig : ConfigBase
+{
+    static ChanceValue GetFlashlightChance()
+    {
+        if (!CVar.GetCVar("flashlight_enemies_drop_flashlights").GetBool())
+            return null;
+    
+        ChanceValue c = new("ChanceValue");            
+        c.SetChance(CVar.GetCVar("flashlight_enemies_drop_flashlights_chance").GetInt());
+        return c;
+    }
+    
+    static ChanceValue GetFlareChance()
+    {
+        if (!CVar.GetCVar("flashlight_enemies_drop_flares").GetBool())
+            return null;
+    
+        ChanceValue c = new("ChanceValue");            
+        c.SetChance(CVar.GetCVar("flashlight_enemies_drop_flares_chance").GetInt());
+        return c;
+    }
+    
+    static ChanceValue GetBatteryRechargeChance()
+    {
+        if (!CVar.GetCVar("flashlight_enemies_drop_battery").GetBool())
+            return null;
+    
+        ChanceValue c = new("ChanceValue");            
+        c.SetChance(CVar.GetCVar("flashlight_enemies_drop_battery_chance").GetInt());
+        return c;
+    }
+    
+    static ChanceValue GetBatteryUpgradeChance()
+    {
+        if (!CVar.GetCVar("flashlight_enemies_drop_battery_expander").GetBool())
+            return null;
+    
+        ChanceValue c = new("ChanceValue");            
+        c.SetChance(CVar.GetCVar("flashlight_enemies_drop_battery_expander_chance").GetInt());
+        return c;
+    }
+}
