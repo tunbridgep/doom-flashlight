@@ -9,7 +9,8 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 		HELL_MODE = 4,
 		DOOM_3_STYLE = 5,
 		AMBUSH_MODE = 6,
-		DRAIN_MODE = 7
+		DRAIN_MODE = 7,
+		VANILLA_MODE = 8
 	};
 
     OptionMenuItemFlashlightApplyProfile Init(String text, int color = -1)
@@ -80,12 +81,12 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
         
         
         
-        if (p != DISABLED && p != FLARES_ONLY_MODE && p != DRAIN_MODE)
+        if (p != DISABLED && p != FLARES_ONLY_MODE && p != DRAIN_MODE && p != VANILLA_MODE)
         {
             //common stuff - only gets activated the first time we select a profile
             CVar.GetCvar("flashlight_spawn_battery_upgrade").SetInt(1);
         }
-        
+               
         if (p == NIGHT_MODE || p == AMBUSH_MODE) //map is dark, start with flashlight
         {
             CVar.GetCvar("flashlight_darken_mode").SetInt(3);
@@ -95,6 +96,11 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
             if (p == AMBUSH_MODE)
                 CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(3);
+        }
+        else if (p == VANILLA_MODE) //Very simply profile. Nothing is changed, but enemies drop the flashlight and flares
+        {
+            CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
+            CVar.GetCvar("flashlight_enemies_drop_flashlights").SetBool(true);
         }
         else if (p == DRAIN_MODE) //dark areas are dark, flashlight doesn't recharge, batteries are common, no flares
         {
