@@ -61,14 +61,23 @@ class FlareLight : PointLightFlicker
         args[LIGHT_RED] = color.r;
         args[LIGHT_GREEN] = color.g;
         args[LIGHT_BLUE] = color.b;
-        args[LIGHT_INTENSITY] = 242;
-        args[LIGHT_SECONDARY_INTENSITY] = 240;
+        SetIntensity(242,240);
         bATTENUATE = true;
+    }
+    
+    //This is here so we can easily randomise it and make our fire effect look more
+    //genuine
+    protected void SetIntensity(int primary, int secondary)
+    {
+        args[LIGHT_INTENSITY] = primary;
+        args[LIGHT_SECONDARY_INTENSITY] = secondary;
     }
     
     override void Tick()
     {
         ActorUtil.MoveToActor(self,toFollow,offset);
+        int new_intensity = random(220,260);
+        SetIntensity(new_intensity,new_intensity - 2);
         Super.Tick();
     }
 }
@@ -106,13 +115,13 @@ class FlareBase : Actor abstract
             FLZR A 1
             {
                 GenerateDynamicLight();
+                A_PlaySoundEx("Flare/Loop", "SoundSlot7", 1, -1);
             }
             Goto PostSpawn;
         PostSpawn:    
-            FLZR A 1 Bright A_PlaySoundEx("Flare/Loop", "SoundSlot7", 1, -1);
-            Goto Flicker;
+            FLZR A 1 Bright;
         Flicker:
-            FLZR AB random(1,3) Bright;
+            FLZR AB random(1,4) Bright;
             Goto Flicker;
     }
 }
@@ -132,6 +141,9 @@ class ActiveFlare : FlareBase
         if (burntime < 0)
         {
             SetStateLabel("BurnedOut");
+            bFORCEXYBILLBOARD = true;
+            RemoveDynamicLight();
+            A_StopSound(7);
         }
         Super.Tick();
     }
@@ -139,11 +151,7 @@ class ActiveFlare : FlareBase
     States
     {
         BurnedOut:
-            FLZR E -1
-            {
-                RemoveDynamicLight();
-                A_StopSound(7);
-            }
+            FLZR E -1;
             Stop;
     }
 }
