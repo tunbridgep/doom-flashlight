@@ -74,8 +74,6 @@ class FlashlightBase : Weapon abstract
         Setup();
         if (battery.IsEmpty())
             TryTurnOff(invoker);
-            
-        battery.DrawIndicator();
     }
     
     /*

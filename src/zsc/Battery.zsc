@@ -52,9 +52,15 @@ class Battery : Inventory
         red_tics = tics;
     }
     
+    private bool OwnerIsUsingFlashlight()
+    {
+        let selected = players[consoleplayer].ReadyWeapon;
+        return (selected && selected.GetClass() == "Flashlight");
+    }
+    
     void DrawIndicator()
     {
-        if (owner != null && battery_use_per_tic > 0 && battery_mode != 0)
+        if (owner != null && (battery_level < battery_max || OwnerIsUsingFlashlight()))
         {
             owner.ACS_NamedExecute("draw_battery",0,battery_level,GetMax(),red_tics);
             red_tics = Math.ClampMin(red_tics - 1,0);
@@ -102,6 +108,8 @@ class Battery : Inventory
         updateFromCvars();
         if (battery_mode == 0)
             return;
+
+        DrawIndicator();
 
         if (inUse)
             battery_level = Math.Clamp(battery_level - battery_use_per_tic,0,GetMax());
