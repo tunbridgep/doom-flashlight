@@ -7,9 +7,11 @@ Script "ReplaceBrutalGLTextures" (int liquids, int gates, int doors, int lights)
     {
         ReplaceTextures("TLITE6_1","TLITE6_1_noglow");
         ReplaceTextures("TLITE6_4","TLITE6_4_noglow");
+        ReplaceTextures("TLITE6_5","TLITE6_5_noglow");
         ReplaceTextures("TLITE6_6","TLITE6_6_noglow");
         ReplaceTextures("FLAT17","FLAT17_noglow");
         ReplaceTextures("FLAT2","FLAT2_noglow");
+        ReplaceTextures("FLAT2B","FLAT2B_noglow");
         ReplaceTextures("FLAT22","FLAT22_noglow");
         ReplaceTextures("FLOOR1_7","FLOOR1_7_noglow");
         ReplaceTextures("RROCK01","RROCK01_noglow");
@@ -19,8 +21,16 @@ Script "ReplaceBrutalGLTextures" (int liquids, int gates, int doors, int lights)
         ReplaceTextures("RROCK07","RROCK07_noglow");
         ReplaceTextures("RROCK08","RROCK08_noglow");
         ReplaceTextures("GRNLITE1","GRNLITE1_noglow");
+        ReplaceTextures("GRNLIT1B","GRNLIT1B_noglow");
         ReplaceTextures("CEIL3_3","CEIL3_3_noglow");
         ReplaceTextures("CEIL3_4","CEIL3_4_noglow");
+        ReplaceTextures("LITGEN7","LITGEN7_noglow");
+        ReplaceTextures("LITGEN7B","LITGEN7B_noglow");
+        ReplaceTextures("LITGEN8","LITGEN8_noglow");
+        ReplaceTextures("LITGEN9","LITGEN9_noglow");
+        ReplaceTextures("LITGEN9B","LITGEN9B_noglow");
+        ReplaceTextures("LITGEN9C","LITGEN9C_noglow");
+        ReplaceTextures("LITGEN9D","LITGEN9D_noglow");
     }
     
     if (liquids)
@@ -37,6 +47,10 @@ Script "ReplaceBrutalGLTextures" (int liquids, int gates, int doors, int lights)
         ReplaceTextures("SLIME01","SLIME01_noglow");
         ReplaceTextures("SLIME02","SLIME02_noglow");
         ReplaceTextures("SLIME03","SLIME03_noglow");
+        ReplaceTextures("SLIME09","SLIME09_noglow");
+        ReplaceTextures("SLIME10","SLIME10_noglow");
+        ReplaceTextures("SLIME11","SLIME11_noglow");
+        ReplaceTextures("SLIME12","SLIME12_noglow");
     }
     
     if (gates)
@@ -53,7 +67,7 @@ Script "ReplaceBrutalGLTextures" (int liquids, int gates, int doors, int lights)
         ReplaceTextures("DOORBLU2","DOORBLU2_noglow");
         ReplaceTextures("DOORRED","DOORRED_noglow");
         ReplaceTextures("DOORRED2","DOORRED2_noglow");
-        ReplaceTextures("DOORRED","DOORRED_noglow");
+        ReplaceTextures("DOORYEL","DOORYEL_noglow");
         ReplaceTextures("DOORYEL2","DOORYEL2_noglow");
     }
 }

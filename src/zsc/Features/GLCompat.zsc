@@ -4,15 +4,20 @@ class GLCompat : FlashlightEventHandler
     override void UniqueWorldLoaded(WorldEvent e)
     {       
         bool player = Game.IsPlayingProjectBrutality() || Game.IsPlayingBrutalDoom();
-        GLCompatLevel compat = CompatiblityConfig.GetBrutalGLCompatibility();
         
-        if (player && compat != GLCOMPAT_DISABLED)
+        if (player)
         {
-            bool liquids = compat == GLCOMPAT_ALL || compat == GLCOMPAT_LIQUIDS || compat == GLCOMPAT_LIQUIDS_GATES || compat == GLCOMPAT_LIQUIDS_DOORS;
-            bool gates = compat == GLCOMPAT_ALL || compat == GLCOMPAT_GATES || compat == GLCOMPAT_GATES_DOORS || compat == GLCOMPAT_LIQUIDS_GATES;
-            bool doors = compat == GLCOMPAT_ALL || compat == GLCOMPAT_DOORS || compat == GLCOMPAT_GATES_DOORS || compat == GLCOMPAT_LIQUIDS_DOORS;
-            Debug.LogVerbose("Brutal Doom OpenGL Compatibility Applied...Replacing Textures");
-            CallACS("ReplaceBrutalGLTextures",!liquids,!gates,!doors,true);
+            bool liquids = CompatiblityConfig.GetBrutalGLCompatibilityLiquids();
+            bool gates = CompatiblityConfig.GetBrutalGLCompatibilityGates();
+            bool lights = CompatiblityConfig.GetBrutalGLCompatibilityLights();
+            bool doors = CompatiblityConfig.GetBrutalGLCompatibilityDoors();
+            
+            if (doors || gates || lights || liquids)
+            {
+                Debug.Log("Brutal Doom OpenGL Compatibility Applied...Replacing Textures");
+                Debug.Log("Replacing Textures for ["..(liquids ? " liquids" : "")..(gates ? " gates" : "")..(lights ? " lights" : "")..(doors ? " doors" : "").."]");
+                CallACS("ReplaceBrutalGLTextures",liquids,gates,doors,lights);
+            }
         }
     }
 }

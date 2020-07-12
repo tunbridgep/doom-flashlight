@@ -218,17 +218,18 @@ FLASHLIGHT_PROFILE_WARNING2 = "Settings will take effect on next map load";
 
 //Compatibility Options
 FLASHLIGHT_GLCOMPAT_HEADER = "Brutal Doom Glow Overrides";
-FLASHLIGHT_GLCOMPAT = "Enable Glows on";
-FLASHLIGHT_GLCOMPAT_ALL = "All Textures";
-FLASHLIGHT_GLCOMPAT_LIQUIDS = "Liquid Textures Only";
-FLASHLIGHT_GLCOMPAT_GATES = "Gate Textures Only";
-FLASHLIGHT_GLCOMPAT_DOORS = "Door Textures Only";
-FLASHLIGHT_GLCOMPAT_LIQUIDS_GATES = "Liquid and Gate Textures";
-FLASHLIGHT_GLCOMPAT_LIQUIDS_DOORS = "Liquid and Door Textures";
-FLASHLIGHT_GLCOMPAT_GATES_DOORS = "Gate and Door Textures";
+FLASHLIGHT_GLCOMPAT_LIQUIDS = "Liquid Textures";
+FLASHLIGHT_GLCOMPAT_GATES = "Gate Textures";
+FLASHLIGHT_GLCOMPAT_LIGHTS = "Light Textures";
+FLASHLIGHT_GLCOMPAT_DOORS = "Door Textures";
+
+FLASHLIGHT_GLCOMPAT_GLOW = "Glow";
+FLASHLIGHT_GLCOMPAT_DONTGLOW = "Don't Glow";
+
 FLASHLIGHT_GLCOMPAT_DESC = "Brutal Doom and Project Brutality define a number of textures";
 FLASHLIGHT_GLCOMPAT_DESC2 = "which are set to glow, but many pwads override these textures (such as scythe2).";
 FLASHLIGHT_GLCOMPAT_DESC3 = "This will make them glow and look out of place in the darkness. The glows can be disabled here";
+FLASHLIGHT_GLCOMPAT_DESC4 = "These settings will only be in effect when playing Project Brutality or Brutal Doom";
 
 //Credits
 

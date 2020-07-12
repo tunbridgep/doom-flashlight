@@ -24,6 +24,12 @@ OptionValue NotImplementedOptions
     0, "$FLASHLIGHT_NOT_IMPLEMENTED"
 }
 
+OptionValue SetGlow
+{
+    0, "$FLASHLIGHT_GLCOMPAT_GLOW"
+    1, "$FLASHLIGHT_GLCOMPAT_DONTGLOW"
+}
+
 OptionValue FlareOptions
 {
     0, "$FLASHLIGHT_NOTHING"
@@ -70,18 +76,6 @@ OptionValue DarkenModes
     1, "$FLASHLIGHT_DARKEN_MODE_1"
     2, "$FLASHLIGHT_DARKEN_MODE_2"
     3, "$FLASHLIGHT_DARKEN_MODE_3"
-}
-
-OptionValue GLCompatOptions
-{
-    0, "$FLASHLIGHT_GLCOMPAT_ALL"
-    1, "$FLASHLIGHT_NOTHING"
-    2, "$FLASHLIGHT_GLCOMPAT_LIQUIDS"
-    3, "$FLASHLIGHT_GLCOMPAT_GATES"
-    4, "$FLASHLIGHT_GLCOMPAT_DOORS"
-    5, "$FLASHLIGHT_GLCOMPAT_LIQUIDS_GATES"
-    6, "$FLASHLIGHT_GLCOMPAT_LIQUIDS_DOORS"
-    7, "$FLASHLIGHT_GLCOMPAT_GATES_DOORS"
 }
 
 OptionMenu "FlashlightCalibration"
@@ -236,10 +230,14 @@ OptionMenu "FlashlightCompatOptions"
 {
     Title "$FLASHLIGHT_COMPAT_SETTINGS"
     StaticText "$FLASHLIGHT_GLCOMPAT_HEADER", 1
-    Option "$FLASHLIGHT_GLCOMPAT", "flashlight_compat_brutal_gldefs", GLCompatOptions
+    Option "$FLASHLIGHT_GLCOMPAT_LIQUIDS", "flashlight_compat_brutal_gldefs_liquids", SetGlow
+    Option "$FLASHLIGHT_GLCOMPAT_LIGHTS", "flashlight_compat_brutal_gldefs_lights", SetGlow
+    Option "$FLASHLIGHT_GLCOMPAT_GATES", "flashlight_compat_brutal_gldefs_gates", SetGlow
+    Option "$FLASHLIGHT_GLCOMPAT_DOORS", "flashlight_compat_brutal_gldefs_doors", SetGlow
     StaticText "$FLASHLIGHT_GLCOMPAT_DESC"
     StaticText "$FLASHLIGHT_GLCOMPAT_DESC2"
     StaticText "$FLASHLIGHT_GLCOMPAT_DESC3"
+    StaticText "$FLASHLIGHT_GLCOMPAT_DESC4", 1
 }
 
 OptionMenu "FlashlightBase"

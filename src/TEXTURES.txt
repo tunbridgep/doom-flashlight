@@ -17,6 +17,11 @@ Texture "TLITE6_4_noglow", 64, 64
 	Patch "TLITE6_4", 0, 0
 }
 
+Texture "TLITE6_5_noglow", 64, 64
+{
+	Patch "TLITE6_5", 0, 0
+}
+
 Texture "TLITE6_6_noglow", 64, 64
 {
 	Patch "TLITE6_6", 0, 0
@@ -30,6 +35,11 @@ Texture "FLAT17_noglow", 64, 64
 Texture "FLAT2_noglow", 64, 64
 {
 	Patch "FLAT2", 0, 0
+}
+
+Texture "FLAT2B_noglow", 64, 64
+{
+	Patch "FLAT2B", 0, 0
 }
 
 Texture "FLAT22_noglow", 64, 64
@@ -77,6 +87,11 @@ Texture "GRNLITE1_noglow", 64, 64
 	Patch "GRNLITE1", 0, 0
 }
 
+Texture "GRNLIT1B_noglow", 64, 64
+{
+	Patch "GRNLIT1B", 0, 0
+}
+
 Texture "CEIL3_3_noglow", 64, 64
 {
 	Patch "CEIL3_3", 0, 0
@@ -110,6 +125,11 @@ Texture "BLOOD1_noglow", 64, 64
 Texture "BLOOD2_noglow", 64, 64
 {
 	Patch "BLOOD2", 0, 0
+}
+
+Texture "BLOOD3_noglow", 64, 64
+{
+	Patch "BLOOD3", 0, 0
 }
 
 Texture "LAVA1_noglow", 64, 64
@@ -147,6 +167,31 @@ Texture "SLIME03_noglow", 64, 64
 	Patch "SLIME03", 0, 0
 }
 
+Texture "SLIME04_noglow", 64, 64
+{
+	Patch "SLIME04", 0, 0
+}
+
+Texture "SLIME09_noglow", 64, 64
+{
+	Patch "SLIME09", 0, 0
+}
+
+Texture "SLIME10_noglow", 64, 64
+{
+	Patch "SLIME10", 0, 0
+}
+
+Texture "SLIME11_noglow", 64, 64
+{
+	Patch "SLIME11", 0, 0
+}
+
+Texture "SLIME12_noglow", 64, 64
+{
+	Patch "SLIME12", 0, 0
+}
+
 Texture "GATE1_noglow", 64, 64
 {
 	Patch "GATE1", 0, 0
@@ -167,34 +212,108 @@ Texture "GATE4_noglow", 64, 64
 	Patch "GATE4", 0, 0
 }
 
-Texture "DOORBLU_noglow", 64, 64
+Texture "LITGEN7_noglow", 64, 64
 {
-	Patch "DOORBLU", 0, 0
+	Patch "LITGEN7", 0, 0
 }
 
-Texture "DOORBLU2_noglow", 64, 64
+Texture "LITGEN7B_noglow", 64, 64
 {
-	Patch "DOORBLU2", 0, 0
+	Patch "LITGEN7B", 0, 0
 }
 
-Texture "DOORRED_noglow", 64, 64
+Texture "LITGEN8_noglow", 64, 64
 {
-	Patch "DOORRED", 0, 0
+	Patch "LITGEN8", 0, 0
 }
 
-Texture "DOORRED2_noglow", 64, 64
+Texture "LITGEN9_noglow", 64, 64
 {
-	Patch "DOORRED2", 0, 0
+	Patch "LITGEN9", 0, 0
 }
 
-Texture "DOORYEL_noglow", 64, 64
+Texture "LITGEN9B_noglow", 64, 64
 {
-	Patch "DOORYEL", 0, 0
+	Patch "LITGENB9", 0, 0
 }
 
-Texture "DOORYEL2_noglow", 64, 64
+Texture "LITGEN9C_noglow", 64, 64
 {
-	Patch "DOORYEL2", 0, 0
+	Patch "LITGEN9C", 0, 0
 }
+
+Texture "LITGEN9D_noglow", 64, 64
+{
+	Patch "LITGEN9D", 0, 0
+}
+
+Texture "DOORBLU_noglow", 8, 128
+{
+	Patch "W46_37", 0, 112
+	Patch "W46_37", 0, 0
+	Patch "W46_37", 0, 96
+	Patch "W46_37", 0, 80
+	Patch "W46_37", 0, 16
+	Patch "W46_37", 0, 32
+	Patch "W46_37", 0, 48
+	Patch "W46_37", 0, 64
+}
+
+Texture "DOORBLU2_noglow", 16, 128
+{
+	Patch "W108_2", 0, 0
+	Patch "W108_2", 0, 24
+	Patch "W108_2", 0, 48
+	Patch "W108_2", 0, 72
+	Patch "W108_2", 0, 96
+	Patch "STEP07", 0, 120
+}
+
+Texture "DOORRED_noglow", 8, 128
+{
+	Patch "W46_38", 0, 0
+	Patch "W46_38", 0, 16
+	Patch "W46_38", 0, 32
+	Patch "W46_38", 0, 48
+	Patch "W46_38", 0, 64
+	Patch "W46_38", 0, 80
+	Patch "W46_38", 0, 96
+	Patch "W46_38", 0, 112
+}
+
+Texture "DOORRED2_noglow", 16, 128
+{
+	Patch "W108_3", 0, 0
+	Patch "W108_3", 0, 24
+	Patch "W108_3", 0, 48
+	Patch "W108_3", 0, 72
+	Patch "W108_3", 0, 96
+	Patch "STEP07", 0, 120
+}
+
+Texture "DOORYEL_noglow", 8, 128
+{
+	Patch "W46_39", 0, 112
+	Patch "W46_39", 0, 80
+	Patch "W46_39", 0, 64
+	Patch "W46_39", 0, 0
+	Patch "W46_39", 0, 16
+	Patch "W46_39", 0, 48
+	Patch "W46_39", 0, 32
+	Patch "W46_39", 0, 96
+}
+
+Texture "DOORYEL2_noglow", 16, 128
+{
+	Patch "W108_4", 0, 0
+	Patch "W108_4", 0, 24
+	Patch "W108_4", 0, 48
+	Patch "W108_4", 0, 72
+	Patch "W108_4", 0, 96
+	Patch "STEP07", 0, 120
+}
+
+//Brutal Doom Specific Stuff
+
 
 // End of texture definitions

@@ -1,8 +1,23 @@
 class CompatiblityConfig : ConfigBase
 {
-    static GLCompatLevel GetBrutalGLCompatibility()
+    static bool GetBrutalGLCompatibilityLiquids()
     {
-        return CVar.GetCVar("flashlight_compat_brutal_gldefs").GetInt();
+        return CVar.GetCVar("flashlight_compat_brutal_gldefs_liquids").GetBool();
+    }
+    
+    static bool GetBrutalGLCompatibilityLights()
+    {
+        return CVar.GetCVar("flashlight_compat_brutal_gldefs_lights").GetBool();
+    }
+    
+    static bool GetBrutalGLCompatibilityGates()
+    {
+        return CVar.GetCVar("flashlight_compat_brutal_gldefs_gates").GetBool();
+    }
+    
+    static bool GetBrutalGLCompatibilityDoors()
+    {
+        return CVar.GetCVar("flashlight_compat_brutal_gldefs_doors").GetBool();
     }
 }
 
@@ -12,8 +27,14 @@ enum GLCompatLevel
     GLCOMPAT_ALL = 1,
     GLCOMPAT_LIQUIDS = 2,
     GLCOMPAT_GATES = 3,
-    GLCOMPAT_DOORS = 4,
-    GLCOMPAT_LIQUIDS_GATES = 5,
-    GLCOMPAT_LIQUIDS_DOORS = 6,
-    GLCOMPAT_GATES_DOORS = 7,
+    GLCOMPAT_LIGHTS = 4,
+    GLCOMPAT_DOORS = 5,
+    GLCOMPAT_LIQUIDS_GATES = 6,
+    GLCOMPAT_LIQUIDS_LIGHTS = 7,
+    GLCOMPAT_LIQUIDS_DOORS = 8,
+    GLCOMPAT_GATES_LIGHTS = 9,
+    GLCOMPAT_GATES_DOORS = 10,
+    GLCOMPAT_LIGHTS_DOORS = 11,
+    GLCOMPAT_LIQUID_GATES_LIGHTS = 12,
+    GLCOMPAT_LIQUID_GATES_DOORS = 13,
 }

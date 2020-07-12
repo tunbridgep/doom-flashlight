@@ -107,7 +107,6 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             CVar.GetCvar("flashlight_darken_mode").SetInt(2);
             CVar.GetCvar("flashlight_starting_item").SetInt(1);
             CVar.GetCvar("flashlight_enemies_drop_battery").SetBool(true);
-            CVar.GetCvar("flashlight_enemies_drop_battery_chance").SetInt(15);
             
             //Stealth Monster settings
             CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(3);

@@ -1,0 +1,5 @@
+flat	BLOOD1_noglow  	range	BLOOD3_noglow  	tics 8
+flat	LAVA1_noglow   	range	LAVA4_noglow		tics 8
+flat	NUKAGE1_noglow 	range	NUKAGE3_noglow 	tics 8
+flat	SLIME01_noglow 	range	SLIME04_noglow 	tics 8
+flat	SLIME09_noglow 	range	SLIME12_noglow 	tics 8

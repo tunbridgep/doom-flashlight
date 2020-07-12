@@ -67,7 +67,10 @@ server int flashlight_starting_item = 0;
 server int flashlight_starting_flares = 0;
 
 //compatibility settings
-server int flashlight_compat_brutal_gldefs = 0;
+server bool flashlight_compat_brutal_gldefs_liquids = false;
+server bool flashlight_compat_brutal_gldefs_lights = false;
+server bool flashlight_compat_brutal_gldefs_gates = false;
+server bool flashlight_compat_brutal_gldefs_doors = false;
 
 //misc
 server int flashlight_debug = 0;
