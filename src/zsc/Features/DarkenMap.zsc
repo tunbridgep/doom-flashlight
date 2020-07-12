@@ -1,4 +1,4 @@
-class DarkenMap : EventHandler
+class DarkenMap : FlashlightEventHandler
 {
 
     //darkens based on a curve - the closer it is to the threshold, the less it gets darkened
@@ -72,7 +72,7 @@ class DarkenMap : EventHandler
         Debug.Log(modified_sectors.." sectors were darkened");
     }
     
-    override void WorldLoaded(WorldEvent e)
+    override void UniqueWorldLoaded(WorldEvent e)
     {
         LightingMode mode = LightingConfig.GetMode();
         LinearInfo linearinfo;
@@ -82,7 +82,7 @@ class DarkenMap : EventHandler
         DivideInfo divideinfo;
         LightingConfig.GetDivideModeInfo(divideinfo);
         
-        if (mode != LIGHTING_DISABLED && !e.IsReopen)
+        if (mode != LIGHTING_DISABLED)
             DarkenMap(mode,linearinfo,parabolainfo,divideinfo);
     }
 }

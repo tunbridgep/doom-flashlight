@@ -1,0 +1,59 @@
+#library "compat"
+#include "zcommon.acs"
+
+Script "ReplaceBrutalGLTextures" (int liquids, int gates, int doors, int lights)
+{
+    if (lights)
+    {
+        ReplaceTextures("TLITE6_1","TLITE6_1_noglow");
+        ReplaceTextures("TLITE6_4","TLITE6_4_noglow");
+        ReplaceTextures("TLITE6_6","TLITE6_6_noglow");
+        ReplaceTextures("FLAT17","FLAT17_noglow");
+        ReplaceTextures("FLAT2","FLAT2_noglow");
+        ReplaceTextures("FLAT22","FLAT22_noglow");
+        ReplaceTextures("FLOOR1_7","FLOOR1_7_noglow");
+        ReplaceTextures("RROCK01","RROCK01_noglow");
+        ReplaceTextures("RROCK02","RROCK02_noglow");
+        ReplaceTextures("RROCK05","RROCK05_noglow");
+        ReplaceTextures("RROCK06","RROCK06_noglow");
+        ReplaceTextures("RROCK07","RROCK07_noglow");
+        ReplaceTextures("RROCK08","RROCK08_noglow");
+        ReplaceTextures("GRNLITE1","GRNLITE1_noglow");
+        ReplaceTextures("CEIL3_3","CEIL3_3_noglow");
+        ReplaceTextures("CEIL3_4","CEIL3_4_noglow");
+    }
+    
+    if (liquids)
+    {
+        ReplaceTextures("NUKAGE1","NUKAGE1_noglow");
+        ReplaceTextures("NUKAGE2","NUKAGE2_noglow");
+        ReplaceTextures("NUKAGE3","NUKAGE3_noglow");
+        ReplaceTextures("BLOOD1","BLOOD1_noglow");
+        ReplaceTextures("BLOOD2","BLOOD2_noglow");
+        ReplaceTextures("LAVA1","LAVA1_noglow");
+        ReplaceTextures("LAVA2","LAVA2_noglow");
+        ReplaceTextures("LAVA3","LAVA3_noglow");
+        ReplaceTextures("LAVA4","LAVA4_noglow");
+        ReplaceTextures("SLIME01","SLIME01_noglow");
+        ReplaceTextures("SLIME02","SLIME02_noglow");
+        ReplaceTextures("SLIME03","SLIME03_noglow");
+    }
+    
+    if (gates)
+    {
+        ReplaceTextures("GATE1","GATE1_noglow");
+        ReplaceTextures("GATE2","GATE2_noglow");
+        ReplaceTextures("GATE3","GATE3_noglow");
+        ReplaceTextures("GATE4","GATE4_noglow");
+    }
+    
+    if (doors)
+    {
+        ReplaceTextures("DOORBLU","DOORBLU_noglow");
+        ReplaceTextures("DOORBLU2","DOORBLU2_noglow");
+        ReplaceTextures("DOORRED","DOORRED_noglow");
+        ReplaceTextures("DOORRED2","DOORRED2_noglow");
+        ReplaceTextures("DOORRED","DOORRED_noglow");
+        ReplaceTextures("DOORYEL2","DOORYEL2_noglow");
+    }
+}

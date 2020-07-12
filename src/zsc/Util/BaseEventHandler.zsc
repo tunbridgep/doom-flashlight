@@ -1,0 +1,19 @@
+//This is the same as a regular event handler, but it automatically
+//filters out reopen game events, and the titlemap
+class FlashlightEventHandler : EventHandler
+{
+    virtual void UniqueWorldLoaded(WorldEvent e)
+    {
+        //override this
+    }
+
+    override void WorldLoaded(WorldEvent e)
+    {
+        if (e.IsReopen)
+            return;
+        
+        //TODO: TITLEMAP check
+        
+        UniqueWorldLoaded(e);
+    }
+}

@@ -1,0 +1,18 @@
+//Undo the insane GLDEFS stuff done by Brutal Doom and Project Brutality
+class GLCompat : FlashlightEventHandler
+{
+    override void UniqueWorldLoaded(WorldEvent e)
+    {       
+        bool player = Game.IsPlayingProjectBrutality() || Game.IsPlayingBrutalDoom();
+        GLCompatLevel compat = CompatiblityConfig.GetBrutalGLCompatibility();
+        
+        if (player && compat != GLCOMPAT_DISABLED)
+        {
+            bool liquids = compat == GLCOMPAT_ALL || compat == GLCOMPAT_LIQUIDS || compat == GLCOMPAT_LIQUIDS_GATES || compat == GLCOMPAT_LIQUIDS_DOORS;
+            bool gates = compat == GLCOMPAT_ALL || compat == GLCOMPAT_GATES || compat == GLCOMPAT_GATES_DOORS || compat == GLCOMPAT_LIQUIDS_GATES;
+            bool doors = compat == GLCOMPAT_ALL || compat == GLCOMPAT_DOORS || compat == GLCOMPAT_GATES_DOORS || compat == GLCOMPAT_LIQUIDS_DOORS;
+            Debug.LogVerbose("Brutal Doom OpenGL Compatibility Applied...Replacing Textures");
+            CallACS("ReplaceBrutalGLTextures",!liquids,!gates,!doors,true);
+        }
+    }
+}

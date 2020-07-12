@@ -6,4 +6,195 @@ Texture "DARKSKY", 256, 128
 	Patch "DARKSKY", 0, 0
 }
 
+// Compatibility Textures
+Texture "TLITE6_1_noglow", 64, 64
+{
+	Patch "TLITE6_1", 0, 0
+}
+
+Texture "TLITE6_4_noglow", 64, 64
+{
+	Patch "TLITE6_4", 0, 0
+}
+
+Texture "TLITE6_6_noglow", 64, 64
+{
+	Patch "TLITE6_6", 0, 0
+}
+
+Texture "FLAT17_noglow", 64, 64
+{
+	Patch "FLAT17", 0, 0
+}
+
+Texture "FLAT2_noglow", 64, 64
+{
+	Patch "FLAT2", 0, 0
+}
+
+Texture "FLAT22_noglow", 64, 64
+{
+	Patch "FLAT22", 0, 0
+}
+
+Texture "FLOOR1_7_noglow", 64, 64
+{
+	Patch "FLOOR1_7", 0, 0
+}
+
+Texture "RROCK01_noglow", 64, 64
+{
+	Patch "RROCK01", 0, 0
+}
+
+Texture "RROCK02_noglow", 64, 64
+{
+	Patch "RROCK02", 0, 0
+}
+
+Texture "RROCK05_noglow", 64, 64
+{
+	Patch "RROCK05", 0, 0
+}
+
+Texture "RROCK06_noglow", 64, 64
+{
+	Patch "RROCK06", 0, 0
+}
+
+Texture "RROCK07_noglow", 64, 64
+{
+	Patch "RROCK07", 0, 0
+}
+
+Texture "RROCK08_noglow", 64, 64
+{
+	Patch "RROCK08", 0, 0
+}
+
+Texture "GRNLITE1_noglow", 64, 64
+{
+	Patch "GRNLITE1", 0, 0
+}
+
+Texture "CEIL3_3_noglow", 64, 64
+{
+	Patch "CEIL3_3", 0, 0
+}
+
+Texture "CEIL3_4_noglow", 64, 64
+{
+	Patch "CEIL3_4", 0, 0
+}
+
+Texture "NUKAGE1_noglow", 64, 64
+{
+	Patch "NUKAGE1", 0, 0
+}
+
+Texture "NUKAGE2_noglow", 64, 64
+{
+	Patch "NUKAGE2", 0, 0
+}
+
+Texture "NUKAGE3_noglow", 64, 64
+{
+	Patch "NUKAGE3", 0, 0
+}
+
+Texture "BLOOD1_noglow", 64, 64
+{
+	Patch "BLOOD1", 0, 0
+}
+
+Texture "BLOOD2_noglow", 64, 64
+{
+	Patch "BLOOD2", 0, 0
+}
+
+Texture "LAVA1_noglow", 64, 64
+{
+	Patch "LAVA1", 0, 0
+}
+
+Texture "LAVA2_noglow", 64, 64
+{
+	Patch "LAVA2", 0, 0
+}
+
+Texture "LAVA3_noglow", 64, 64
+{
+	Patch "LAVA3", 0, 0
+}
+
+Texture "LAVA4_noglow", 64, 64
+{
+	Patch "LAVA4", 0, 0
+}
+
+Texture "SLIME01_noglow", 64, 64
+{
+	Patch "SLIME01", 0, 0
+}
+
+Texture "SLIME02_noglow", 64, 64
+{
+	Patch "SLIME02", 0, 0
+}
+
+Texture "SLIME03_noglow", 64, 64
+{
+	Patch "SLIME03", 0, 0
+}
+
+Texture "GATE1_noglow", 64, 64
+{
+	Patch "GATE1", 0, 0
+}
+
+Texture "GATE2_noglow", 64, 64
+{
+	Patch "GATE2", 0, 0
+}
+
+Texture "GATE3_noglow", 64, 64
+{
+	Patch "GATE3", 0, 0
+}
+
+Texture "GATE4_noglow", 64, 64
+{
+	Patch "GATE4", 0, 0
+}
+
+Texture "DOORBLU_noglow", 64, 64
+{
+	Patch "DOORBLU", 0, 0
+}
+
+Texture "DOORBLU2_noglow", 64, 64
+{
+	Patch "DOORBLU2", 0, 0
+}
+
+Texture "DOORRED_noglow", 64, 64
+{
+	Patch "DOORRED", 0, 0
+}
+
+Texture "DOORRED2_noglow", 64, 64
+{
+	Patch "DOORRED2", 0, 0
+}
+
+Texture "DOORYEL_noglow", 64, 64
+{
+	Patch "DOORYEL", 0, 0
+}
+
+Texture "DOORYEL2_noglow", 64, 64
+{
+	Patch "DOORYEL2", 0, 0
+}
+
 // End of texture definitions

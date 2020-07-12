@@ -1,0 +1,36 @@
+class Game play
+{
+    static bool IsPlayingBrutalDoom()
+    {
+        
+        return ActorUtil.isClass(players[consoleplayer].mo,"BDoomer")
+        || ActorUtil.isClass(players[consoleplayer].mo,"BDoomer2")
+        || ActorUtil.isClass(players[consoleplayer].mo,"Purist")
+        || ActorUtil.isClass(players[consoleplayer].mo,"TacticalDoomer");
+    }
+    
+    static bool IsPlayingProjectBrutality()
+    {
+        return ActorUtil.isClass(players[consoleplayer].mo,"BrutalDoomer");
+    }
+
+    static bool IsPlayingDoom()
+    {
+        return false;
+    }
+    
+    static bool IsPlayingHeretic()
+    {
+        return false;
+    }
+    
+    static bool IsPlayingHexen()
+    {
+        return false;
+    }
+    
+    static bool IsPlayingStrife()
+    {
+        return false;
+    }
+}

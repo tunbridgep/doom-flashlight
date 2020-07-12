@@ -1,4 +1,4 @@
-class FlashlightReplacers : EventHandler
+class FlashlightReplacers : FlashlightEventHandler
 {
 
     Class<Actor> shotgunclass;
@@ -67,7 +67,7 @@ class FlashlightReplacers : EventHandler
     }
     
     //do this every map rather than OnRegister so that we can chance mid-campaign
-    override void WorldLoaded(WorldEvent e)
+    override void UniqueWorldLoaded(WorldEvent e)
     {
         chanceFlash = ReplacerConfig.GetFlashlightChance();
         chanceFlare = ReplacerConfig.GetFlareChance();

@@ -45,14 +45,12 @@ FLASHLIGHT_GAMEPLAY_SETTINGS = "Gameplay Settings";
 FLASHLIGHT_LIGHTING_SETTINGS = "Lighting Settings";
 FLASHLIGHT_CREDITS = "Show Credits/About";
 FLASHLIGHT_CALIBRATION = "Calibrate Display Settings";
+FLASHLIGHT_COMPAT_SETTINGS = "Compatibility Settings";
 
 //Menu Titles
 FLASHLIGHT_MAIN_MENU_TITLE = "Flashlight Mod Settings";
 FLASHLIGHT_CREDITS_TITLE = "Flashlight Mod Credits";
 FLASHLIGHT_CALIBRATION_TITLE = "Display Settings Calibration";
-FLASHLIGHT_CALIBRATION_DESC1 = "If areas still look too bright, try adjusting these";
-FLASHLIGHT_CALIBRATION_DESC2 = "settings until things look better. Dark or Standard";
-FLASHLIGHT_CALIBRATION_DESC3 = "Sector light mode is recommended";
 
 //Headers
 FLASHLIGHT_DROP_HEADER = "Item Drop Settings";
@@ -66,6 +64,11 @@ FLASHLIGHT_FLASHLIGHT_HEADER = "Flashlight Settings";
 FLASHLIGHT_FLARE_HEADER = "Flare Settings";
 FLASHLIGHT_CONTROLS_HEADER = "Control Settings";
 FLASHLIGHT_CALIBRATION_HEADER = "Calibration Settings";
+
+//Calibration Menu
+FLASHLIGHT_CALIBRATION_DESC1 = "If areas still look too bright, try adjusting these";
+FLASHLIGHT_CALIBRATION_DESC2 = "settings until things look better. Dark or Standard";
+FLASHLIGHT_CALIBRATION_DESC3 = "Sector light mode is recommended";
 
 //Replacer Option Settings
 FLASHLIGHT_SPAWN_FLASHLIGHT_1 = "Shotgun";
@@ -210,6 +213,20 @@ FLASHLIGHT_PROFILE_DROP_BATTERIES = "Former Humans drop Batteries";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
 FLASHLIGHT_PROFILE_WARNING2 = "Settings will take effect on next map load";
+
+//Compatibility Options
+FLASHLIGHT_GLCOMPAT_HEADER = "Brutal Doom Glow Overrides";
+FLASHLIGHT_GLCOMPAT = "Enable Glows on";
+FLASHLIGHT_GLCOMPAT_ALL = "All Textures";
+FLASHLIGHT_GLCOMPAT_LIQUIDS = "Liquid Textures Only";
+FLASHLIGHT_GLCOMPAT_GATES = "Gate Textures Only";
+FLASHLIGHT_GLCOMPAT_DOORS = "Door Textures Only";
+FLASHLIGHT_GLCOMPAT_LIQUIDS_GATES = "Liquid and Gate Textures";
+FLASHLIGHT_GLCOMPAT_LIQUIDS_DOORS = "Liquid and Door Textures";
+FLASHLIGHT_GLCOMPAT_GATES_DOORS = "Gate and Door Textures";
+FLASHLIGHT_GLCOMPAT_DESC = "Brutal Doom and Project Brutality define a number of textures";
+FLASHLIGHT_GLCOMPAT_DESC2 = "which are set to glow, but many pwads override these textures (such as scythe2).";
+FLASHLIGHT_GLCOMPAT_DESC3 = "This will make them glow and look out of place in the darkness. The glows can be disabled here";
 
 //Credits
 

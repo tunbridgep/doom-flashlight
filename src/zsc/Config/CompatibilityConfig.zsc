@@ -1,0 +1,19 @@
+class CompatiblityConfig : ConfigBase
+{
+    static GLCompatLevel GetBrutalGLCompatibility()
+    {
+        return CVar.GetCVar("flashlight_compat_brutal_gldefs").GetInt();
+    }
+}
+
+enum GLCompatLevel
+{
+    GLCOMPAT_DISABLED = 0,
+    GLCOMPAT_ALL = 1,
+    GLCOMPAT_LIQUIDS = 2,
+    GLCOMPAT_GATES = 3,
+    GLCOMPAT_DOORS = 4,
+    GLCOMPAT_LIQUIDS_GATES = 5,
+    GLCOMPAT_LIQUIDS_DOORS = 6,
+    GLCOMPAT_GATES_DOORS = 7,
+}

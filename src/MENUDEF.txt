@@ -71,6 +71,18 @@ OptionValue DarkenModes
     3, "$FLASHLIGHT_DARKEN_MODE_3"
 }
 
+OptionValue GLCompatOptions
+{
+    0, "$FLASHLIGHT_GLCOMPAT_ALL"
+    1, "$FLASHLIGHT_NOTHING"
+    2, "$FLASHLIGHT_GLCOMPAT_LIQUIDS"
+    3, "$FLASHLIGHT_GLCOMPAT_GATES"
+    4, "$FLASHLIGHT_GLCOMPAT_DOORS"
+    5, "$FLASHLIGHT_GLCOMPAT_LIQUIDS_GATES"
+    6, "$FLASHLIGHT_GLCOMPAT_LIQUIDS_DOORS"
+    7, "$FLASHLIGHT_GLCOMPAT_GATES_DOORS"
+}
+
 OptionMenu "FlashlightCalibration"
 {
     Title "$FLASHLIGHT_CALIBRATION_TITLE"
@@ -192,6 +204,7 @@ OptionMenu "FlashlightAdvanced"
     SubMenu "$FLASHLIGHT_SPAWN_SETTINGS", "FlashlightSpawnOptions"
     SubMenu "$FLASHLIGHT_GAMEPLAY_SETTINGS", "FlashlightGameplayOptions"
     SubMenu "$FLASHLIGHT_LIGHTING_SETTINGS", "FlashlightLightingOptions"
+    SubMenu "$FLASHLIGHT_COMPAT_SETTINGS", "FlashlightCompatOptions"
     StaticText ""
     StaticText "$FLASHLIGHT_FLASHLIGHT_HEADER", 1
     ColorPicker "$FLASHLIGHT_COLOR", "flashlight_color"
@@ -216,6 +229,16 @@ OptionMenu "FlashlightAdvanced"
     StaticText "$FLASHLIGHT_AUTO_USE_FLARES_DESC"
     Option "$FLASHLIGHT_AUTO_USE", "flashlight_auto_use_flashlight", YesNo
     StaticText "$FLASHLIGHT_AUTO_USE_DESC"
+}
+
+OptionMenu "FlashlightCompatOptions"
+{
+    Title "$FLASHLIGHT_COMPAT_SETTINGS"
+    StaticText "$FLASHLIGHT_GLCOMPAT_HEADER", 1
+    Option "$FLASHLIGHT_GLCOMPAT", "flashlight_compat_brutal_gldefs", GLCompatOptions
+    StaticText "$FLASHLIGHT_GLCOMPAT_DESC"
+    StaticText "$FLASHLIGHT_GLCOMPAT_DESC2"
+    StaticText "$FLASHLIGHT_GLCOMPAT_DESC3"
 }
 
 OptionMenu "FlashlightBase"
