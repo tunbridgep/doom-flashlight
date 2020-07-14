@@ -27,9 +27,9 @@ server int flashlight_battery_charge_per_tic = 3;
 
 //map alteration
 server int flashlight_darken_mode = 0;
-server int flashlight_darken_parabola_brightness_factor = 10;
+server int flashlight_darken_parabola_brightness_factor = 24;
 server int flashlight_darken_parabola_curve_point = 84;
-server int flashlight_darken_parabola_adjust = 16;
+server int flashlight_darken_parabola_adjust = 10;
 server int flashlight_darken_linear_amount = 45;
 server float flashlight_darken_divide_amount = 5;
 server int flashlight_darken_divide_additional = 0;
@@ -59,8 +59,8 @@ server bool flashlight_enemies_drop_battery = false;
 server bool flashlight_enemies_drop_battery_expander = false;
 server int flashlight_enemies_drop_flashlights_chance = 10;
 server int flashlight_enemies_drop_flares_chance = 15;
-server int flashlight_enemies_drop_battery_chance = 1;
-server int flashlight_enemies_drop_battery_expander_chance = 1;
+server int flashlight_enemies_drop_battery_chance = 8;
+server int flashlight_enemies_drop_battery_expander_chance = 5;
 
 //start-game settings
 server int flashlight_starting_item = 0;
