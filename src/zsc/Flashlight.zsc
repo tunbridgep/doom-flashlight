@@ -131,7 +131,11 @@ class Flashlight : FlashlightBase
 		    HFFL A -1;
     		Loop;
 	    Select:
-            TNT1 A 1 A_Raise(999);
+            TNT1 A 1
+            {
+                A_Raise(999);
+                A_SetCrosshair(99);
+            }
             Loop;
         Ready:
             FLIT TRPNLJ 1;
@@ -164,7 +168,11 @@ class Flashlight : FlashlightBase
                 invoker.TryTurnOff(invoker);
             }
             FLIT IJLNPRT 1;
-            TNT1 A 1 A_Lower(999);
+            TNT1 A 1
+            {
+                A_Lower(999);
+                A_SetCrosshair(0);
+            }
             Loop;
         Fire: 
             FLIT I 0
