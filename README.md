@@ -2,7 +2,7 @@
 
 ## About ##
 
-This is designed to be an "all in one" solution for those who may have used [DarkDoom](https://www.moddb.com/games/doom/addons/dark-doom) and other mods in the past, who want an easy but configurable solution to playing a darker, more spooky version of Doom, or who want a new way of playing a mapset they are very familiar with. Designed exclusively for GZDoom.
+This is designed to be an "all in one" solution for those who may have used [DarkDoom](https://www.moddb.com/games/doom/addons/dark-doom) and other mods in the past, who want an easy but configurable solution to playing a darker, more spooky version of Doom, or who want a new way of playing a mapset they are very familiar with. This mod relies heavily on zscript and is designed exclusively for GZDoom. Zandronum support will never be implemented.
 
 ## Feature Overview ##
 
@@ -15,6 +15,12 @@ This mod has the following features, all of which are designed to be optional an
 - Full customisation of all features including flashlight and flare colors, gameplay effects, light levels, and other preferences.
 - "Ambushes", allowing monsters in dark areas to be replaced with stealth variants (many people hate stealth monsters, keep in mind this is completely optional)
 - Uses ZScript event handlers and modifies existing actors dynamically based on parameters. No actors are replaced. Should be inherently compatible with most mods. Thoroughly tested with Brutal Doom and Project Brutality, both of which work perfectly. It is designed to be as compatible as possible - any undesired interaction with any other mod, no matter how trivial, should be considered a bug.
+
+## Why Does This Exist? Doom is an Action Game! Making it Dark Destroys the Balance! ##
+
+Maybe. This mod is configurable for a reason. Still, I am open to balance suggestions and changes.
+
+This started as an exploration of zscript and it's features, especially with dynamically modifying actors through script, such as applying the bStealth flag. It eventually became something viable, without me even realising it.
 
 ## Installation ##
 
@@ -31,6 +37,12 @@ Alternatively, for a much quicker build experience, a config file is included fo
 ## Detailed Feature Breakdown ##
 
 TBD. This section should include a thorough description of every option and console command. Contributions are welcome. Of special importance is documenting the darkening algorithms and the compatibility options for glowing textures, as these are not self-explanatory and require some detail.
+
+## Missing/Incomplete Features ##
+
+- The battery display kind of sucks. The numbers are supposed to show flares, battery upgrades, and battery recharges, but it's not clear what everything is. The entire battery display probably needs a redesign. I am open to ideas.
+- The mod needs thorough testing. There is no guarantee it will work properly out of the box. Some of the default values probably need some tweaking, and some descriptions updated. This is an alpha for a reason.
+- Sometimes, seemingly at random, performance will drop in some areas if the beam is on. This is rare and doesn't tank performance all that badly, so it's not a major issue, but I would still like to resolve it. It may be a gzdoom issue though.
 
 ## Planned Features ##
 
