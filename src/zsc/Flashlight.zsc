@@ -35,7 +35,7 @@ class FlashlightBase : Weapon abstract
     
     protected void TryTurnOn(Actor invoker, bool respect_autouse = false)
     {
-        
+        Setup();
         //bail out if we are being told to respect autouse but autouse isn't on
         if (respect_autouse && !FlashlightConfig.GetAutoUse())
             return;
@@ -56,14 +56,13 @@ class FlashlightBase : Weapon abstract
         }
     }
     
-    override void AttachToOwner(Actor other)
+    void Setup()
     {
-        super.AttachToOwner(other);
         if (beam == null)
         {
             Debug.LogVerbose("Recreating beam");
         
-            PlayerPawn player = PlayerPawn(other);
+            PlayerPawn player = PlayerPawn(owner);
                     
             beam = FlashlightBeam(Actor.Spawn("FlashlightBeam"));
             beam.FollowPlayer(player);
@@ -72,9 +71,9 @@ class FlashlightBase : Weapon abstract
         if (battery == null)
         {
             Debug.LogVerbose("Recreating battery");
-            battery = Battery(other.FindInventory("Battery"));
+            battery = Battery(owner.FindInventory("Battery"));
             if (!battery)
-                battery = Battery(other.GiveInventoryType("Battery"));
+                battery = Battery(owner.GiveInventoryType("Battery"));
         }
     }
     
@@ -98,6 +97,7 @@ class FlashlightBase : Weapon abstract
     
     protected void BatteryControl(Actor invoker)
     {
+        Setup();
         if (battery.IsEmpty())
             TryTurnOff(invoker);
     }
