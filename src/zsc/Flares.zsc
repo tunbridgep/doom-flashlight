@@ -7,6 +7,7 @@ class Flare : CustomInventory
         //+INVENTORY.INVBAR;
         +INVENTORY.HUBPOWER;
         +INVENTORY.PERSISTENTPOWER;
+        +DONTGIB;
         Inventory.MaxAmount 30;
         Inventory.InterHubAmount 30;
         Inventory.Icon "FLARINV";

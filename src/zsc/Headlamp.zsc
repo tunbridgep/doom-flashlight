@@ -6,6 +6,7 @@ class Headlamp : Inventory
         +INVENTORY.HUBPOWER;
         +INVENTORY.PERSISTENTPOWER;
         +INVENTORY.IGNORESKILL;
+        +DONTGIB;
         //+INVENTORY.INVBAR;
         Inventory.InterHubAmount 1;
         Inventory.MaxAmount 1;

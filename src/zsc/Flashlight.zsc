@@ -11,6 +11,7 @@ class FlashlightBase : Weapon abstract
         Inventory.MaxAmount 1;
         Scale 1.0;
         +Weapon.NOALERT;
+        +DONTGIB;
         +Weapon.NOAUTOFIRE;
         +Weapon.NOAUTOAIM;
         +Inventory.ALWAYSPICKUP;
@@ -32,14 +33,19 @@ class FlashlightBase : Weapon abstract
         return true;
     }
     
-    protected void TryTurnOn(Actor invoker)
+    protected void TryTurnOn(Actor invoker, bool respect_autouse = false)
     {
-        Setup();
+        
+        //bail out if we are being told to respect autouse but autouse isn't on
+        if (respect_autouse && !FlashlightConfig.GetAutoUse())
+            return;
+        
         if (!beam.IsOn())
         {
             if (CanTurnOn())
             {
                 owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
+                beam.SetReady(true);
                 beam.Activate(invoker);
                 battery.SetInUse(true);
             }
@@ -50,9 +56,30 @@ class FlashlightBase : Weapon abstract
         }
     }
     
+    override void AttachToOwner(Actor other)
+    {
+        super.AttachToOwner(other);
+        if (beam == null)
+        {
+            Debug.LogVerbose("Recreating beam");
+        
+            PlayerPawn player = PlayerPawn(other);
+                    
+            beam = FlashlightBeam(Actor.Spawn("FlashlightBeam"));
+            beam.FollowPlayer(player);
+        }
+        
+        if (battery == null)
+        {
+            Debug.LogVerbose("Recreating battery");
+            battery = Battery(other.FindInventory("Battery"));
+            if (!battery)
+                battery = Battery(other.GiveInventoryType("Battery"));
+        }
+    }
+    
     protected void TryTurnOff(Actor invoker)
     {
-        Setup();
         if (beam.IsOn())
         {
             owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
@@ -71,7 +98,6 @@ class FlashlightBase : Weapon abstract
     
     protected void BatteryControl(Actor invoker)
     {
-        Setup();
         if (battery.IsEmpty())
             TryTurnOff(invoker);
     }
@@ -88,26 +114,6 @@ class FlashlightBase : Weapon abstract
     }
     */
     
-    void Setup()
-    {
-        if (beam == null)
-        {
-            Debug.LogVerbose("Recreating beam");
-        
-            PlayerPawn player = PlayerPawn(owner);
-        
-            beam = FlashlightBeam(Actor.Spawn("FlashlightBeam"));
-            beam.FollowPlayer(player);
-        }
-        
-        if (battery == null)
-        {
-            Debug.LogVerbose("Recreating battery");
-            battery = Battery(owner.FindInventory("Battery"));
-            if (!battery)
-                battery = Battery(owner.GiveInventoryType("Battery"));
-        }
-    }
     
     override void OnDrop(Actor dropper)
     {
@@ -141,10 +147,7 @@ class Flashlight : FlashlightBase
             FLIT TRPNLJ 1;
             TNT1 A 0
             {
-                if (FlashlightConfig.GetAutoUse())
-                {
-                    invoker.TryTurnOn(invoker);
-                }
+                invoker.TryTurnOn(invoker,true);
             }
         RealReady:
             TNT1 A 0
@@ -201,10 +204,7 @@ class Flashlight : FlashlightBase
             TNT1 A 0
             {
                 invoker.battery.UseRecharger();
-                if (FlashlightConfig.GetAutoUse())
-                {
-                    invoker.TryTurnOn(invoker);
-                }
+                invoker.TryTurnOn(invoker,true);
             }
             Goto RealReady;
 	}
