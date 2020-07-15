@@ -6,8 +6,8 @@ FLASHLIGHT_NO_FLASHLIGHT_OR_FLARES = "You don't have a flashlight or flares";
 FLASHLIGHT_PICKUP = "Picked up a flashlight";
 FLASHLIGHT_BATT_PICKUP = "Picked up a Flashlight Battery";
 FLASHLIGHT_BATT_EXP_PICKUP = "Picked up a Flashlight Battery Upgrade";
-FLASHLIGHT_FLARES_REMAIN = "Flares remaining";
-FLASHLIGHT_NO_FLARES_REMAIN = "No Flares";
+FLASHLIGHT_FLARES_REMAIN = "Flare(s) Remaining";
+FLASHLIGHT_NO_FLARES_REMAIN = "No Flares Remaining";
 
 //basics
 FLASHLIGHT_VERSION = "Version 1.0 Alpha";
@@ -181,7 +181,8 @@ FLASHLIGHT_PROFILE_DARKER_DARK = "Darker Darkness";
 FLASHLIGHT_PROFILE_DOOM_3 = "Doom 3 Style";
 FLASHLIGHT_PROFILE_HELL = "The Long Dark";
 FLASHLIGHT_PROFILE_AMBUSH_MODE = "Lying in Wait...";
-FLASHLIGHT_PROFILE_DRAIN_MODE = "...Ready to Strike";
+FLASHLIGHT_PROFILE_DRAIN_MODE = "...Ready to Strike...";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT = "...From the Shadows";
 
 FLASHLIGHT_PROFILE_NOTFAIR = "This profile isn't even remotely fair!";
 
@@ -212,6 +213,7 @@ FLASHLIGHT_PROFILE_DROP_FLARES = "Former Humans drop Flares";
 FLASHLIGHT_PROFILE_DROP_BOTH = "Former Humans drop Flares and Flashlights";
 FLASHLIGHT_PROFILE_DROP_FLARES_INCREASED = "Former Humans drop Flares at an increased rate";
 FLASHLIGHT_PROFILE_DROP_BATTERIES = "Former Humans drop Batteries";
+FLASHLIGHT_PROFILE_DROP_FLARES_BATTERIES = "Former Humans drop Flares and Batteries";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
 FLASHLIGHT_PROFILE_WARNING2 = "Settings will take effect on next map load";

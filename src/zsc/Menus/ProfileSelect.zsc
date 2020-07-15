@@ -10,7 +10,8 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 		DOOM_3_STYLE = 5,
 		AMBUSH_MODE = 6,
 		DRAIN_MODE = 7,
-		VANILLA_MODE = 8
+		VANILLA_MODE = 8,
+		DRAIN_MODE_NIGHT = 9
 	};
 
     OptionMenuItemFlashlightApplyProfile Init(String text, int color = -1)
@@ -81,21 +82,30 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
         
         
         
-        if (p != DISABLED && p != FLARES_ONLY_MODE && p != DRAIN_MODE && p != VANILLA_MODE)
+        if (p != DISABLED && p != FLARES_ONLY_MODE && p != DRAIN_MODE_NIGHT && p != DRAIN_MODE && p != VANILLA_MODE)
         {
             //common stuff - only gets activated the first time we select a profile
             CVar.GetCvar("flashlight_spawn_battery_upgrade").SetInt(1);
         }
                
-        if (p == NIGHT_MODE || p == AMBUSH_MODE) //map is dark, start with flashlight
+        if (p == NIGHT_MODE || p == AMBUSH_MODE || p == DRAIN_MODE_NIGHT) //map is dark, start with flashlight
         {
             CVar.GetCvar("flashlight_darken_mode").SetInt(3);
             CVar.GetCvar("flashlight_darken_divide_amount").ResetToDefault();
             CVar.GetCvar("flashlight_starting_item").SetInt(1);
             CVar.GetCvar("flashlight_replace_sky").SetBool(true);
             CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
-            if (p == AMBUSH_MODE)
+            if (p == AMBUSH_MODE || p == DRAIN_MODE_NIGHT)
                 CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(3);
+            if (p == DRAIN_MODE_NIGHT)
+            {
+                CVar.GetCvar("flashlight_enemies_drop_battery").SetBool(true);
+                CVar.GetCvar("flashlight_stealth_monster_chance").SetInt(100);
+                CVar.GetCvar("flashlight_battery_min_threshold").SetInt(0);
+                CVar.GetCvar("flashlight_battery_use_per_tic").SetInt(1);
+                CVar.GetCvar("flashlight_battery_charge_per_tic").SetInt(0);
+                CVar.GetCvar("flashlight_spawn_battery_recharge").SetBool(true);
+            }
         }
         else if (p == VANILLA_MODE) //Very simply profile. Nothing is changed, but enemies drop the flashlight and flares
         {
