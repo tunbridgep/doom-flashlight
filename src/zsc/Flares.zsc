@@ -2,7 +2,7 @@ class Flare : CustomInventory
 {
     Default
     {
-        Radius 4;
+        Radius 12;
         Height 18;
         //+INVENTORY.INVBAR;
         +INVENTORY.HUBPOWER;
