@@ -8,7 +8,11 @@ class FlashlightBeam : Spotlight
     void FollowPlayer(PlayerPawn pp)
     {
         toFollow = pp;
-        ready = true;
+    }
+    
+    void SetReady(bool r)
+    {
+        ready = r && toFollow;
     }
     
     private void SetParameters()
@@ -43,8 +47,8 @@ class FlashlightBeam : Spotlight
         {
             SetParameters();
             on = true;
-            super.Activate(activator);
         }
+        super.Activate(activator);
     }
     
     override void DeActivate(Actor activator)

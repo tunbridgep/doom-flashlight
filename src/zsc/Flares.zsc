@@ -2,11 +2,12 @@ class Flare : CustomInventory
 {
     Default
     {
-        Radius 4;
+        Radius 12;
         Height 18;
         //+INVENTORY.INVBAR;
         +INVENTORY.HUBPOWER;
         +INVENTORY.PERSISTENTPOWER;
+        +DONTGIB;
         Inventory.MaxAmount 30;
         Inventory.InterHubAmount 30;
         Inventory.Icon "FLARINV";

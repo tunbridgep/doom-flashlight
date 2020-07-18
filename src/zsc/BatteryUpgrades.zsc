@@ -9,6 +9,7 @@ class FlashlightBatteryUpgrade : Inventory
         +INVENTORY.UNTOSSABLE;
         +INVENTORY.IGNORESKILL;
         -INVENTORY.INVBAR;
+        +DONTGIB;
         +NOGRAVITY;
         +COUNTITEM;
         Inventory.PickupSound "misc/gettool" ;
