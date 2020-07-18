@@ -2,17 +2,11 @@ class FlashlightBeam : Spotlight
 {
     private PlayerPawn toFollow;
     private bool on;
-    private bool ready;
     private vector3 offset;
     
     void FollowPlayer(PlayerPawn pp)
     {
         toFollow = pp;
-    }
-    
-    void SetReady(bool r)
-    {
-        ready = r && toFollow;
     }
     
     private void SetParameters()
@@ -41,25 +35,22 @@ class FlashlightBeam : Spotlight
         return on;
     }
     
-    override void Activate(Actor activator)
+    void TurnOn(Actor activator)
     {
-        if (ready)
-        {
-            SetParameters();
-            on = true;
-        }
-        super.Activate(activator);
+        SetParameters();
+        on = true;
+        Activate(activator);
     }
     
-    override void DeActivate(Actor activator)
+    void TurnOff(Actor activator)
     {
         on = false;
-        super.DeActivate(activator);
+        DeActivate(activator);
     }
     
     override void Tick()
     {
-        if (on && ready)
+        if (on && toFollow)
         {
             A_SetAngle(toFollow.angle, 0);
             A_SetPitch(toFollow.Pitch, SPF_INTERPOLATE);

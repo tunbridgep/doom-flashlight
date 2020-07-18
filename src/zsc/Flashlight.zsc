@@ -17,9 +17,52 @@ class FlashlightBase : Weapon abstract
         +Inventory.ALWAYSPICKUP;
         +WEAPON.WIMPY_WEAPON;
         +WEAPON.NO_AUTO_SWITCH;
-        +WEAPON.NOAUTOAIM;
-        +WEAPON.NOAUTOFIRE;
         +COUNTITEM;
+    }
+    
+    protected void RecreateBeam(Actor attachto)
+    {
+        PlayerPawn player = PlayerPawn(attachto);
+        
+        if (player)
+        {
+            Debug.LogVerbose("Recreating beam");
+            beam = FlashlightBeam(Actor.Spawn("FlashlightBeam"));
+            beam.FollowPlayer(player);
+        }
+    }
+    
+    protected void DestroyBeam()
+    {
+        beam.Deactivate(owner);
+        beam.Destroy();
+    }
+    
+    protected void RecreateBattery(Actor attachto)
+    {
+        Debug.LogVerbose("Recreating battery");
+        battery = Battery(attachto.FindInventory("Battery"));
+        if (!battery)
+            battery = Battery(attachto.GiveInventoryType("Battery"));
+    }
+    
+    override void Travelled()
+    {
+        RecreateBeam(owner);
+        super.Travelled();
+    }
+    
+    override void AttachToOwner(Actor other)
+    {
+        RecreateBeam(other);
+        RecreateBattery(other);
+        super.AttachToOwner(other);
+    }
+    
+    override void DetachFromOwner()
+    {
+        DestroyBeam();
+        super.DetachFromOwner();
     }
     
     protected bool CanTurnOn()
@@ -35,8 +78,6 @@ class FlashlightBase : Weapon abstract
     
     protected void TryTurnOn(Actor invoker, bool respect_autouse = false)
     {
-        Setup();
-        //bail out if we are being told to respect autouse but autouse isn't on
         if (respect_autouse && !FlashlightConfig.GetAutoUse())
             return;
         
@@ -45,8 +86,7 @@ class FlashlightBase : Weapon abstract
             if (CanTurnOn())
             {
                 owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
-                beam.SetReady(true);
-                beam.Activate(invoker);
+                beam.TurnOn(invoker);
                 battery.SetInUse(true);
             }
             else
@@ -56,33 +96,12 @@ class FlashlightBase : Weapon abstract
         }
     }
     
-    void Setup()
-    {
-        if (beam == null)
-        {
-            Debug.LogVerbose("Recreating beam");
-        
-            PlayerPawn player = PlayerPawn(owner);
-                    
-            beam = FlashlightBeam(Actor.Spawn("FlashlightBeam"));
-            beam.FollowPlayer(player);
-        }
-        
-        if (battery == null)
-        {
-            Debug.LogVerbose("Recreating battery");
-            battery = Battery(owner.FindInventory("Battery"));
-            if (!battery)
-                battery = Battery(owner.GiveInventoryType("Battery"));
-        }
-    }
-    
     protected void TryTurnOff(Actor invoker)
     {
         if (beam.IsOn())
         {
             owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
-            beam.Deactivate(invoker);
+            beam.TurnOff(invoker);
             battery.SetInUse(false);
         }
     }
@@ -93,13 +112,6 @@ class FlashlightBase : Weapon abstract
             TryTurnOff(invoker);
         else
             TryTurnOn(invoker);
-    }
-    
-    protected void BatteryControl(Actor invoker)
-    {
-        Setup();
-        if (battery.IsEmpty())
-            TryTurnOff(invoker);
     }
     
     /*
@@ -114,10 +126,10 @@ class FlashlightBase : Weapon abstract
     }
     */
     
-    
-    override void OnDrop(Actor dropper)
+    override void DoEffect()
     {
-        beam.Deactivate(dropper);
+        if (battery.IsEmpty())
+            TryTurnOff(owner);
     }
 }
 
@@ -152,8 +164,7 @@ class Flashlight : FlashlightBase
         RealReady:
             TNT1 A 0
             {
-                A_WeaponReady(WRF_ALLOWRELOAD);
-                invoker.BatteryControl(invoker);
+                A_WeaponReady(WRF_ALLOWRELOAD);               
                 if (invoker.beam.IsOn())
                     return ResolveState("ReadyOn");
                 else
