@@ -39,6 +39,7 @@ server bool flashlight_replace_sky = false;
 server int flashlight_stealth_monster_chance = 20;
 server int flashlight_stealth_monster_threshold = 24;
 server int flashlight_stealth_monster_mode = 0;
+server bool flashlight_smart_stealth_monsters = true;
 
 //replacers
 server int flashlight_spawn_flashlight = 0;

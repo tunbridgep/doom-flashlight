@@ -1,9 +1,10 @@
-class FlashlightStartToken : Inventory
+class PermanentItem : Inventory
 {
     Default
     {
         +INVENTORY.UNDROPPABLE;
         +INVENTORY.ALWAYSPICKUP;
+        //+INVENTORY.UNCLEARABLE;
         +INVENTORY.HUBPOWER;
         +INVENTORY.PERSISTENTPOWER;
         +INVENTORY.UNTOSSABLE;
@@ -12,4 +13,8 @@ class FlashlightStartToken : Inventory
         Inventory.InterHubAmount 1;
         Inventory.MaxAmount 1;
     }
+}
+
+class FlashlightStartToken : PermanentItem
+{
 }

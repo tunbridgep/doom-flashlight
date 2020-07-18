@@ -51,10 +51,11 @@ class FlareBox : CustomInventory
     }
 }
 
-class FlareLight : PointLightFlicker
+class FlareLight : PointLight
 {
     Actor toFollow;
     Vector3 offset;
+    int Intensity;
     
     override void BeginPlay()
     {
@@ -62,23 +63,21 @@ class FlareLight : PointLightFlicker
         args[LIGHT_RED] = color.r;
         args[LIGHT_GREEN] = color.g;
         args[LIGHT_BLUE] = color.b;
-        SetIntensity(242,240);
+        SetIntensity(242);
         bATTENUATE = true;
     }
     
-    //This is here so we can easily randomise it and make our fire effect look more
-    //genuine
-    protected void SetIntensity(int primary, int secondary)
+    protected void SetIntensity(int amount)
     {
-        args[LIGHT_INTENSITY] = primary;
-        args[LIGHT_SECONDARY_INTENSITY] = secondary;
+        args[LIGHT_INTENSITY] = amount;
+        Intensity = amount;
     }
     
     override void Tick()
     {
         ActorUtil.MoveToActor(self,toFollow,offset);
         int new_intensity = random(220,260);
-        SetIntensity(new_intensity,new_intensity - 2);
+        SetIntensity(new_intensity);
         Super.Tick();
     }
 }
@@ -145,6 +144,10 @@ class ActiveFlare : FlareBase
             bFORCEXYBILLBOARD = true;
             RemoveDynamicLight();
             A_StopSound(7);
+        }
+        else
+        {
+            A_RadiusGive("FlareRemoveStealth",pointLight.Intensity,RGF_MONSTERS);
         }
         Super.Tick();
     }

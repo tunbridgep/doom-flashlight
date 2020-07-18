@@ -13,19 +13,77 @@ class StealthSpawner : EventHandler
         let dice = StealthMonsterConfig.GetChance();
             
         if (in_threshold && small && dice.Roll())
-        {           
+        {
+            MakeStealth(monster);
             Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant in sector with light level of "..light_level.." based on a roll of "..dice.GetLastRoll().." ("..dice.GetChance().." percent chance)");
-            monster.bSTEALTH = true;
         }
+    }
+    
+    void MakeStealth(Actor monster)
+    {
+        //monster.bSTEALTH = true;
+        monster.GiveInventory("StealthManager",1);
     }
     
     override void WorldThingSpawned(WorldEvent e)
     {
         Actor a = e.Thing;
-        if (a && a.bISMONSTER && a.GetLevelSpawnTime() <= 5 && StealthMonsterConfig.IsEnabled())
-        {
+        if (!a)
+            return;
+            
+        if (a.bSTEALTH)
+            MakeStealth(a);
+        else if (a.bISMONSTER && a.GetLevelSpawnTime() <= 5 && StealthMonsterConfig.IsEnabled())
             StealthMonsters(a);
+    }
+}
+
+//enables/disables Stealth based on surrounding illumination
+class StealthManager : PermanentItem
+{
+    bool StealthOverride;
+    
+    override void AttachToOwner(Actor other)
+    {
+        StealthOverride = other.bSTEALTH;
+        super.AttachToOwner(other);
+    }
+    
+    override void DoEffect()
+    {
+        int light_level = owner.cursector.lightlevel;
+        bool in_threshold = !StealthMonsterConfig.UsesThreshold() || light_level <= StealthMonsterConfig.GetThreshold();
+        bool revealed = owner.CheckInventory("FlareRemoveStealth",1);
+        bool smart = flashlight_smart_stealth_monsters;
+        
+        if (!smart)
+        {
+            owner.bSTEALTH = true;
+            owner.alpha = 0;
+        }
+        else
+        {
+            owner.bSTEALTH = (in_threshold || StealthOverride) && !revealed;
+            float newalpha = !(owner.bSTEALTH) * 1.0;
+            owner.alpha = Mathf.Lerp(owner.alpha,newalpha,0.025);
         }
     }
+    
+    override void OwnerDied()
+    {
+        owner.bSTEALTH = false;
+        Destroy();
+        super.OwnerDied();
+    }
+}
 
+class FlareRemoveStealth : PermanentItem
+{
+    int ticks;
+    override void DoEffect()
+    {
+        ticks++;
+        if (ticks >= 5)
+            Destroy();
+    }
 }
