@@ -1,0 +1,12 @@
+class ChangeSky : FlashlightEventHandler
+{
+    override void UniqueWorldLoaded(WorldEvent e)
+    {
+        if (flashlight_replace_sky)
+        {
+            let skytex = TexMan.CheckForTexture("DARKSKY",TexMan.TYPE_ANY,TexMan.DONTCREATE);
+            level.ChangeSky(skytex, skytex);
+            Debug.Log("Replacing sky...");
+        }
+    }
+}
