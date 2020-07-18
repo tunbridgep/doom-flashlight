@@ -145,10 +145,13 @@ class ActiveFlare : FlareBase
             RemoveDynamicLight();
             A_StopSound(7);
         }
-        else
+        else if (pointLight)
         {
-            A_RadiusGive("FlareRemoveStealth",pointLight.Intensity,RGF_MONSTERS);
+            int items_given = A_RadiusGive("FlareRemoveStealth",pointLight.Intensity * 1.5,RGF_MONSTERS,999);
+            //Debug.Log("items given: "..items_given);
         }
+        else
+            Debug.LogError("Flare was not able to establish pointlight");
         Super.Tick();
     }
     

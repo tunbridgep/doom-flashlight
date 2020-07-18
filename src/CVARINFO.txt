@@ -9,6 +9,7 @@ user cheat int flashlight_intensity = 512;
 user cheat float flashlight_inner_angle = 16.0;
 user cheat float flashlight_outer_angle = 32.0;
 user bool flashlight_auto_use_flashlight = true;
+server bool flashlight_performance_mode = false;
 
 //flare settings
 server cheat int flashlight_flare_burn_time = 60;

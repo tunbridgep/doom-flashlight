@@ -3,6 +3,8 @@ class FlashlightBeam : Spotlight
     private PlayerPawn toFollow;
     private bool on;
     private vector3 offset;
+    int performance_tics_elapsed;
+    const performance_tics = 3;
     
     void FollowPlayer(PlayerPawn pp)
     {
@@ -57,7 +59,15 @@ class FlashlightBeam : Spotlight
             
             vector3 pos = (toFollow.pos.x + offset.x, toFollow.pos.y + offset.y, toFollow.pos.z + offset.z);
             
-            SetOrigin(pos, true);
+            if (flashlight_performance_mode && performance_tics_elapsed < performance_tics)
+            {
+                performance_tics_elapsed++;
+            }
+            else
+            {
+                SetOrigin(pos, false);
+                performance_tics_elapsed = 0;
+            }
         }
         Super.Tick();
     }
