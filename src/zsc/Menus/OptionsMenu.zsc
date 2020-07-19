@@ -69,7 +69,7 @@ class OptionMenuItemFlashlightDynamicText : OptionMenuItemStaticText
     Cvar c;
     Array<String> labels;
 
-    OptionMenuItemFlashlightDynamicText Init(int color, CVar condition, String l0, String l1, String l2, String l3 = "", String l4 = "", String l5 = "", String l6 = "", String l7 = "", String l8 = "", String l9 = "")
+    OptionMenuItemFlashlightDynamicText Init(int color, CVar condition, String l0, String l1, String l2 = "", String l3 = "", String l4 = "", String l5 = "", String l6 = "", String l7 = "", String l8 = "", String l9 = "",  String l10 = "")
     {
         c = condition;
         labels.push(l0);
@@ -82,6 +82,7 @@ class OptionMenuItemFlashlightDynamicText : OptionMenuItemStaticText
         labels.push(l7);
         labels.push(l8);
         labels.push(l9);
+        labels.push(l10);
     
         Super.Init(l0,color);
         return self;

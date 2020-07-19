@@ -11,7 +11,8 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 		AMBUSH_MODE = 6,
 		DRAIN_MODE = 7,
 		VANILLA_MODE = 8,
-		DRAIN_MODE_NIGHT = 9
+		DRAIN_MODE_NIGHT = 9,
+		TWILIGHT = 10
 	};
 
     OptionMenuItemFlashlightApplyProfile Init(String text, int color = -1)
@@ -82,9 +83,9 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
         
         
         
-        if (p != DISABLED && p != FLARES_ONLY_MODE && p != DRAIN_MODE_NIGHT && p != DRAIN_MODE && p != VANILLA_MODE)
+        if (p != DISABLED && p != FLARES_ONLY_MODE && p != DRAIN_MODE_NIGHT && p != DRAIN_MODE && p != VANILLA_MODE && p != TWILIGHT)
         {
-            //common stuff - only gets activated the first time we select a profile
+            //common stuff
             CVar.GetCvar("flashlight_spawn_battery_upgrade").SetInt(1);
         }
                
@@ -114,7 +115,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
         }
         else if (p == DRAIN_MODE) //dark areas are dark, flashlight doesn't recharge, batteries are common, no flares
         {
-            CVar.GetCvar("flashlight_darken_mode").SetInt(2);
+            CVar.GetCvar("flashlight_darken_mode").SetInt(4);
             CVar.GetCvar("flashlight_starting_item").SetInt(1);
             CVar.GetCvar("flashlight_enemies_drop_battery").SetBool(true);
             
@@ -152,11 +153,20 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
         }
         else if (p == DARKER_DARKNESS) //Darken dark areas, start with flares, enemies drop items, optional stealth for basic monsters
         {
-            CVar.GetCvar("flashlight_darken_mode").SetInt(2);
+            CVar.GetCvar("flashlight_darken_mode").SetInt(4);
             CVar.GetCvar("flashlight_starting_item").SetInt(0);
             CVar.GetCvar("flashlight_starting_flares").SetInt(5);
             CVar.GetCvar("flashlight_enemies_drop_flashlights").SetBool(true);
             CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
+        }
+        else if (p == TWILIGHT)
+        {
+            CVar.GetCvar("flashlight_darken_mode").SetInt(3);
+            CVar.GetCvar("flashlight_darken_divide_amount").SetFloat(2.75);
+            CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
+            CVar.GetCvar("flashlight_starting_flares").SetInt(5);
+            CVar.GetCvar("flashlight_spawn_flare_box").SetInt(1);
+            CVar.GetCvar("flashlight_spawn_flare").SetInt(1);
         }
         else if (p == HELL_MODE) //map is pitch black, extremely rare battery recharges, no charging, 100% stealth monsters
         {

@@ -1,6 +1,7 @@
 GameInfo
 {
     AddEventHandlers = "GLCompat" //Do the compatibility stuff first
+    AddEventHandlers = "ChangeSky"
     AddEventHandlers = "FlashlightSetup"
     AddEventHandlers = "DarkenMap"
     AddEventHandlers = "FlashlightReplacers"

@@ -46,7 +46,14 @@ class DarkenMap : FlashlightEventHandler
         return Math.Clamp(o,0,255);
     }
     
-    void DarkenMap(LightingMode mode, LinearInfo li, ParabolaInfo pi, DivideInfo di)
+    int DarkenProportional(int light_level, float proportion)
+    {
+        float new_level = light_level - ((255 - light_level) * proportion);
+        int o = Math.Round(new_level);
+        return Math.Clamp(o,0,255);
+    }
+    
+    void DarkenMap(LightingMode mode, LinearInfo li, ParabolaInfo pi, DivideInfo di, Propinfo pri)
     {
         int nsectors = level.sectors.size();
         int modified_sectors = 0;
@@ -64,6 +71,8 @@ class DarkenMap : FlashlightEventHandler
                 new_level = DarkenSimple(average,li.amount);
             else if (mode == LIGHTING_DIVIDE)
                 new_level = DarkenDivide(average,di.divide,di.additional);
+            else if (mode == LIGHTING_PROPORTIONAL)
+                new_level = DarkenProportional(average,pri.proportion);
             
             level.sectors[i].SetLightLevel(new_level);
             modified_sectors++;
@@ -81,8 +90,10 @@ class DarkenMap : FlashlightEventHandler
         LightingConfig.GetParabolaModeInfo(parabolainfo);
         DivideInfo divideinfo;
         LightingConfig.GetDivideModeInfo(divideinfo);
+        PropInfo propinfo;
+        LightingConfig.GetProportionalModeInfo(propinfo);
         
         if (mode != LIGHTING_DISABLED)
-            DarkenMap(mode,linearinfo,parabolainfo,divideinfo);
+            DarkenMap(mode,linearinfo,parabolainfo,divideinfo,propinfo);
     }
 }

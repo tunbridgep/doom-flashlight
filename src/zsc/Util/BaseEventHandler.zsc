@@ -12,7 +12,8 @@ class FlashlightEventHandler : EventHandler
         if (e.IsReopen)
             return;
         
-        //TODO: TITLEMAP check
+        if (gamestate == 7) //TITLEMAP
+            return;
         
         UniqueWorldLoaded(e);
     }
