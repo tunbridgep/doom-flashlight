@@ -3,8 +3,8 @@ class FlashlightBeam : Spotlight
     private PlayerPawn toFollow;
     private bool on;
     private vector3 offset;
-    int performance_tics_elapsed;
-    const performance_tics = 3;
+    private vector3 old;
+    const flashlight_performance_intensity_amount = 1.25;
     
     void FollowPlayer(PlayerPawn pp)
     {
@@ -12,17 +12,11 @@ class FlashlightBeam : Spotlight
     }
     
     private void SetParameters()
-    {
-        PlayerInfo info = players[toFollow.PlayerNumber()];
-               
-        Color flashlight_color = CVar.GetCVar("flashlight_color",info).GetString();
-        int flashlight_intensity = CVar.GetCVar("flashlight_intensity",info).GetInt();
-
-        float flashlight_inner = CVar.GetCVar("flashlight_inner_angle",info).GetFloat();
-        float flashlight_outer = CVar.GetCVar("flashlight_outer_angle",info).GetFloat();
+    {              
+        Color flashlight_color = FlashlightConfig.GetColor();
         
-        self.SpotInnerAngle = flashlight_inner;
-        self.SpotOuterAngle = flashlight_outer;
+        self.SpotInnerAngle = flashlight_inner_angle;
+        self.SpotOuterAngle = flashlight_outer_angle;
         
         args[0] = flashlight_color.r;
         args[1] = flashlight_color.g;
@@ -59,15 +53,14 @@ class FlashlightBeam : Spotlight
             
             vector3 pos = (toFollow.pos.x + offset.x, toFollow.pos.y + offset.y, toFollow.pos.z + offset.z);
             
-            if (flashlight_performance_mode && performance_tics_elapsed < performance_tics)
-            {
-                performance_tics_elapsed++;
-            }
+            float speed = toFollow.vel.Length();
+            
+            if (speed > 0 && flashlight_performance_mode)
+                args[3] = flashlight_intensity - speed * 20;
             else
-            {
-                SetOrigin(pos, false);
-                performance_tics_elapsed = 0;
-            }
+                args[3] = Math.Lerp(args[3],flashlight_intensity,90);
+            
+            SetOrigin(pos, false);
         }
         Super.Tick();
     }

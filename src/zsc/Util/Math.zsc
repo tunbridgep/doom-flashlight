@@ -28,6 +28,16 @@ class Math
             return clamp_max;
         return value;
     }
+    
+    static int Lerp(int start, int end, int interp)
+    {
+        if (end > start)
+            return Math.ClampMax(start + interp,end);
+        else if (end < start)
+            return Math.ClampMin(start - interp,end);
+        else
+            return start;
+    }
 }
 
 class Mathf

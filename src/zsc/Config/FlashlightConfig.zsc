@@ -5,4 +5,10 @@ class FlashlightConfig : ConfigBase
         PlayerInfo myinfo = players[consoleplayer];
         return CVar.GetCVar("flashlight_auto_use_flashlight",myinfo).GetBool();
     }
+    
+    static Color GetColor()
+    {
+        PlayerInfo myinfo = players[consoleplayer];
+        return CVar.GetCVar("flashlight_color",myinfo).GetString();
+    }
 }

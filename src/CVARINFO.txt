@@ -5,9 +5,9 @@ server cheat int flashlight_profile = 0;
 
 //flashlight settings
 user Color flashlight_color = "FF FF FF";
-user cheat int flashlight_intensity = 512;
-user cheat float flashlight_inner_angle = 16.0;
-user cheat float flashlight_outer_angle = 32.0;
+server cheat int flashlight_intensity = 512;
+server cheat float flashlight_inner_angle = 16.0;
+server cheat float flashlight_outer_angle = 32.0;
 user bool flashlight_auto_use_flashlight = true;
 server bool flashlight_performance_mode = false;
 
