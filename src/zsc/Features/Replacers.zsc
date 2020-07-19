@@ -13,6 +13,7 @@ class FlashlightReplacers : FlashlightEventHandler
     Class<Actor> soulsphereclass;
     Class<Actor> blursphereclass;
     Class<Actor> megasphereclass;
+    Class<Actor> clipclass;
     
     ChanceValue chanceFlash;
     ChanceValue chanceFlare;
@@ -34,6 +35,7 @@ class FlashlightReplacers : FlashlightEventHandler
         soulsphereclass = "Soulsphere";
         blursphereclass = "Blursphere";
         megasphereclass = "Megasphere";
+        clipclass = "Clip";
     }
       
     override void CheckReplacement(ReplaceEvent e)
@@ -63,6 +65,8 @@ class FlashlightReplacers : FlashlightEventHandler
             blursphereclass = e.replacement;
         else if (e.Replacee is megasphereclass && e.replacement)
             megasphereclass = e.replacement;
+        else if (e.Replacee is clipclass && e.replacement)
+            clipclass = e.replacement;
     
     }
     
@@ -100,7 +104,8 @@ class FlashlightReplacers : FlashlightEventHandler
         || (ac is chaingunclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_CHAINGUN))
             ActorUtil.ReplaceActor(a,"Flashlight",chanceFlash);
         
-        if (ac is rocketammoclass && ReplacerConfig.GetFlareItem() == REPLACE_FLARE_ROCKET)
+        if ((ac is rocketammoclass && ReplacerConfig.GetFlareItem() == REPLACE_FLARE_ROCKET)
+        || (ac is clipclass && ReplacerConfig.GetFlareItem() == REPLACE_FLARE_CLIP))
             ActorUtil.ReplaceActor(a,"Flare",chanceFlare);
             
         if ((ac is shellboxclass && ReplacerConfig.GetFlareBoxItem() == REPLACE_FLAREBOX_SHELLBOX)

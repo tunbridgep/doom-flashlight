@@ -72,7 +72,8 @@ enum FlashlightReplacement
 enum FlareReplacement
 {
     REPLACE_FLARE_DISABLED = 0,
-    REPLACE_FLARE_ROCKET = 1,
+    REPLACE_FLARE_CLIP = 1,
+    REPLACE_FLARE_ROCKET = 2
 }
 
 enum FlareBoxReplacement

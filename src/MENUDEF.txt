@@ -36,6 +36,7 @@ OptionValue FlareOptions
 {
     0, "$FLASHLIGHT_NOTHING"
     1, "$FLASHLIGHT_SPAWN_FLARE_1"
+    2, "$FLASHLIGHT_SPAWN_FLARE_2"
 }
 
 OptionValue FlareBoxOptions

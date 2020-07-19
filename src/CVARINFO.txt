@@ -60,8 +60,8 @@ server bool flashlight_enemies_drop_flashlights = false;
 server bool flashlight_enemies_drop_flares = false;
 server bool flashlight_enemies_drop_battery = false;
 server bool flashlight_enemies_drop_battery_expander = false;
-server int flashlight_enemies_drop_flashlights_chance = 10;
-server int flashlight_enemies_drop_flares_chance = 15;
+server int flashlight_enemies_drop_flashlights_chance = 6;
+server int flashlight_enemies_drop_flares_chance = 8;
 server int flashlight_enemies_drop_battery_chance = 8;
 server int flashlight_enemies_drop_battery_expander_chance = 5;
 
