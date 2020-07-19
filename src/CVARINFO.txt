@@ -28,17 +28,18 @@ server int flashlight_battery_charge_per_tic = 3;
 
 //map alteration
 server int flashlight_darken_mode = 0;
-server int flashlight_darken_parabola_brightness_factor = 24;
-server int flashlight_darken_parabola_curve_point = 84;
-server int flashlight_darken_parabola_adjust = 10;
+server int flashlight_darken_parabola_brightness_factor = 15;
+server int flashlight_darken_parabola_curve_point = 96;
+server int flashlight_darken_parabola_adjust = 5;
 server int flashlight_darken_linear_amount = 45;
+server float flashlight_darken_proportional_amount = 0.55;
 server float flashlight_darken_divide_amount = 5;
 server int flashlight_darken_divide_additional = 0;
 server bool flashlight_replace_sky = false;
 
 //stealth monsters
 server int flashlight_stealth_monster_chance = 20;
-server int flashlight_stealth_monster_threshold = 24;
+server int flashlight_stealth_monster_threshold = 48;
 server int flashlight_stealth_monster_mode = 0;
 server bool flashlight_smart_stealth_monsters = true;
 
@@ -54,7 +55,7 @@ server int flashlight_spawn_battery_upgrade_chance = 25;
 server int flashlight_spawn_battery_recharge = 0;
 server int flashlight_spawn_battery_recharge_chance = 25;
 server int flashlight_spawn_flare_box = 0;
-server int flashlight_spawn_flare_box_chance = 25;
+server int flashlight_spawn_flare_box_chance = 10;
 server bool flashlight_enemies_drop_flashlights = false;
 server bool flashlight_enemies_drop_flares = false;
 server bool flashlight_enemies_drop_battery = false;

@@ -112,12 +112,20 @@ FLASHLIGHT_DARKEN_MODE = "Light Alteration Mode";
 FLASHLIGHT_DARKEN_MODE_1 = "Subtractive";
 FLASHLIGHT_DARKEN_MODE_2 = "Parabolic";
 FLASHLIGHT_DARKEN_MODE_3 = "Division Based";
+FLASHLIGHT_DARKEN_MODE_4 = "Proportional";
 FLASHLIGHT_DARKEN_MODE_LINEAR_AMOUNT = "Subtraction Amount";
 FLASHLIGHT_DARKEN_MODE_PARABOLA_CURVE = "Parabolic Curve Point";
 FLASHLIGHT_DARKEN_MODE_PARABOLA_BRIGHTNESS = "Parabolic Curve Brightness Factor";
 FLASHLIGHT_DARKEN_MODE_PARABOLA_ADJUST = "Parabolic Adjustment";
 FLASHLIGHT_DARKEN_MODE_DIVIDE_AMOUNT = "Divide Amount";
 FLASHLIGHT_DARKEN_MODE_DIVIDE_ADDITIONAL = "Additional Amount";
+FLASHLIGHT_DARKEN_MODE_PROPORTION_AMOUNT = "Proportion";
+
+FLASHLIGHT_DARKEN_MODE_PROP_DESC1 = "Lower light levels in all sectors based on";
+FLASHLIGHT_DARKEN_MODE_PROP_DESC2 = "their distance from 255. This is designed";
+FLASHLIGHT_DARKEN_MODE_PROP_DESC3 = "to make dark areas of maps darker in a simple";
+FLASHLIGHT_DARKEN_MODE_PROP_DESC4 = "and effective way";
+FLASHLIGHT_DARKEN_MODE_PROP_DESC5 = "";
 
 FLASHLIGHT_DARKEN_MODE_LINEAR_DESC1 = "Lower light levels in all sectors based on";
 FLASHLIGHT_DARKEN_MODE_LINEAR_DESC2 = "the Subtraction amount. This is the simplest";
@@ -183,6 +191,7 @@ FLASHLIGHT_PROFILE_HELL = "The Long Dark";
 FLASHLIGHT_PROFILE_AMBUSH_MODE = "Lying in Wait...";
 FLASHLIGHT_PROFILE_DRAIN_MODE = "...Ready to Strike...";
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT = "...From the Shadows";
+FLASHLIGHT_PROFILE_TWILIGHT = "Twilight Mode";
 
 FLASHLIGHT_PROFILE_NOTFAIR = "This profile isn't even remotely fair!";
 
@@ -192,6 +201,7 @@ FLASHLIGHT_PROFILE_DARK_NONE = "Map brightness remains unchanged";
 FLASHLIGHT_PROFILE_DARK_NIGHT = "Darkens the entire map and uses a nighttime sky";
 FLASHLIGHT_PROFILE_DARK_AREAS = "Darkens dark areas of the map";
 FLASHLIGHT_PROFILE_DARK_EXTREME = "Map is nearly completely black";
+FLASHLIGHT_PROFILE_DARK_TWILIGHT = "Map is darkened slightly to appear overcast or late in the day";
 
 FLASHLIGHT_PROFILE_START_FLASHLIGHT = "Start with a Flashlight";
 FLASHLIGHT_PROFILE_START_FLARES = "Start with Flares";
