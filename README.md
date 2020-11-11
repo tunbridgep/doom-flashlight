@@ -1,5 +1,7 @@
 # Flashlight Mod #
 
+![Header Image](https://i.imgur.com/QcBmSj0.png)
+
 ## About ##
 
 This is designed to be an "all in one" solution for those who may have used [DarkDoom](https://www.moddb.com/games/doom/addons/dark-doom) and other mods in the past, who want an easy but configurable solution to playing a darker, more spooky version of Doom, or who want a new way of playing a mapset they are very familiar with. This mod relies heavily on zscript and is designed exclusively for GZDoom. Zandronum support will never be implemented.
