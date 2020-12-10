@@ -33,3 +33,6 @@ FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Torch when selecting it";
 
 //Battery Stuff
 FLASHLIGHT_BATTERY_DESC1 = "Battery is required to use the torch.";
+
+//Flare Stuff
+FLASHLIGHT_FLARE_COLOR_RANDOM = "Random Colour";
