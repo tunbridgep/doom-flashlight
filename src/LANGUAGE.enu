@@ -1,5 +1,9 @@
 [enu default]
 
+//Compatibility Options
+FLASHLIGHT_PERFORMANCE = "Performance Mode";
+FLASHLIGHT_PERFORMANCE_DESC = "Limit light radius while moving to improve performance";
+
 //In-Game Text
 FLASHLIGHT_NO_FLASHLIGHT = "You don't have a flashlight";
 FLASHLIGHT_NO_FLASHLIGHT_OR_FLARES = "You don't have a flashlight or flares";
@@ -46,8 +50,6 @@ FLASHLIGHT_FLARE_INVENTORY = "Show in Inventory";
 FLASHLIGHT_FLARE_INVENTORY_DESC = "Show flares in the inventory bar";
 FLASHLIGHT_FLARE_INVENTORY_MAX = "Maximum Flares";
 FLASHLIGHT_FLARE_INVENTORY_MAX_DESC = "The maximum number of flares a player can carry";
-FLASHLIGHT_FLARE_REVEAL_STEALTH = "Reveal Stealth Monsters";
-FLASHLIGHT_FLARE_REVEAL_STEALTH_DESC = "Should flares reveal stealth monsters in their light radius";
 FLASHLIGHT_FLARE_ENABLE_RECHARGE = "Enable Recharging";
 FLASHLIGHT_FLARE_RECHARGE_TIME = "Recharge Time";
 FLASHLIGHT_FLARE_RECHARGE_TIME_DESC = "Time until flare recharges";
@@ -80,6 +82,10 @@ FLASHLIGHT_FLASHLIGHT_HEADER = "Flashlight Settings";
 FLASHLIGHT_FLARE_HEADER = "Flare Settings";
 FLASHLIGHT_CONTROLS_HEADER = "Control Settings";
 FLASHLIGHT_CALIBRATION_HEADER = "Calibration Settings";
+FLASHLIGHT_STEALTH_REVEAL_HEADER = "Stealth Reveal Behavior";
+
+//Gameplay Menu
+FLASHLIGHT_REVEAL_STEALTH_DESC = "Should flashlights and flares reveal stealth monsters in their light radius";
 
 //Calibration Menu
 FLASHLIGHT_CALIBRATION_DESC1 = "If areas still look too bright, try adjusting these";

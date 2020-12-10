@@ -122,13 +122,18 @@ OptionMenu "FlashlightGameplayOptions"
     Title "$FLASHLIGHT_GAMEPLAY_SETTINGS"
     StaticText "$FLASHLIGHT_START_HEADER", 1
     Option "$FLASHLIGHT_STARTING_ITEM", flashlight_starting_item, YesNo
-    Slider "$FLASHLIGHT_STARTING_FLARES", "flashlight_starting_flares", 0,20,1
+    Slider "$FLASHLIGHT_STARTING_FLARES", "flashlight_starting_flares", 0,20,1,0
     StaticText " "
     StaticText "$FLASHLIGHT_STEALTH_HEADER", 1
     Option "$FLASHLIGHT_STEALTH_MONSTERS", "flashlight_stealth_monster_mode", StealthMonsterOptions
     FlashlightSlider "$FLASHLIGHT_CHANCE", "flashlight_stealth_monster_chance", 0,100,1,0,"flashlight_stealth_monster_mode","$FLASHLIGHT_MENU_NOOP"
     FlashlightSlider "$FLASHLIGHT_THRESHOLD", "flashlight_stealth_monster_threshold", 0,100,1,0,"flashlight_stealth_monster_mode","$FLASHLIGHT_MENU_NOOP",3
     FlashlightDynamicText -1, "flashlight_stealth_monster_mode", "$FLASHLIGHT_DISABLED", "$FLASHLIGHT_STEALTH_SMALL_DESC", "$FLASHLIGHT_STEALTH_ALL_DESC", "$FLASHLIGHT_STEALTH_SMALL_THRESH_DESC", "$FLASHLIGHT_STEALTH_THRESH_DESC"
+    StaticText ""
+    StaticText "$FLASHLIGHT_STEALTH_REVEAL_HEADER", 1
+    Option "$FLASHLIGHT_FLASHLIGHT", "flashlight_flashlight_reveal_stealth", YesNo
+    Option "$FLASHLIGHT_FLARE", "flashlight_flare_reveal_stealth", YesNo
+    StaticText "$FLASHLIGHT_REVEAL_STEALTH_DESC"
     StaticText ""
     StaticText "$FLASHLIGHT_BATTERY_HEADER", 1
     Option "$FLASHLIGHT_BATTERY_MODE", "flashlight_battery_mode", YesNo
@@ -209,7 +214,7 @@ OptionMenu "FlashlightAdvanced"
     StaticText ""
     StaticText "$FLASHLIGHT_FLASHLIGHT_HEADER", 1
     ColorPicker "$FLASHLIGHT_COLOR", "flashlight_color"
-    Slider "$FLASHLIGHT_INTENSITY", "flashlight_intensity", 32,2048,4
+    Slider "$FLASHLIGHT_INTENSITY", "flashlight_intensity", 32,2048,4,0
     Slider "$FLASHLIGHT_INNER_ANGLE", "flashlight_inner_angle", 0,64,0.1,2
     Slider "$FLASHLIGHT_OUTER_ANGLE", "flashlight_outer_angle", 0,64,0.1,2
     StaticText "$FLASHLIGHT_FLASHLIGHT_DESC1"
@@ -239,9 +244,6 @@ OptionMenu "FlashlightAdvanced"
     Option "$FLASHLIGHT_FLARE_INVENTORY", "flashlight_flare_show_inventory", YesNo
     StaticText "$FLASHLIGHT_FLARE_INVENTORY_DESC"
     StaticText ""
-    Option "$FLASHLIGHT_FLARE_REVEAL_STEALTH", "flashlight_flare_reveal_stealth", YesNo
-    StaticText "$FLASHLIGHT_FLARE_REVEAL_STEALTH_DESC"
-    StaticText ""
     StaticText "$FLASHLIGHT_CONTROLS_HEADER", 1
     Control "$FLASHLIGHT_KEY_BIND", "toggleflashlight_bind"
     Option "$FLASHLIGHT_AUTO_USE_FLARES", "flashlight_auto_use_flare", YesNo
@@ -262,6 +264,9 @@ OptionMenu "FlashlightCompatOptions"
     StaticText "$FLASHLIGHT_GLCOMPAT_DESC2"
     StaticText "$FLASHLIGHT_GLCOMPAT_DESC3"
     StaticText "$FLASHLIGHT_GLCOMPAT_DESC4", 1
+    StaticText ""
+    Option "$FLASHLIGHT_PERFORMANCE", "flashlight_performance_mode", YesNo
+    StaticText "$FLASHLIGHT_PERFORMANCE_DESC"
 }
 
 OptionMenu "FlashlightBase"

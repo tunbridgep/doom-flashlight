@@ -37,7 +37,7 @@ class FlareRecharger : PermanentItem
     
         if (Count >= tics)
         {
-            if (owner.CheckInventory("Flare",1) < max_amount)
+            if (owner.CheckInventory("Flare",1) < max_amount)                
                 owner.GiveInventory("Flare",1);
             Count = 0;
         }

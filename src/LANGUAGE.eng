@@ -34,5 +34,12 @@ FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Torch when selecting it";
 //Battery Stuff
 FLASHLIGHT_BATTERY_DESC1 = "Battery is required to use the torch.";
 
+//Gameplay stuff
+FLASHLIGHT_REVEAL_STEALTH_DESC = "Should torches and flares reveal stealth monsters in their light radius";
+
+//Headers
+FLASHLIGHT_STEALTH_REVEAL_HEADER = "Stealth Reveal Behaviour";
+
 //Flare Stuff
 FLASHLIGHT_FLARE_COLOR_RANDOM = "Random Colour";
+FLASHLIGHT_FLARE_COLOR_DESC = "Flare Colour";

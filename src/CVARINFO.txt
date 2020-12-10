@@ -19,7 +19,6 @@ user Color flashlight_flare_color = "FF 4D 4D";
 user bool flashlight_auto_use_flare = false;
 user bool flashlight_flare_show_count = false;
 server bool flashlight_flare_show_inventory = true;
-server bool flashlight_flare_reveal_stealth = true;
 server bool flashlight_flare_recharge_enabled = false;
 server float flashlight_flare_recharge_frequency_seconds = 30;
 server int flashlight_flare_recharge_max_amount = 1;
@@ -48,6 +47,9 @@ server bool flashlight_replace_sky = false;
 server int flashlight_stealth_monster_chance = 20;
 server int flashlight_stealth_monster_threshold = 48;
 server int flashlight_stealth_monster_mode = 0;
+server bool flashlight_flare_reveal_stealth = true;
+server bool flashlight_flashlight_reveal_stealth = true;
+server int flashlight_flashlight_reveal_radius = 512;
 
 //replacers
 server int flashlight_spawn_flashlight = 0;

@@ -33,7 +33,7 @@ class StealthSpawner : EventHandler
             
         if (a.bSTEALTH)
             MakeStealth(a);
-        else if (a.bISMONSTER && a.GetLevelSpawnTime() <= 5 && StealthMonsterConfig.IsEnabled())
+        else if (a.bISMONSTER && !a.bCORPSE && a.bCOUNTKILL && a.GetLevelSpawnTime() <= 5 && StealthMonsterConfig.IsEnabled())
             StealthMonsters(a);
     }
 }
