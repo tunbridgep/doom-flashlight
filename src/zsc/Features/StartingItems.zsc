@@ -1,9 +1,7 @@
-class FlashlightSetup : EventHandler
+class FlashlightSetup : FlashlightEventHandler
 {
-    override void PlayerEntered(PlayerEvent e)
+    override void UniquePlayerEntered(Actor Player, bool reentered)
     {
-        PlayerPawn player = players[e.PlayerNumber].mo;
-    
         let start_item = CVar.FindCVar("flashlight_starting_item").GetInt();
         let start_flares = CVar.FindCVar("flashlight_starting_flares").GetInt();
         

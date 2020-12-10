@@ -6,7 +6,8 @@ FLASHLIGHT_NO_FLASHLIGHT_OR_FLARES = "You don't have a flashlight or flares";
 FLASHLIGHT_PICKUP = "Picked up a flashlight";
 FLASHLIGHT_BATT_PICKUP = "Picked up a Flashlight Battery";
 FLASHLIGHT_BATT_EXP_PICKUP = "Picked up a Flashlight Battery Upgrade";
-FLASHLIGHT_FLARES_REMAIN = "Flare(s) Remaining";
+FLASHLIGHT_FLARES_REMAIN = "Flares Remaining";
+FLASHLIGHT_ONE_FLARE_REMAIN = "Flare Remaining";
 FLASHLIGHT_NO_FLARES_REMAIN = "No Flares Remaining";
 
 //basics
@@ -29,14 +30,29 @@ FLASHLIGHT_FLARE_BOX = "Flare Box";
 FLASHLIGHT_BATTERY_UPGRADE = "Battery Upgrade";
 FLASHLIGHT_BATTERY_RECHARGE = "Battery Recharger";
 FLASHLIGHT_GO_BACK = "Press Escape to Go Back";
+FLASHLIGHT_UNLIMITED = "Unlimited";
+FLASHLIGHT_RESET = "Reset all settings to defaults";
+FLASHLIGHT_CONFIRM = "Press again to confirm";
 
 //Flare Settings
+FLASHLIGHT_FLARE_BURN_FOREVER = "Burn Forever";
+FLASHLIGHT_FLARE_COLOR_RANDOM = "Random Color";
+FLASHLIGHT_FLARE_COLOR_DESC = "Flare Color";
 FLASHLIGHT_FLARE_BURN_TIME = "Burn Time";
 FLASHLIGHT_FLARE_BURN_TIME_DESC = "How long flares will remain burning for (in seconds)";
 FLASHLIGHT_FLARE_SHOW_MSG = "Show Count on Use";
 FLASHLIGHT_FLARE_SHOW_MSG_DESC = "Show the number of flares remaining on use";
 FLASHLIGHT_FLARE_INVENTORY = "Show in Inventory";
 FLASHLIGHT_FLARE_INVENTORY_DESC = "Show flares in the inventory bar";
+FLASHLIGHT_FLARE_INVENTORY_MAX = "Maximum Flares";
+FLASHLIGHT_FLARE_INVENTORY_MAX_DESC = "The maximum number of flares a player can carry";
+FLASHLIGHT_FLARE_REVEAL_STEALTH = "Reveal Stealth Monsters";
+FLASHLIGHT_FLARE_REVEAL_STEALTH_DESC = "Should flares reveal stealth monsters in their light radius";
+FLASHLIGHT_FLARE_ENABLE_RECHARGE = "Enable Recharging";
+FLASHLIGHT_FLARE_RECHARGE_TIME = "Recharge Time";
+FLASHLIGHT_FLARE_RECHARGE_TIME_DESC = "Time until flare recharges";
+FLASHLIGHT_FLARE_RECHARGE_MAX = "Recharge Amount";
+FLASHLIGHT_FLARE_RECHARGE_MAX_DESC = "How many flares can the player hold before recharging stops";
 
 //Submenus
 FLASHLIGHT_ADVANCED_SETTINGS = "Advanced Settings";
@@ -207,6 +223,7 @@ FLASHLIGHT_PROFILE_DARK_TWILIGHT = "Map is darkened slightly to appear overcast 
 FLASHLIGHT_PROFILE_START_FLASHLIGHT = "Start with a Flashlight";
 FLASHLIGHT_PROFILE_START_FLARES = "Start with Flares";
 FLASHLIGHT_PROFILE_START_FLARES_ONLY = "Start with Flares. Flashlights are disabled";
+FLASHLIGHT_PROFILE_START_FLARES_ONLY_RECHARGE = "Start with Flares. Flashlights are disabled. Flares recharge";
 FLASHLIGHT_PROFILE_START_FLASHLIGHT_ONLY = "Start with a Flashlight. Flares are disabled";
 FLASHLIGHT_PROFILE_START_NOTHING = "Start with nothing";
 

@@ -7,4 +7,5 @@ GameInfo
     AddEventHandlers = "FlashlightReplacers"
     AddEventHandlers = "DropItems"
     AddEventHandlers = "StealthSpawner"
+    AddEventHandlers = "FlareRecharge"
 }

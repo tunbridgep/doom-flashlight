@@ -6,6 +6,19 @@ class FlashlightEventHandler : EventHandler
     {
         //override this
     }
+    
+    virtual void UniquePlayerEntered(Actor Player, bool returning)
+    {
+        //override this
+    }
+    
+    override void PlayerEntered(PlayerEvent e)
+    {      
+        if (gamestate == 7) //TITLEMAP
+            return;
+            
+        UniquePlayerEntered(players[e.PlayerNumber].mo, e.IsReturn);
+    }
 
     override void WorldLoaded(WorldEvent e)
     {

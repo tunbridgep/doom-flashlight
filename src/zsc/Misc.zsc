@@ -18,3 +18,30 @@ class PermanentItem : Inventory
 class FlashlightStartToken : PermanentItem
 {
 }
+
+class FlareRecharger : PermanentItem
+{
+    int Count;
+
+    override void DoEffect()
+    {
+        Super.DoEffect();
+        
+        int tics = FlareConfig.GetRechargeTime();
+        int max_amount = flashlight_flare_recharge_max_amount;
+        bool enabled = flashlight_flare_recharge_enabled;
+        
+        
+        if (tics == 0 || !enabled)
+            return;
+    
+        if (Count >= tics)
+        {
+            if (owner.CheckInventory("Flare",1) < max_amount)
+                owner.GiveInventory("Flare",1);
+            Count = 0;
+        }
+        else
+            Count++;
+    }
+}

@@ -8,8 +8,8 @@ class Flare : CustomInventory
         +INVENTORY.HUBPOWER;
         +INVENTORY.PERSISTENTPOWER;
         +DONTGIB;
-        Inventory.MaxAmount 30;
-        Inventory.InterHubAmount 30;
+        //Inventory.MaxAmount 30;
+        //Inventory.InterHubAmount 30;
         Inventory.Icon "FLARINV";
         Inventory.PickupMessage "You picked up a flare.";
     }
@@ -18,7 +18,14 @@ class Flare : CustomInventory
     //override void Tick()
     override void BeginPlay()
     {
+        int max = flashlight_flare_max_amount;
+        
+        if (max <= 0)
+            max = 9999;
+    
         self.bINVBAR = FlareConfig.GetAppearInInventory();
+        self.MaxAmount = max;
+        self.InterHubAmount = max;
     }
     
     States
@@ -129,16 +136,19 @@ class FlareBase : Actor abstract
 class ActiveFlare : FlareBase
 {
     int burntime;
+    bool burn_forever;
+    bool reveal_stealth;
     
     override void BeginPlay()
     {
         burntime = FlareConfig.GetBurnTime();
+        burn_forever = flashlight_flare_burn_forever;
     }
     
     override void Tick()
     {
         burntime--;
-        if (burntime < 0)
+        if (burntime < 0 && !burn_forever)
         {
             SetStateLabel("BurnedOut");
             bFORCEXYBILLBOARD = true;

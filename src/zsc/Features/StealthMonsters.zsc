@@ -54,7 +54,7 @@ class StealthManager : PermanentItem
         int light_level = owner.cursector.lightlevel;
         bool in_threshold = !StealthMonsterConfig.UsesThreshold() || light_level <= StealthMonsterConfig.GetThreshold();
         bool revealed = owner.CheckInventory("FlareRemoveStealth",1);
-        bool smart = flashlight_smart_stealth_monsters;
+        bool smart = flashlight_flare_reveal_stealth;
         
         if (!smart)
         {

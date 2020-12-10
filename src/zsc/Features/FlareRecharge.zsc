@@ -1,0 +1,8 @@
+class FlareRecharge : FlashlightEventHandler
+{
+
+    override void UniquePlayerEntered(Actor Player, bool reentered)
+    {        
+        player.GiveInventory("FlareRecharger",1);
+    }
+}

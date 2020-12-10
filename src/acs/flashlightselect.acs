@@ -25,8 +25,10 @@ script "UseFlare" (void) net
     {
         str printstring;
         int flares = CheckInventory(FLARE_OBJECT);
-        if (flares)
+        if (flares > 1)
             printstring = StrParam(d:flares,s:" ",l:"FLASHLIGHT_FLARES_REMAIN");
+        else if (flares == 1)
+            printstring = StrParam(d:flares,s:" ",l:"FLASHLIGHT_ONE_FLARE_REMAIN");
         else
             printstring = StrParam(l:"FLASHLIGHT_NO_FLARES_REMAIN");
         print(s:printstring);

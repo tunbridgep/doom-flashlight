@@ -2,7 +2,7 @@ class FlareConfig : ConfigBase
 {
     static int GetBurnTime()
     {
-        return CVar.GetCVar("flashlight_flare_burn_time").GetInt() * 35;
+        return CVar.GetCVar("flashlight_flare_burn_time").GetFloat() * 35.0f;
     }
     
     static bool GetAppearInInventory()
@@ -13,12 +13,41 @@ class FlareConfig : ConfigBase
     static Color GetColor()
     {
         PlayerInfo myinfo = players[consoleplayer];
-        return CVar.GetCVar("flashlight_flare_color",myinfo).GetString();
+        
+        bool random = CVar.GetCVar("flashlight_flare_color_random",myinfo).GetBool();
+        if (random)
+        {
+            int total_brightness = 77 + 77 + 255; //This is the default brightness we want
+            
+            int color1 = random(77, total_brightness);
+            if (color1 > 255)
+                color1 = 255;
+            total_brightness - color1;
+            
+            int color2 = random(77, total_brightness);
+            if (color2 > 255)
+                color2 = 255;
+            total_brightness - color2;
+            
+            int color3 = total_brightness;
+            if (color3 > 255)
+                color3 = 255;
+            
+            return String.Format("%02X %02X %02X",color1,color2,color3);
+        }
+        else
+            return CVar.GetCVar("flashlight_flare_color",myinfo).GetString();
+
     }
     
     static bool GetShowCount()
     {
         PlayerInfo myinfo = players[consoleplayer];
         return CVar.GetCVar("flashlight_show_flare_count",myinfo).GetBool();
+    }
+    
+    static int GetRechargeTime()
+    {
+        return flashlight_flare_recharge_frequency_seconds * 35.0f;
     }
 }
