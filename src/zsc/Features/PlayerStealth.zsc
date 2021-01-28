@@ -1,0 +1,50 @@
+class PlayerStealth : FlashlightEventHandler
+{
+    override void UniquePlayerEntered(Actor Player, bool reentered)
+    {
+        if (!reentered)
+        {
+            if (Player.CheckInventory("PlayerStealthItem",1))
+                return;
+            else
+                player.GiveInventory("PlayerStealthItem",1);
+        }
+    }
+}
+
+class PlayerStealthItem : PermanentItem
+{
+    bool last_shadow;
+
+    override void DoEffect()
+    {
+        //If we have an invisibility item, don't try and change our shadow flag
+        if (owner.CheckInventory("PowerInvisibility",1))
+            return;
+    
+        String msg;
+      
+        int light_level = owner.cursector.lightlevel;
+        bool shadow = !owner.CheckInventory("StealthRemover",1) && flashlight_stealth_player_enabled && light_level <= flashlight_stealth_player_threshold;
+        
+        if (shadow)
+        {
+            owner.bSHADOW = true;
+            msg = Stringtable.Localize("$FLASHLIGHT_STEALTH_PLAYER_MSG_IN");
+        }
+        else
+        {
+            owner.bSHADOW = false;
+            msg = Stringtable.Localize("$FLASHLIGHT_STEALTH_PLAYER_MSG_OUT");
+        }
+        
+        //only send corner messages when our status has actually changed
+        if (shadow != last_shadow)
+        {
+            last_shadow = shadow;
+            Console.printf(msg);
+            //Object.C_MidPrint("STOVERLY", "A");
+        }
+        
+    }
+}

@@ -17,6 +17,7 @@ FLASHLIGHT_NO_FLARES_REMAIN = "No Flares Remaining";
 //basics
 FLASHLIGHT_VERSION = "Version 1.0 Alpha";
 FLASHLIGHT_DISABLED = "Disabled";
+FLASHLIGHT_ENABLED = "Enabled";
 FLASHLIGHT_NOT_IMPLEMENTED = "Not Implemented Yet";
 FLASHLIGHT_MENU_NOOP = "Control Disabled";
 FLASHLIGHT_CHANCE = "Chance";
@@ -106,7 +107,7 @@ FLASHLIGHT_SPAWN_BATTERY_2 = "Soulsphere";
 FLASHLIGHT_SPAWN_BATTERY_3 = "Blursphere";
 FLASHLIGHT_SPAWN_BATTERY_4 = "Megasphere";
 
-//Stealth Monster Options
+//Stealth Options
 FLASHLIGHT_STEALTH_MONSTERS = "Spawn Stealth Monsters";
 FLASHLIGHT_STEALTH_MONSTERS_1 = "Small Monsters Only";
 FLASHLIGHT_STEALTH_MONSTERS_2 = "All Monsters";
@@ -116,6 +117,11 @@ FLASHLIGHT_STEALTH_SMALL_DESC = "Only low tier enemies can spawn as stealth mons
 FLASHLIGHT_STEALTH_ALL_DESC = "All enemy types can spawn as stealth monsters";
 FLASHLIGHT_STEALTH_SMALL_THRESH_DESC = "Low tier enemy types can spawn as stealth monsters if in a sector darker than the threshold";
 FLASHLIGHT_STEALTH_THRESH_DESC = "All enemy types can spawn as stealth monsters if in a sector darker than the threshold";
+FLASHLIGHT_STEALTH_PLAYER = "Player Stealth";
+FLASHLIGHT_STEALTH_PLAYER_DESC = "The player will be hard to see and hit by enemies when in dark areas";
+FLASHLIGHT_STEALTH_PLAYER_THRESH_DESC = "Minimum light level required to activate stealth";
+FLASHLIGHT_STEALTH_PLAYER_MSG_IN = "You slip into the shadows...";
+FLASHLIGHT_STEALTH_PLAYER_MSG_OUT = "You are no longer hidden";
 
 //Battery Options
 FLASHLIGHT_BATTERY_MODE = "Battery Enabled";

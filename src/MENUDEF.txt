@@ -135,6 +135,12 @@ OptionMenu "FlashlightGameplayOptions"
     Option "$FLASHLIGHT_FLARE", "flashlight_flare_reveal_stealth", YesNo
     StaticText "$FLASHLIGHT_REVEAL_STEALTH_DESC"
     StaticText ""
+    StaticText "$FLASHLIGHT_STEALTH_PLAYER", 1
+    Option "$FLASHLIGHT_ENABLED", "flashlight_stealth_player_enabled", YesNo
+    StaticText "$FLASHLIGHT_STEALTH_PLAYER_DESC"
+    FlashlightSlider "$FLASHLIGHT_THRESHOLD", "flashlight_stealth_player_threshold", 0,254,1,0,"flashlight_stealth_player_enabled","$FLASHLIGHT_MENU_NOOP"
+    StaticText "$FLASHLIGHT_STEALTH_PLAYER_THRESH_DESC"
+    StaticText ""
     StaticText "$FLASHLIGHT_BATTERY_HEADER", 1
     Option "$FLASHLIGHT_BATTERY_MODE", "flashlight_battery_mode", YesNo
     FlashlightOption "$FLASHLIGHT_BATTERY_DISPLAY", "flashlight_battery_display", BatteryDisplayOptions, "flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"

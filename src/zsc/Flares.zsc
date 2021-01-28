@@ -157,7 +157,7 @@ class ActiveFlare : FlareBase
         }
         else if (pointLight)
         {
-            int items_given = A_RadiusGive("FlareRemoveStealth",pointLight.Intensity * 1.5,RGF_MONSTERS|RGF_NOSIGHT,999);
+            int items_given = A_RadiusGive("StealthRemover",pointLight.Intensity * 1.5,RGF_PLAYERS|RGF_MONSTERS|RGF_NOSIGHT,999);
             //Debug.Log("items given: "..items_given);
         }
         else

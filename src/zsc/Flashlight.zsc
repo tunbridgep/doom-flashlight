@@ -130,7 +130,9 @@ class FlashlightBase : Weapon abstract
     void RevealStealth()
     {
         if (flashlight_flashlight_reveal_stealth)
-            A_RadiusGive("FlareRemoveStealth",flashlight_flashlight_reveal_radius,RGF_MONSTERS|RGF_NOSIGHT,999);
+            A_RadiusGive("StealthRemover",flashlight_flashlight_reveal_radius,RGF_PLAYERS|RGF_MONSTERS|RGF_NOSIGHT,999);
+        if (beam.IsOn())
+            owner.GiveInventory("StealthRemover",1);
     }
     
     override void DoEffect()
