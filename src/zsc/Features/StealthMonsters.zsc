@@ -83,7 +83,7 @@ class StealthRemover : PermanentItem
     override void DoEffect()
     {
         ticks++;
-        if (ticks >= 5)
+        if (ticks >= 35)
             Destroy();
     }
 }

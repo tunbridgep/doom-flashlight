@@ -31,11 +31,13 @@ class PlayerStealthItem : PermanentItem
         {
             owner.bSHADOW = true;
             msg = Stringtable.Localize("$FLASHLIGHT_STEALTH_PLAYER_MSG_IN");
+            owner.ACS_ScriptCall("DrawStealthOverlay");
         }
         else
         {
             owner.bSHADOW = false;
             msg = Stringtable.Localize("$FLASHLIGHT_STEALTH_PLAYER_MSG_OUT");
+            owner.ACS_ScriptCall("HideStealthOverlay");
         }
         
         //only send corner messages when our status has actually changed
