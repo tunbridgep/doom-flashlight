@@ -180,6 +180,9 @@ FLASHLIGHT_DARKEN_MODE_SEE_README = "See the included README file for more infor
 FLASHLIGHT_REPLACE_SKY = "Replace Sky";
 FLASHLIGHT_REAPLCE_SKY_DESC1 = "Replace the sky with a night-time sky";
 FLASHLIGHT_REAPLCE_SKY_DESC2 = "This helps with contrast when the level is dark";
+FLASHLIGHT_REPLACE_SKY_THRESHOLD = "Replacement Light Level Threshold";
+FLASHLIGHT_REAPLCE_SKY_THRESHOLD_DESC1 = "The sky will only be replaced if the average light level";
+FLASHLIGHT_REAPLCE_SKY_THRESHOLD_DESC2 = "in all Sky sectors is below this level. Will keep bright skies on bright maps";
 
 //Flashlight Settings
 FLASHLIGHT_INTENSITY = "Intensity";

@@ -1,9 +1,9 @@
 GameInfo
 {
     AddEventHandlers = "GLCompat" //Do the compatibility stuff first
+    AddEventHandlers = "DarkenMap" //Do this second so everything else works with the updated light levels
     AddEventHandlers = "ChangeSky"
     AddEventHandlers = "FlashlightSetup"
-    AddEventHandlers = "DarkenMap"
     AddEventHandlers = "FlashlightReplacers"
     AddEventHandlers = "DropItems"
     AddEventHandlers = "StealthSpawner"

@@ -4,9 +4,32 @@ class ChangeSky : FlashlightEventHandler
     {
         if (flashlight_replace_sky)
         {
-            let skytex = TexMan.CheckForTexture("DARKSKY",TexMan.TYPE_ANY,TexMan.DONTCREATE);
-            level.ChangeSky(skytex, skytex);
-            Debug.Log("Replacing sky...");
+            int sectors = level.sectors.size();
+            int total_light;
+            int total_sky_sectors = 0;
+            
+            for (int i = 0; i < sectors;i++)
+            {
+                let light_level = level.sectors[i].GetLightLevel();
+                let ceiling = level.sectors[i].GetTexture(1);
+                let ceiling_name = TexMan.GetName(ceiling).MakeLower();
+                if (ceiling_name == "f_sky1")
+                {
+                    total_light += light_level;
+                    total_sky_sectors++;
+                }
+            }
+            
+            let average_light_level = total_light / total_sky_sectors;
+            
+            Debug.Log("Average sky light level: "..average_light_level.." ("..total_light.."/"..total_sky_sectors..") - Threshold is "..flashlight_replace_sky_threshold.."");
+            
+            if (average_light_level <= flashlight_replace_sky_threshold)
+            {
+                let skytex = TexMan.CheckForTexture("DARKSKY",TexMan.TYPE_ANY,TexMan.DONTCREATE);
+                level.ChangeSky(skytex, skytex);
+                Debug.Log("Replacing sky...");
+            }
         }
     }
 }
