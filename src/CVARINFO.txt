@@ -87,7 +87,7 @@ server bool flashlight_compat_brutal_gldefs_doors = false;
 
 //player stealth
 server bool flashlight_stealth_player_enabled = false;
-server int flashlight_stealth_player_threshold = 32;
+server int flashlight_stealth_player_threshold = 48;
 
 //misc
 server int flashlight_debug = 0;

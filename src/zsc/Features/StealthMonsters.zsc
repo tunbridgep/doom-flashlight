@@ -4,18 +4,18 @@ class StealthSpawner : EventHandler
 
     void StealthMonsters(Actor monster)
     {
-        int light_level = monster.cursector.lightlevel;
+        //int light_level = monster.cursector.lightlevel;
         int hp = monster.health;
         
-        bool in_threshold = !StealthMonsterConfig.UsesThreshold() || light_level <= StealthMonsterConfig.GetThreshold();
+        //bool in_threshold = !StealthMonsterConfig.UsesThreshold() || light_level <= StealthMonsterConfig.GetThreshold();
         bool small = !StealthMonsterConfig.IsSmallOnly() || hp <= max_health_small;
         
         let dice = StealthMonsterConfig.GetChance();
             
-        if (in_threshold && small && dice.Roll())
+        if (small && dice.Roll())
         {
             MakeStealth(monster);
-            Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant in sector with light level of "..light_level.." based on a roll of "..dice.GetLastRoll().." ("..dice.GetChance().." percent chance)");
+            Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant based on a roll of "..dice.GetLastRoll().." ("..dice.GetChance().." percent chance)");
         }
     }
     
