@@ -1,24 +1,64 @@
 class DropItems : EventHandler
 {
+    //Doom Actors
     Class<Actor> shotgunguy;
     Class<Actor> chaingunguy;
     Class<Actor> zombieman;
+    
+    //Heretic Actors
+    Class<Actor> HereticImp;
+    Class<Actor> Knight;
+    Class<Actor> Mummy;
+    
+    //Hexen Actors
+    Class<Actor> Ettin;
+    Class<Actor> FireDemon; //Afrit
+    Class<Actor> Demon1; //Serpent
 
     override void OnRegister()
     {
+        //Doom
         shotgunguy = "ShotgunGuy";
         chaingunguy = "ChaingunGuy";
         zombieman = "Zombieman";
+        
+        //Heretic
+        HereticImp = "HereticImp";
+        Knight = "Knight";
+        Mummy = "Mummy";
+        
+        //Hexen
+        Ettin = "Ettin";
+        FireDemon = "FireDemon";
+        Demon1 = "Demon1";
+        
     }
 
     override void CheckReplacement(ReplaceEvent e)
     {
+        //Doom
         if (e.Replacee is shotgunguy && e.replacement)
             shotgunguy = e.replacement;
         else if (e.Replacee is chaingunguy && e.replacement)
             chaingunguy = e.replacement;
         else if (e.Replacee is zombieman && e.replacement)
             zombieman = e.replacement;
+        
+        //Heretic
+        else if (e.Replacee is HereticImp && e.replacement)
+            HereticImp = e.replacement;
+        else if (e.Replacee is Knight && e.replacement)
+            Knight = e.replacement;
+        else if (e.Replacee is Mummy && e.replacement)
+            Mummy = e.replacement;
+            
+        //Hexen
+        else if (e.Replacee is Ettin && e.replacement)
+            Ettin = e.replacement;
+        else if (e.Replacee is FireDemon && e.replacement)
+            FireDemon = e.replacement;
+        else if (e.Replacee is Demon1 && e.replacement)
+            Demon1 = e.replacement;
     }
 
     //Checking for zombie-men type enemies is DUMB!
@@ -26,12 +66,21 @@ class DropItems : EventHandler
     //So now we have this big list of garbage
     private bool IsZombieman(Actor a)
     {
+        //Doom
         return a.bIsMonster && ( a is "ZombieMan" || a is "ShotgunGuy" || a is "ChaingunGuy"
         || a is zombieman || a is chaingunguy || a is shotgunguy
         || a.Species == "Former Human" || ActorUtil.isClass(a,"SuicideBomber")
         || ActorUtil.isClass(a,"ZombieMan1") || ActorUtil.isClass(a,"ShotgunGuy1") || ActorUtil.isClass(a,"ChaingunGuy1")
         || ActorUtil.isClass(a,"PB_ZombieMan") || ActorUtil.isClass(a,"PB_ShotgunGuy") || ActorUtil.isClass(a,"PB_ChaingunGuy")
-        || ActorUtil.isClass(a,"PB_ZombieScientist") || ActorUtil.isClass(a,"ZSpecOpsMachinegun"));
+        || ActorUtil.isClass(a,"PB_ZombieScientist") || ActorUtil.isClass(a,"ZSpecOpsMachinegun")
+        
+        //Heretic
+        || a is HereticImp || a is Knight || a is Mummy
+        
+        //Hexen
+        || a is Ettin || a is FireDemon || a is Demon1
+        
+        );
     }
 
     private void AddDropItem(Actor a, string dropitem)
@@ -52,6 +101,7 @@ class DropItems : EventHandler
             ChanceValue dropbattery_exp = DropItemConfig.GetBatteryUpgradeChance();
             
             if (dropflash && dropflash.Roll())
+                //e.A_DropItem("Flashlight"); //This is broken for some reason and doesn't work...have to use item droppers instead
                 AddDropItem(a,"FlashlightDropper");
             if (dropflare && dropflare.Roll())
                 AddDropItem(a,"FlareDropper");
@@ -64,38 +114,34 @@ class DropItems : EventHandler
 }
 
 //This item will drop a flashlight upon it's owner dying
-class FlashlightDropper : FlashlightStartToken
+class FlashlightDropper : ItemDropper
 {
-    override void OwnerDied()
+    Default
     {
-        owner.A_DropItem("Flashlight");
-        super.OwnerDied();
+        ItemDropper.Items "Flashlight", "FlameWand", "FlameWand";
     }
 }
 
-class FlareDropper : FlashlightStartToken
+class FlareDropper : ItemDropper
 {
-    override void OwnerDied()
+    Default
     {
-        owner.A_DropItem("Flare");
-        super.OwnerDied();
+        ItemDropper.Items "Flare", "Flare", "Flare";
     }
 }
 
-class BatteryDropper : FlashlightStartToken
+class BatteryDropper : ItemDropper
 {
-    override void OwnerDied()
+    Default
     {
-        owner.A_DropItem("FlashlightBatteryRecharge");
-        super.OwnerDied();
+        ItemDropper.Items "FlashlightBatteryRecharge", "FlashlightBatteryRecharge", "FlashlightBatteryRecharge";
     }
 }
 
-class BatteryExpanderDropper : FlashlightStartToken
+class BatteryExpanderDropper : ItemDropper
 {
-    override void OwnerDied()
+    Default
     {
-        owner.A_DropItem("FlashlightBatteryUpgrade");
-        super.OwnerDied();
+        ItemDropper.Items "FlashlightBatteryUpgrade", "FlashlightBatteryUpgrade", "FlashlightBatteryUpgrade";
     }
 }

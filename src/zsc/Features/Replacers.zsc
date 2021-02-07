@@ -1,6 +1,6 @@
 class FlashlightReplacers : FlashlightEventHandler
 {
-
+    //Doom actors
     Class<Actor> shotgunclass;
     Class<Actor> shellboxclass;
     Class<Actor> chaingunclass;
@@ -15,6 +15,25 @@ class FlashlightReplacers : FlashlightEventHandler
     Class<Actor> megasphereclass;
     Class<Actor> clipclass;
     
+    //Heretic Actors
+    Class<Actor> crossbowclass;
+    Class<Actor> crossbowammoclass;
+    Class<Actor> blasterclass;
+    Class<Actor> timebombclass;
+    Class<Actor> blasterammoclass;
+    Class<Actor> phoenixrodammoheftyclass;
+    Class<Actor> tomeofpowerclass;
+    Class<Actor> bagofholdingclass;
+    Class<Actor> torchclass;
+    Class<Actor> mysticurnclass;
+    Class<Actor> shadowsphereclass;
+    Class<Actor> ringofinvincibilityclass;
+    Class<Actor> wandcrystalclass;
+    
+    //Hexen Actors - mostly shares Heretic actors
+    //TODO!
+    //Class<Actor> poisonbagclass;
+    
     ChanceValue chanceFlash;
     ChanceValue chanceFlare;
     ChanceValue chanceFlareB;
@@ -24,23 +43,49 @@ class FlashlightReplacers : FlashlightEventHandler
     override void OnRegister()
     {
         shotgunclass = "Shotgun";
+        crossbowclass = "Crossbow";
+        
         shellboxclass = "Shellbox";
+        crossbowammoclass = "CrossbowHefty";
+        
         chaingunclass = "Chaingun";
+        blasterclass = "Blaster";
+        
         rocketammoclass = "RocketAmmo";
+        timebombclass = "ArtiTimeBomb";
+        
         clipboxclass = "ClipBox";
+        blasterammoclass = "BlasterHefty";
+        
         rocketboxclass = "RocketBox";
+        phoenixrodammoheftyclass = "PhoenixRodHefty";
+        
         berserkclass = "Berserk";
+        tomeofpowerclass = "ArtiTomeOfPower";
+        
         infraredclass = "Infrared";
+        torchclass = "ArtiTorch";
+        
         backpackclass = "Backpack";
+        bagofholdingclass = "BagOfHolding";
+        
         soulsphereclass = "Soulsphere";
+        mysticurnclass = "ArtiSuperHealth";
+        
         blursphereclass = "Blursphere";
+        shadowsphereclass = "ArtiInvisibility";
+        
         megasphereclass = "Megasphere";
+        ringofinvincibilityclass = "ArtiInvulnerability";
+        
         clipclass = "Clip";
+        wandcrystalclass = "GoldWandAmmo";
     }
       
     override void CheckReplacement(ReplaceEvent e)
     {
     
+        //doom replacements
         if (e.Replacee is shotgunclass && e.replacement)
             shotgunclass = e.replacement;
         else if (e.Replacee is shellboxclass && e.replacement)
@@ -67,6 +112,35 @@ class FlashlightReplacers : FlashlightEventHandler
             megasphereclass = e.replacement;
         else if (e.Replacee is clipclass && e.replacement)
             clipclass = e.replacement;
+            
+        //heretic/hexen replacements
+        else if (e.Replacee is crossbowclass && e.replacement)
+            crossbowclass = e.replacement;
+        else if (e.Replacee is crossbowammoclass && e.replacement)
+            crossbowammoclass = e.replacement;
+        else if (e.Replacee is blasterclass && e.replacement)
+            blasterclass = e.replacement;
+        else if (e.Replacee is timebombclass && e.replacement)
+            timebombclass = e.replacement;
+        else if (e.Replacee is blasterammoclass && e.replacement)
+            blasterammoclass = e.replacement;
+        else if (e.Replacee is blasterammoclass && e.replacement)
+            blasterammoclass = e.replacement;
+        else if (e.Replacee is phoenixrodammoheftyclass && e.replacement)
+            phoenixrodammoheftyclass = e.replacement;
+        else if (e.Replacee is tomeofpowerclass && e.replacement)
+            tomeofpowerclass = e.replacement;
+        else if (e.Replacee is torchclass && e.replacement)
+            torchclass = e.replacement;
+        else if (e.Replacee is bagofholdingclass && e.replacement)
+            bagofholdingclass = e.replacement;
+        else if (e.Replacee is mysticurnclass && e.replacement)
+            mysticurnclass = e.replacement;
+        else if (e.Replacee is shadowsphereclass && e.replacement)
+            shadowsphereclass = e.replacement;
+        else if (e.Replacee is wandcrystalclass && e.replacement)
+            wandcrystalclass = e.replacement;
+        
     
     }
     
@@ -99,10 +173,12 @@ class FlashlightReplacers : FlashlightEventHandler
     {
         class<Actor> ac = a.GetClass();
         
+        //Doom
         if ((ac is shotgunclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_SHOTGUN)
         || (ac is shellboxclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_SHELLBOX)
         || (ac is chaingunclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_CHAINGUN))
             ActorUtil.ReplaceActor(a,"Flashlight",chanceFlash);
+        
         
         if ((ac is rocketammoclass && ReplacerConfig.GetFlareItem() == REPLACE_FLARE_ROCKET)
         || (ac is clipclass && ReplacerConfig.GetFlareItem() == REPLACE_FLARE_CLIP))
@@ -123,6 +199,33 @@ class FlashlightReplacers : FlashlightEventHandler
         || (ac is soulsphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_SOULSPHERE)
         || (ac is blursphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_BLURSPHERE)
         || (ac is megasphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_MEGASPHERE))
+            ActorUtil.ReplaceActor(a,"FlashlightBatteryUpgrade",chanceBatterUp);
+        
+        //Heretic/Hexen
+        if ((ac is crossbowclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_SHOTGUN)
+        || (ac is crossbowammoclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_SHELLBOX)
+        || (ac is blasterclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_CHAINGUN))
+            ActorUtil.ReplaceActor(a,"FlameWand",chanceFlash);
+        
+        if ((ac is timebombclass && ReplacerConfig.GetFlareItem() == REPLACE_FLARE_ROCKET)
+        || (ac is wandcrystalclass && ReplacerConfig.GetFlareItem() == REPLACE_FLARE_CLIP))
+            ActorUtil.ReplaceActor(a,"Flare",chanceFlare);
+            
+        if ((ac is crossbowammoclass && ReplacerConfig.GetFlareBoxItem() == REPLACE_FLAREBOX_SHELLBOX)
+        || (ac is blasterammoclass && ReplacerConfig.GetFlareBoxItem() == REPLACE_FLAREBOX_CLIPBOX)
+        || (ac is phoenixrodammoheftyclass && ReplacerConfig.GetFlareBoxItem() == REPLACE_FLAREBOX_ROCKETBOX))
+            ActorUtil.ReplaceActor(a,"FlareBox",chanceFlareB);
+            
+        if ((ac is bagofholdingclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_BACKPACK)
+        || (ac is mysticurnclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_SOULSPHERE)
+        || (ac is shadowsphereclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_BLURSPHERE)
+        || (ac is ringofinvincibilityclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_MEGASPHERE))
+            ActorUtil.ReplaceActor(a,"FlashlightBatteryRecharge",chanceBatterRe);
+            
+        if ((ac is bagofholdingclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_BACKPACK)
+        || (ac is mysticurnclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_SOULSPHERE)
+        || (ac is shadowsphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_BLURSPHERE)
+        || (ac is ringofinvincibilityclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_MEGASPHERE))
             ActorUtil.ReplaceActor(a,"FlashlightBatteryUpgrade",chanceBatterUp);
     }
 }
