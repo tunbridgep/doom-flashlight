@@ -18,7 +18,7 @@ class FlashlightBase : Weapon abstract
         +Inventory.ALWAYSPICKUP;
         +WEAPON.WIMPY_WEAPON;
         +WEAPON.NO_AUTO_SWITCH;
-        +COUNTITEM;
+        -COUNTITEM;
     }
     
     protected void RecreateBeam(Actor attachto)
@@ -200,20 +200,20 @@ class Flashlight : FlashlightBase
             }
             Loop;
         Fire: 
-            FLIT I 0
+            TNT1 A 0
             {
                 invoker.TryToggle(invoker);
             }
             Goto RealReady;
         AltFire: 
-            FLIT I 0
+            TNT1 A 0
             {
                 //invoker.UseFlare();
                 ACS_NamedExecute("UseFlare",0);
             }
             Goto RealReady;
         Reload:
-            FLIT I 0 A_JumpIf(invoker.battery.CanUseRecharger(),"RefillBattery");
+            TNT1 A 0 A_JumpIf(invoker.battery.CanUseRecharger(),"RefillBattery");
             Goto RealReady;
         RefillBattery:
             TNT1 A 0
@@ -223,6 +223,103 @@ class Flashlight : FlashlightBase
             FLIT IJLNPRT 1;
             FLIT T 15;
             FLIT TRPNLJ 1;
+            TNT1 A 0
+            {
+                invoker.battery.UseRecharger();
+                invoker.TryTurnOn(invoker,true);
+            }
+            Goto RealReady;
+	}
+}
+
+class FlameWand : FlashlightBase
+{
+
+    Default
+    {
+        Inventory.PickupMessage "$FLASHLIGHT_PICKUP";
+        Tag "$FLASHLIGHT_FLASHLIGHT";
+    }
+
+	States 
+	{ 
+	    Spawn: 
+		    WEMB A -1;
+    		Loop;
+	    Select:
+            TNT1 A 1
+            {
+                A_Raise(999);
+                A_SetCrosshair(99);
+            }
+            Loop;
+        Ready:
+            //FLIT TRPNLJ 1;
+            WEMB BBCCD 1;
+            TNT1 A 0
+            {
+                invoker.TryTurnOn(invoker,true);
+            }
+        RealReady:
+            TNT1 A 0
+            {
+                A_WeaponReady(WRF_ALLOWRELOAD);               
+                if (invoker.beam.IsOn())
+                    return ResolveState("ReadyOn");
+                else
+                    return ResolveState("ReadyOff");
+            }
+        ReadyOn:
+            //FLIT I 1 BRIGHT
+            WEMB G 1 BRIGHT
+            {
+                invoker.RevealStealth();
+            }
+            Goto RealReady;
+        ReadyOff:
+            //FLIT I 1;
+            WEMB D 1;
+            Goto RealReady;
+        Deselect:
+            TNT1 A 0
+            {
+                invoker.TryTurnOff(invoker);
+            }
+            //FLIT IJLNPRT 1;
+            WEMB DDCCB 1;
+            TNT1 A 1
+            {
+                A_Lower(999);
+                A_SetCrosshair(0);
+            }
+            Loop;
+        Fire: 
+            TNT1 A 0
+            {
+                invoker.TryToggle(invoker);
+            }
+            Goto RealReady;
+        AltFire: 
+            TNT1 A 0
+            {
+                //invoker.UseFlare();
+                ACS_NamedExecute("UseFlare",0);
+            }
+            Goto RealReady;
+        Reload:
+            TNT1 A 0 A_JumpIf(invoker.battery.CanUseRecharger(),"RefillBattery");
+            Goto RealReady;
+        RefillBattery:
+            TNT1 A 0
+            {   
+                invoker.TryTurnOff(invoker);
+            }
+            WEMB DDCCB 1;
+            WEMB B 15;
+            WEMB BBCCD 1;
+            //FLIT IJLNPRT 1;
+            //FLIT T 15;
+            //FLIT TRPNLJ 1;
             TNT1 A 0
             {
                 invoker.battery.UseRecharger();

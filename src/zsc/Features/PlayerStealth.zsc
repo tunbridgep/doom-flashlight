@@ -7,46 +7,66 @@ class PlayerStealth : FlashlightEventHandler
             if (Player.CheckInventory("PlayerStealthItem",1))
                 return;
             else
+            {
                 player.GiveInventory("PlayerStealthItem",1);
+            }
         }
     }
 }
 
 class PlayerStealthItem : PermanentItem
 {
-    bool last_shadow;
+    int stealth_time; //need to be in a dark area for long enough to trigger stealth
+    const STEALTH_THRESHOLD = 35 * 2; //three seconds
 
+    float UnitIntervalRange(float stageStartRange, float stageFinishRange, float newStartRange, float newFinishRange, float floatingValue)
+    {
+        float outRange = newFinishRange - newStartRange;
+        float inRange = stageFinishRange - stageStartRange;
+        float range = (outRange / inRange);
+        return (newStartRange + (range * (floatingValue - stageStartRange)));
+    }
+    
+    void DrawOverlay()
+    {
+        //let overlay = TexMan.CheckForTexture("F_SKY1",TexMan.TYPE_ANY,TexMan.DONTCREATE);
+        //StatusBar.DrawTexture(overlay, false, 0, 0, DTA_Alpha, 1, DTA_320x200);
+        //owner.ACS_ScriptCall("DrawStealthOverlay",UnitIntervalRange(0,STEALTH_THRESHOLD,0,1,stealth_time));
+        owner.ACS_ScriptCall("DrawStealthOverlay");
+        //owner.ACS_ScriptCall("DrawStealthOverlay",stealth_time,STEALTH_THRESHOLD);
+    }
+    
     override void DoEffect()
     {
-        //If we have an invisibility item, don't try and change our shadow flag
-        if (owner.CheckInventory("PowerInvisibility",1))
-            return;
-    
-        String msg;
-      
-        int light_level = owner.cursector.lightlevel;
-        bool shadow = !owner.CheckInventory("StealthRemover",1) && flashlight_stealth_player_enabled && light_level <= flashlight_stealth_player_threshold;
-        
-        if (shadow)
+        //If we have an invisibility item or turn off the feature, don't try and change our shadow flag
+        if (owner.CheckInventory("PowerInvisibility",1) || !flashlight_stealth_player_enabled)
         {
-            owner.bSHADOW = true;
-            msg = Stringtable.Localize("$FLASHLIGHT_STEALTH_PLAYER_MSG_IN");
-            owner.ACS_ScriptCall("DrawStealthOverlay");
+            owner.ACS_ScriptCall("HideStealthOverlay");
+            return;
+        }
+         
+        int light_level = owner.cursector.lightlevel;      
+        bool shadow = !owner.CheckInventory("StealthRemover",1) && flashlight_stealth_player_enabled && light_level <= flashlight_stealth_player_threshold && stealth_time >= STEALTH_THRESHOLD;
+        
+        if (light_level <= flashlight_stealth_player_threshold)
+        {
+            stealth_time++;
+            //DrawOverlay();
+        
+            if (shadow)
+            {
+                owner.bSHADOW = true;
+                DrawOverlay();
+            }
         }
         else
         {
+            stealth_time -= 10;
+            if (stealth_time < 0)
+                stealth_time = 0;
+            
             owner.bSHADOW = false;
-            msg = Stringtable.Localize("$FLASHLIGHT_STEALTH_PLAYER_MSG_OUT");
             owner.ACS_ScriptCall("HideStealthOverlay");
         }
-        
-        //only send corner messages when our status has actually changed
-        if (shadow != last_shadow)
-        {
-            last_shadow = shadow;
-            Console.printf(msg);
-            //Object.C_MidPrint("STOVERLY", "A");
-        }
-        
     }
 }
