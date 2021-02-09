@@ -20,6 +20,10 @@ class ChangeSky : FlashlightEventHandler
                 }
             }
             
+            //avoid division by zero
+            if (total_sky_sectors == 0)
+                return;
+            
             let average_light_level = total_light / total_sky_sectors;
             
             Debug.Log("Average sky light level: "..average_light_level.." ("..total_light.."/"..total_sky_sectors..") - Threshold is "..flashlight_replace_sky_threshold.."");
