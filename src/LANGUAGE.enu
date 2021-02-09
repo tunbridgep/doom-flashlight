@@ -195,6 +195,11 @@ FLASHLIGHT_AUTO_USE_FLARES_DESC = "If no flashlight is available, selecting the 
 FLASHLIGHT_KEY_BIND = "Flashlight Select Key";
 FLASHLIGHT_AUTO_USE = "Turn On Automatically";
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Flashlight when selecting it";
+FLASHLIGHT_SKIN = "Flashlight Style";
+FLASHLIGHT_SKIN_DESC = "Set style for flashlight sprites";
+FLASHLIGHT_SKIN_DOOM = "Doom Style (Vanilla)";
+FLASHLIGHT_SKIN_DOOM_BLACK = "Doom Style (Black Gloves)";
+FLASHLIGHT_SKIN_RAVEN = "Heretic/Hexen Style";
 
 //Gameplay and Spawn Settings
 FLASHLIGHT_STARTING_ITEM = "Start with Flashlight";

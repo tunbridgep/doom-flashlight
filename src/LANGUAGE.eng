@@ -29,7 +29,10 @@ FLASHLIGHT_PROFILE_START_FLASHLIGHT_ONLY = "Start with a Torch. Flares are disab
 
 FLASHLIGHT_PROFILE_DROP_BOTH = "Former Humans drop Flares and Torches";
 
+//Advanced Options
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Torch when selecting it";
+FLASHLIGHT_SKIN = "Torch Style";
+FLASHLIGHT_SKIN_DESC = "Set style for torch sprites";
 
 //Battery Stuff
 FLASHLIGHT_BATTERY_DESC1 = "Battery is required to use the torch.";

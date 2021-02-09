@@ -21,6 +21,13 @@ OptionValue FlashlightOptions
     3, "$FLASHLIGHT_SPAWN_FLASHLIGHT_3"
 }
 
+OptionValue FlashlightSkinOptions
+{
+    0, "$FLASHLIGHT_SKIN_DOOM"
+    1, "$FLASHLIGHT_SKIN_DOOM_BLACK"
+    2, "$FLASHLIGHT_SKIN_RAVEN"
+}
+
 OptionValue NotImplementedOptions
 {
     0, "$FLASHLIGHT_NOT_IMPLEMENTED"
@@ -259,6 +266,9 @@ OptionMenu "FlashlightAdvanced"
     StaticText "$FLASHLIGHT_AUTO_USE_FLARES_DESC"
     Option "$FLASHLIGHT_AUTO_USE", "flashlight_auto_use_flashlight", YesNo
     StaticText "$FLASHLIGHT_AUTO_USE_DESC"
+    StaticText ""
+    Option "$FLASHLIGHT_SKIN", "flashlight_skin", FlashlightSkinOptions
+    StaticText "$FLASHLIGHT_SKIN"
 }
 
 OptionMenu "FlashlightCompatOptions"
