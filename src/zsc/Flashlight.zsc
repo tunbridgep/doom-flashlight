@@ -40,31 +40,30 @@ class Flashlight : Weapon
     {
         switch (flashlight_skin)
         {
-        
-        case 0:
-            skinSprite = getspriteindex("FLIT");
-            skinSpriteOff1 = getspriteindex("FLIT");
-            skinSpriteOff2 = getspriteindex("FLIT");
-            skinSpriteOff3 = getspriteindex("FLIT");
-            sprite = getspriteindex("FLPK");
-            enableSound = "flashlight/click";
-            break;
-        case 1:
-            skinSprite = getspriteindex("FLBL");
-            skinSpriteOff1 = getspriteindex("FLBL");
-            skinSpriteOff2 = getspriteindex("FLBL");
-            skinSpriteOff3 = getspriteindex("FLBL");
-            sprite = getspriteindex("FLPK");
-            enableSound = "flashlight/click";
-            break;
-        case 2:
-            skinSprite = getspriteindex("WNDD");
-            skinSpriteOff1 = getspriteindex("WNDA");
-            skinSpriteOff2 = getspriteindex("WNDB");
-            skinSpriteOff3 = getspriteindex("WNDC");
-            sprite = getspriteindex("WNDP");
-            enableSound = "wand/click";
-            break;
+            case 0:
+                skinSprite = getspriteindex("FLIT");
+                skinSpriteOff1 = getspriteindex("FLIT");
+                skinSpriteOff2 = getspriteindex("FLIT");
+                skinSpriteOff3 = getspriteindex("FLIT");
+                sprite = getspriteindex("FLPK");
+                enableSound = "flashlight/click";
+                break;
+            case 1:
+                skinSprite = getspriteindex("FLBL");
+                skinSpriteOff1 = getspriteindex("FLBL");
+                skinSpriteOff2 = getspriteindex("FLBL");
+                skinSpriteOff3 = getspriteindex("FLBL");
+                sprite = getspriteindex("FLPK");
+                enableSound = "flashlight/click";
+                break;
+            case 2:
+                skinSprite = getspriteindex("WNDD");
+                skinSpriteOff1 = getspriteindex("WNDA");
+                skinSpriteOff2 = getspriteindex("WNDB");
+                skinSpriteOff3 = getspriteindex("WNDC");
+                sprite = getspriteindex("WNDP");
+                enableSound = "wand/click";
+                break;
         }
         
         
