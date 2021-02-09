@@ -2,7 +2,6 @@
 #include "zcommon.acs"
 
 #define FLASHLIGHT_OBJECT "Flashlight"
-#define FLAMEWAND_OBJECT "FlameWand"
 #define FLARE_OBJECT "Flare"
 #define CVAR_SWAP_WEAPON "flashlight_lastweap"
 #define CVAR_USE_FLARES "flashlight_auto_use_flare"
@@ -41,22 +40,21 @@ script "ToggleFlashlight" (void) net
     str lastweap = GetCVarString(CVAR_SWAP_WEAPON);
     str weap = GetWeapon();
     
-    bool has_flashlight = CheckInventory(FLASHLIGHT_OBJECT) || CheckInventory(FLAMEWAND_OBJECT);
+    bool has_flashlight = CheckInventory(FLASHLIGHT_OBJECT);
     bool has_flares = CheckInventory(FLARE_OBJECT);
     bool use_flares = GetCVar(CVAR_USE_FLARES) > 0;
     
-    bool selected_flashlight = weap == FLASHLIGHT_OBJECT || weap == FLAMEWAND_OBJECT;
+    bool selected_flashlight = weap == FLASHLIGHT_OBJECT;
     bool selected_last = weap == lastweap;
     
     if (selected_flashlight)
     {
         SetWeapon(lastweap);
     }
-    else if (has_flashlight && weap != FLASHLIGHT_OBJECT && weap != FLAMEWAND_OBJECT)
+    else if (has_flashlight && weap != FLASHLIGHT_OBJECT)
     {
         SetCVarString(CVAR_SWAP_WEAPON,weap);
         SetWeapon(FLASHLIGHT_OBJECT);
-        SetWeapon(FLAMEWAND_OBJECT);
     }
     else if (has_flares && use_flares)
     {

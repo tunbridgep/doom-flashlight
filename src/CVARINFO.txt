@@ -2,7 +2,7 @@
 user noarchive string flashlight_lastweap = "";
 nosave noarchive int flashlight_profile_temp = 0;
 server cheat int flashlight_profile = 0;
-server noarchive int flashlight_game = 0; //0 for doom. 1 for heretic. 2 for hexen. 3 for strife.
+server int flashlight_skin = 0; //0 for doom hand, 1 for black glove hand, 2 for wand staff
 
 //flashlight settings
 user Color flashlight_color = "FF FF FF";

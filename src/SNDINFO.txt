@@ -1,4 +1,5 @@
 flashlight/click		FSHLITE
+wand/click              WEMBOPEN
 
 //flare stuff
 Flare/Light	FLARLITE
@@ -7,11 +8,4 @@ Flare/Loop	FLARLOOP
 //$Volume Flare/Light 0.5
 //$Volume Flare/Loop 0.5
 $Limit Flare/Loop 5
-
-//FireWand
-Weapons/WandOfEmbers/Open	WEMBOPEN
-Weapons/WandOfEmbers/Fire	WEMBFIRE
-Weapons/WandOfEmbers/Hit1	WEMBHIT1
-
-$Limit Weapons/WandOfEmbers/Hit1	0
 

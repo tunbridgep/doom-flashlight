@@ -114,34 +114,34 @@ class DropItems : EventHandler
 }
 
 //This item will drop a flashlight upon it's owner dying
-class FlashlightDropper : ItemDropper
+class FlashlightDropper : PermanentItem
 {
-    Default
+    override void OwnerDied()
     {
-        ItemDropper.Items "Flashlight", "FlameWand", "FlameWand";
+        owner.A_DropItem("Flashlight");
     }
 }
 
-class FlareDropper : ItemDropper
+class FlareDropper : PermanentItem
 {
-    Default
+    override void OwnerDied()
     {
-        ItemDropper.Items "Flare", "Flare", "Flare";
+        owner.A_DropItem("Flare");
     }
 }
 
-class BatteryDropper : ItemDropper
+class BatteryDropper : PermanentItem
 {
-    Default
+    override void OwnerDied()
     {
-        ItemDropper.Items "FlashlightBatteryRecharge", "FlashlightBatteryRecharge", "FlashlightBatteryRecharge";
+        owner.A_DropItem("FlashlightBatteryRecharge");
     }
 }
 
-class BatteryExpanderDropper : ItemDropper
+class BatteryExpanderDropper : PermanentItem
 {
-    Default
+    override void OwnerDied()
     {
-        ItemDropper.Items "FlashlightBatteryUpgrade", "FlashlightBatteryUpgrade", "FlashlightBatteryUpgrade";
+        owner.A_DropItem("FlashlightBatteryUpgrade");
     }
 }

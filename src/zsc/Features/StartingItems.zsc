@@ -11,10 +11,10 @@ class FlashlightSetup : FlashlightEventHandler
         switch (start_item)
         {
             case 1:
-                player.GiveInventory("FlashlightGiver",1);
+                player.GiveInventory("Flashlight",1);
                 break;
             case 2:
-                player.GiveInventory("FlashlightGiver",1); //not a headlamp yet
+                player.GiveInventory("Flashlight",1); //not a headlamp yet
                 break;
         }
         
