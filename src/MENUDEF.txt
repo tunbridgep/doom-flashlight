@@ -322,6 +322,5 @@ OptionMenu "FlashlightBase"
 
 AddOptionMenu "OptionsMenu"
 {
-    StaticText ""
     Submenu "$FLASHLIGHT_MAIN_MENU_TITLE", "FlashlightBase"
 }

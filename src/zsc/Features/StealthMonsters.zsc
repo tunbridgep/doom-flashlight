@@ -4,25 +4,13 @@ class StealthSpawner : EventHandler
 
     void StealthMonsters(Actor monster)
     {
-        //int light_level = monster.cursector.lightlevel;
-        int hp = monster.health;
-        
-        //bool in_threshold = !StealthMonsterConfig.UsesThreshold() || light_level <= StealthMonsterConfig.GetThreshold();
-        bool small = !StealthMonsterConfig.IsSmallOnly() || hp <= max_health_small;
-        
         let dice = StealthMonsterConfig.GetChance();
             
-        if (small && dice.Roll())
+        if (dice.Roll() || monster.bSTEALTH)
         {
-            MakeStealth(monster);
+            monster.GiveInventory("StealthManager",1);
             Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant based on a roll of "..dice.GetLastRoll().." ("..dice.GetChance().." percent chance)");
         }
-    }
-    
-    void MakeStealth(Actor monster)
-    {
-        //monster.bSTEALTH = true;
-        monster.GiveInventory("StealthManager",1);
     }
     
     override void WorldThingSpawned(WorldEvent e)
@@ -31,9 +19,7 @@ class StealthSpawner : EventHandler
         if (!a)
             return;
             
-        if (a.bSTEALTH)
-            MakeStealth(a);
-        else if (a.bISMONSTER && !a.bCORPSE && a.bCOUNTKILL && a.GetLevelSpawnTime() <= 5 && StealthMonsterConfig.IsEnabled())
+        if (a.bISMONSTER && !a.bCORPSE && a.bCOUNTKILL && a.GetLevelSpawnTime() <= 5)// && StealthMonsterConfig.IsEnabled())
             StealthMonsters(a);
     }
 }
@@ -41,32 +27,28 @@ class StealthSpawner : EventHandler
 //enables/disables Stealth based on surrounding illumination
 class StealthManager : PermanentItem
 {
-    bool StealthOverride;
+    bool smallHealth;
+    bool defaultStealth;
     
     override void AttachToOwner(Actor other)
     {
-        StealthOverride = other.bSTEALTH;
+        smallHealth = other.health <= 100; //This has to be done here so we get it's max HP, not it's current HP;
+        defaultStealth = other.bSTEALTH; //Store if we were initially a stealth monster.
         super.AttachToOwner(other);
     }
     
     override void DoEffect()
     {
         int light_level = owner.cursector.lightlevel;
-        bool in_threshold = !StealthMonsterConfig.UsesThreshold() || light_level <= StealthMonsterConfig.GetThreshold();
-        bool revealed = owner.CheckInventory("StealthRemover",1);
-        bool smart = flashlight_flare_reveal_stealth;
+        bool in_threshold = defaultStealth || !StealthMonsterConfig.UsesThreshold() || light_level <= StealthMonsterConfig.GetThreshold(); //keep stealth even in bright areas, if it was initially a stealth monster
+        bool revealed = owner.CountInv("StealthRemover") > 0; //we CAN reveal monsters that were initially stealth monsters;
+        bool stealth_enabled = defaultStealth || StealthMonsterConfig.IsEnabled(); //keep stealth even if we don't have stealth monsters enabled, if it was initially a stealth monster
+        bool small = defaultStealth || !StealthMonsterConfig.IsSmallOnly() || smallHealth; //keep stealth even if it isn't a small monster, if it was initially a stealth monster
         
-        if (!smart)
-        {
-            owner.bSTEALTH = true;
-            owner.alpha = 0;
-        }
-        else
-        {
-            owner.bSTEALTH = (in_threshold || StealthOverride) && !revealed;
-            float newalpha = !(owner.bSTEALTH) * 1.0;
-            owner.alpha = Mathf.Lerp(owner.alpha,newalpha,0.025);
-        }
+        owner.bSTEALTH = stealth_enabled && in_threshold && !revealed && small;
+        
+        float newalpha = !(owner.bSTEALTH) * 1.0;
+        owner.alpha = Mathf.Lerp(owner.alpha,newalpha,0.035);
     }
     
     override void OwnerDied()
@@ -79,6 +61,12 @@ class StealthManager : PermanentItem
 
 class StealthRemover : PermanentItem
 {
+    override void AttachToOwner(Actor other)
+    {
+        Debug.LogVerbose("Stealth Remover added to "..other.GetTag());
+        super.AttachToOwner(other);
+    }
+    
     int ticks;
     override void DoEffect()
     {

@@ -8,8 +8,8 @@ class Flare : CustomInventory
         +INVENTORY.HUBPOWER;
         +INVENTORY.PERSISTENTPOWER;
         +DONTGIB;
-        //Inventory.MaxAmount 30;
-        //Inventory.InterHubAmount 30;
+        Inventory.MaxAmount 9999;
+        Inventory.InterHubAmount 9999;
         Inventory.Icon "FLARINV";
         Inventory.PickupMessage "You picked up a flare.";
     }
@@ -18,14 +18,13 @@ class Flare : CustomInventory
     //override void Tick()
     override void BeginPlay()
     {
-        int max = flashlight_flare_max_amount;
-        
-        if (max <= 0)
-            max = 9999;
-    
         self.bINVBAR = FlareConfig.GetAppearInInventory();
-        self.MaxAmount = max;
-        self.InterHubAmount = max;
+    }
+       
+    override bool CanPickup(Actor toucher)
+    {
+        bool allow = flashlight_flare_max_amount <= 0 || toucher.CountInv("Flare") < flashlight_flare_max_amount;
+        return allow && super.CanPickup(toucher);
     }
     
     States
@@ -137,7 +136,6 @@ class ActiveFlare : FlareBase
 {
     int burntime;
     bool burn_forever;
-    bool reveal_stealth;
     
     override void BeginPlay()
     {
@@ -155,10 +153,9 @@ class ActiveFlare : FlareBase
             RemoveDynamicLight();
             A_StopSound(7);
         }
-        else if (pointLight)
+        else if (pointLight && flashlight_flare_reveal_stealth)
         {
-            int items_given = A_RadiusGive("StealthRemover",pointLight.Intensity * 1.5,RGF_PLAYERS|RGF_MONSTERS|RGF_NOSIGHT,999);
-            //Debug.Log("items given: "..items_given);
+            A_RadiusGive("StealthRemover",pointLight.Intensity * 1.5,RGF_PLAYERS|RGF_MONSTERS|RGF_NOSIGHT,999);
         }
         else
             Debug.LogError("Flare was not able to establish pointlight");
