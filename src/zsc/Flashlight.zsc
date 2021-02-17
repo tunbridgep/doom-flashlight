@@ -90,7 +90,7 @@ class Flashlight : Weapon
 	
 	private action void Draw(SpriteID id)
 	{
-        if (invoker.style == 3 && flashlight_skin >= 0 && flashlight_skin <= 12)
+        if (invoker.style == 3 && flashlight_skin >= 0 && flashlight_skin <= 13)
         {
             X_SetSkinFrame(id, PSP_WEAPON, flashlight_skin);
             if (invoker.beam.IsOn())
