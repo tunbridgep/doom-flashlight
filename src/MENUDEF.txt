@@ -36,7 +36,7 @@ OptionValue FlashlightGloveOptions
     2, "$FLASHLIGHT_GLOVES_STRIFE"
 }
 
-OptionValue FlashlightSkins
+OptionValue FlashlightSkinOptions
 {
     0, "$FLASHLIGHT_SKIN_GREY"
     1, "$FLASHLIGHT_SKIN_GREEN"
@@ -295,7 +295,8 @@ OptionMenu "FlashlightAdvanced"
     StaticText ""
     Option "$FLASHLIGHT_STYLE", "flashlight_style", FlashlightStyleOptions
     StaticText "$FLASHLIGHT_STYLE_DESC"
-    FlashlightOption "$FLASHLIGHT_SKIN", "flashlight_skin", FlashlightSkins, "flashlight_style","$FLASHLIGHT_MENU_NOOP",3
+    FlashlightOption "$FLASHLIGHT_SKIN", "flashlight_skin", FlashlightSkinOptions, "flashlight_style","$FLASHLIGHT_MENU_NOOP",3
+    FlashlightOption "$FLASHLIGHT_GLOVES", "flashlight_gloves", FlashlightGloveOptions, "flashlight_style","$FLASHLIGHT_MENU_NOOP",3
 }
 
 OptionMenu "FlashlightCompatOptions"

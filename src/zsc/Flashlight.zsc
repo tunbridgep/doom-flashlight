@@ -11,6 +11,7 @@ class Flashlight : Weapon
     SpriteID overlaySprite;
     String enableSound;
     String pickupSound;
+    int style;
     
     Default
     {
@@ -39,7 +40,8 @@ class Flashlight : Weapon
     
     private void SetSkinSprite()
     {
-        switch (flashlight_style)
+        style = flashlight_style;
+        switch (style)
         {
             case 0: //Classic Doom Hand
                 skinSprite = getspriteindex("FLIT");
@@ -88,7 +90,7 @@ class Flashlight : Weapon
 	
 	private action void Draw(SpriteID id)
 	{
-        if (flashlight_style == 3 && flashlight_skin >= 0 && flashlight_skin <= 12)
+        if (invoker.style == 3 && flashlight_skin >= 0 && flashlight_skin <= 12)
         {
             X_SetSkinFrame(id, PSP_WEAPON, flashlight_skin);
             if (invoker.beam.IsOn())
@@ -103,7 +105,7 @@ class Flashlight : Weapon
 	
 	private action void DrawGloves()
 	{
-        if (flashlight_style == 3 && flashlight_gloves >= 0 && flashlight_gloves <= 2)
+        if (invoker.style == 3 && flashlight_gloves >= 0 && flashlight_gloves <= 2)
             X_SetSkinFrame(invoker.overlaySprite, 100, flashlight_gloves);
 	}
     

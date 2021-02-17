@@ -221,7 +221,7 @@ FLASHLIGHT_SKIN_AQUA = "Aqua";
 FLASHLIGHT_SKIN_DARK_OLIVE = "Dark Olive";
 FLASHLIGHT_SKIN_LIGHT_BLUE = "Light Blue";
 FLASHLIGHT_SKIN_FIRE_BLUE = "Fire Blue";
-FLASHLIGHT_SKIN_Rainbow = "Rainbow";
+FLASHLIGHT_SKIN_RAINBOW = "Rainbow";
 
 //Gameplay and Spawn Settings
 FLASHLIGHT_STARTING_ITEM = "Start with Flashlight";
