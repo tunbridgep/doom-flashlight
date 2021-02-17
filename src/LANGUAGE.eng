@@ -31,8 +31,10 @@ FLASHLIGHT_PROFILE_DROP_BOTH = "Former Humans drop Flares and Torches";
 
 //Advanced Options
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Torch when selecting it";
-FLASHLIGHT_SKIN = "Torch Style";
-FLASHLIGHT_SKIN_DESC = "Set style for torch sprites";
+FLASHLIGHT_STYLE = "Torch Style";
+FLASHLIGHT_STYLE_DESC = "Set style for torch sprites";
+FLASHLIGHT_SKIN = "Torch Colour";
+FLASHLIGHT_SKIN_GREY = "Gray";
 
 //Battery Stuff
 FLASHLIGHT_BATTERY_DESC1 = "Battery is required to use the torch.";

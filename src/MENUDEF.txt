@@ -21,11 +21,36 @@ OptionValue FlashlightOptions
     3, "$FLASHLIGHT_SPAWN_FLASHLIGHT_3"
 }
 
-OptionValue FlashlightSkinOptions
+OptionValue FlashlightStyleOptions
 {
-    0, "$FLASHLIGHT_SKIN_DOOM"
-    1, "$FLASHLIGHT_SKIN_DOOM_BLACK"
-    2, "$FLASHLIGHT_SKIN_RAVEN"
+    0, "$FLASHLIGHT_STYLE_DOOM"
+    1, "$FLASHLIGHT_STYLE_DOOM_BLACK"
+    2, "$FLASHLIGHT_STYLE_RAVEN"
+    3, "$FLASHLIGHT_STYLE_NEW"
+}
+
+OptionValue FlashlightGloveOptions
+{
+    0, "$FLASHLIGHT_GLOVES_CLASSIC"
+    1, "$FLASHLIGHT_GLOVES_BLACK"
+    2, "$FLASHLIGHT_GLOVES_STRIFE"
+}
+
+OptionValue FlashlightSkins
+{
+    0, "$FLASHLIGHT_SKIN_GREY"
+    1, "$FLASHLIGHT_SKIN_GREEN"
+    2, "$FLASHLIGHT_SKIN_OLIVE"
+    3, "$FLASHLIGHT_SKIN_ORANGE"
+    4, "$FLASHLIGHT_SKIN_VIOLET"
+    5, "$FLASHLIGHT_SKIN_BROWN"
+    6, "$FLASHLIGHT_SKIN_BLUE"
+    7, "$FLASHLIGHT_SKIN_PINK"
+    8, "$FLASHLIGHT_SKIN_AQUA"
+    9, "$FLASHLIGHT_SKIN_DARK_OLIVE"
+    10, "$FLASHLIGHT_SKIN_LIGHT_BLUE"
+    11, "$FLASHLIGHT_SKIN_FIRE_BLUE"
+    12, "$FLASHLIGHT_SKIN_RAINBOW"
 }
 
 OptionValue NotImplementedOptions
@@ -114,6 +139,7 @@ OptionMenu "FlashlightCredits"
     StaticText "Flare by scalliano"
     StaticText "Flashlight by idGamer, Alando1, osjclatchford, Eriance, MagicWizard"
     StaticText "Master Levels for Night Sky texture"
+    StaticText "WereKnight for Strife Flashlight Sprite"
     StaticText ""
     StaticText "$FLASHLIGHT_CREDITS_ADDITIONAL", 1
     StaticText "$FLASHLIGHT_CREDITS_SPOTLIGHT_CODE"
@@ -267,8 +293,9 @@ OptionMenu "FlashlightAdvanced"
     Option "$FLASHLIGHT_AUTO_USE", "flashlight_auto_use_flashlight", YesNo
     StaticText "$FLASHLIGHT_AUTO_USE_DESC"
     StaticText ""
-    Option "$FLASHLIGHT_SKIN", "flashlight_skin", FlashlightSkinOptions
-    StaticText "$FLASHLIGHT_SKIN"
+    Option "$FLASHLIGHT_STYLE", "flashlight_style", FlashlightStyleOptions
+    StaticText "$FLASHLIGHT_STYLE_DESC"
+    FlashlightOption "$FLASHLIGHT_SKIN", "flashlight_skin", FlashlightSkins, "flashlight_style","$FLASHLIGHT_MENU_NOOP",3
 }
 
 OptionMenu "FlashlightCompatOptions"

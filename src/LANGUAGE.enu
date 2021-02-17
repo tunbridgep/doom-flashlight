@@ -195,11 +195,33 @@ FLASHLIGHT_AUTO_USE_FLARES_DESC = "If no flashlight is available, selecting the 
 FLASHLIGHT_KEY_BIND = "Flashlight Select Key";
 FLASHLIGHT_AUTO_USE = "Turn On Automatically";
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Flashlight when selecting it";
-FLASHLIGHT_SKIN = "Flashlight Style";
-FLASHLIGHT_SKIN_DESC = "Set style for flashlight sprites";
-FLASHLIGHT_SKIN_DOOM = "Doom Style (Vanilla)";
-FLASHLIGHT_SKIN_DOOM_BLACK = "Doom Style (Black Gloves)";
-FLASHLIGHT_SKIN_RAVEN = "Heretic/Hexen Style";
+
+FLASHLIGHT_STYLE = "Flashlight Style";
+FLASHLIGHT_STYLE_DESC = "Set style for flashlight sprites";
+FLASHLIGHT_STYLE_DOOM = "Classic (Vanilla Doom Style Gloves)";
+FLASHLIGHT_STYLE_DOOM_BLACK = "Classic (Black Gloves)";
+FLASHLIGHT_STYLE_RAVEN = "Heretic/Hexen Style";
+FLASHLIGHT_STYLE_NEW = "New Style (Skinnable)";
+FLASHLIGHT_GLOVES = "Gloves Style";
+FLASHLIGHT_GLOVES_CLASSIC = "Classic Doom";
+FLASHLIGHT_GLOVES_BLACK = "Black Gloves";
+FLASHLIGHT_GLOVES_STRIFE = "Strife Style";
+
+//Flashlight Skins
+FLASHLIGHT_SKIN = "Flashlight Color";
+FLASHLIGHT_SKIN_GREY = "Gray";
+FLASHLIGHT_SKIN_GREEN = "Green";
+FLASHLIGHT_SKIN_OLIVE = "Olive";
+FLASHLIGHT_SKIN_ORANGE = "Orange";
+FLASHLIGHT_SKIN_VIOLET = "Violet";
+FLASHLIGHT_SKIN_BROWN = "Brown";
+FLASHLIGHT_SKIN_BLUE = "Blue";
+FLASHLIGHT_SKIN_PINK = "Pink";
+FLASHLIGHT_SKIN_AQUA = "Aqua";
+FLASHLIGHT_SKIN_DARK_OLIVE = "Dark Olive";
+FLASHLIGHT_SKIN_LIGHT_BLUE = "Light Blue";
+FLASHLIGHT_SKIN_FIRE_BLUE = "Fire Blue";
+FLASHLIGHT_SKIN_Rainbow = "Rainbow";
 
 //Gameplay and Spawn Settings
 FLASHLIGHT_STARTING_ITEM = "Start with Flashlight";
