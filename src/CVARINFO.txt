@@ -34,6 +34,8 @@ server int flashlight_battery_max = 1575;
 server int flashlight_battery_min_threshold = 315;
 server int flashlight_battery_use_per_tic = 1;
 server int flashlight_battery_charge_per_tic = 3;
+server int flashlight_battery_recharge_max_amount = 30;
+server int flashlight_battery_upgrade_max_amount = 30;
 
 //map alteration
 server int flashlight_darken_mode = 0;

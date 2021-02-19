@@ -184,6 +184,9 @@ OptionMenu "FlashlightGameplayOptions"
     FlashlightSlider "$FLASHLIGHT_BATTERY_CHARGE", "flashlight_battery_charge_per_tic", 0,100,1,0,"flashlight_battery_mode","$FLASHLIGHT_MENU_NOOP"
     StaticText "$FLASHLIGHT_BATTERY_DESC1"
     StaticText "$FLASHLIGHT_BATTERY_DESC2"
+    ScaleSlider "$FLASHLIGHT_BATTERY_RECHARGE_INVENTORY_MAX", "flashlight_battery_recharge_max_amount", 0,100,1,"$FLASHLIGHT_UNLIMITED"
+    ScaleSlider "$FLASHLIGHT_BATTERY_UPGRADE_INVENTORY_MAX", "flashlight_battery_upgrade_max_amount", 0,100,1,"$FLASHLIGHT_UNLIMITED"
+    StaticText "$FLASHLIGHT_BATTERY_INVENTORY_MAX_DESC"
 }
 
 OptionMenu "FlashlightLightingOptions"

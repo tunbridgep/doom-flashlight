@@ -135,6 +135,9 @@ FLASHLIGHT_BATTERY_USE = "Battery Use Rate (tics)";
 FLASHLIGHT_BATTERY_CHARGE = "Battery Charge Rate (tics)";
 FLASHLIGHT_BATTERY_DESC1 = "Battery is required to use the flashlight.";
 FLASHLIGHT_BATTERY_DESC2 = "Flashlight can not be reactivated below the minumum.";
+FLASHLIGHT_BATTERY_RECHARGE_INVENTORY_MAX = "Maximum Batteries";
+FLASHLIGHT_BATTERY_UPGRADE_INVENTORY_MAX = "Maximum Battery Upgrades";
+FLASHLIGHT_BATTERY_INVENTORY_MAX_DESC = "The maximum number of batteries and battery upgrades the player can carry";
 
 //Darken Modes and Level Alteration
 FLASHLIGHT_DARKEN_MODE = "Light Alteration Mode";

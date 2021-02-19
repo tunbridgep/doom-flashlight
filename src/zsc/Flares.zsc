@@ -8,8 +8,8 @@ class Flare : CustomInventory
         +INVENTORY.HUBPOWER;
         +INVENTORY.PERSISTENTPOWER;
         +DONTGIB;
-        Inventory.MaxAmount 9999;
-        Inventory.InterHubAmount 9999;
+        Inventory.MaxAmount 999;
+        Inventory.InterHubAmount 999;
         Inventory.Icon "FLARINV";
         Inventory.PickupMessage "You picked up a flare.";
     }
