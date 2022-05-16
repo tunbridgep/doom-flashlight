@@ -64,7 +64,10 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             CVar.GetCvar("flashlight_replace_sky").SetBool(true);
             CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
             if (p == AMBUSH_MODE || p == DRAIN_MODE_NIGHT)
+			{
                 CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(3);
+				CVar.GetCvar("flashlight_stealth_player_enabled").SetBool(true);
+			}
             if (p == DRAIN_MODE_NIGHT)
             {
                 CVar.GetCvar("flashlight_enemies_drop_battery").SetBool(true);
@@ -72,7 +75,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
                 CVar.GetCvar("flashlight_battery_min_threshold").SetInt(0);
                 CVar.GetCvar("flashlight_battery_use_per_tic").SetInt(1);
                 CVar.GetCvar("flashlight_battery_charge_per_tic").SetInt(0);
-                CVar.GetCvar("flashlight_spawn_battery_recharge").SetBool(true);
+                CVar.GetCvar("flashlight_spawn_battery_upgrade_chance").SetBool(true);
             }
         }
         else if (p == VANILLA_MODE) //Very simply profile. Nothing is changed, but enemies drop the flashlight and flares
@@ -88,6 +91,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             
             //Stealth Monster settings
             CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(3);
+			CVar.GetCvar("flashlight_stealth_player_enabled").SetBool(true);
             CVar.GetCvar("flashlight_stealth_monster_chance").SetInt(100);
             
             //battery settings
@@ -119,6 +123,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             CVar.GetCvar("flashlight_enemies_drop_flares_chance").SetInt(15);
             CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(3);
             CVar.GetCvar("flashlight_stealth_monster_chance").SetInt(100);
+			CVar.GetCvar("flashlight_stealth_player_enabled").SetBool(true);
             CVar.GetCvar("flashlight_flare_recharge_enabled").SetBool(true);
         }
         else if (p == DARKER_DARKNESS) //Darken dark areas, start with flares, enemies drop items, optional stealth for basic monsters
@@ -157,6 +162,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             //Stealth Monster settings
             CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(2);
             CVar.GetCvar("flashlight_stealth_monster_chance").SetInt(100);
+			CVar.GetCvar("flashlight_stealth_player_enabled").SetBool(true);
             
             //battery settings
             CVar.GetCvar("flashlight_battery_max").SetInt(350000);

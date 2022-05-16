@@ -39,19 +39,19 @@ server int flashlight_battery_upgrade_max_amount = 30;
 
 //map alteration
 server int flashlight_darken_mode = 0;
-server int flashlight_darken_parabola_brightness_factor = 15;
-server int flashlight_darken_parabola_curve_point = 96;
-server int flashlight_darken_parabola_adjust = 5;
-server int flashlight_darken_linear_amount = 45;
-server float flashlight_darken_proportional_amount = 0.55;
-server float flashlight_darken_divide_amount = 5;
+server int flashlight_darken_parabola_brightness_factor = 48;
+server int flashlight_darken_parabola_curve_point = 72;
+server int flashlight_darken_parabola_adjust = 10;
+server int flashlight_darken_linear_amount = 35;
+server float flashlight_darken_proportional_amount = 0.2;
+server float flashlight_darken_divide_amount = 2;
 server int flashlight_darken_divide_additional = 0;
-server bool flashlight_replace_sky = false;
+server bool flashlight_replace_sky = true;
 server int flashlight_replace_sky_threshold = 112;
 
 //stealth monsters
 server int flashlight_stealth_monster_chance = 20;
-server int flashlight_stealth_monster_threshold = 48;
+server int flashlight_stealth_monster_threshold = 80;
 server int flashlight_stealth_monster_mode = 0;
 server bool flashlight_flare_reveal_stealth = true;
 server bool flashlight_flashlight_reveal_stealth = true;
@@ -91,7 +91,7 @@ server bool flashlight_compat_brutal_gldefs_doors = false;
 
 //player stealth
 server bool flashlight_stealth_player_enabled = false;
-server int flashlight_stealth_player_threshold = 48;
+server int flashlight_stealth_player_threshold = 80;
 
 //misc
 server int flashlight_debug = 0;

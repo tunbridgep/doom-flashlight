@@ -23,7 +23,6 @@ class ResetConfig : ConfigBase
 
         CVar.GetCvar("flashlight_starting_flares").ResetToDefault();
         CVar.GetCvar("flashlight_starting_item").ResetToDefault();
-        CVar.GetCvar("flashlight_replace_sky").ResetToDefault();
         
         CVar.GetCvar("flashlight_enemies_drop_flashlights").ResetToDefault();
         CVar.GetCvar("flashlight_enemies_drop_flares").ResetToDefault();
@@ -36,6 +35,8 @@ class ResetConfig : ConfigBase
         CVar.GetCvar("flashlight_enemies_drop_battery_expander_chance").ResetToDefault();
         
         CVar.GetCvar("flashlight_flare_recharge_enabled").ResetToDefault();
+		
+		CVar.GetCvar("flashlight_stealth_player_enabled").ResetToDefault();
     }
 
     //For some reason, this crashes the game
