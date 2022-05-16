@@ -11,6 +11,11 @@ class FlashlightEventHandler : EventHandler
     {
         //override this
     }
+	
+	virtual void SaveGameLoaded(WorldEvent e)
+	{
+		//override this
+	}
     
     override void PlayerEntered(PlayerEvent e)
     {      
@@ -21,13 +26,13 @@ class FlashlightEventHandler : EventHandler
     }
 
     override void WorldLoaded(WorldEvent e)
-    {
-        if (e.IsReopen)
-            return;
-        
+    {        
         if (gamestate == 7) //TITLEMAP
             return;
-        
-        UniqueWorldLoaded(e);
+			
+		if (e.IsReopen)
+            SaveGameLoaded(e);
+		else        
+			UniqueWorldLoaded(e);
     }
 }

@@ -1,19 +1,48 @@
 class ChangeSky : FlashlightEventHandler
 {
-    override void UniqueWorldLoaded(WorldEvent e)
+	Array<int> sector_indexes;
+	TextureID Sky1;
+	TextureID Sky2;
+
+	override void UniqueWorldLoaded(WorldEvent e)
+    {
+		Sky1 = level.SkyTexture1;
+		Sky2 = level.SkyTexture2;
+	
+		for (int i = 0; i < level.sectors.size();i++)
+        {
+			let ceiling = level.sectors[i].GetTexture(1);
+            let ceiling_name = TexMan.GetName(ceiling).MakeLower();
+			
+			if (ceiling_name == "f_sky1")
+			{
+				sector_indexes.Push(i);
+			}
+		}
+	
+		DoChangeSky();			
+    }
+	
+	override void NetworkProcess(ConsoleEvent e)
+	{
+		if (e.Name == "flashlight_refresh")
+		{
+			DoChangeSky();
+		}
+	}
+	
+	
+
+    void DoChangeSky()
     {
         if (flashlight_replace_sky)
-        {
-            int sectors = level.sectors.size();
-            int total_light;
-            int total_sky_sectors = 0;
-            
-            for (int i = 0; i < sectors;i++)
-            {
-                let light_level = level.sectors[i].GetLightLevel();
-                let ceiling = level.sectors[i].GetTexture(1);
-                let ceiling_name = TexMan.GetName(ceiling).MakeLower();
-                if (ceiling_name == "f_sky1")
+        {       
+			int total_light = 0;
+			int total_sky_sectors = 0;
+		
+            for (int i = 0; i < sector_indexes.Size(); i++)
+            {		
+                let light_level = level.sectors[sector_indexes[i]].GetLightLevel();
                 {
                     total_light += light_level;
                     total_sky_sectors++;
@@ -33,7 +62,11 @@ class ChangeSky : FlashlightEventHandler
                 let skytex = TexMan.CheckForTexture("DARKSKY",TexMan.TYPE_ANY,TexMan.DONTCREATE);
                 level.ChangeSky(skytex, skytex);
                 Debug.Log("Replacing sky...");
+				return;
             }
         }
+		
+		level.ChangeSky(Sky1, Sky2);
+		
     }
 }

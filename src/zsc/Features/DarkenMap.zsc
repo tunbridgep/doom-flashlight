@@ -1,5 +1,26 @@
+class SectorInfo
+{
+    Sector sector;
+	int originalLightLevel;
+}
+
 class DarkenMap : FlashlightEventHandler
 {
+	Array<SectorInfo> sectorInfos;
+
+	void InitMapDarkener()
+	{
+		int total_sectors = level.sectors.size();
+      
+        for (int i = 0; i < total_sectors;i++)
+        {
+			SectorInfo info = new("SectorInfo");
+			info.sector = level.sectors[i];
+			info.originalLightLevel = (level.sectors[i].GetCeilingLight() + level.sectors[i].GetFloorLight()) / 2;
+			//Debug.LogVerbose("Found Sector with light level "..info.originalLightLevel..". Adding to list");
+			sectorInfos.Push(info);
+		}
+	}
 
     //darkens based on a curve - the closer it is to the threshold, the less it gets darkened
     int DarkenParabola(int light_level, int curve, int brightness, int adjust)
@@ -53,47 +74,48 @@ class DarkenMap : FlashlightEventHandler
         return Math.Clamp(o,0,255);
     }
     
-    void DarkenMap(LightingMode mode, LinearInfo li, ParabolaInfo pi, DivideInfo di, Propinfo pri)
+    void DarkenMap()
     {
-        int nsectors = level.sectors.size();
-        int modified_sectors = 0;
-      
-        for (int i = 0; i < nsectors;i++)
+		LightingMode mode = LightingConfig.GetMode();
+        LinearInfo li;
+        LightingConfig.GetLinearModeInfo(li);
+        ParabolaInfo pi;
+        LightingConfig.GetParabolaModeInfo(pi);
+        DivideInfo di;
+        LightingConfig.GetDivideModeInfo(di);
+        PropInfo pri;
+        LightingConfig.GetProportionalModeInfo(pri);
+	      
+        for (int i = 0; i < sectorInfos.Size();i++)
         {
-            int average = (level.sectors[i].GetCeilingLight() + level.sectors[i].GetFloorLight()) / 2;
-            int light_level = level.sectors[i].GetLightLevel();            
-
-            int new_level = average;
+            int new_level = sectorInfos[i].originalLightLevel;
             
             if (mode == LIGHTING_PARABOLA)
-                new_level = DarkenParabola(average,pi.curve,pi.brightness,pi.adjust);
+                new_level = DarkenParabola(new_level,pi.curve,pi.brightness,pi.adjust);
             else if (mode == LIGHTING_SIMPLE)
-                new_level = DarkenSimple(average,li.amount);
+                new_level = DarkenSimple(new_level,li.amount);
             else if (mode == LIGHTING_DIVIDE)
-                new_level = DarkenDivide(average,di.divide,di.additional);
+                new_level = DarkenDivide(new_level,di.divide,di.additional);
             else if (mode == LIGHTING_PROPORTIONAL)
-                new_level = DarkenProportional(average,pri.proportion);
+                new_level = DarkenProportional(new_level,pri.proportion);
             
-            level.sectors[i].SetLightLevel(new_level);
-            modified_sectors++;
-            Debug.LogVerbose("Darkened Sector with light level "..light_level.." to "..new_level);
+            sectorInfos[i].sector.SetLightLevel(new_level);
+            Debug.LogVerbose("Darkened Sector with light level "..sectorInfos[i].originalLightLevel.." to "..new_level);
         }
-        Debug.Log(modified_sectors.." sectors were darkened");
+        Debug.Log(sectorInfos.Size().." sectors were darkened");
     }
     
     override void UniqueWorldLoaded(WorldEvent e)
     {
-        LightingMode mode = LightingConfig.GetMode();
-        LinearInfo linearinfo;
-        LightingConfig.GetLinearModeInfo(linearinfo);
-        ParabolaInfo parabolainfo;
-        LightingConfig.GetParabolaModeInfo(parabolainfo);
-        DivideInfo divideinfo;
-        LightingConfig.GetDivideModeInfo(divideinfo);
-        PropInfo propinfo;
-        LightingConfig.GetProportionalModeInfo(propinfo);
-        
-        if (mode != LIGHTING_DISABLED)
-            DarkenMap(mode,linearinfo,parabolainfo,divideinfo,propinfo);
+		InitMapDarkener();
+		DarkenMap();		
     }
+	
+	override void NetworkProcess(ConsoleEvent e)
+	{
+		if (e.Name == "flashlight_refresh")
+		{
+			DarkenMap();
+		}
+	}
 }

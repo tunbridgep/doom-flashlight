@@ -323,6 +323,7 @@ OptionMenu "FlashlightCompatOptions"
 OptionMenu "FlashlightBase"
 {
     Title "$FLASHLIGHT_MAIN_MENU_TITLE"
+	Class "FlashlightMenu"
     
     SubMenu "$FLASHLIGHT_ADVANCED_SETTINGS", "FlashlightAdvanced"
     SubMenu "$FLASHLIGHT_CALIBRATION", "FlashlightCalibration"

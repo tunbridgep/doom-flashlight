@@ -2,3 +2,5 @@ addkeysection "Flashlight" FlashlightSection
    addmenukey "Toggle Flashlight" toggleflashlight_bind
    alias toggleflashlight_bind "pukename ToggleFlashlight"
    defaultbind J toggleflashlight_bind
+
+alias "flashlight_refresh" "netevent flashlight_refresh 0 0 0"
