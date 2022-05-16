@@ -152,6 +152,9 @@ FLASHLIGHT_DARKEN_MODE_PARABOLA_ADJUST = "Parabolic Adjustment";
 FLASHLIGHT_DARKEN_MODE_DIVIDE_AMOUNT = "Divide Amount";
 FLASHLIGHT_DARKEN_MODE_DIVIDE_ADDITIONAL = "Additional Amount";
 FLASHLIGHT_DARKEN_MODE_PROPORTION_AMOUNT = "Proportion";
+FLASHLIGHT_DARKEN_MAX_BRIGHTNESS = "Max Brightness";
+FLASHLIGHT_DARKEN_MAX_DESC1 = "The absolute maximum brightness of any sector,";
+FLASHLIGHT_DARKEN_MAX_DESC2 = "regardless of the darkening modes above";
 
 FLASHLIGHT_DARKEN_MODE_PROP_DESC1 = "Lower light levels in all sectors based on";
 FLASHLIGHT_DARKEN_MODE_PROP_DESC2 = "their distance from 255. This is designed";

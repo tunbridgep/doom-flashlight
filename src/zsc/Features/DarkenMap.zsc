@@ -51,12 +51,12 @@ class DarkenMap : FlashlightEventHandler
             
             o = Math.Round(brightness + ((a * b) / c));
         }
-        return Math.Clamp(o,0,255);
+        return Math.Clamp(o,0,light_level);
     }
     
     int DarkenSimple(int light_level, int brightness)
     {
-        return Math.Clamp(light_level - brightness,0,255);
+        return Math.Clamp(light_level - brightness,0,light_level);
     }
     
     int DarkenDivide(int light_level, float multiplier, int additional)
@@ -64,19 +64,20 @@ class DarkenMap : FlashlightEventHandler
         multiplier = Mathf.ClampMin(multiplier,0);
     
         int o = Math.Round(light_level / multiplier) - additional;
-        return Math.Clamp(o,0,255);
+        return Math.Clamp(o,0,light_level);
     }
     
     int DarkenProportional(int light_level, float proportion)
     {
         float new_level = light_level - ((255 - light_level) * proportion);
         int o = Math.Round(new_level);
-        return Math.Clamp(o,0,255);
+        return Math.Clamp(o,0,light_level);
     }
     
     void DarkenMap()
     {
 		LightingMode mode = LightingConfig.GetMode();
+				
         LinearInfo li;
         LightingConfig.GetLinearModeInfo(li);
         ParabolaInfo pi;
@@ -98,6 +99,9 @@ class DarkenMap : FlashlightEventHandler
                 new_level = DarkenDivide(new_level,di.divide,di.additional);
             else if (mode == LIGHTING_PROPORTIONAL)
                 new_level = DarkenProportional(new_level,pri.proportion);
+				
+			if (mode != LIGHTING_DISABLED)
+				new_level = Math.ClampMax(new_level,flashlight_darken_max_brightness);
             
             sectorInfos[i].sector.SetLightLevel(new_level);
             Debug.LogVerbose("Darkened Sector with light level "..sectorInfos[i].originalLightLevel.." to "..new_level);

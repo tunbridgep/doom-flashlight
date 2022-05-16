@@ -132,13 +132,15 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
         }
         else if (p == DARKER_DARKNESS) //Darken dark areas, start with flares, enemies drop items, optional stealth for basic monsters
         {
-            CVar.GetCvar("flashlight_darken_mode").SetInt(2);
+            CVar.GetCvar("flashlight_darken_mode").SetInt(1);
             CVar.GetCvar("flashlight_starting_flares").SetInt(5);
             CVar.GetCvar("flashlight_enemies_drop_flashlights").SetBool(true);
         }
         else if (p == TWILIGHT)
         {
-            CVar.GetCvar("flashlight_darken_mode").SetInt(2);
+            CVar.GetCvar("flashlight_darken_mode").SetInt(4);
+			CVar.GetCvar("flashlight_darken_proportional_amount").SetFloat(0.350);
+			CVar.GetCvar("flashlight_darken_max_brightness").SetInt(128);
             CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
             CVar.GetCvar("flashlight_starting_flares").SetInt(5);
             CVar.GetCvar("flashlight_spawn_flare_box").SetInt(1);

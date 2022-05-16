@@ -38,7 +38,17 @@ class ResetConfig : ConfigBase
 		
 		CVar.GetCvar("flashlight_stealth_player_enabled").ResetToDefault();
 		
-		CVar.GetCvar("flashlight_replace_sky").ResetToDefault();
+		//map alteration
+        CVar.GetCvar("flashlight_darken_mode").ResetToDefault();
+        CVar.GetCvar("flashlight_darken_parabola_brightness_factor").ResetToDefault();
+        CVar.GetCvar("flashlight_darken_parabola_curve_point").ResetToDefault();
+        CVar.GetCvar("flashlight_darken_parabola_adjust").ResetToDefault();
+        CVar.GetCvar("flashlight_darken_linear_amount").ResetToDefault();
+        CVar.GetCvar("flashlight_darken_proportional_amount").ResetToDefault();
+        CVar.GetCvar("flashlight_darken_divide_amount").ResetToDefault();
+        CVar.GetCvar("flashlight_darken_divide_additional").ResetToDefault();
+        CVar.GetCvar("flashlight_replace_sky").ResetToDefault();
+		CVar.GetCvar("flashlight_darken_max_brightness").ResetToDefault();
     }
 
     //For some reason, this crashes the game
@@ -82,6 +92,7 @@ class ResetConfig : ConfigBase
         CVar.GetCvar("flashlight_darken_divide_amount").ResetToDefault();
         CVar.GetCvar("flashlight_darken_divide_additional").ResetToDefault();
         CVar.GetCvar("flashlight_replace_sky").ResetToDefault();
+		CVar.GetCvar("flashlight_darken_max_brightness").ResetToDefault();
 
         //stealth monsters
         CVar.GetCvar("flashlight_stealth_monster_chance").ResetToDefault();

@@ -117,6 +117,7 @@ OptionValue DarkenModes
 
 OptionMenu "FlashlightCalibration"
 {
+	Class "FlashlightMenu"
     Title "$FLASHLIGHT_CALIBRATION_TITLE"
     StaticText "$FLASHLIGHT_CALIBRATION_HEADER", 1
 	Option "$GLPREFMNU_SECLIGHTMODE",			gl_lightmode,					"LightingModes"
@@ -131,6 +132,7 @@ OptionMenu "FlashlightCalibration"
 
 OptionMenu "FlashlightCredits"
 {
+	Class "FlashlightMenu"
     Title "$FLASHLIGHT_CREDITS_TITLE"
     StaticText "$FLASHLIGHT_CREDITS_HEADER", 1
     StaticText "$FLASHLIGHT_VERSION", 1
@@ -153,6 +155,7 @@ OptionMenu "FlashlightCredits"
 
 OptionMenu "FlashlightGameplayOptions"
 {
+	Class "FlashlightMenu"
     Title "$FLASHLIGHT_GAMEPLAY_SETTINGS"
     StaticText "$FLASHLIGHT_START_HEADER", 1
     Option "$FLASHLIGHT_STARTING_ITEM", flashlight_starting_item, YesNo
@@ -191,22 +194,28 @@ OptionMenu "FlashlightGameplayOptions"
 
 OptionMenu "FlashlightLightingOptions"
 {
+	Class "FlashlightMenu"
     Title "$FLASHLIGHT_LIGHTING_SETTINGS"
     StaticText "$FLASHLIGHT_DARKEN_NODE_HEADER", 1
     Option "$FLASHLIGHT_DARKEN_MODE", "flashlight_darken_mode", DarkenModes
+	FlashlightDynamicText 1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_SEE_README", "$FLASHLIGHT_DARKEN_MODE_SEE_README", "$FLASHLIGHT_DARKEN_MODE_SEE_README", "$FLASHLIGHT_DARKEN_MODE_SEE_README"
     FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_LINEAR_AMOUNT", "flashlight_darken_linear_amount", 0,255,1,0,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",1,1
     FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_PARABOLA_CURVE", "flashlight_darken_parabola_curve_point", 0,255,1,0,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",2,2
     FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_PARABOLA_BRIGHTNESS", "flashlight_darken_parabola_brightness_factor", 0,255,1,0,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",2,2
     FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_PARABOLA_ADJUST", "flashlight_darken_parabola_adjust", 0,255,1,0,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",2,2
     FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_DIVIDE_AMOUNT", "flashlight_darken_divide_amount", 1,20,0.1,1,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",3,3
+	FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_DIVIDE_ADDITIONAL", "flashlight_darken_divide_additional", -20,50,1,1,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",3,3
     FlashlightSlider "$FLASHLIGHT_DARKEN_MODE_PROPORTION_AMOUNT", "flashlight_darken_proportional_amount", 0,1,0.025,3,"flashlight_darken_mode","$FLASHLIGHT_MENU_NOOP",4
     FlashlightDynamicText -1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_LINEAR_DESC1", "$FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC1", "$FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC1", "$FLASHLIGHT_DARKEN_MODE_PROP_DESC1"
     FlashlightDynamicText -1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_LINEAR_DESC2", "$FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC2", "$FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC2", "$FLASHLIGHT_DARKEN_MODE_PROP_DESC2"
     FlashlightDynamicText -1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_LINEAR_DESC3", "$FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC3", "$FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC3", "$FLASHLIGHT_DARKEN_MODE_PROP_DESC3"
     FlashlightDynamicText -1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_LINEAR_DESC4", "$FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC4", "$FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC4", "$FLASHLIGHT_DARKEN_MODE_PROP_DESC4"
     FlashlightDynamicText -1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_LINEAR_DESC5", "$FLASHLIGHT_DARKEN_MODE_PARABOLA_DESC5", "$FLASHLIGHT_DARKEN_MODE_DIVIDE_DESC5", "$FLASHLIGHT_DARKEN_MODE_PROP_DESC5"
-    FlashlightDynamicText 1, "flashlight_darken_mode", "", "$FLASHLIGHT_DARKEN_MODE_SEE_README", "$FLASHLIGHT_DARKEN_MODE_SEE_README", "$FLASHLIGHT_DARKEN_MODE_SEE_README", "$FLASHLIGHT_DARKEN_MODE_SEE_README"
     StaticText ""
+	Slider "$FLASHLIGHT_DARKEN_MAX_BRIGHTNESS", "flashlight_darken_max_brightness", 0,255,1,0
+    StaticText "$FLASHLIGHT_DARKEN_MAX_DESC1"
+    StaticText "$FLASHLIGHT_DARKEN_MAX_DESC2"
+	StaticText ""
     StaticText "$FLASHLIGHT_REPLACE_SKY_HEADER", 1
     Option "$FLASHLIGHT_REPLACE_SKY", "flashlight_replace_sky", YesNo
     StaticText "$FLASHLIGHT_REAPLCE_SKY_DESC1"
@@ -218,6 +227,7 @@ OptionMenu "FlashlightLightingOptions"
 
 OptionMenu "FlashlightSpawnOptions"
 {
+	Class "FlashlightMenu"
     Title "$FLASHLIGHT_SPAWN_SETTINGS"
     StaticText "$FLASHLIGHT_SPAWN_HEADER", 1
     StaticText "$FLASHLIGHT_SPAWN_DESC1"
@@ -251,6 +261,7 @@ OptionMenu "FlashlightSpawnOptions"
 
 OptionMenu "FlashlightAdvanced"
 {
+	Class "FlashlightMenu"
     Title "$FLASHLIGHT_ADVANCED_SETTINGS"
     //FlashlightResetAll "$FLASHLIGHT_RESET", "$FLASHLIGHT_CONFIRM", 2 //For some reason, this crashes the game
     SubMenu "$FLASHLIGHT_SPAWN_SETTINGS", "FlashlightSpawnOptions"
@@ -305,6 +316,7 @@ OptionMenu "FlashlightAdvanced"
 
 OptionMenu "FlashlightCompatOptions"
 {
+	Class "FlashlightMenu"
     Title "$FLASHLIGHT_COMPAT_SETTINGS"
     StaticText "$FLASHLIGHT_GLCOMPAT_HEADER", 1
     Option "$FLASHLIGHT_GLCOMPAT_LIQUIDS", "flashlight_compat_brutal_gldefs_liquids", SetGlow

@@ -48,6 +48,7 @@ server float flashlight_darken_divide_amount = 2;
 server int flashlight_darken_divide_additional = 0;
 server bool flashlight_replace_sky = true;
 server int flashlight_replace_sky_threshold = 112;
+server int flashlight_darken_max_brightness = 255;
 
 //stealth monsters
 server int flashlight_stealth_monster_chance = 20;
