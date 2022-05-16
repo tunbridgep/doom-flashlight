@@ -1,17 +1,25 @@
 class StealthSpawner : EventHandler
 {
     const max_health_small = 100;
+	
+	Array<StealthManager> StealthTokens;
 
-    void StealthMonsters(Actor monster)
+    void RerollStealthMonsters()
     {
-        let dice = StealthMonsterConfig.GetChance();
-            
-        if (dice.Roll() || monster.bSTEALTH)
-        {
-            monster.GiveInventory("StealthManager",1);
-            Debug.LogVerbose("Monster "..monster.GetTag().." was replaced with a Stealth variant based on a roll of "..dice.GetLastRoll().." ("..dice.GetChance().." percent chance)");
-        }
+		for (int i = 0; i < StealthTokens.Size();i++)
+		{
+			if (StealthTokens[i])
+				StealthTokens[i].RollStealth();
+		}
     }
+	
+	override void NetworkProcess(ConsoleEvent e)
+	{
+		if (e.Name == "flashlight_refresh")
+		{
+			RerollStealthMonsters();
+		}
+	}
     
     override void WorldThingSpawned(WorldEvent e)
     {
@@ -20,7 +28,11 @@ class StealthSpawner : EventHandler
             return;
             
         if (a.bISMONSTER && !a.bCORPSE && a.bCOUNTKILL && a.GetLevelSpawnTime() <= 5)// && StealthMonsterConfig.IsEnabled())
-            StealthMonsters(a);
+        {
+			let item = (StealthManager)(a.GiveInventoryType("StealthManager"));
+			StealthTokens.Push(item);
+			Debug.LogVerbose("Monster "..a.GetTag().." was given a Stealth Manager");
+		}
     }
 }
 
@@ -29,13 +41,26 @@ class StealthManager : PermanentItem
 {
     bool smallHealth;
     bool defaultStealth;
+	bool rolled;
+	ChanceValue dice;
     
     override void AttachToOwner(Actor other)
     {
+		RollStealth();
         smallHealth = other.health <= 100; //This has to be done here so we get it's max HP, not it's current HP;
         defaultStealth = other.bSTEALTH; //Store if we were initially a stealth monster.
         super.AttachToOwner(other);
     }
+	
+	void RollStealth()
+	{
+		dice = StealthMonsterConfig.GetChance();
+		if (dice.Roll())
+		{
+			rolled = true;
+		}
+		Debug.LogVerbose("Monster Token was rerolled");
+	}
     
     override void DoEffect()
     {
@@ -44,8 +69,8 @@ class StealthManager : PermanentItem
         bool revealed = owner.CountInv("StealthRemover") > 0; //we CAN reveal monsters that were initially stealth monsters;
         bool stealth_enabled = defaultStealth || StealthMonsterConfig.IsEnabled(); //keep stealth even if we don't have stealth monsters enabled, if it was initially a stealth monster
         bool small = defaultStealth || !StealthMonsterConfig.IsSmallOnly() || smallHealth; //keep stealth even if it isn't a small monster, if it was initially a stealth monster
-        
-        owner.bSTEALTH = stealth_enabled && in_threshold && !revealed && small;
+		
+        owner.bSTEALTH = stealth_enabled && rolled && in_threshold && !revealed && small;
         
         float newalpha = !(owner.bSTEALTH) * 1.0;
         owner.alpha = Mathf.Lerp(owner.alpha,newalpha,0.035);

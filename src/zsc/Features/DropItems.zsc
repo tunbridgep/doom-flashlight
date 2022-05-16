@@ -95,20 +95,10 @@ class DropItems : EventHandler
         
         if (a && a.GetLevelSpawnTime() <= 5 && isZombieman(a))
         {
-            ChanceValue dropflash = DropItemConfig.GetFlashlightChance();
-            ChanceValue dropflare = DropItemConfig.GetFlareChance();
-            ChanceValue dropbattery = DropItemConfig.GetBatteryRechargeChance();
-            ChanceValue dropbattery_exp = DropItemConfig.GetBatteryUpgradeChance();
-            
-            if (dropflash && dropflash.Roll())
-                //e.A_DropItem("Flashlight"); //This is broken for some reason and doesn't work...have to use item droppers instead
-                AddDropItem(a,"FlashlightDropper");
-            if (dropflare && dropflare.Roll())
-                AddDropItem(a,"FlareDropper");
-            if (dropbattery && dropbattery.Roll())
-                AddDropItem(a,"BatteryDropper");
-            if (dropbattery_exp && dropbattery_exp.Roll())
-                AddDropItem(a,"BatteryExpanderDropper");
+            AddDropItem(a,"FlashlightDropper");
+            AddDropItem(a,"FlareDropper");
+            AddDropItem(a,"BatteryDropper");
+            AddDropItem(a,"BatteryExpanderDropper");
         }
     }
 }
@@ -118,15 +108,26 @@ class FlashlightDropper : PermanentItem
 {
     override void OwnerDied()
     {
-        owner.A_DropItem("Flashlight");
+		ChanceValue chance = DropItemConfig.GetFlashlightChance();
+	
+		if (chance && chance.Roll())
+		{
+			owner.A_DropItem("Flashlight");
+		}
     }
 }
 
 class FlareDropper : PermanentItem
 {
+	
     override void OwnerDied()
     {
-        owner.A_DropItem("Flare");
+		ChanceValue chance = DropItemConfig.GetFlareChance();
+
+		if (chance && chance.Roll())
+		{
+			owner.A_DropItem("Flare");
+		}
     }
 }
 
@@ -134,7 +135,12 @@ class BatteryDropper : PermanentItem
 {
     override void OwnerDied()
     {
-        owner.A_DropItem("FlashlightBatteryRecharge");
+		ChanceValue chance = DropItemConfig.GetBatteryRechargeChance();
+		
+		if (chance && chance.Roll())
+		{
+			owner.A_DropItem("FlashlightBatteryRecharge");
+		}
     }
 }
 
@@ -142,6 +148,11 @@ class BatteryExpanderDropper : PermanentItem
 {
     override void OwnerDied()
     {
-        owner.A_DropItem("FlashlightBatteryUpgrade");
+		ChanceValue chance = DropItemConfig.GetBatteryUpgradeChance();
+		
+		if (chance && chance.Roll())
+		{
+			owner.A_DropItem("FlashlightBatteryUpgrade");
+		}
     }
 }
