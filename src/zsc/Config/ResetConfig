@@ -37,6 +37,8 @@ class ResetConfig : ConfigBase
         CVar.GetCvar("flashlight_flare_recharge_enabled").ResetToDefault();
 		
 		CVar.GetCvar("flashlight_stealth_player_enabled").ResetToDefault();
+		
+		CVar.GetCvar("flashlight_replace_sky").ResetToDefault();
     }
 
     //For some reason, this crashes the game
