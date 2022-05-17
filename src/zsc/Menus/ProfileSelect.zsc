@@ -133,7 +133,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 			CVar.GetCvar("flashlight_flare_recharge_enabled").SetBool(true);
 			CVar.GetCvar("flashlight_flare_max_amount").SetInt(3);
 			CVar.GetCvar("flashlight_flare_recharge_max_amount").SetInt(3);
-			CVar.GetCvar("flashlight_flare_recharge_frequency_seconds").SetInt(40);
+			CVar.GetCvar("flashlight_flare_recharge_frequency_seconds").SetInt(32);
         }
         else if (p == DARKER_DARKNESS) //Darken dark areas, start with flares, enemies drop items, optional stealth for basic monsters
         {
