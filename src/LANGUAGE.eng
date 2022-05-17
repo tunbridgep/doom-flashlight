@@ -27,6 +27,7 @@ FLASHLIGHT_PROFILE_DARKER_DARK_LINE2 = "areas very dark. Start with a Torch, and
 FLASHLIGHT_PROFILE_TWILIGHT_LINE2 = "in the day. Torches are disabled.";
 FLASHLIGHT_PROFILE_TACTICAL_LINE1 = "The world will be very dark. Torches are";
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE1 = "The world will be very dark, and your Torch battery";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed, but can be revealed by Flares and Torches!";
 
 //Advanced Options
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Torch when selecting it";

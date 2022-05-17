@@ -62,17 +62,20 @@ class FlareRecharger : PermanentItem
         
         if (tics == 0 || !enabled)
             return;
-    
-        if (Count >= tics)
-        {
-            if (owner.CountInv("Flare") < max_amount)
+			
+		if (owner.CountInv("Flare") < max_amount)
+		{
+			if (Count >= tics)
 			{
 				self.PlayRechargeSound();
                 owner.GiveInventory("Flare",1);
+				Count = 0;
 			}
-            Count = 0;
-        }
-        else
-            Count++;
+			Count++;
+		}
+		else
+		{
+			Count = 0;
+		}
     }
 }

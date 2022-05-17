@@ -324,6 +324,7 @@ OptionMenu "FlashlightAdvanced"
     StaticText ""
     StaticText "$FLASHLIGHT_CONTROLS_HEADER", 1
     Control "$FLASHLIGHT_KEY_BIND", "toggleflashlight_bind"
+	Control "$FLASHLIGHT_FLARE_BIND", "flare_bind"
     Option "$FLASHLIGHT_AUTO_USE_FLARES", "flashlight_auto_use_flare", YesNo
     StaticText "$FLASHLIGHT_AUTO_USE_FLARES_DESC"
     Option "$FLASHLIGHT_AUTO_USE", "flashlight_auto_use_flashlight", FlashlightAutoUseOptions

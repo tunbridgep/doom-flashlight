@@ -1,35 +1,35 @@
 //storage
 user noarchive string flashlight_lastweap = "";
-nosave noarchive int flashlight_profile_temp = 0;
+server int flashlight_profile_temp = 0;
 server cheat int flashlight_profile = 0;
-server int flashlight_style = 3; //0 for doom hand, 1 for black glove hand, 2 for wand staff, 3 for "new" style
-server int flashlight_skin = 0;
-server int flashlight_gloves = 0; //0 for doom hand, 1 for black glove hand, 2 for strife hand
+nosave int flashlight_style = 3; //0 for doom hand, 1 for black glove hand, 2 for wand staff, 3 for "new" style
+nosave int flashlight_skin = 0;
+nosave int flashlight_gloves = 0; //0 for doom hand, 1 for black glove hand, 2 for strife hand
 
 //flashlight settings
-user Color flashlight_color = "FF FF FF";
+nosave Color flashlight_color = "FF FF FF";
 server cheat int flashlight_intensity = 512;
 server cheat float flashlight_inner_angle = 16.0;
 server cheat float flashlight_outer_angle = 32.0;
-user int flashlight_auto_use_flashlight = 1;
+nosave int flashlight_auto_use_flashlight = 1;
 server bool flashlight_performance_mode = false;
 
 //flare settings
 server cheat bool flashlight_flare_burn_forever = false;
 server cheat float flashlight_flare_burn_time = 60;
-user bool flashlight_flare_color_random = false;
-user Color flashlight_flare_color = "FF 4D 4D";
-user bool flashlight_auto_use_flare = false;
-user bool flashlight_flare_show_count = false;
+nosave bool flashlight_flare_color_random = false;
+nosave Color flashlight_flare_color = "FF 4D 4D";
+nosave bool flashlight_auto_use_flare = false;
+nosave bool flashlight_flare_show_count = false;
 server bool flashlight_flare_show_inventory = true;
 server bool flashlight_flare_recharge_enabled = false;
 server float flashlight_flare_recharge_frequency_seconds = 60;
 server int flashlight_flare_recharge_max_amount = 1;
 server int flashlight_flare_max_amount = 30;
-user int flashlight_flare_recharge_sound = 0;
+nosave int flashlight_flare_recharge_sound = 0;
 
 //battery settings
-user int flashlight_battery_display = 1;
+nosave int flashlight_battery_display = 1;
 server int flashlight_battery_mode = 1;
 server int flashlight_battery_max = 1575;
 server int flashlight_battery_min_threshold = 315;

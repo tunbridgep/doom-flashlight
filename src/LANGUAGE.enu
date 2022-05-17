@@ -208,6 +208,7 @@ FLASHLIGHT_FLASHLIGHT_DESC2 = "Intensity controls it's brightness and how far it
 FLASHLIGHT_AUTO_USE_FLARES = "Flashlight button uses flares";
 FLASHLIGHT_AUTO_USE_FLARES_DESC = "If no flashlight is available, selecting the flashlight uses a flare instead";
 FLASHLIGHT_KEY_BIND = "Flashlight Select Key";
+FLASHLIGHT_FLARE_BIND = "Use Flare";
 FLASHLIGHT_AUTO_USE = "Turn On Automatically";
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Flashlight when selecting it";
 FLASHLIGHT_AUTO_USE_ONLY_WHEN_CHARGING = "Yes, unless the battery is set to not recharge";
@@ -303,14 +304,14 @@ FLASHLIGHT_PROFILE_NIGHT_MODE_LINE3 = "";
 FLASHLIGHT_PROFILE_NIGHT_MODE_LINE4 = "";
 
 FLASHLIGHT_PROFILE_TACTICAL_LINE1 = "The world will be very dark. Flashlights are";
-FLASHLIGHT_PROFILE_TACTICAL_LINE2 = "disabled. Start with 3 regenerating quick-burn flares.";
+FLASHLIGHT_PROFILE_TACTICAL_LINE2 = "rare. Start with 3 regenerating quick-burn flares.";
 FLASHLIGHT_PROFILE_TACTICAL_LINE3 = "Small enemies are stealthed, but can be revealed by flares.";
 FLASHLIGHT_PROFILE_TACTICAL_LINE4 = "Embrace the darkness to survive!";
 
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE1 = "The world will be very dark, and your Flashlight battery";
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE2 = "does not recharge. You will";
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE3 = "need to find battery rechargers to survive.";
-FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed!";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed, but can be revealed by Flares and Flashlights!";
 
 FLASHLIGHT_PROFILE_HELL_LINE1 = "The world will be pitch black. You will need to scavenge";
 FLASHLIGHT_PROFILE_HELL_LINE2 = "to find resources. Long-use battery does not recharge, you will";

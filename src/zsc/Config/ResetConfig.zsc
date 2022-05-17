@@ -42,6 +42,10 @@ class ResetConfig : ConfigBase
 		
 		CVar.GetCvar("flashlight_stealth_player_enabled").ResetToDefault();
 		
+		CVar.GetCvar("flashlight_flashlight_reveal_stealth").ResetToDefault();
+		CVar.GetCvar("flashlight_flare_reveal_stealth").ResetToDefault();
+		
+		
 		//map alteration
         CVar.GetCvar("flashlight_darken_mode").ResetToDefault();
         CVar.GetCvar("flashlight_darken_parabola_brightness_factor").ResetToDefault();

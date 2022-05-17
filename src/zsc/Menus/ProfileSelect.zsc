@@ -120,6 +120,12 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 		CVar.GetCvar("flashlight_flare_recharge_max_amount").SetInt(charge_amount);
 	}
 	
+	void SetStealthDetection(bool flashlight, bool flare)
+	{
+		CVar.GetCvar("flashlight_flashlight_reveal_stealth").SetBool(flashlight);
+		CVar.GetCvar("flashlight_flare_reveal_stealth").SetBool(flare);
+	}
+	
     void SelectProfile(Profile p)
     {
         //This is our display variable for our current profile
@@ -160,6 +166,8 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 				EnableStealthMode();
 				SetStartingItems(false,3);
 				SetFlareProperties(8,3,3,32);
+				SetStealthDetection(false,true);
+				EnableDropFlashlight(8,0);
 			break;
 			case AMBUSH_MODE:
 				SetNight();
