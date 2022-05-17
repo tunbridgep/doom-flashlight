@@ -22,12 +22,11 @@ FLASHLIGHT_AUTO_USE_FLARES_DESC = "If no torch is available, selecting the torch
 FLASHLIGHT_KEY_BIND = "Torch Select Key";
 
 //Profile Text
-FLASHLIGHT_PROFILE_START_FLASHLIGHT = "Start with a Torch";
-FLASHLIGHT_PROFILE_START_FLARES_ONLY = "Start with Flares. Torches are disabled";
-FLASHLIGHT_PROFILE_START_FLASHLIGHT_ONLY = "Start with a Torch. Flares are disabled";
-
-FLASHLIGHT_PROFILE_DROP_BOTH = "Former Humans drop Flares and Torches";
-FLASHLIGHT_PROFILE_DROP_NOTHING = "Former Humans do not drop Flares or Torches";
+FLASHLIGHT_PROFILE_DOOM3_LINE3 = "Torch, with unlimited batteries.";
+FLASHLIGHT_PROFILE_DARKER_DARK_LINE2 = "areas very dark. Start with a Torch, and";
+FLASHLIGHT_PROFILE_TWILIGHT_LINE2 = "in the day. Torches are disabled.";
+FLASHLIGHT_PROFILE_TACTICAL_LINE1 = "The world will be very dark. Torches are";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE1 = "The world will be very dark, and your Torch battery";
 
 //Advanced Options
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Torch when selecting it";

@@ -1,9 +1,9 @@
 class FlashlightConfig : ConfigBase
 {   
-    static bool GetAutoUse()
+    static int GetAutoUse()
     {
         PlayerInfo myinfo = players[consoleplayer];
-        return CVar.GetCVar("flashlight_auto_use_flashlight",myinfo).GetBool();
+        return CVar.GetCVar("flashlight_auto_use_flashlight",myinfo).GetInt();
     }
     
     static Color GetColor()

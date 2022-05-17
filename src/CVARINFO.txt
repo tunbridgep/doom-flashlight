@@ -11,7 +11,7 @@ user Color flashlight_color = "FF FF FF";
 server cheat int flashlight_intensity = 512;
 server cheat float flashlight_inner_angle = 16.0;
 server cheat float flashlight_outer_angle = 32.0;
-user bool flashlight_auto_use_flashlight = true;
+user int flashlight_auto_use_flashlight = 1;
 server bool flashlight_performance_mode = false;
 
 //flare settings

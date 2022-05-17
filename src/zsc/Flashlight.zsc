@@ -167,7 +167,9 @@ class Flashlight : Weapon
     
     protected void TryTurnOn(Actor invoker, bool respect_autouse = false)
     {
-        if (respect_autouse && !FlashlightConfig.GetAutoUse())
+		bool should_autouse = (FlashlightConfig.GetAutoUse() == 1) || (FlashlightConfig.GetAutoUse() == 2 && flashlight_battery_charge_per_tic > 0);
+	
+        if (respect_autouse && !should_autouse)
             return;
         
         if (!beam.IsOn())

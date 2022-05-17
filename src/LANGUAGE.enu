@@ -210,6 +210,7 @@ FLASHLIGHT_AUTO_USE_FLARES_DESC = "If no flashlight is available, selecting the 
 FLASHLIGHT_KEY_BIND = "Flashlight Select Key";
 FLASHLIGHT_AUTO_USE = "Turn On Automatically";
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Flashlight when selecting it";
+FLASHLIGHT_AUTO_USE_ONLY_WHEN_CHARGING = "Yes, unless the battery is set to not recharge";
 
 FLASHLIGHT_STYLE = "Flashlight Style";
 FLASHLIGHT_STYLE_DESC = "Set style for flashlight sprites";
@@ -258,52 +259,66 @@ FLASHLIGHT_PROFILE_CUR = "Current Profile";
 
 FLASHLIGHT_PROFILE_NONE = "Mod disabled";
 FLASHLIGHT_PROFILE_VANILLA = "Vanilla Mode";
+FLASHLIGHT_PROFILE_DOOM_3 = "Doom 3 Style";
+FLASHLIGHT_PROFILE_DARKER_DARK = "Darker Darkness";
+FLASHLIGHT_PROFILE_TWILIGHT = "Twilight Mode";
 FLASHLIGHT_PROFILE_NIGHT_MODE = "Night Mode";
 FLASHLIGHT_PROFILE_TACTICAL = "Tactical";
-FLASHLIGHT_PROFILE_DARKER_DARK = "Darker Darkness";
-FLASHLIGHT_PROFILE_DOOM_3 = "Doom 3 Style";
+FLASHLIGHT_PROFILE_AMBUSH_MODE = "Ambush Mode";
+FLASHLIGHT_PROFILE_DRAIN_MODE = "Drain Mode";
+//FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT = "Drain Mode (Night)";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT = "Drain Mode";
 FLASHLIGHT_PROFILE_HELL = "The Long Dark";
-FLASHLIGHT_PROFILE_AMBUSH_MODE = "Lying in Wait...";
-FLASHLIGHT_PROFILE_DRAIN_MODE = "...Ready to Strike...";
-FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT = "...From the Shadows";
-FLASHLIGHT_PROFILE_TWILIGHT = "Twilight Mode";
 
 FLASHLIGHT_PROFILE_NOTFAIR = "This profile isn't even remotely fair!";
-
 FLASHLIGHT_PROFILE_DISABLED = "All features disabled";
+FLASHLIGHT_PROFILE_DIFFICULTY_EASY = "Difficulty: Easy";
+FLASHLIGHT_PROFILE_DIFFICULTY_MODERATE = "Difficulty: Moderate";
+FLASHLIGHT_PROFILE_DIFFICULTY_HARD = "Difficulty: Hard";
+FLASHLIGHT_PROFILE_DIFFICULTY_HELL = "Difficulty: Hell";
 
-FLASHLIGHT_PROFILE_DARK_NONE = "Map brightness remains unchanged";
-FLASHLIGHT_PROFILE_DARK_NIGHT = "Darkens the entire map and uses a nighttime sky";
-FLASHLIGHT_PROFILE_DARK_AREAS = "Darkens dark areas of the map";
-FLASHLIGHT_PROFILE_DARK_EXTREME = "Map is nearly completely black";
-FLASHLIGHT_PROFILE_DARK_TWILIGHT = "Map is darkened slightly to appear overcast or late in the day";
+FLASHLIGHT_PROFILE_VANILLA_LINE1 = "This disables most settings for a";
+FLASHLIGHT_PROFILE_VANILLA_LINE2 = "more vanilla experience. The world will remain";
+FLASHLIGHT_PROFILE_VANILLA_LINE3 = "unchanged, but enemies will occasionally drop";
+FLASHLIGHT_PROFILE_VANILLA_LINE4 = "Flashlights and Flares";
 
-FLASHLIGHT_PROFILE_START_FLASHLIGHT = "Start with a Flashlight";
-FLASHLIGHT_PROFILE_START_FLARES = "Start with Flares";
-FLASHLIGHT_PROFILE_START_FLARES_ONLY = "Start with Flares. Flashlights are disabled";
-FLASHLIGHT_PROFILE_START_FLASHLIGHT_ONLY = "Start with a Flashlight. Flares are disabled";
-FLASHLIGHT_PROFILE_START_NOTHING = "Start with nothing";
+FLASHLIGHT_PROFILE_DOOM3_LINE1 = "This creates an experience similar to Doom 3.";
+FLASHLIGHT_PROFILE_DOOM3_LINE2 = "The world will be very dark. Start with a handheld";
+FLASHLIGHT_PROFILE_DOOM3_LINE3 = "Flashlight, with unlimited batteries.";
+FLASHLIGHT_PROFILE_DOOM3_LINE4 = "Flares and other features are disabled";
 
-FLASHLIGHT_PROFILE_STEALTH_NONE = "No Stealth Monsters";
-FLASHLIGHT_PROFILE_STEALTH_DARK = "Stealth Monsters in Dark Areas";
-FLASHLIGHT_PROFILE_STEALTH_ALL = "All enemies are Stealth Monsters";
+FLASHLIGHT_PROFILE_DARKER_DARK_LINE1 = "This darkens the world proportionally, making dark";
+FLASHLIGHT_PROFILE_DARKER_DARK_LINE2 = "areas very dark. Start with a Flashlight, and";
+FLASHLIGHT_PROFILE_DARKER_DARK_LINE3 = "Small enemies drop flares";
+FLASHLIGHT_PROFILE_DARKER_DARK_LINE4 = "";
 
-FLASHLIGHT_PROFILE_BATTERY_NORMAL = "Normal Battery Use";
-FLASHLIGHT_PROFILE_BATTERY_NOCHARGE = "Battery does not recharge";
-FLASHLIGHT_PROFILE_BATTERY_NOCHARGE_BIG = "Battery does not recharge but has a large capacity";
-FLASHLIGHT_PROFILE_BATTERY_UNLIMITED = "Unlimited Battery Use";
-FLASHLIGHT_PROFILE_SPAWN_FLARES = "Flares and Flare Boxes spawn on the map";
-FLASHLIGHT_PROFILE_FLARES_RECHARGE = "Flares recharge";
+FLASHLIGHT_PROFILE_TWILIGHT_LINE1 = "This darkens the world slightly, as if it was late";
+FLASHLIGHT_PROFILE_TWILIGHT_LINE2 = "in the day. Flashlights are disabled.";
+FLASHLIGHT_PROFILE_TWILIGHT_LINE3 = "Small enemies drop flares.";
+FLASHLIGHT_PROFILE_TWILIGHT_LINE4 = "";
 
-FLASHLIGHT_PROFILE_DROP_FLARES = "Former Humans drop Flares";
-FLASHLIGHT_PROFILE_DROP_BOTH = "Former Humans drop Flares and Flashlights";
-FLASHLIGHT_PROFILE_DROP_FLARES_INCREASED = "Former Humans drop Flares at an increased rate";
-FLASHLIGHT_PROFILE_DROP_BATTERIES = "Former Humans drop Batteries";
-FLASHLIGHT_PROFILE_DROP_FLARES_BATTERIES = "Former Humans drop Flares and Batteries";
-FLASHLIGHT_PROFILE_DROP_NOTHING = "Former Humans do not drop Flares or Flashlights";
+FLASHLIGHT_PROFILE_NIGHT_MODE_LINE1 = "The world will be very dark.";
+FLASHLIGHT_PROFILE_NIGHT_MODE_LINE2 = "";
+FLASHLIGHT_PROFILE_NIGHT_MODE_LINE3 = "";
+FLASHLIGHT_PROFILE_NIGHT_MODE_LINE4 = "";
+
+FLASHLIGHT_PROFILE_TACTICAL_LINE1 = "The world will be very dark. Flashlights are";
+FLASHLIGHT_PROFILE_TACTICAL_LINE2 = "disabled. Start with 3 regenerating quick-burn flares.";
+FLASHLIGHT_PROFILE_TACTICAL_LINE3 = "Small enemies are stealthed, but can be revealed by flares.";
+FLASHLIGHT_PROFILE_TACTICAL_LINE4 = "Embrace the darkness to survive!";
+
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE1 = "The world will be very dark, and your Flashlight battery";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE2 = "does not recharge. You will";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE3 = "need to find battery rechargers to survive.";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed!";
+
+FLASHLIGHT_PROFILE_HELL_LINE1 = "The world will be pitch black. You will need to scavenge";
+FLASHLIGHT_PROFILE_HELL_LINE2 = "to find resources. Long-use battery does not recharge, you will";
+FLASHLIGHT_PROFILE_HELL_LINE3 = "need to find battery rechargers to survive. All enemies are stealthed!";
+FLASHLIGHT_PROFILE_HELL_LINE4 = "You will need to utilise every resource to survive!";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
-FLASHLIGHT_PROFILE_WARNING2 = "Settings will take effect on next map load";
+FLASHLIGHT_PROFILE_WARNING2 = "Some Settings will take effect on next map load";
 
 //Compatibility Options
 FLASHLIGHT_GLCOMPAT_HEADER = "Brutal Doom Glow Overrides";
