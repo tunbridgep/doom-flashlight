@@ -24,10 +24,10 @@ FLASHLIGHT_KEY_BIND = "Torch Select Key";
 //Profile Text
 FLASHLIGHT_PROFILE_START_FLASHLIGHT = "Start with a Torch";
 FLASHLIGHT_PROFILE_START_FLARES_ONLY = "Start with Flares. Torches are disabled";
-FLASHLIGHT_PROFILE_START_FLARES_ONLY_RECHARGE = "Start with Flares. Torches are disabled. Flares recharge";
 FLASHLIGHT_PROFILE_START_FLASHLIGHT_ONLY = "Start with a Torch. Flares are disabled";
 
 FLASHLIGHT_PROFILE_DROP_BOTH = "Former Humans drop Flares and Torches";
+FLASHLIGHT_PROFILE_DROP_NOTHING = "Former Humans do not drop Flares or Torches";
 
 //Advanced Options
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Torch when selecting it";

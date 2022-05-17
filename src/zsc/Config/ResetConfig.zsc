@@ -35,6 +35,10 @@ class ResetConfig : ConfigBase
         CVar.GetCvar("flashlight_enemies_drop_battery_expander_chance").ResetToDefault();
         
         CVar.GetCvar("flashlight_flare_recharge_enabled").ResetToDefault();
+		CVar.GetCvar("flashlight_flare_burn_forever").ResetToDefault();
+		CVar.GetCvar("flashlight_flare_max_amount").ResetToDefault();
+		CVar.GetCvar("flashlight_flare_burn_time").ResetToDefault();
+		CVar.GetCvar("flashlight_flare_recharge_frequency_seconds").ResetToDefault();
 		
 		CVar.GetCvar("flashlight_stealth_player_enabled").ResetToDefault();
 		

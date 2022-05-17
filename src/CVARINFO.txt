@@ -23,9 +23,10 @@ user bool flashlight_auto_use_flare = false;
 user bool flashlight_flare_show_count = false;
 server bool flashlight_flare_show_inventory = true;
 server bool flashlight_flare_recharge_enabled = false;
-server float flashlight_flare_recharge_frequency_seconds = 30;
+server float flashlight_flare_recharge_frequency_seconds = 60;
 server int flashlight_flare_recharge_max_amount = 1;
 server int flashlight_flare_max_amount = 30;
+user int flashlight_flare_recharge_sound = 0;
 
 //battery settings
 user int flashlight_battery_display = 1;

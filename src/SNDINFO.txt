@@ -9,3 +9,9 @@ Flare/Loop	FLARLOOP
 //$Volume Flare/Loop 0.5
 $Limit Flare/Loop 5
 
+//Flare Recharge
+Flare/Recharge0	FLRRCHG0
+Flare/Recharge1	FLRRCHG1
+Flare/Recharge2	FLRRCHG2
+Flare/Recharge3	FLRRCHG3
+Flare/Recharge4	FLRRCHG4

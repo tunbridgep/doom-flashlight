@@ -4,7 +4,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 	{
 	    DISABLED = 0,
 	    NIGHT_MODE = 1,
-	    FLARES_ONLY_MODE = 2,
+	    TACTICAL = 2,
 		DARKER_DARKNESS = 3,
 		HELL_MODE = 4,
 		DOOM_3_STYLE = 5,
@@ -57,12 +57,12 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 			CVar.GetCvar("flashlight_replace_sky").SetBool(false);
 		}
                 
-        if (p != DISABLED && p != FLARES_ONLY_MODE && p != DRAIN_MODE_NIGHT && p != DRAIN_MODE && p != VANILLA_MODE && p != TWILIGHT)
+        if (p != DISABLED && p != TACTICAL && p != DRAIN_MODE_NIGHT && p != DRAIN_MODE && p != VANILLA_MODE && p != TWILIGHT)
         {
             //common stuff
             CVar.GetCvar("flashlight_spawn_battery_upgrade").SetInt(1);
         }
-               
+		
         if (p == NIGHT_MODE || p == AMBUSH_MODE || p == DRAIN_MODE_NIGHT) //map is dark, start with flashlight
         {
             CVar.GetCvar("flashlight_darken_mode").SetInt(3);
@@ -116,19 +116,24 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
             CVar.GetCvar("flashlight_spawn_battery_recharge").ResetToDefault();
             CVar.GetCvar("flashlight_battery_mode").SetInt(0);
         }
-        else if (p == FLARES_ONLY_MODE) //map is dark, start with flares, flashlight completely disabled
+        else if (p == TACTICAL) //map is dark, start with flares, flashlight completely disabled
         {
             CVar.GetCvar("flashlight_darken_mode").SetInt(3);
             CVar.GetCvar("flashlight_darken_divide_amount").ResetToDefault();
-            CVar.GetCvar("flashlight_starting_flares").SetInt(10);
-            CVar.GetCvar("flashlight_spawn_flare_box").SetBool(true);
-            CVar.GetCvar("flashlight_spawn_flare").SetBool(true);
-            CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(true);
-            CVar.GetCvar("flashlight_enemies_drop_flares_chance").SetInt(15);
+            CVar.GetCvar("flashlight_spawn_flare_box").SetBool(false);
+            CVar.GetCvar("flashlight_spawn_flare").SetBool(false);
+            CVar.GetCvar("flashlight_enemies_drop_flares").SetBool(false);
             CVar.GetCvar("flashlight_stealth_monster_mode").SetInt(3);
             CVar.GetCvar("flashlight_stealth_monster_chance").SetInt(100);
 			CVar.GetCvar("flashlight_stealth_player_enabled").SetBool(true);
-            CVar.GetCvar("flashlight_flare_recharge_enabled").SetBool(true);
+			
+			//set up flares
+			CVar.GetCvar("flashlight_starting_flares").SetInt(3);
+			CVar.GetCvar("flashlight_flare_burn_time").SetInt(8);
+			CVar.GetCvar("flashlight_flare_recharge_enabled").SetBool(true);
+			CVar.GetCvar("flashlight_flare_max_amount").SetInt(3);
+			CVar.GetCvar("flashlight_flare_recharge_max_amount").SetInt(3);
+			CVar.GetCvar("flashlight_flare_recharge_frequency_seconds").SetInt(40);
         }
         else if (p == DARKER_DARKNESS) //Darken dark areas, start with flares, enemies drop items, optional stealth for basic monsters
         {

@@ -23,6 +23,34 @@ class FlareRecharger : PermanentItem
 {
     int Count;
 
+	void PlayRechargeSound()
+	{
+		PlayerInfo myinfo = players[consoleplayer];
+        int sound = CVar.GetCVar("flashlight_flare_recharge_sound",myinfo).GetInt();
+		string toPlay;
+		
+		switch (sound)
+		{
+			case 0:
+				toPlay = "Flare/Recharge0";
+			break;
+			case 1:
+				toPlay = "Flare/Recharge1";
+			break;
+			case 2:
+				toPlay = "Flare/Recharge2";
+			break;
+			case 3:
+				toPlay = "Flare/Recharge3";
+			break;
+			case 4:
+				toPlay = "Flare/Recharge4";
+			break;
+		}
+	
+		owner.A_StartSound(toPlay);
+	}
+
     override void DoEffect()
     {
         Super.DoEffect();
@@ -37,8 +65,11 @@ class FlareRecharger : PermanentItem
     
         if (Count >= tics)
         {
-            if (owner.CheckInventory("Flare",1) < max_amount)                
+            if (owner.CheckInventory("Flare",1) < max_amount)
+			{
+				self.PlayRechargeSound();
                 owner.GiveInventory("Flare",1);
+			}
             Count = 0;
         }
         else

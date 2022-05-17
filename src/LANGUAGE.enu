@@ -15,7 +15,7 @@ FLASHLIGHT_ONE_FLARE_REMAIN = "Flare Remaining";
 FLASHLIGHT_NO_FLARES_REMAIN = "No Flares Remaining";
 
 //basics
-FLASHLIGHT_VERSION = "Version 1.0 Alpha";
+FLASHLIGHT_VERSION = "Version 1.0 Beta";
 FLASHLIGHT_DISABLED = "Disabled";
 FLASHLIGHT_ENABLED = "Enabled";
 FLASHLIGHT_NOT_IMPLEMENTED = "Not Implemented Yet";
@@ -56,6 +56,15 @@ FLASHLIGHT_FLARE_RECHARGE_TIME = "Recharge Time";
 FLASHLIGHT_FLARE_RECHARGE_TIME_DESC = "Time until flare recharges";
 FLASHLIGHT_FLARE_RECHARGE_MAX = "Recharge Amount";
 FLASHLIGHT_FLARE_RECHARGE_MAX_DESC = "How many flares can the player hold before recharging stops";
+
+//Flare Sounds
+FLASHLIGHT_FLARE_SOUND = "Recharge Sound";
+FLASHLIGHT_FLARE_SOUND_DESC = "Sound to play when flares recharge";
+FLASHLIGHT_FLARE_SOUND_ZERO = "Warp";
+FLASHLIGHT_FLARE_SOUND_ONE = "Sweep";
+FLASHLIGHT_FLARE_SOUND_TWO = "Beeps";
+FLASHLIGHT_FLARE_SOUND_THREE = "Heavy";
+FLASHLIGHT_FLARE_SOUND_FOUR = "Subtle";
 
 //Submenus
 FLASHLIGHT_ADVANCED_SETTINGS = "Advanced Settings";
@@ -272,7 +281,6 @@ FLASHLIGHT_PROFILE_DARK_TWILIGHT = "Map is darkened slightly to appear overcast 
 FLASHLIGHT_PROFILE_START_FLASHLIGHT = "Start with a Flashlight";
 FLASHLIGHT_PROFILE_START_FLARES = "Start with Flares";
 FLASHLIGHT_PROFILE_START_FLARES_ONLY = "Start with Flares. Flashlights are disabled";
-FLASHLIGHT_PROFILE_START_FLARES_ONLY_RECHARGE = "Start with Flares. Flashlights are disabled. Flares recharge";
 FLASHLIGHT_PROFILE_START_FLASHLIGHT_ONLY = "Start with a Flashlight. Flares are disabled";
 FLASHLIGHT_PROFILE_START_NOTHING = "Start with nothing";
 
@@ -285,12 +293,14 @@ FLASHLIGHT_PROFILE_BATTERY_NOCHARGE = "Battery does not recharge";
 FLASHLIGHT_PROFILE_BATTERY_NOCHARGE_BIG = "Battery does not recharge but has a large capacity";
 FLASHLIGHT_PROFILE_BATTERY_UNLIMITED = "Unlimited Battery Use";
 FLASHLIGHT_PROFILE_SPAWN_FLARES = "Flares and Flare Boxes spawn on the map";
+FLASHLIGHT_PROFILE_FLARES_RECHARGE = "Flares recharge";
 
 FLASHLIGHT_PROFILE_DROP_FLARES = "Former Humans drop Flares";
 FLASHLIGHT_PROFILE_DROP_BOTH = "Former Humans drop Flares and Flashlights";
 FLASHLIGHT_PROFILE_DROP_FLARES_INCREASED = "Former Humans drop Flares at an increased rate";
 FLASHLIGHT_PROFILE_DROP_BATTERIES = "Former Humans drop Batteries";
 FLASHLIGHT_PROFILE_DROP_FLARES_BATTERIES = "Former Humans drop Flares and Batteries";
+FLASHLIGHT_PROFILE_DROP_NOTHING = "Former Humans do not drop Flares or Flashlights";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
 FLASHLIGHT_PROFILE_WARNING2 = "Settings will take effect on next map load";
@@ -319,5 +329,6 @@ FLASHLIGHT_CREDITS_SPRITES = "Sprites Used";
 FLASHLIGHT_CREDITS_ADDITIONAL = "Additional Credits";
 
 FLASHLIGHT_CREDITS_SOUNDS = "Additional Sounds from id Software, Epic Games and 3D Realms.";
+FLASHLIGHT_CREDITS_SOUNDS2 = "Flare Recharging Sounds from Team Fortress 2 by Valve Software";
 FLASHLIGHT_CREDITS_FOOTER = "Please see CREDITS.TXT inside the archive for full licenses and credits";
 FLASHLIGHT_CREDITS_SPOTLIGHT_CODE = "Spotlight code based on Steve's Flashlight";
