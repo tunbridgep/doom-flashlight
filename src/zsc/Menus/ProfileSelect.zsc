@@ -58,7 +58,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 	{
 		CVar.GetCvar("flashlight_darken_mode").SetInt(4);
 		CVar.GetCvar("flashlight_darken_proportional_amount").SetFloat(0.350);
-		CVar.GetCvar("flashlight_darken_max_brightness").SetInt(128);
+		CVar.GetCvar("flashlight_darken_max_brightness").SetInt(140);
 	}
 	
 	void EnableStealthMode(int chance = 100, bool allowPlayer = true, int mode = 3)
