@@ -108,6 +108,20 @@ class FlareBase : Actor abstract
         if (pointLight)
             pointLight.Destroy();
     }
+	
+	protected void RemoveStealthIfLit()
+	{
+		if (pointLight && flashlight_flare_reveal_stealth)
+        {
+            A_RadiusGive("StealthRemover",pointLight.Intensity * 1.5,RGF_PLAYERS|RGF_MONSTERS|RGF_NOSIGHT,999);
+        }
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		RemoveStealthIfLit();
+	}
 
     Default
     {
@@ -145,6 +159,7 @@ class ActiveFlare : FlareBase
     
     override void Tick()
     {
+		super.Tick();
         burntime--;
         if (burntime < 0 && !burn_forever)
         {
@@ -153,13 +168,6 @@ class ActiveFlare : FlareBase
             RemoveDynamicLight();
             A_StopSound(7);
         }
-        else if (pointLight && flashlight_flare_reveal_stealth)
-        {
-            A_RadiusGive("StealthRemover",pointLight.Intensity * 1.5,RGF_PLAYERS|RGF_MONSTERS|RGF_NOSIGHT,999);
-        }
-        else
-            Debug.LogError("Flare was not able to establish pointlight");
-        Super.Tick();
     }
     
     States
