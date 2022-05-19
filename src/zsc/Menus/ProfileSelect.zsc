@@ -163,11 +163,9 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 			break;
 			case TWILIGHT:
 				SetTwilight();
-				SetStartingItems(false,5);
+				SetStartingItems(true,5);
 				EnableDropFlashlight(0);
-			break;
-			case NIGHT_MODE:
-				SetNight();
+				EnableSpawnFlareBox(10);
 			break;
 			case TACTICAL:
 				SetNight();
@@ -177,27 +175,12 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 				SetStealthDetection(false,true);
 				EnableDropFlashlight(3,0);
 			break;
-			case AMBUSH_MODE:
-				SetNight();
-				SetStartingItems(true,5);
-				EnableStealthMode();
-			break;
-			case DRAIN_MODE:
-				SetDarkerDark();
-				SetStartingItems(true,0);
-				EnableStealthMode();
-				EnableDropBatteries(8,0);
-				SetBatteryUse(1,0,0,2100);
-				EnableSpawnBatteries(5,1,100,25);
-				EnableSpawnFlareBox(5);
-				EnableDropFlashlight(0,3);
-			break;
 			case DRAIN_MODE_NIGHT:
 				SetNight();
 				SetStartingItems(true,0);
 				EnableStealthMode();
 				EnableDropBatteries(8,0);
-				SetBatteryUse(1,0,0,2100);
+				SetBatteryUse(1,0,0,35000);
 				EnableSpawnBatteries(5,1,100,25);
 				EnableSpawnFlareBox(5);
 				EnableDropFlashlight(0,3);
@@ -207,11 +190,10 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 				SetStartingItems(false,1);
 				EnableStealthMode(100,false,2);
 				EnableDropBatteries(1,1);
-				EnableDropFlashlight(1,1);
-				SetFlareProperties(60,30);
-				SetBatteryUse(1,0,0,35000);
+				//EnableDropFlashlight(1,1);
+				SetBatteryUse(1,0,0,30000);
 				EnableSpawnBatteries(5,1,100,25);
-				EnableSpawnFlareBox(3);
+				//EnableSpawnFlareBox(3);
 			break;
 		}
     }
