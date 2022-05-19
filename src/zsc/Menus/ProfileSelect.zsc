@@ -177,23 +177,22 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 			break;
 			case DRAIN_MODE_NIGHT:
 				SetNight();
-				SetStartingItems(true,0);
-				EnableStealthMode();
-				EnableDropBatteries(8,0);
+				SetStartingItems(true,3);
+				EnableStealthMode(100);
+				EnableDropBatteries(8,8);
 				SetBatteryUse(1,0,0,35000);
 				EnableSpawnBatteries(5,1,100,25);
-				EnableSpawnFlareBox(5);
 				EnableDropFlashlight(0,3);
+				EnableSpawnFlareBox(5);
 			break;
 			case HELL_MODE:
 				SetNight(10);
-				SetStartingItems(false,1);
-				EnableStealthMode(100,false,2);
+				SetStartingItems(false,0);
+				EnableStealthMode(100,true,2);
 				EnableDropBatteries(1,1);
-				//EnableDropFlashlight(1,1);
 				SetBatteryUse(1,0,0,30000);
 				EnableSpawnBatteries(5,1,100,25);
-				//EnableSpawnFlareBox(3);
+				EnableDropFlashlight(3,0);
 			break;
 		}
     }

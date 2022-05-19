@@ -304,15 +304,15 @@ FLASHLIGHT_PROFILE_TACTICAL_LINE2 = "rare. Start with 3 regenerating quick-burn 
 FLASHLIGHT_PROFILE_TACTICAL_LINE3 = "Small enemies are stealthed, but can be revealed by Flares.";
 FLASHLIGHT_PROFILE_TACTICAL_LINE4 = "Embrace the darkness to survive!";
 
-FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE1 = "The world will be very dark, and your Flashlight battery";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE1 = "The world will be very dark, Long-use battery";
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE2 = "does not recharge. Flares are rare. You will";
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE3 = "need to find Battery Rechargers and Upgrades to survive.";
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed, but can be revealed by Flares and Flashlights!";
 
-FLASHLIGHT_PROFILE_HELL_LINE1 = "The world will be pitch black. You will need to scavenge";
-FLASHLIGHT_PROFILE_HELL_LINE2 = "to find resources. Long-use battery does not recharge, you will";
-FLASHLIGHT_PROFILE_HELL_LINE3 = "need to find Battery Rechargers and Upgrades to survive. Flares are disabled!";
-FLASHLIGHT_PROFILE_HELL_LINE4 = "All enemies will be stealthed, but can be revealed by Flares and Flashlights!";
+FLASHLIGHT_PROFILE_HELL_LINE1 = "The world will be pitch black. Long-use battery";
+FLASHLIGHT_PROFILE_HELL_LINE2 = "does not recharge. Flares are disabled. You will";
+FLASHLIGHT_PROFILE_HELL_LINE3 = "need to find Battery Rechargers and Upgrades to survive.";
+FLASHLIGHT_PROFILE_HELL_LINE4 = "All enemies will be stealthed, but can be revealed the Flashlight!";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
 FLASHLIGHT_PROFILE_WARNING2 = "Some Settings will take effect on next map load";

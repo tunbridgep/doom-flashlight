@@ -32,10 +32,9 @@ FLASHLIGHT_PROFILE_TWILIGHT_LINE2 = "in the day. Start with a Torch.";
 
 FLASHLIGHT_PROFILE_TACTICAL_LINE1 = "The world will be very dark. Torches are extremely";
 
-FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE1 = "The world will be very dark, and your Torch battery";
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed, but can be revealed by Flares and Torches!";
 
-FLASHLIGHT_PROFILE_HELL_LINE4 = "All enemies will be stealthed, but can be revealed by Flares and Torches!";
+FLASHLIGHT_PROFILE_HELL_LINE4 = "All enemies will be stealthed, but can be revealed the Torch!";
 
 //Advanced Options
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Torch when selecting it";
