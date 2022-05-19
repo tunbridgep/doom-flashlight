@@ -20,14 +20,7 @@ class PlayerStealthItem : PermanentItem
     const STEALTH_THRESHOLD = 35 * 2; //two seconds
 	const DESTEALTH_THRESHOLD = 35 / 2; //0.5 seconds
 	const STEALTH_DECAY_RATE = 4; //how fast we lose our built-up stealth time if we are in a stealth-ineligible area.
-
-    float UnitIntervalRange(float stageStartRange, float stageFinishRange, float newStartRange, float newFinishRange, float floatingValue)
-    {
-        float outRange = newFinishRange - newStartRange;
-        float inRange = stageFinishRange - stageStartRange;
-        float range = (outRange / inRange);
-        return (newStartRange + (range * (floatingValue - stageStartRange)));
-    }
+	const STEALTH_LENIENCY = 20; //how far above the acceptable light level are we allowed to be, if we are already stealthed
     
     void DrawOverlay(bool yes = true)
     {
@@ -48,8 +41,12 @@ class PlayerStealthItem : PermanentItem
         }
          
         int light_level = owner.cursector.lightlevel;
-        bool stealth_eligible = !owner.CheckInventory("StealthRemover",1) && flashlight_stealth_player_enabled && light_level <= flashlight_stealth_player_threshold;
 		bool in_stealth = owner.bSHADOW;
+		
+		if (in_stealth)
+			light_level -= STEALTH_LENIENCY; //if we are already stealthed, allow us to remain stealthed if we enter a sector that's within 5 light level of the threshold
+		
+        bool stealth_eligible = !owner.CheckInventory("StealthRemover",1) && flashlight_stealth_player_enabled && light_level <= flashlight_stealth_player_threshold;
         
 		if (stealth_eligible && !in_stealth)
 		{
