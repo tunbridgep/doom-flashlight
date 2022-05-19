@@ -17,7 +17,9 @@ class PlayerStealth : FlashlightEventHandler
 class PlayerStealthItem : PermanentItem
 {
     int stealth_time; //need to be in a dark area for long enough to trigger stealth
-    const STEALTH_THRESHOLD = 35 * 2; //three seconds
+    const STEALTH_THRESHOLD = 35 * 2; //two seconds
+	const DESTEALTH_THRESHOLD = 35 / 2; //0.5 seconds
+	const STEALTH_DECAY_RATE = 6; //how fast we lose our built-up stealth time if we are in a stealth-ineligible area.
 
     float UnitIntervalRange(float stageStartRange, float stageFinishRange, float newStartRange, float newFinishRange, float floatingValue)
     {
@@ -27,13 +29,12 @@ class PlayerStealthItem : PermanentItem
         return (newStartRange + (range * (floatingValue - stageStartRange)));
     }
     
-    void DrawOverlay()
+    void DrawOverlay(bool yes = true)
     {
-        //let overlay = TexMan.CheckForTexture("F_SKY1",TexMan.TYPE_ANY,TexMan.DONTCREATE);
-        //StatusBar.DrawTexture(overlay, false, 0, 0, DTA_Alpha, 1, DTA_320x200);
-        //owner.ACS_ScriptCall("DrawStealthOverlay",UnitIntervalRange(0,STEALTH_THRESHOLD,0,1,stealth_time));
-        owner.ACS_ScriptCall("DrawStealthOverlay");
-        //owner.ACS_ScriptCall("DrawStealthOverlay",stealth_time,STEALTH_THRESHOLD);
+		if (yes)
+			owner.ACS_ScriptCall("DrawStealthOverlay");
+		else
+			owner.ACS_ScriptCall("HideStealthOverlay");
     }
     
     override void DoEffect()
@@ -42,31 +43,25 @@ class PlayerStealthItem : PermanentItem
         if (owner.CheckInventory("PowerInvisibility",1) || !flashlight_stealth_player_enabled)
         {
             owner.ACS_ScriptCall("HideStealthOverlay");
+			stealth_time = 0;
             return;
         }
          
-        int light_level = owner.cursector.lightlevel;      
-        bool shadow = !owner.CheckInventory("StealthRemover",1) && flashlight_stealth_player_enabled && light_level <= flashlight_stealth_player_threshold && stealth_time >= STEALTH_THRESHOLD;
+        int light_level = owner.cursector.lightlevel;
+        bool stealth_eligible = !owner.CheckInventory("StealthRemover",1) && flashlight_stealth_player_enabled && light_level <= flashlight_stealth_player_threshold;
+		bool in_stealth = owner.bSHADOW;
         
-        if (light_level <= flashlight_stealth_player_threshold)
-        {
-            stealth_time++;
-            //DrawOverlay();
-        
-            if (shadow)
-            {
-                owner.bSHADOW = true;
-                DrawOverlay();
-            }
-        }
-        else
-        {
-            stealth_time -= 10;
-            if (stealth_time < 0)
-                stealth_time = 0;
-            
-            owner.bSHADOW = false;
-            owner.ACS_ScriptCall("HideStealthOverlay");
-        }
+		if (stealth_eligible && !in_stealth)
+		{
+			stealth_time++;
+			Debug.LogVerbose("Player Stealth Timer:"..stealth_time.."/"..STEALTH_THRESHOLD);
+		}
+		
+		if (stealth_time >= STEALTH_THRESHOLD || !stealth_eligible)
+		{
+			stealth_time = Math.ClampMin(stealth_time - STEALTH_DECAY_RATE,0);
+			owner.bSHADOW = stealth_eligible;
+			DrawOverlay(stealth_eligible);
+		}
     }
 }
