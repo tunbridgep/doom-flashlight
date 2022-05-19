@@ -91,6 +91,8 @@ class FlareLight : PointLight
 class FlareBase : Actor abstract
 {
     FlareLight pointLight;
+	protected int burntime;
+	bool burn_forever;
     
     protected void GenerateDynamicLight()
     {
@@ -117,10 +119,21 @@ class FlareBase : Actor abstract
         }
 	}
 	
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+		burntime = FlareConfig.GetBurnTime();
+		burn_forever = flashlight_flare_burn_forever;
+	}
+	
 	override void Tick()
 	{
 		Super.Tick();
 		RemoveStealthIfLit();
+		
+		//start burning the moment we are created
+		if (burntime > 0 && !burn_forever)
+			burntime--;
 	}
 
     Default
@@ -147,21 +160,11 @@ class FlareBase : Actor abstract
 }
 
 class ActiveFlare : FlareBase
-{
-    int burntime;
-    bool burn_forever;
-    
-    override void BeginPlay()
-    {
-        burntime = FlareConfig.GetBurnTime();
-        burn_forever = flashlight_flare_burn_forever;
-    }
-    
+{   
     override void Tick()
     {
 		super.Tick();
-        burntime--;
-        if (burntime < 0 && !burn_forever)
+        if (burntime <= 0)
         {
             SetStateLabel("BurnedOut");
             bFORCEXYBILLBOARD = true;
@@ -179,7 +182,6 @@ class ActiveFlare : FlareBase
 }
 class ActiveFlareProjectile : FlareBase
 {
-   
     private void GenerateStationaryFlare()
     {
         let flare = ActiveFlare(Actor.Spawn("ActiveFlare",pos));

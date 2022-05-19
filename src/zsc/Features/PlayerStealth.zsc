@@ -19,7 +19,7 @@ class PlayerStealthItem : PermanentItem
     int stealth_time; //need to be in a dark area for long enough to trigger stealth
     const STEALTH_THRESHOLD = 35 * 2; //two seconds
 	const DESTEALTH_THRESHOLD = 35 / 2; //0.5 seconds
-	const STEALTH_DECAY_RATE = 6; //how fast we lose our built-up stealth time if we are in a stealth-ineligible area.
+	const STEALTH_DECAY_RATE = 4; //how fast we lose our built-up stealth time if we are in a stealth-ineligible area.
 
     float UnitIntervalRange(float stageStartRange, float stageFinishRange, float newStartRange, float newFinishRange, float floatingValue)
     {
