@@ -87,6 +87,7 @@ OptionValue BatteryOptions
     2, "$FLASHLIGHT_SPAWN_BATTERY_2"
     3, "$FLASHLIGHT_SPAWN_BATTERY_3"
     4, "$FLASHLIGHT_SPAWN_BATTERY_4"
+	5, "$FLASHLIGHT_SPAWN_BATTERY_5"
 }
 
 OptionValue StealthMonsterOptions

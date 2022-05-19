@@ -192,13 +192,15 @@ class FlashlightReplacers : FlashlightEventHandler
         if ((ac is backpackclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_BACKPACK)
         || (ac is soulsphereclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_SOULSPHERE)
         || (ac is blursphereclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_BLURSPHERE)
-        || (ac is megasphereclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_MEGASPHERE))
+        || (ac is megasphereclass && ReplacerConfig.GetBatteryRechargeItem() == REPLACE_BATTERY_MEGASPHERE)
+		|| (ac is infraredclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_NVG))
             ActorUtil.ReplaceActor(a,"FlashlightBatteryRecharge",chanceBatterRe);
         
         if ((ac is backpackclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_BACKPACK)
         || (ac is soulsphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_SOULSPHERE)
         || (ac is blursphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_BLURSPHERE)
-        || (ac is megasphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_MEGASPHERE))
+		|| (ac is megasphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_MEGASPHERE)
+        || (ac is infraredclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_NVG))
             ActorUtil.ReplaceActor(a,"FlashlightBatteryUpgrade",chanceBatterUp);
         
         //Heretic/Hexen

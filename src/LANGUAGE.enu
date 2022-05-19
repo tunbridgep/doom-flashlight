@@ -115,6 +115,7 @@ FLASHLIGHT_SPAWN_BATTERY_1 = "Backpack";
 FLASHLIGHT_SPAWN_BATTERY_2 = "Soulsphere";
 FLASHLIGHT_SPAWN_BATTERY_3 = "Blursphere";
 FLASHLIGHT_SPAWN_BATTERY_4 = "Megasphere";
+FLASHLIGHT_SPAWN_BATTERY_5 = "Light Amplification Goggles";
 
 //Stealth Options
 FLASHLIGHT_STEALTH_MONSTERS = "Spawn Stealth Monsters";
@@ -290,7 +291,7 @@ FLASHLIGHT_PROFILE_DOOM3_LINE4 = "Flares and other features are disabled";
 
 FLASHLIGHT_PROFILE_DARKER_DARK_LINE1 = "This darkens the world proportionally, making dark";
 FLASHLIGHT_PROFILE_DARKER_DARK_LINE2 = "areas very dark. Start with a Flashlight, and";
-FLASHLIGHT_PROFILE_DARKER_DARK_LINE3 = "Small enemies drop flares";
+FLASHLIGHT_PROFILE_DARKER_DARK_LINE3 = "flares are not hard to find.";
 FLASHLIGHT_PROFILE_DARKER_DARK_LINE4 = "";
 
 FLASHLIGHT_PROFILE_TWILIGHT_LINE1 = "This darkens the world slightly, as if it was late";
@@ -303,13 +304,13 @@ FLASHLIGHT_PROFILE_NIGHT_MODE_LINE2 = "";
 FLASHLIGHT_PROFILE_NIGHT_MODE_LINE3 = "";
 FLASHLIGHT_PROFILE_NIGHT_MODE_LINE4 = "";
 
-FLASHLIGHT_PROFILE_TACTICAL_LINE1 = "The world will be very dark. Flashlights are";
+FLASHLIGHT_PROFILE_TACTICAL_LINE1 = "The world will be very dark. Flashlights are extremely";
 FLASHLIGHT_PROFILE_TACTICAL_LINE2 = "rare. Start with 3 regenerating quick-burn flares.";
 FLASHLIGHT_PROFILE_TACTICAL_LINE3 = "Small enemies are stealthed, but can be revealed by flares.";
 FLASHLIGHT_PROFILE_TACTICAL_LINE4 = "Embrace the darkness to survive!";
 
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE1 = "The world will be very dark, and your Flashlight battery";
-FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE2 = "does not recharge. You will";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE2 = "does not recharge, and flares are rare. You will";
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE3 = "need to find battery rechargers to survive.";
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed, but can be revealed by Flares and Flashlights!";
 

@@ -103,6 +103,12 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 		CVar.GetCvar("flashlight_spawn_battery_recharge_chance").SetInt(recharge_chance);
 	}
 	
+	void EnableSpawnFlareBox(int chance = 10, int replace = 1)
+	{
+		CVar.GetCvar("flashlight_spawn_flare_box").SetInt(replace);
+		CVar.GetCvar("flashlight_spawn_battery_recharge_chance").SetInt(chance);
+	}
+	
 	void EnableDropFlashlight(int flashlight_chance = 6, int flare_chance = 8)
 	{
 		CVar.GetCvar("flashlight_enemies_drop_flashlights").SetBool(flashlight_chance > 0);
@@ -142,6 +148,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 			case VANILLA_MODE:
 				CVar.GetCvar("flashlight_replace_sky").SetBool(false);
 				EnableDropFlashlight();
+				EnableSpawnFlareBox(5);
 			break;
 			case DOOM_3_STYLE:
 				SetNight();
@@ -152,6 +159,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 				SetDarkerDark();
 				SetStartingItems(false,5);
 				EnableDropFlashlight();
+				EnableSpawnFlareBox(10);
 			break;
 			case TWILIGHT:
 				SetTwilight();
@@ -166,8 +174,8 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 				EnableStealthMode();
 				SetStartingItems(false,3);
 				SetFlareProperties(12,3,3,32);
-				//SetStealthDetection(false,true);
-				//EnableDropFlashlight(8,0);
+				SetStealthDetection(false,true);
+				EnableDropFlashlight(3,0);
 			break;
 			case AMBUSH_MODE:
 				SetNight();
@@ -176,29 +184,34 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 			break;
 			case DRAIN_MODE:
 				SetDarkerDark();
-				SetStartingItems(true,5);
+				SetStartingItems(true,0);
 				EnableStealthMode();
 				EnableDropBatteries(8,0);
 				SetBatteryUse(1,0,0,2100);
-				EnableSpawnBatteries(1,0);
+				EnableSpawnBatteries(5,1,100,25);
+				EnableSpawnFlareBox(5);
+				EnableDropFlashlight(0,3);
 			break;
 			case DRAIN_MODE_NIGHT:
 				SetNight();
-				SetStartingItems(true,5);
+				SetStartingItems(true,0);
 				EnableStealthMode();
 				EnableDropBatteries(8,0);
 				SetBatteryUse(1,0,0,2100);
-				EnableSpawnBatteries(1,0);
+				EnableSpawnBatteries(5,1,100,25);
+				EnableSpawnFlareBox(5);
+				EnableDropFlashlight(0,3);
 			break;
 			case HELL_MODE:
 				SetNight(10);
-				SetStartingItems(false,0);
+				SetStartingItems(false,1);
 				EnableStealthMode(100,false,2);
 				EnableDropBatteries(1,1);
 				EnableDropFlashlight(1,1);
-				SetFlareProperties(60,30,1,60);
+				SetFlareProperties(60,30);
 				SetBatteryUse(1,0,0,35000);
-				EnableSpawnBatteries(1,1,20,100);
+				EnableSpawnBatteries(5,1,100,25);
+				EnableSpawnFlareBox(3);
 			break;
 		}
     }

@@ -11,15 +11,20 @@ class ResetConfig : ConfigBase
         CVar.GetCvar("flashlight_battery_min_threshold").ResetToDefault();
         CVar.GetCvar("flashlight_battery_use_per_tic").ResetToDefault();
         CVar.GetCvar("flashlight_battery_charge_per_tic").ResetToDefault();
-        CVar.GetCvar("flashlight_spawn_battery_upgrade_chance").ResetToDefault();
-        CVar.GetCvar("flashlight_spawn_battery_recharge_chance").ResetToDefault();
-          
-        CVar.GetCvar("flashlight_spawn_flare_box").ResetToDefault();
-        CVar.GetCvar("flashlight_spawn_flashlight").ResetToDefault();
+        
+		//spawners
+		CVar.GetCvar("flashlight_spawn_flashlight").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_flashlight_chance").ResetToDefault();
         CVar.GetCvar("flashlight_spawn_headlamp").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_headlamp_chance").ResetToDefault();
         CVar.GetCvar("flashlight_spawn_flare").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_flare_chance").ResetToDefault();
         CVar.GetCvar("flashlight_spawn_battery_upgrade").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_battery_upgrade_chance").ResetToDefault();
         CVar.GetCvar("flashlight_spawn_battery_recharge").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_battery_recharge_chance").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_flare_box").ResetToDefault();
+        CVar.GetCvar("flashlight_spawn_flare_box_chance").ResetToDefault();
 
         CVar.GetCvar("flashlight_starting_flares").ResetToDefault();
         CVar.GetCvar("flashlight_starting_item").ResetToDefault();
@@ -27,8 +32,7 @@ class ResetConfig : ConfigBase
         CVar.GetCvar("flashlight_enemies_drop_flashlights").ResetToDefault();
         CVar.GetCvar("flashlight_enemies_drop_flares").ResetToDefault();
         CVar.GetCvar("flashlight_enemies_drop_flashlights_chance").ResetToDefault();
-        CVar.GetCvar("flashlight_enemies_drop_flares_chance").ResetToDefault();
-        
+        CVar.GetCvar("flashlight_enemies_drop_flares_chance").ResetToDefault();        
         CVar.GetCvar("flashlight_enemies_drop_battery").ResetToDefault();
         CVar.GetCvar("flashlight_enemies_drop_battery_expander").ResetToDefault();
         CVar.GetCvar("flashlight_enemies_drop_battery_chance").ResetToDefault();
