@@ -187,7 +187,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 			break;
 			case HELL_MODE:
 				SetNight(10);
-				SetStartingItems(false,0);
+				SetStartingItems(true,0);
 				EnableStealthMode(100,true,2);
 				EnableDropBatteries(1,1);
 				SetBatteryUse(1,0,0,30000);
