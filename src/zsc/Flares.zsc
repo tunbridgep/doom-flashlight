@@ -148,7 +148,7 @@ class FlareBase : Actor abstract
             FLZR A 1
             {
                 GenerateDynamicLight();
-                A_PlaySoundEx("Flare/Loop", "SoundSlot7", 1, -1);
+                A_StartSound("Flare/Loop", CHAN_7, CHANF_LOOPING, 1.0, ATTN_STATIC);
             }
             Goto PostSpawn;
         PostSpawn:    
