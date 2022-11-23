@@ -22,6 +22,16 @@ class FlashlightStartToken : PermanentItem
 class FlareRecharger : PermanentItem
 {
     int Count;
+	int charges;
+	
+	int flares_current;
+	int flares_prev;
+	
+	override void postBeginPlay()
+    {
+        super.postbeginplay();
+		charges = owner.CountInv("Flare");
+    }
 
 	void PlayRechargeSound()
 	{
@@ -51,24 +61,44 @@ class FlareRecharger : PermanentItem
 		owner.A_StartSound(toPlay);
 	}
 
+	void GiveFlare()
+	{
+		self.PlayRechargeSound();
+		owner.GiveInventory("Flare",1);
+	}
+	
+	bool FlareUsed()
+	{
+		flares_current = owner.CountInv("Flare");
+		let compare = flares_current < flares_prev;
+		flares_prev = flares_current;
+		return compare;
+	}
+
     override void DoEffect()
     {
         Super.DoEffect();
         
         int tics = FlareConfig.GetRechargeTime();
-        int max_amount = Math.ClampMax(flashlight_flare_recharge_max_amount,flashlight_flare_max_amount);
+        int max_charges = Math.ClampMax(flashlight_flare_recharge_max_amount,flashlight_flare_max_amount);
+		
         bool enabled = flashlight_flare_recharge_enabled;
-        
+		        
         if (tics == 0 || !enabled)
             return;
-			
-		if (owner.CountInv("Flare") < max_amount)
+				
+		if (FlareUsed() && charges > 0 && flares_current < max_charges)
+		{
+			charges--;
+		}
+		
+		if (charges < max_charges)
 		{
 			if (Count >= tics)
 			{
-				self.PlayRechargeSound();
-                owner.GiveInventory("Flare",1);
+				GiveFlare();
 				Count = 0;
+				charges++;
 			}
 			Count++;
 		}

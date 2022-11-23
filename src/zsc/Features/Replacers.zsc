@@ -144,7 +144,7 @@ class FlashlightReplacers : FlashlightEventHandler
     
     }
     
-    //do this every map rather than OnRegister so that we can chance mid-campaign
+    //do this every map rather than OnRegister so that we can change mid-campaign
     override void UniqueWorldLoaded(WorldEvent e)
     {
         chanceFlash = ReplacerConfig.GetFlashlightChance();
@@ -176,7 +176,9 @@ class FlashlightReplacers : FlashlightEventHandler
         //Doom
         if ((ac is shotgunclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_SHOTGUN)
         || (ac is shellboxclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_SHELLBOX)
-        || (ac is chaingunclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_CHAINGUN))
+        || (ac is chaingunclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_CHAINGUN)
+        || (ac is backpackclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_BACKPACK)
+        || (ac is infraredclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_NVG))
             ActorUtil.ReplaceActor(a,"Flashlight",chanceFlash);
         
         

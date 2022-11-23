@@ -55,7 +55,8 @@ FLASHLIGHT_FLARE_ENABLE_RECHARGE = "Enable Recharging";
 FLASHLIGHT_FLARE_RECHARGE_TIME = "Recharge Time";
 FLASHLIGHT_FLARE_RECHARGE_TIME_DESC = "Time until flare recharges";
 FLASHLIGHT_FLARE_RECHARGE_MAX = "Recharge Amount";
-FLASHLIGHT_FLARE_RECHARGE_MAX_DESC = "How many flares can the player hold before recharging stops";
+FLASHLIGHT_FLARE_RECHARGE_MAX_DESC = "How many flares the player will recharge";
+FLASHLIGHT_FLARE_RECHARGE_MAX_DESC2 = "Excess flares will not count towards recharge amount";
 
 //Flare Sounds
 FLASHLIGHT_FLARE_SOUND = "Recharge Sound";
@@ -106,6 +107,8 @@ FLASHLIGHT_CALIBRATION_DESC3 = "Sector light mode is recommended";
 FLASHLIGHT_SPAWN_FLASHLIGHT_1 = "Shotgun";
 FLASHLIGHT_SPAWN_FLASHLIGHT_2 = "Box of Shells";
 FLASHLIGHT_SPAWN_FLASHLIGHT_3 = "Chain Gun";
+FLASHLIGHT_SPAWN_FLASHLIGHT_4 = "Backpack";
+FLASHLIGHT_SPAWN_FLASHLIGHT_5 = "Light Amplification Goggles";
 FLASHLIGHT_SPAWN_FLARE_1 = "Clip";
 FLASHLIGHT_SPAWN_FLARE_2 = "Rocket";
 FLASHLIGHT_SPAWN_FLARE_BOX_1 = "Box of Bullets";
@@ -312,7 +315,7 @@ FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed, but ca
 FLASHLIGHT_PROFILE_HELL_LINE1 = "The world will be pitch black. Long-use battery";
 FLASHLIGHT_PROFILE_HELL_LINE2 = "does not recharge. Flares are disabled. You will";
 FLASHLIGHT_PROFILE_HELL_LINE3 = "need to find Battery Rechargers and Upgrades to survive.";
-FLASHLIGHT_PROFILE_HELL_LINE4 = "All enemies will be stealthed, but can be revealed the Flashlight!";
+FLASHLIGHT_PROFILE_HELL_LINE4 = "All enemies will be stealthed, but can be revealed with the Flashlight!";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
 FLASHLIGHT_PROFILE_WARNING2 = "Some Settings will take effect on next map load";

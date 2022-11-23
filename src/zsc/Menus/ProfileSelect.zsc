@@ -103,6 +103,12 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 		CVar.GetCvar("flashlight_spawn_battery_recharge_chance").SetInt(recharge_chance);
 	}
 	
+	void EnableSpawnFlashlight(int chance = 10, int replace = 1)
+	{
+		CVar.GetCvar("flashlight_spawn_flashlight").SetInt(replace);
+		CVar.GetCvar("flashlight_spawn_flashlight_chance").SetInt(chance);
+	}
+	
 	void EnableSpawnFlareBox(int chance = 10, int replace = 1)
 	{
 		CVar.GetCvar("flashlight_spawn_flare_box").SetInt(replace);
@@ -172,8 +178,9 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 				EnableStealthMode();
 				SetStartingItems(false,3);
 				SetFlareProperties(12,3,3,32);
-				SetStealthDetection(false,true);
-				EnableDropFlashlight(3,0);
+				SetStealthDetection(true,true);
+				EnableDropFlashlight(0,5);
+				EnableSpawnFlashlight(10,5);
 			break;
 			case DRAIN_MODE_NIGHT:
 				SetNight();
@@ -187,12 +194,12 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 			break;
 			case HELL_MODE:
 				SetNight(10);
-				SetStartingItems(true,0);
+				SetStartingItems(false,0);
 				EnableStealthMode(100,true,2);
 				EnableDropBatteries(1,1);
 				SetBatteryUse(1,0,0,30000);
 				EnableSpawnBatteries(5,1,100,25);
-				EnableDropFlashlight(3,0);
+				EnableDropFlashlight(50,0);
 			break;
 		}
     }

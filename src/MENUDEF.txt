@@ -19,6 +19,8 @@ OptionValue FlashlightOptions
     1, "$FLASHLIGHT_SPAWN_FLASHLIGHT_1"
     2, "$FLASHLIGHT_SPAWN_FLASHLIGHT_2"
     3, "$FLASHLIGHT_SPAWN_FLASHLIGHT_3"
+    4, "$FLASHLIGHT_SPAWN_FLASHLIGHT_4"
+    5, "$FLASHLIGHT_SPAWN_FLASHLIGHT_5"
 }
 
 OptionValue FlashlightStyleOptions
@@ -313,6 +315,7 @@ OptionMenu "FlashlightAdvanced"
     StaticText "$FLASHLIGHT_FLARE_RECHARGE_TIME_DESC"
     FlashlightSlider "$FLASHLIGHT_FLARE_RECHARGE_MAX", "flashlight_flare_recharge_max_amount", 1,100,1,0,"flashlight_flare_recharge_enabled","$FLASHLIGHT_MENU_NOOP"
     StaticText "$FLASHLIGHT_FLARE_RECHARGE_MAX_DESC"
+    StaticText "$FLASHLIGHT_FLARE_RECHARGE_MAX_DESC2"
     StaticText ""
     Option "$FLASHLIGHT_FLARE_SHOW_MSG", "flashlight_flare_show_count", YesNo
     StaticText "$FLASHLIGHT_FLARE_SHOW_MSG_DESC"
