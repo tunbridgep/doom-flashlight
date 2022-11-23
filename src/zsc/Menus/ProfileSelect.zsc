@@ -176,10 +176,10 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 			case TACTICAL:
 				SetNight();
 				EnableStealthMode();
-				SetStartingItems(false,3);
+				SetStartingItems(false,5);
 				SetFlareProperties(12,3,3,32);
 				SetStealthDetection(true,true);
-				EnableDropFlashlight(0,5);
+				EnableDropFlashlight(0,10);
 				EnableSpawnFlashlight(10,5);
 			break;
 			case DRAIN_MODE_NIGHT:
