@@ -1,0 +1,16 @@
+class FlashlightMenu : OptionMenu
+{
+	//override void Ticker()
+	//{
+	//	Super.Ticker();
+	//	Debug.LogVerbose("Menu Ticking");
+	//	EventHandler.SendNetworkEvent("flashlight_refresh", 0, 0, 0);
+	//}
+	
+	override bool TranslateKeyboardEvents()
+	{
+		Debug.Log("Refresh Flashlight Settings...");
+		EventHandler.SendNetworkEvent("flashlight_refresh", 0, 0, 0);
+		return Super.TranslateKeyboardEvents();
+	}
+}

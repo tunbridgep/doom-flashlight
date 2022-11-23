@@ -2,13 +2,14 @@ class Flare : CustomInventory
 {
     Default
     {
-        Radius 4;
+        Radius 12;
         Height 18;
         //+INVENTORY.INVBAR;
         +INVENTORY.HUBPOWER;
         +INVENTORY.PERSISTENTPOWER;
-        Inventory.MaxAmount 30;
-        Inventory.InterHubAmount 30;
+        +DONTGIB;
+        Inventory.MaxAmount 999;
+        Inventory.InterHubAmount 999;
         Inventory.Icon "FLARINV";
         Inventory.PickupMessage "You picked up a flare.";
     }
@@ -18,6 +19,12 @@ class Flare : CustomInventory
     override void BeginPlay()
     {
         self.bINVBAR = FlareConfig.GetAppearInInventory();
+    }
+       
+    override bool CanPickup(Actor toucher)
+    {
+        bool allow = flashlight_flare_max_amount <= 0 || toucher.CountInv("Flare") < flashlight_flare_max_amount;
+        return allow && super.CanPickup(toucher);
     }
     
     States
@@ -50,10 +57,11 @@ class FlareBox : CustomInventory
     }
 }
 
-class FlareLight : PointLightFlicker
+class FlareLight : PointLight
 {
     Actor toFollow;
     Vector3 offset;
+    int Intensity;
     
     override void BeginPlay()
     {
@@ -61,23 +69,21 @@ class FlareLight : PointLightFlicker
         args[LIGHT_RED] = color.r;
         args[LIGHT_GREEN] = color.g;
         args[LIGHT_BLUE] = color.b;
-        SetIntensity(242,240);
+        SetIntensity(242);
         bATTENUATE = true;
     }
     
-    //This is here so we can easily randomise it and make our fire effect look more
-    //genuine
-    protected void SetIntensity(int primary, int secondary)
+    protected void SetIntensity(int amount)
     {
-        args[LIGHT_INTENSITY] = primary;
-        args[LIGHT_SECONDARY_INTENSITY] = secondary;
+        args[LIGHT_INTENSITY] = amount;
+        Intensity = amount;
     }
     
     override void Tick()
     {
         ActorUtil.MoveToActor(self,toFollow,offset);
         int new_intensity = random(220,260);
-        SetIntensity(new_intensity,new_intensity - 2);
+        SetIntensity(new_intensity);
         Super.Tick();
     }
 }
@@ -85,6 +91,8 @@ class FlareLight : PointLightFlicker
 class FlareBase : Actor abstract
 {
     FlareLight pointLight;
+	protected int burntime;
+	bool burn_forever;
     
     protected void GenerateDynamicLight()
     {
@@ -102,6 +110,31 @@ class FlareBase : Actor abstract
         if (pointLight)
             pointLight.Destroy();
     }
+	
+	protected void RemoveStealthIfLit()
+	{
+		if (pointLight && flashlight_flare_reveal_stealth)
+        {
+            A_RadiusGive("StealthRemover",pointLight.Intensity * 1.5,RGF_PLAYERS|RGF_MONSTERS|RGF_NOSIGHT,999);
+        }
+	}
+	
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+		burntime = FlareConfig.GetBurnTime();
+		burn_forever = flashlight_flare_burn_forever;
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		RemoveStealthIfLit();
+		
+		//start burning the moment we are created
+		if (burntime > 0 && !burn_forever)
+			burntime--;
+	}
 
     Default
     {
@@ -115,7 +148,7 @@ class FlareBase : Actor abstract
             FLZR A 1
             {
                 GenerateDynamicLight();
-                A_PlaySoundEx("Flare/Loop", "SoundSlot7", 1, -1);
+                A_StartSound("Flare/Loop", CHAN_7, CHANF_LOOPING, 1.0, ATTN_STATIC);
             }
             Goto PostSpawn;
         PostSpawn:    
@@ -127,25 +160,17 @@ class FlareBase : Actor abstract
 }
 
 class ActiveFlare : FlareBase
-{
-    int burntime;
-    
-    override void BeginPlay()
-    {
-        burntime = FlareConfig.GetBurnTime();
-    }
-    
+{   
     override void Tick()
     {
-        burntime--;
-        if (burntime < 0)
+		super.Tick();
+        if (burntime <= 0)
         {
             SetStateLabel("BurnedOut");
             bFORCEXYBILLBOARD = true;
             RemoveDynamicLight();
             A_StopSound(7);
         }
-        Super.Tick();
     }
     
     States
@@ -157,7 +182,6 @@ class ActiveFlare : FlareBase
 }
 class ActiveFlareProjectile : FlareBase
 {
-   
     private void GenerateStationaryFlare()
     {
         let flare = ActiveFlare(Actor.Spawn("ActiveFlare",pos));

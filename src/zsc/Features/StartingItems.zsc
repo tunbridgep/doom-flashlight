@@ -1,9 +1,7 @@
-class FlashlightSetup : EventHandler
+class FlashlightSetup : FlashlightEventHandler
 {
-    override void PlayerEntered(PlayerEvent e)
+    override void UniquePlayerEntered(Actor Player, bool reentered)
     {
-        PlayerPawn player = players[e.PlayerNumber].mo;
-    
         let start_item = CVar.FindCVar("flashlight_starting_item").GetInt();
         let start_flares = CVar.FindCVar("flashlight_starting_flares").GetInt();
         
@@ -16,12 +14,13 @@ class FlashlightSetup : EventHandler
                 player.GiveInventory("Flashlight",1);
                 break;
             case 2:
-                player.GiveInventory("Flashlight",1);
+                player.GiveInventory("Flashlight",1); //not a headlamp yet
                 break;
         }
         
         if (start_flares > 0)
             player.GiveInventory("Flare",start_flares);
+        
         player.GiveInventory("FlashlightStartToken",1);
     }
 }

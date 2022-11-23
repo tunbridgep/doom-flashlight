@@ -1,0 +1,17 @@
+mixin class SkinnableWeapon
+{
+    
+    //Thanks EriWeapons for this!
+    action void X_SetSkinFrame(SpriteID sprite, int layer = PSP_WEAPON, int frame = -1)
+	{
+		if(self.player) {
+			PSprite psp = self.player.GetPSprite(layer);
+			if(psp)// && psp.CurState != null)
+			{
+				psp.Sprite = sprite;
+				if (frame != -1)
+                    psp.frame = frame;
+			}
+		}
+	}
+}

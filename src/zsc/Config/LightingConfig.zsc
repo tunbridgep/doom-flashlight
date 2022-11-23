@@ -23,6 +23,11 @@ class LightingConfig : ConfigBase
         info.additional = CVar.GetCVar("flashlight_darken_divide_additional").GetInt();
     }
     
+    static void GetProportionalModeInfo(out PropInfo info)
+    {
+        info.proportion = CVar.GetCVar("flashlight_darken_proportional_amount").GetFloat();
+    }
+    
     static bool GetReplaceSky()
     {
         return CVar.GetCVar("flashlight_replace_sky").GetBool();
@@ -34,12 +39,18 @@ enum LightingMode
     LIGHTING_DISABLED = 0,
 	LIGHTING_SIMPLE = 1,
 	LIGHTING_PARABOLA = 2,
-	LIGHTING_DIVIDE = 3
+	LIGHTING_DIVIDE = 3,
+	LIGHTING_PROPORTIONAL = 4
 }
 
 struct LinearInfo
 {
     int amount;
+}
+
+struct PropInfo
+{
+    float proportion;
 }
 
 struct ParabolaInfo

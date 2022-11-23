@@ -1,44 +1,63 @@
 //storage
 user noarchive string flashlight_lastweap = "";
-nosave noarchive int flashlight_profile_temp = 0;
+server int flashlight_profile_temp = 0;
 server cheat int flashlight_profile = 0;
+nosave int flashlight_style = 3; //0 for doom hand, 1 for black glove hand, 2 for wand staff, 3 for "new" style
+nosave int flashlight_skin = 0;
+nosave int flashlight_gloves = 0; //0 for doom hand, 1 for black glove hand, 2 for strife hand
 
 //flashlight settings
-user Color flashlight_color = "FF FF FF";
-user cheat int flashlight_intensity = 512;
-user cheat float flashlight_inner_angle = 16.0;
-user cheat float flashlight_outer_angle = 32.0;
-user bool flashlight_auto_use_flashlight = true;
+nosave Color flashlight_color = "FF FF FF";
+server cheat int flashlight_intensity = 512;
+server cheat float flashlight_inner_angle = 16.0;
+server cheat float flashlight_outer_angle = 32.0;
+nosave int flashlight_auto_use_flashlight = 1;
+server bool flashlight_performance_mode = false;
 
 //flare settings
-server cheat int flashlight_flare_burn_time = 60;
-user Color flashlight_flare_color = "FF 4D 4D";
-user bool flashlight_auto_use_flare = false;
-user bool flashlight_flare_show_count = false;
+server cheat bool flashlight_flare_burn_forever = false;
+server cheat float flashlight_flare_burn_time = 60;
+nosave bool flashlight_flare_color_random = false;
+nosave Color flashlight_flare_color = "FF 4D 4D";
+nosave bool flashlight_auto_use_flare = false;
+nosave bool flashlight_flare_show_count = false;
 server bool flashlight_flare_show_inventory = true;
+server bool flashlight_flare_recharge_enabled = false;
+server float flashlight_flare_recharge_frequency_seconds = 60;
+server int flashlight_flare_recharge_max_amount = 1;
+server int flashlight_flare_max_amount = 30;
+nosave int flashlight_flare_recharge_sound = 0;
 
 //battery settings
-user int flashlight_battery_display = 1;
+nosave int flashlight_battery_display = 1;
 server int flashlight_battery_mode = 1;
 server int flashlight_battery_max = 1575;
 server int flashlight_battery_min_threshold = 315;
 server int flashlight_battery_use_per_tic = 1;
 server int flashlight_battery_charge_per_tic = 3;
+server int flashlight_battery_recharge_max_amount = 30;
+server int flashlight_battery_upgrade_max_amount = 30;
 
 //map alteration
 server int flashlight_darken_mode = 0;
-server int flashlight_darken_parabola_brightness_factor = 10;
-server int flashlight_darken_parabola_curve_point = 84;
-server int flashlight_darken_parabola_adjust = 16;
-server int flashlight_darken_linear_amount = 45;
-server float flashlight_darken_divide_amount = 5;
+server int flashlight_darken_parabola_brightness_factor = 48;
+server int flashlight_darken_parabola_curve_point = 72;
+server int flashlight_darken_parabola_adjust = 10;
+server int flashlight_darken_linear_amount = 35;
+server float flashlight_darken_proportional_amount = 0.350;
+server float flashlight_darken_divide_amount = 2;
 server int flashlight_darken_divide_additional = 0;
-server bool flashlight_replace_sky = false;
+server bool flashlight_replace_sky = true;
+server int flashlight_replace_sky_threshold = 128;
+server int flashlight_darken_max_brightness = 255;
 
 //stealth monsters
 server int flashlight_stealth_monster_chance = 20;
-server int flashlight_stealth_monster_threshold = 24;
+server int flashlight_stealth_monster_threshold = 80;
 server int flashlight_stealth_monster_mode = 0;
+server bool flashlight_flare_reveal_stealth = true;
+server bool flashlight_flashlight_reveal_stealth = true;
+server int flashlight_flashlight_reveal_radius = 512;
 
 //replacers
 server int flashlight_spawn_flashlight = 0;
@@ -47,20 +66,20 @@ server int flashlight_spawn_headlamp = 0;
 server int flashlight_spawn_headlamp_chance = 25;
 server int flashlight_spawn_flare = 0;
 server int flashlight_spawn_flare_chance = 25;
+server int flashlight_spawn_flare_box = 0;
+server int flashlight_spawn_flare_box_chance = 10;
 server int flashlight_spawn_battery_upgrade = 0;
 server int flashlight_spawn_battery_upgrade_chance = 25;
 server int flashlight_spawn_battery_recharge = 0;
 server int flashlight_spawn_battery_recharge_chance = 25;
-server int flashlight_spawn_flare_box = 0;
-server int flashlight_spawn_flare_box_chance = 25;
 server bool flashlight_enemies_drop_flashlights = false;
 server bool flashlight_enemies_drop_flares = false;
 server bool flashlight_enemies_drop_battery = false;
 server bool flashlight_enemies_drop_battery_expander = false;
-server int flashlight_enemies_drop_flashlights_chance = 10;
-server int flashlight_enemies_drop_flares_chance = 15;
-server int flashlight_enemies_drop_battery_chance = 1;
-server int flashlight_enemies_drop_battery_expander_chance = 1;
+server int flashlight_enemies_drop_flashlights_chance = 6;
+server int flashlight_enemies_drop_flares_chance = 8;
+server int flashlight_enemies_drop_battery_chance = 8;
+server int flashlight_enemies_drop_battery_expander_chance = 5;
 
 //start-game settings
 server int flashlight_starting_item = 0;
@@ -71,6 +90,10 @@ server bool flashlight_compat_brutal_gldefs_liquids = false;
 server bool flashlight_compat_brutal_gldefs_lights = false;
 server bool flashlight_compat_brutal_gldefs_gates = false;
 server bool flashlight_compat_brutal_gldefs_doors = false;
+
+//player stealth
+server bool flashlight_stealth_player_enabled = false;
+server int flashlight_stealth_player_threshold = 80;
 
 //misc
 server int flashlight_debug = 0;

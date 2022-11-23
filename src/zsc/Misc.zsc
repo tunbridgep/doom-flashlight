@@ -1,9 +1,10 @@
-class FlashlightStartToken : Inventory
+class PermanentItem : Inventory
 {
     Default
     {
         +INVENTORY.UNDROPPABLE;
         +INVENTORY.ALWAYSPICKUP;
+        //+INVENTORY.UNCLEARABLE;
         +INVENTORY.HUBPOWER;
         +INVENTORY.PERSISTENTPOWER;
         +INVENTORY.UNTOSSABLE;
@@ -11,5 +12,99 @@ class FlashlightStartToken : Inventory
         //+INVENTORY.INVBAR;
         Inventory.InterHubAmount 1;
         Inventory.MaxAmount 1;
+    }
+}
+
+class FlashlightStartToken : PermanentItem
+{
+}
+
+class FlareRecharger : PermanentItem
+{
+    int Count;
+	int charges;
+	
+	int flares_current;
+	int flares_prev;
+	
+	override void postBeginPlay()
+    {
+        super.postbeginplay();
+		charges = owner.CountInv("Flare");
+    }
+
+	void PlayRechargeSound()
+	{
+		PlayerInfo myinfo = players[consoleplayer];
+        int sound = CVar.GetCVar("flashlight_flare_recharge_sound",myinfo).GetInt();
+		string toPlay;
+		
+		switch (sound)
+		{
+			case 0:
+				toPlay = "Flare/Recharge0";
+			break;
+			case 1:
+				toPlay = "Flare/Recharge1";
+			break;
+			case 2:
+				toPlay = "Flare/Recharge2";
+			break;
+			case 3:
+				toPlay = "Flare/Recharge3";
+			break;
+			case 4:
+				toPlay = "Flare/Recharge4";
+			break;
+		}
+	
+		owner.A_StartSound(toPlay);
+	}
+
+	void GiveFlare()
+	{
+		self.PlayRechargeSound();
+		owner.GiveInventory("Flare",1);
+	}
+	
+	bool FlareUsed()
+	{
+		flares_current = owner.CountInv("Flare");
+		let compare = flares_current < flares_prev;
+		flares_prev = flares_current;
+		return compare;
+	}
+
+    override void DoEffect()
+    {
+        Super.DoEffect();
+        
+        int tics = FlareConfig.GetRechargeTime();
+        int max_charges = Math.ClampMax(flashlight_flare_recharge_max_amount,flashlight_flare_max_amount);
+		
+        bool enabled = flashlight_flare_recharge_enabled;
+		        
+        if (tics == 0 || !enabled)
+            return;
+				
+		if (FlareUsed() && charges > 0 && flares_current < max_charges)
+		{
+			charges--;
+		}
+		
+		if (charges < max_charges)
+		{
+			if (Count >= tics)
+			{
+				GiveFlare();
+				Count = 0;
+				charges++;
+			}
+			Count++;
+		}
+		else
+		{
+			Count = 0;
+		}
     }
 }

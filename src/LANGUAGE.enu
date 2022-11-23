@@ -1,17 +1,23 @@
 [enu default]
 
+//Compatibility Options
+FLASHLIGHT_PERFORMANCE = "Performance Mode";
+FLASHLIGHT_PERFORMANCE_DESC = "Limit light radius while moving to improve performance";
+
 //In-Game Text
 FLASHLIGHT_NO_FLASHLIGHT = "You don't have a flashlight";
 FLASHLIGHT_NO_FLASHLIGHT_OR_FLARES = "You don't have a flashlight or flares";
 FLASHLIGHT_PICKUP = "Picked up a flashlight";
 FLASHLIGHT_BATT_PICKUP = "Picked up a Flashlight Battery";
 FLASHLIGHT_BATT_EXP_PICKUP = "Picked up a Flashlight Battery Upgrade";
-FLASHLIGHT_FLARES_REMAIN = "Flares remaining";
-FLASHLIGHT_NO_FLARES_REMAIN = "No Flares";
+FLASHLIGHT_FLARES_REMAIN = "Flares Remaining";
+FLASHLIGHT_ONE_FLARE_REMAIN = "Flare Remaining";
+FLASHLIGHT_NO_FLARES_REMAIN = "No Flares Remaining";
 
 //basics
-FLASHLIGHT_VERSION = "Version 1.0 Alpha";
+FLASHLIGHT_VERSION = "Version 1.0 Beta";
 FLASHLIGHT_DISABLED = "Disabled";
+FLASHLIGHT_ENABLED = "Enabled";
 FLASHLIGHT_NOT_IMPLEMENTED = "Not Implemented Yet";
 FLASHLIGHT_MENU_NOOP = "Control Disabled";
 FLASHLIGHT_CHANCE = "Chance";
@@ -29,14 +35,37 @@ FLASHLIGHT_FLARE_BOX = "Flare Box";
 FLASHLIGHT_BATTERY_UPGRADE = "Battery Upgrade";
 FLASHLIGHT_BATTERY_RECHARGE = "Battery Recharger";
 FLASHLIGHT_GO_BACK = "Press Escape to Go Back";
+FLASHLIGHT_UNLIMITED = "Unlimited";
+FLASHLIGHT_RESET = "Reset all settings to defaults";
+FLASHLIGHT_CONFIRM = "Press again to confirm";
 
 //Flare Settings
+FLASHLIGHT_FLARE_BURN_FOREVER = "Burn Forever";
+FLASHLIGHT_FLARE_COLOR_RANDOM = "Random Color";
+FLASHLIGHT_FLARE_COLOR_DESC = "Flare Color";
 FLASHLIGHT_FLARE_BURN_TIME = "Burn Time";
 FLASHLIGHT_FLARE_BURN_TIME_DESC = "How long flares will remain burning for (in seconds)";
 FLASHLIGHT_FLARE_SHOW_MSG = "Show Count on Use";
 FLASHLIGHT_FLARE_SHOW_MSG_DESC = "Show the number of flares remaining on use";
 FLASHLIGHT_FLARE_INVENTORY = "Show in Inventory";
 FLASHLIGHT_FLARE_INVENTORY_DESC = "Show flares in the inventory bar";
+FLASHLIGHT_FLARE_INVENTORY_MAX = "Maximum Flares";
+FLASHLIGHT_FLARE_INVENTORY_MAX_DESC = "The maximum number of flares a player can carry";
+FLASHLIGHT_FLARE_ENABLE_RECHARGE = "Enable Recharging";
+FLASHLIGHT_FLARE_RECHARGE_TIME = "Recharge Time";
+FLASHLIGHT_FLARE_RECHARGE_TIME_DESC = "Time until flare recharges";
+FLASHLIGHT_FLARE_RECHARGE_MAX = "Recharge Amount";
+FLASHLIGHT_FLARE_RECHARGE_MAX_DESC = "How many flares the player will recharge";
+FLASHLIGHT_FLARE_RECHARGE_MAX_DESC2 = "Excess flares will not count towards recharge amount";
+
+//Flare Sounds
+FLASHLIGHT_FLARE_SOUND = "Recharge Sound";
+FLASHLIGHT_FLARE_SOUND_DESC = "Sound to play when flares recharge";
+FLASHLIGHT_FLARE_SOUND_ZERO = "Warp";
+FLASHLIGHT_FLARE_SOUND_ONE = "Sweep";
+FLASHLIGHT_FLARE_SOUND_TWO = "Beeps";
+FLASHLIGHT_FLARE_SOUND_THREE = "Heavy";
+FLASHLIGHT_FLARE_SOUND_FOUR = "Subtle";
 
 //Submenus
 FLASHLIGHT_ADVANCED_SETTINGS = "Advanced Settings";
@@ -64,6 +93,10 @@ FLASHLIGHT_FLASHLIGHT_HEADER = "Flashlight Settings";
 FLASHLIGHT_FLARE_HEADER = "Flare Settings";
 FLASHLIGHT_CONTROLS_HEADER = "Control Settings";
 FLASHLIGHT_CALIBRATION_HEADER = "Calibration Settings";
+FLASHLIGHT_STEALTH_REVEAL_HEADER = "Stealth Reveal Behavior";
+
+//Gameplay Menu
+FLASHLIGHT_REVEAL_STEALTH_DESC = "Should flashlights and flares reveal stealth monsters in their light radius";
 
 //Calibration Menu
 FLASHLIGHT_CALIBRATION_DESC1 = "If areas still look too bright, try adjusting these";
@@ -74,7 +107,10 @@ FLASHLIGHT_CALIBRATION_DESC3 = "Sector light mode is recommended";
 FLASHLIGHT_SPAWN_FLASHLIGHT_1 = "Shotgun";
 FLASHLIGHT_SPAWN_FLASHLIGHT_2 = "Box of Shells";
 FLASHLIGHT_SPAWN_FLASHLIGHT_3 = "Chain Gun";
-FLASHLIGHT_SPAWN_FLARE_1 = "Rocket";
+FLASHLIGHT_SPAWN_FLASHLIGHT_4 = "Backpack";
+FLASHLIGHT_SPAWN_FLASHLIGHT_5 = "Light Amplification Goggles";
+FLASHLIGHT_SPAWN_FLARE_1 = "Clip";
+FLASHLIGHT_SPAWN_FLARE_2 = "Rocket";
 FLASHLIGHT_SPAWN_FLARE_BOX_1 = "Box of Bullets";
 FLASHLIGHT_SPAWN_FLARE_BOX_2 = "Box of Shells";
 FLASHLIGHT_SPAWN_FLARE_BOX_3 = "Box of Rockets";
@@ -82,8 +118,9 @@ FLASHLIGHT_SPAWN_BATTERY_1 = "Backpack";
 FLASHLIGHT_SPAWN_BATTERY_2 = "Soulsphere";
 FLASHLIGHT_SPAWN_BATTERY_3 = "Blursphere";
 FLASHLIGHT_SPAWN_BATTERY_4 = "Megasphere";
+FLASHLIGHT_SPAWN_BATTERY_5 = "Light Amplification Goggles";
 
-//Stealth Monster Options
+//Stealth Options
 FLASHLIGHT_STEALTH_MONSTERS = "Spawn Stealth Monsters";
 FLASHLIGHT_STEALTH_MONSTERS_1 = "Small Monsters Only";
 FLASHLIGHT_STEALTH_MONSTERS_2 = "All Monsters";
@@ -93,6 +130,11 @@ FLASHLIGHT_STEALTH_SMALL_DESC = "Only low tier enemies can spawn as stealth mons
 FLASHLIGHT_STEALTH_ALL_DESC = "All enemy types can spawn as stealth monsters";
 FLASHLIGHT_STEALTH_SMALL_THRESH_DESC = "Low tier enemy types can spawn as stealth monsters if in a sector darker than the threshold";
 FLASHLIGHT_STEALTH_THRESH_DESC = "All enemy types can spawn as stealth monsters if in a sector darker than the threshold";
+FLASHLIGHT_STEALTH_PLAYER = "Player Stealth";
+FLASHLIGHT_STEALTH_PLAYER_DESC = "The player will be hard to see and hit by enemies when in dark areas";
+FLASHLIGHT_STEALTH_PLAYER_THRESH_DESC = "Minimum light level required to activate stealth";
+FLASHLIGHT_STEALTH_PLAYER_MSG_IN = "You slip into the shadows...";
+FLASHLIGHT_STEALTH_PLAYER_MSG_OUT = "You are no longer hidden";
 
 //Battery Options
 FLASHLIGHT_BATTERY_MODE = "Battery Enabled";
@@ -106,18 +148,32 @@ FLASHLIGHT_BATTERY_USE = "Battery Use Rate (tics)";
 FLASHLIGHT_BATTERY_CHARGE = "Battery Charge Rate (tics)";
 FLASHLIGHT_BATTERY_DESC1 = "Battery is required to use the flashlight.";
 FLASHLIGHT_BATTERY_DESC2 = "Flashlight can not be reactivated below the minumum.";
+FLASHLIGHT_BATTERY_RECHARGE_INVENTORY_MAX = "Maximum Batteries";
+FLASHLIGHT_BATTERY_UPGRADE_INVENTORY_MAX = "Maximum Battery Upgrades";
+FLASHLIGHT_BATTERY_INVENTORY_MAX_DESC = "The maximum number of batteries and battery upgrades the player can carry";
 
 //Darken Modes and Level Alteration
 FLASHLIGHT_DARKEN_MODE = "Light Alteration Mode";
 FLASHLIGHT_DARKEN_MODE_1 = "Subtractive";
 FLASHLIGHT_DARKEN_MODE_2 = "Parabolic";
 FLASHLIGHT_DARKEN_MODE_3 = "Division Based";
+FLASHLIGHT_DARKEN_MODE_4 = "Proportional";
 FLASHLIGHT_DARKEN_MODE_LINEAR_AMOUNT = "Subtraction Amount";
 FLASHLIGHT_DARKEN_MODE_PARABOLA_CURVE = "Parabolic Curve Point";
 FLASHLIGHT_DARKEN_MODE_PARABOLA_BRIGHTNESS = "Parabolic Curve Brightness Factor";
 FLASHLIGHT_DARKEN_MODE_PARABOLA_ADJUST = "Parabolic Adjustment";
 FLASHLIGHT_DARKEN_MODE_DIVIDE_AMOUNT = "Divide Amount";
 FLASHLIGHT_DARKEN_MODE_DIVIDE_ADDITIONAL = "Additional Amount";
+FLASHLIGHT_DARKEN_MODE_PROPORTION_AMOUNT = "Proportion";
+FLASHLIGHT_DARKEN_MAX_BRIGHTNESS = "Max Brightness";
+FLASHLIGHT_DARKEN_MAX_DESC1 = "The absolute maximum brightness of any sector,";
+FLASHLIGHT_DARKEN_MAX_DESC2 = "regardless of the darkening modes above";
+
+FLASHLIGHT_DARKEN_MODE_PROP_DESC1 = "Lower light levels in all sectors based on";
+FLASHLIGHT_DARKEN_MODE_PROP_DESC2 = "their distance from 255. This is designed";
+FLASHLIGHT_DARKEN_MODE_PROP_DESC3 = "to make dark areas of maps darker in a simple";
+FLASHLIGHT_DARKEN_MODE_PROP_DESC4 = "and effective way";
+FLASHLIGHT_DARKEN_MODE_PROP_DESC5 = "";
 
 FLASHLIGHT_DARKEN_MODE_LINEAR_DESC1 = "Lower light levels in all sectors based on";
 FLASHLIGHT_DARKEN_MODE_LINEAR_DESC2 = "the Subtraction amount. This is the simplest";
@@ -143,6 +199,9 @@ FLASHLIGHT_DARKEN_MODE_SEE_README = "See the included README file for more infor
 FLASHLIGHT_REPLACE_SKY = "Replace Sky";
 FLASHLIGHT_REAPLCE_SKY_DESC1 = "Replace the sky with a night-time sky";
 FLASHLIGHT_REAPLCE_SKY_DESC2 = "This helps with contrast when the level is dark";
+FLASHLIGHT_REPLACE_SKY_THRESHOLD = "Replacement Light Level Threshold";
+FLASHLIGHT_REAPLCE_SKY_THRESHOLD_DESC1 = "The sky will only be replaced if the average light level";
+FLASHLIGHT_REAPLCE_SKY_THRESHOLD_DESC2 = "in all Sky sectors is below this level. Will keep bright skies on bright maps";
 
 //Flashlight Settings
 FLASHLIGHT_INTENSITY = "Intensity";
@@ -153,8 +212,38 @@ FLASHLIGHT_FLASHLIGHT_DESC2 = "Intensity controls it's brightness and how far it
 FLASHLIGHT_AUTO_USE_FLARES = "Flashlight button uses flares";
 FLASHLIGHT_AUTO_USE_FLARES_DESC = "If no flashlight is available, selecting the flashlight uses a flare instead";
 FLASHLIGHT_KEY_BIND = "Flashlight Select Key";
+FLASHLIGHT_FLARE_BIND = "Use Flare";
 FLASHLIGHT_AUTO_USE = "Turn On Automatically";
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Flashlight when selecting it";
+FLASHLIGHT_AUTO_USE_ONLY_WHEN_CHARGING = "Yes, unless the battery is set to not recharge";
+
+FLASHLIGHT_STYLE = "Flashlight Style";
+FLASHLIGHT_STYLE_DESC = "Set style for flashlight sprites";
+FLASHLIGHT_STYLE_DOOM = "Classic (Vanilla Doom Style Gloves)";
+FLASHLIGHT_STYLE_DOOM_BLACK = "Classic (Black Gloves)";
+FLASHLIGHT_STYLE_RAVEN = "Heretic/Hexen Style";
+FLASHLIGHT_STYLE_NEW = "New Style (Skinnable)";
+FLASHLIGHT_GLOVES = "Gloves Style";
+FLASHLIGHT_GLOVES_CLASSIC = "Classic Doom";
+FLASHLIGHT_GLOVES_BLACK = "Black Gloves";
+FLASHLIGHT_GLOVES_STRIFE = "Strife Style";
+
+//Flashlight Skins
+FLASHLIGHT_SKIN = "Flashlight Color";
+FLASHLIGHT_SKIN_GREY = "Gray";
+FLASHLIGHT_SKIN_GREEN = "Green";
+FLASHLIGHT_SKIN_OLIVE = "Olive";
+FLASHLIGHT_SKIN_ORANGE = "Orange";
+FLASHLIGHT_SKIN_VIOLET = "Violet";
+FLASHLIGHT_SKIN_BROWN = "Brown";
+FLASHLIGHT_SKIN_BLUE = "Blue";
+FLASHLIGHT_SKIN_PINK = "Pink";
+FLASHLIGHT_SKIN_RED = "Red";
+FLASHLIGHT_SKIN_AQUA = "Aqua";
+FLASHLIGHT_SKIN_DARK_OLIVE = "Dark Olive";
+FLASHLIGHT_SKIN_LIGHT_BLUE = "Light Blue";
+FLASHLIGHT_SKIN_FIRE_BLUE = "Fire Blue";
+FLASHLIGHT_SKIN_RAINBOW = "Rainbow";
 
 //Gameplay and Spawn Settings
 FLASHLIGHT_STARTING_ITEM = "Start with Flashlight";
@@ -175,46 +264,61 @@ FLASHLIGHT_PROFILE_CUR = "Current Profile";
 
 FLASHLIGHT_PROFILE_NONE = "Mod disabled";
 FLASHLIGHT_PROFILE_VANILLA = "Vanilla Mode";
+FLASHLIGHT_PROFILE_DOOM_3 = "Doom 3 Style";
+FLASHLIGHT_PROFILE_DARKER_DARK = "Darker Darkness";
+FLASHLIGHT_PROFILE_TWILIGHT = "Twilight Mode";
 FLASHLIGHT_PROFILE_NIGHT_MODE = "Night Mode";
 FLASHLIGHT_PROFILE_TACTICAL = "Tactical";
-FLASHLIGHT_PROFILE_DARKER_DARK = "Darker Darkness";
-FLASHLIGHT_PROFILE_DOOM_3 = "Doom 3 Style";
+FLASHLIGHT_PROFILE_AMBUSH_MODE = "Ambush Mode";
+FLASHLIGHT_PROFILE_DRAIN_MODE = "Drain Mode";
+//FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT = "Drain Mode (Night)";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT = "Drain Mode";
 FLASHLIGHT_PROFILE_HELL = "The Long Dark";
-FLASHLIGHT_PROFILE_AMBUSH_MODE = "Lying in Wait...";
-FLASHLIGHT_PROFILE_DRAIN_MODE = "...Ready to Strike";
 
 FLASHLIGHT_PROFILE_NOTFAIR = "This profile isn't even remotely fair!";
-
 FLASHLIGHT_PROFILE_DISABLED = "All features disabled";
+FLASHLIGHT_PROFILE_DIFFICULTY_EASY = "Difficulty: Easy";
+FLASHLIGHT_PROFILE_DIFFICULTY_MODERATE = "Difficulty: Moderate";
+FLASHLIGHT_PROFILE_DIFFICULTY_HARD = "Difficulty: Hard";
+FLASHLIGHT_PROFILE_DIFFICULTY_HELL = "Difficulty: Hell";
 
-FLASHLIGHT_PROFILE_DARK_NONE = "Map brightness remains unchanged";
-FLASHLIGHT_PROFILE_DARK_NIGHT = "Darkens the entire map and uses a nighttime sky";
-FLASHLIGHT_PROFILE_DARK_AREAS = "Darkens dark areas of the map";
-FLASHLIGHT_PROFILE_DARK_EXTREME = "Map is nearly completely black";
+FLASHLIGHT_PROFILE_VANILLA_LINE1 = "This disables most settings for a";
+FLASHLIGHT_PROFILE_VANILLA_LINE2 = "more vanilla experience. The world will remain";
+FLASHLIGHT_PROFILE_VANILLA_LINE3 = "unchanged, but enemies will occasionally drop";
+FLASHLIGHT_PROFILE_VANILLA_LINE4 = "Flashlights and Flares, and they may spawn on the map";
 
-FLASHLIGHT_PROFILE_START_FLASHLIGHT = "Start with a Flashlight";
-FLASHLIGHT_PROFILE_START_FLARES = "Start with Flares";
-FLASHLIGHT_PROFILE_START_FLARES_ONLY = "Start with Flares. Flashlights are disabled";
-FLASHLIGHT_PROFILE_START_FLASHLIGHT_ONLY = "Start with a Flashlight. Flares are disabled";
-FLASHLIGHT_PROFILE_START_NOTHING = "Start with nothing";
+FLASHLIGHT_PROFILE_DOOM3_LINE1 = "This creates an experience similar to Doom 3.";
+FLASHLIGHT_PROFILE_DOOM3_LINE2 = "The world will be very dark. Start with a";
+FLASHLIGHT_PROFILE_DOOM3_LINE3 = "Flashlight, with unlimited batteries.";
+FLASHLIGHT_PROFILE_DOOM3_LINE4 = "Flares and other features are disabled";
 
-FLASHLIGHT_PROFILE_STEALTH_NONE = "No Stealth Monsters";
-FLASHLIGHT_PROFILE_STEALTH_DARK = "Stealth Monsters in Dark Areas";
-FLASHLIGHT_PROFILE_STEALTH_ALL = "All enemies are Stealth Monsters";
+FLASHLIGHT_PROFILE_DARKER_DARK_LINE1 = "This darkens the world proportionally, making dark";
+FLASHLIGHT_PROFILE_DARKER_DARK_LINE2 = "areas very dark. Flashlights and";
+FLASHLIGHT_PROFILE_DARKER_DARK_LINE3 = "Flares are not hard to find.";
+FLASHLIGHT_PROFILE_DARKER_DARK_LINE4 = "";
 
-FLASHLIGHT_PROFILE_BATTERY_NORMAL = "Normal Battery Use";
-FLASHLIGHT_PROFILE_BATTERY_NOCHARGE = "Battery does not recharge";
-FLASHLIGHT_PROFILE_BATTERY_NOCHARGE_BIG = "Battery does not recharge but has a large capacity";
-FLASHLIGHT_PROFILE_BATTERY_UNLIMITED = "Unlimited Battery Use";
-FLASHLIGHT_PROFILE_SPAWN_FLARES = "Flares and Flare Boxes spawn on the map";
+FLASHLIGHT_PROFILE_TWILIGHT_LINE1 = "This darkens the world slightly, as if it was late";
+FLASHLIGHT_PROFILE_TWILIGHT_LINE2 = "in the day. Start with a Flashlight.";
+FLASHLIGHT_PROFILE_TWILIGHT_LINE3 = "Flares are not hard to find.";
+FLASHLIGHT_PROFILE_TWILIGHT_LINE4 = "";
 
-FLASHLIGHT_PROFILE_DROP_FLARES = "Former Humans drop Flares";
-FLASHLIGHT_PROFILE_DROP_BOTH = "Former Humans drop Flares and Flashlights";
-FLASHLIGHT_PROFILE_DROP_FLARES_INCREASED = "Former Humans drop Flares at an increased rate";
-FLASHLIGHT_PROFILE_DROP_BATTERIES = "Former Humans drop Batteries";
+FLASHLIGHT_PROFILE_TACTICAL_LINE1 = "The world will be very dark. Flashlights are extremely";
+FLASHLIGHT_PROFILE_TACTICAL_LINE2 = "rare. Start with 3 regenerating quick-burn Flares.";
+FLASHLIGHT_PROFILE_TACTICAL_LINE3 = "Small enemies are stealthed, but can be revealed by Flares.";
+FLASHLIGHT_PROFILE_TACTICAL_LINE4 = "Embrace the darkness to survive!";
+
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE1 = "The world will be very dark, Long-use battery";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE2 = "does not recharge. Flares are rare. You will";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE3 = "need to find Battery Rechargers and Upgrades to survive.";
+FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed, but can be revealed by Flares and Flashlights!";
+
+FLASHLIGHT_PROFILE_HELL_LINE1 = "The world will be pitch black. Long-use battery";
+FLASHLIGHT_PROFILE_HELL_LINE2 = "does not recharge. Flares are disabled. You will";
+FLASHLIGHT_PROFILE_HELL_LINE3 = "need to find Battery Rechargers and Upgrades to survive.";
+FLASHLIGHT_PROFILE_HELL_LINE4 = "All enemies will be stealthed, but can be revealed with the Flashlight!";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
-FLASHLIGHT_PROFILE_WARNING2 = "Settings will take effect on next map load";
+FLASHLIGHT_PROFILE_WARNING2 = "Some Settings will take effect on next map load";
 
 //Compatibility Options
 FLASHLIGHT_GLCOMPAT_HEADER = "Brutal Doom Glow Overrides";
@@ -240,5 +344,6 @@ FLASHLIGHT_CREDITS_SPRITES = "Sprites Used";
 FLASHLIGHT_CREDITS_ADDITIONAL = "Additional Credits";
 
 FLASHLIGHT_CREDITS_SOUNDS = "Additional Sounds from id Software, Epic Games and 3D Realms.";
+FLASHLIGHT_CREDITS_SOUNDS2 = "Flare Recharging Sounds from Team Fortress 2 by Valve Software";
 FLASHLIGHT_CREDITS_FOOTER = "Please see CREDITS.TXT inside the archive for full licenses and credits";
 FLASHLIGHT_CREDITS_SPOTLIGHT_CODE = "Spotlight code based on Steve's Flashlight";

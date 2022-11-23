@@ -1,0 +1,23 @@
+#library "stealthoverlay"
+#include "zcommon.acs" 
+
+#define ONE_TIC 1873
+
+#define HUD_SIZE_X 800.0
+#define HUD_SIZE_Y 600.0
+
+#define MSG_SLOT -541
+
+script "DrawStealthOverlay" (void)
+{
+    SetHudSize(800,600,true);
+    SetFont("STOVERLY");
+    HudMessage(s:"A";HUDMSG_PLAIN, MSG_SLOT, CR_UNTRANSLATED, HUD_SIZE_X / 2, HUD_SIZE_Y / 2, 2);
+    SetHudSize(0, 0, FALSE);
+    SetFont("SMALLFONT");
+}
+
+script "HideStealthOverlay" (void)
+{
+    HudMessage(s:"";HUDMSG_PLAIN, MSG_SLOT, CR_UNTRANSLATED, 0, 0, 2);
+}

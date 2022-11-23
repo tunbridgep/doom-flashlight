@@ -1,4 +1,4 @@
 flashlightselect
 batterydisplay
-changesky
 compat
+stealthoverlay

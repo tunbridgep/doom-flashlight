@@ -6,14 +6,33 @@ class FlashlightEventHandler : EventHandler
     {
         //override this
     }
+    
+    virtual void UniquePlayerEntered(Actor Player, bool returning)
+    {
+        //override this
+    }
+	
+	virtual void SaveGameLoaded(WorldEvent e)
+	{
+		//override this
+	}
+    
+    override void PlayerEntered(PlayerEvent e)
+    {      
+        if (gamestate == 7) //TITLEMAP
+            return;
+            
+        UniquePlayerEntered(players[e.PlayerNumber].mo, e.IsReturn);
+    }
 
     override void WorldLoaded(WorldEvent e)
-    {
-        if (e.IsReopen)
+    {        
+        if (gamestate == 7) //TITLEMAP
             return;
-        
-        //TODO: TITLEMAP check
-        
-        UniqueWorldLoaded(e);
+			
+		if (e.IsReopen)
+            SaveGameLoaded(e);
+		else        
+			UniqueWorldLoaded(e);
     }
 }

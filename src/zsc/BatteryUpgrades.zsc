@@ -9,12 +9,13 @@ class FlashlightBatteryUpgrade : Inventory
         +INVENTORY.UNTOSSABLE;
         +INVENTORY.IGNORESKILL;
         -INVENTORY.INVBAR;
+        +DONTGIB;
         +NOGRAVITY;
         +COUNTITEM;
         Inventory.PickupSound "misc/gettool" ;
 	    Inventory.PickupMessage "$FLASHLIGHT_BATT_EXP_PICKUP";
-        Inventory.InterHubAmount 10;
-        Inventory.MaxAmount 10;
+        Inventory.InterHubAmount 999;
+        Inventory.MaxAmount 999;
         Inventory.Amount 1;
         Scale 0.4;
     }
@@ -24,6 +25,12 @@ class FlashlightBatteryUpgrade : Inventory
 		    CELP A -1;
     		Loop;
     }
+    
+    override bool CanPickup(Actor toucher)
+    {
+        bool allow = flashlight_battery_upgrade_max_amount <= 0 || toucher.CountInv("FlashlightBatteryUpgrade") < flashlight_battery_upgrade_max_amount;
+        return allow && super.CanPickup(toucher);
+    }
 }
 
 class FlashlightBatteryRecharge : FlashlightBatteryUpgrade
@@ -31,5 +38,11 @@ class FlashlightBatteryRecharge : FlashlightBatteryUpgrade
     Default
     {
         Inventory.PickupMessage "$FLASHLIGHT_BATT_PICKUP";
+    }
+    
+    override bool CanPickup(Actor toucher)
+    {
+        bool allow = flashlight_battery_recharge_max_amount <= 0 || toucher.CountInv("FlashlightBatteryRecharge") < flashlight_battery_recharge_max_amount;
+        return allow && super.CanPickup(toucher);
     }
 }

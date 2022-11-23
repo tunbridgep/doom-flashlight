@@ -1,7 +1,17 @@
-class FlashlightBase : Weapon abstract
+class Flashlight : Weapon
 {
+
     FlashlightBeam beam;
     Battery battery;
+    int revealRadius;
+    SpriteID skinSprite;
+    SpriteID skinSpriteOff1;
+    SpriteID skinSpriteOff2;
+    SpriteID skinSpriteOff3;
+    SpriteID overlaySprite;
+    String enableSound;
+    String pickupSound;
+    int style;
     
     Default
     {
@@ -9,16 +19,139 @@ class FlashlightBase : Weapon abstract
         Inventory.PickupSound "misc/gettool";
         Inventory.Amount 1;
         Inventory.MaxAmount 1;
+        Inventory.PickupMessage "$FLASHLIGHT_PICKUP";
+        Tag "$FLASHLIGHT_FLASHLIGHT";
         Scale 1.0;
         +Weapon.NOALERT;
+        +DONTGIB;
         +Weapon.NOAUTOFIRE;
         +Weapon.NOAUTOAIM;
         +Inventory.ALWAYSPICKUP;
         +WEAPON.WIMPY_WEAPON;
         +WEAPON.NO_AUTO_SWITCH;
-        +WEAPON.NOAUTOAIM;
-        +WEAPON.NOAUTOFIRE;
-        +COUNTITEM;
+        -COUNTITEM;
+    }
+    
+    override void postBeginPlay()
+    {
+        super.postbeginplay();
+        SetSkinSprite();
+    }
+    
+    private void SetSkinSprite()
+    {
+        style = flashlight_style;
+        switch (style)
+        {
+            case 0: //Classic Doom Hand
+                skinSprite = getspriteindex("FLIT");
+                skinSpriteOff1 = getspriteindex("FLIT");
+                skinSpriteOff2 = getspriteindex("FLIT");
+                skinSpriteOff3 = getspriteindex("FLIT");
+                sprite = getspriteindex("FLPK");
+                overlaySprite = getspriteindex("TNT1");
+                enableSound = "flashlight/click";
+                break;
+            case 1: //Classic Black Hand
+                skinSprite = getspriteindex("FLBL");
+                skinSpriteOff1 = getspriteindex("FLBL");
+                skinSpriteOff2 = getspriteindex("FLBL");
+                skinSpriteOff3 = getspriteindex("FLBL");
+                sprite = getspriteindex("FLPK");
+                overlaySprite = getspriteindex("TNT1");
+                enableSound = "flashlight/click";
+                break;
+            case 2: //Wand/Raven Style
+                skinSprite = getspriteindex("WNDD");
+                skinSpriteOff1 = getspriteindex("WNDA");
+                skinSpriteOff2 = getspriteindex("WNDB");
+                skinSpriteOff3 = getspriteindex("WNDC");
+                sprite = getspriteindex("WNDP");
+                overlaySprite = getspriteindex("TNT1");
+                enableSound = "wand/click";
+                break;
+            case 3: //"New" Style
+                skinSprite = getspriteindex("FLSH");
+                skinSpriteOff1 = getspriteindex("FLSH");
+                skinSpriteOff2 = getspriteindex("FLSH");
+                skinSpriteOff3 = getspriteindex("FLSH");
+                sprite = getspriteindex("FLPK");
+                overlaySprite = getspriteindex("FLGL");
+                enableSound = "flashlight/click";
+                break;
+        }
+        
+        
+        pickupSound = "misc/gettool"; //misc/ammo_pkup??
+        
+    }
+    
+    mixin SkinnableWeapon;
+	
+	private action void Draw(SpriteID id)
+	{
+        if (invoker.style == 3 && flashlight_skin >= 0 && flashlight_skin <= 13)
+        {
+            X_SetSkinFrame(id, PSP_WEAPON, flashlight_skin);
+            if (invoker.beam.IsOn())
+                A_Overlay(100,"DrawGlovesBright");
+            else
+                A_Overlay(100,"DrawGloves");
+            A_OverlayFlags(100,PSPF_ADDWEAPON, true);
+        }
+        else
+            X_SetSkinFrame(id);
+	}
+	
+	private action void DrawGloves()
+	{
+        if (invoker.style == 3 && flashlight_gloves >= 0 && flashlight_gloves <= 2)
+            X_SetSkinFrame(invoker.overlaySprite, 100, flashlight_gloves);
+	}
+    
+    protected void RecreateBeam(Actor attachto)
+    {
+        PlayerPawn player = PlayerPawn(attachto);
+        
+        if (player)
+        {
+            Debug.LogVerbose("Recreating beam");
+            beam = FlashlightBeam(Actor.Spawn("FlashlightBeam"));
+            beam.FollowPlayer(player);
+        }
+    }
+    
+    protected void DestroyBeam()
+    {
+        beam.Deactivate(owner);
+        beam.Destroy();
+    }
+    
+    protected void RecreateBattery(Actor attachto)
+    {
+        Debug.LogVerbose("Recreating battery");
+        battery = Battery(attachto.FindInventory("Battery"));
+        if (!battery)
+            battery = Battery(attachto.GiveInventoryType("Battery"));
+    }
+    
+    override void Travelled()
+    {
+        RecreateBeam(owner);
+        super.Travelled();
+    }
+    
+    override void AttachToOwner(Actor other)
+    {
+        RecreateBeam(other);
+        RecreateBattery(other);
+        super.AttachToOwner(other);
+    }
+    
+    override void DetachFromOwner()
+    {
+        DestroyBeam();
+        super.DetachFromOwner();
     }
     
     protected bool CanTurnOn()
@@ -32,15 +165,19 @@ class FlashlightBase : Weapon abstract
         return true;
     }
     
-    protected void TryTurnOn(Actor invoker)
+    protected void TryTurnOn(Actor invoker, bool respect_autouse = false)
     {
-        Setup();
+		bool should_autouse = (FlashlightConfig.GetAutoUse() == 1) || (FlashlightConfig.GetAutoUse() == 2 && flashlight_battery_charge_per_tic > 0);
+	
+        if (respect_autouse && !should_autouse)
+            return;
+        
         if (!beam.IsOn())
         {
             if (CanTurnOn())
             {
-                owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
-                beam.Activate(invoker);
+                owner.A_StartSound(enableSound,CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
+                beam.TurnOn(invoker);
                 battery.SetInUse(true);
             }
             else
@@ -52,11 +189,10 @@ class FlashlightBase : Weapon abstract
     
     protected void TryTurnOff(Actor invoker)
     {
-        Setup();
         if (beam.IsOn())
         {
-            owner.A_StartSound("flashlight/click",CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
-            beam.Deactivate(invoker);
+            owner.A_StartSound(enableSound,CHAN_AUTO,CHANF_LISTENERZ|CHANF_UI|CHANF_LOCAL|CHANF_OVERLAP,1.0,ATTN_NONE);
+            beam.TurnOff(invoker);
             battery.SetInUse(false);
         }
     }
@@ -67,13 +203,6 @@ class FlashlightBase : Weapon abstract
             TryTurnOff(invoker);
         else
             TryTurnOn(invoker);
-    }
-    
-    protected void BatteryControl(Actor invoker)
-    {
-        Setup();
-        if (battery.IsEmpty())
-            TryTurnOff(invoker);
     }
     
     /*
@@ -88,115 +217,169 @@ class FlashlightBase : Weapon abstract
     }
     */
     
-    void Setup()
+    void RevealStealth()
     {
-        if (beam == null)
-        {
-            Debug.LogVerbose("Recreating beam");
-        
-            PlayerPawn player = PlayerPawn(owner);
-        
-            beam = FlashlightBeam(Actor.Spawn("FlashlightBeam"));
-            beam.FollowPlayer(player);
-        }
-        
-        if (battery == null)
-        {
-            Debug.LogVerbose("Recreating battery");
-            battery = Battery(owner.FindInventory("Battery"));
-            if (!battery)
-                battery = Battery(owner.GiveInventoryType("Battery"));
-        }
+        if (flashlight_flashlight_reveal_stealth)
+            owner.A_RadiusGive("StealthRemover",flashlight_flashlight_reveal_radius,RGF_PLAYERS|RGF_MONSTERS|RGF_NOSIGHT,999);
+            owner.GiveInventory("StealthRemover",1);
     }
     
-    override void OnDrop(Actor dropper)
+    override void DoEffect()
     {
-        beam.Deactivate(dropper);
-    }
-}
-
-
-class Flashlight : FlashlightBase
-{
-
-    Default
-    {
-        Inventory.PickupMessage "$FLASHLIGHT_PICKUP";
-        Tag "$FLASHLIGHT_FLASHLIGHT";
+        if (battery.IsEmpty())
+            TryTurnOff(owner);
     }
 
 	States 
-	{ 
+	{
+        //Dummy state is needed to load our sprites and allow us to use skins
+        Dummy:
+            FLPK A 0;
+            FLIT A 0;
+            FLBL A 0;
+            FLST A 0;
+            WNDP A 0;
+            WNDA A 0;
+            WNDB A 0;
+            WNDC A 0;
+            WNDD A 0;
+            FLSH ABCDEFGHIJKLMNOPQRSTUVWXYZ 0; //Flashlight Skins
+            FLGL ABCDEFGHIJKLMNOPQRSTUVWXYZ 0; //Gloves
 	    Spawn: 
-		    HFFL A -1;
+		    #### A -1;
     		Loop;
 	    Select:
-            TNT1 A 1 A_Raise(999);
+            TNT1 A 1
+            {
+                A_Raise(999);
+                A_SetCrosshair(99);
+                invoker.SetSkinSprite();
+            }
             Loop;
         Ready:
-            FLIT TRPNLJ 1;
+            TNT1 A 1; //Need a blank frame at the start of the Ready sequence or gzdoom thinks we don't have a valid sprite and won't let us select the weapon
+            
+            TNT1 A 1 { A_WeaponOffset(67,83); Draw(invoker.skinSpriteOff1); } //FLIT T
+            //TNT1 A 1 { A_WeaponOffset(62,77); Draw(invoker.skinSpriteOff1); } //FLIT S
+            TNT1 A 1 { A_WeaponOffset(57,70); Draw(invoker.skinSpriteOff1); } //FLIT R
+            //TNT1 A 1 { A_WeaponOffset(49,61); Draw(invoker.skinSpriteOff2); } //FLIT Q
+            TNT1 A 1 { A_WeaponOffset(41,54); Draw(invoker.skinSpriteOff2); } //FLIT P
+            //TNT1 A 1 { A_WeaponOffset(37,52); Draw(invoker.skinSpriteOff2); } //FLIT O
+            TNT1 A 1 { A_WeaponOffset(31,51); Draw(invoker.skinSpriteOff3); } //FLIT N
+            //TNT1 A 1 { A_WeaponOffset(25,49); Draw(invoker.skinSpriteOff3); } //FLIT M
+            TNT1 A 1 { A_WeaponOffset(22,47); Draw(invoker.skinSpriteOff3); } //FLIT L
+            //TNT1 A 1 { A_WeaponOffset(11,44); Draw(invoker.skinSpriteOff3); } //FLIT K
+            TNT1 A 1 { A_WeaponOffset(3,32); Draw(invoker.skinSpriteOff3); } //FLIT J
+            
             TNT1 A 0
             {
-                if (FlashlightConfig.GetAutoUse())
-                {
-                    invoker.TryTurnOn(invoker);
-                }
+                A_WeaponOffset(3,32);
+                invoker.TryTurnOn(invoker,true);
             }
         RealReady:
             TNT1 A 0
             {
                 A_WeaponReady(WRF_ALLOWRELOAD);
-                invoker.BatteryControl(invoker);
                 if (invoker.beam.IsOn())
                     return ResolveState("ReadyOn");
                 else
                     return ResolveState("ReadyOff");
             }
         ReadyOn:
-            FLIT I 1 BRIGHT;
+            TNT1 A 1 BRIGHT
+            {
+                Draw(invoker.skinSprite);
+                invoker.RevealStealth();
+            }
             Goto RealReady;
         ReadyOff:
-            FLIT I 1;
+            TNT1 A 1 Draw(invoker.skinSpriteOff3);
             Goto RealReady;
+        DrawGloves:
+            TNT1 A 1 DrawGloves;
+            Stop;
+        DrawGlovesBright:
+            TNT1 A 1 BRIGHT DrawGloves;
+            Stop;
         Deselect:
             TNT1 A 0
             {
                 invoker.TryTurnOff(invoker);
             }
-            FLIT IJLNPRT 1;
-            TNT1 A 1 A_Lower(999);
+            TNT1 A 1 { A_WeaponOffset(3,32); Draw(invoker.skinSpriteOff3); } //FLIT J
+            //TNT1 A 1 { A_WeaponOffset(11,44); Draw(invoker.skinSpriteOff3); } //FLIT K
+            TNT1 A 1 { A_WeaponOffset(22,47); Draw(invoker.skinSpriteOff3); } //FLIT L
+            //TNT1 A 1 { A_WeaponOffset(25,49); Draw(invoker.skinSpriteOff2); } //FLIT M
+            TNT1 A 1 { A_WeaponOffset(31,51); Draw(invoker.skinSpriteOff2); } //FLIT N
+            //TNT1 A 1 { A_WeaponOffset(37,52); Draw(invoker.skinSpriteOff2); } //FLIT O
+            TNT1 A 1 { A_WeaponOffset(41,54); Draw(invoker.skinSpriteOff1); } //FLIT P
+            //TNT1 A 1 { A_WeaponOffset(49,61); Draw(invoker.skinSpriteOff1); } //FLIT Q
+            TNT1 A 1 { A_WeaponOffset(57,70); Draw(invoker.skinSpriteOff1); } //FLIT R
+            //TNT1 A 1 { A_WeaponOffset(62,77); Draw(invoker.skinSpriteOff1); } //FLIT S
+            TNT1 A 1 { A_WeaponOffset(67,83); Draw(invoker.skinSpriteOff1); } //FLIT T
+            TNT1 A 1
+            {
+                A_WeaponOffset(0,0);
+                A_Lower(999);
+                A_SetCrosshair(0);
+            }
             Loop;
         Fire: 
-            FLIT I 0
+            TNT1 A 0
             {
                 invoker.TryToggle(invoker);
             }
             Goto RealReady;
         AltFire: 
-            FLIT I 0
+            TNT1 A 0
             {
                 //invoker.UseFlare();
                 ACS_NamedExecute("UseFlare",0);
             }
             Goto RealReady;
         Reload:
-            FLIT I 0 A_JumpIf(invoker.battery.CanUseRecharger(),"RefillBattery");
+            TNT1 A 0 A_JumpIf(invoker.battery.CanUseRecharger(),"RefillBattery");
             Goto RealReady;
         RefillBattery:
             TNT1 A 0
             {   
                 invoker.TryTurnOff(invoker);
             }
-            FLIT IJLNPRT 1;
-            FLIT T 15;
-            FLIT TRPNLJ 1;
+            
+            //Deselect
+            TNT1 A 1 { A_WeaponOffset(3,32); Draw(invoker.skinSpriteOff3); } //FLIT J
+            //TNT1 A 1 { A_WeaponOffset(11,44); Draw(invoker.skinSpriteOff3); } //FLIT K
+            TNT1 A 1 { A_WeaponOffset(22,47); Draw(invoker.skinSpriteOff3); } //FLIT L
+            //TNT1 A 1 { A_WeaponOffset(25,49); Draw(invoker.skinSpriteOff2); } //FLIT M
+            TNT1 A 1 { A_WeaponOffset(31,51); Draw(invoker.skinSpriteOff2); } //FLIT N
+            //TNT1 A 1 { A_WeaponOffset(37,52); Draw(invoker.skinSpriteOff2); } //FLIT O
+            TNT1 A 1 { A_WeaponOffset(41,54); Draw(invoker.skinSpriteOff1); } //FLIT P
+            //TNT1 A 1 { A_WeaponOffset(49,61); Draw(invoker.skinSpriteOff1); } //FLIT Q
+            TNT1 A 1 { A_WeaponOffset(57,70); Draw(invoker.skinSpriteOff1); } //FLIT R
+            //TNT1 A 1 { A_WeaponOffset(62,77); Draw(invoker.skinSpriteOff1); } //FLIT S
+            TNT1 A 1 { A_WeaponOffset(67,83); Draw(invoker.skinSpriteOff1); } //FLIT T
+            
+            //Hold
+            TNT1 A 15 { A_WeaponOffset(67,83); Draw(invoker.skinSpriteOff1); } //FLIT T
+            
+            //Reselect
+            TNT1 A 1 { A_WeaponOffset(67,83); Draw(invoker.skinSpriteOff1); } //FLIT T
+            //TNT1 A 1 { A_WeaponOffset(62,77); Draw(invoker.skinSpriteOff1); } //FLIT S
+            TNT1 A 1 { A_WeaponOffset(57,70); Draw(invoker.skinSpriteOff1); } //FLIT R
+            //TNT1 A 1 { A_WeaponOffset(49,61); Draw(invoker.skinSpriteOff2); } //FLIT Q
+            TNT1 A 1 { A_WeaponOffset(41,54); Draw(invoker.skinSpriteOff2); } //FLIT P
+            //TNT1 A 1 { A_WeaponOffset(37,52); Draw(invoker.skinSpriteOff2); } //FLIT O
+            TNT1 A 1 { A_WeaponOffset(31,51); Draw(invoker.skinSpriteOff3); } //FLIT N
+            //TNT1 A 1 { A_WeaponOffset(25,49); Draw(invoker.skinSpriteOff3); } //FLIT M
+            TNT1 A 1 { A_WeaponOffset(22,47); Draw(invoker.skinSpriteOff3); } //FLIT L
+            //TNT1 A 1 { A_WeaponOffset(11,44); Draw(invoker.skinSpriteOff3); } //FLIT K
+            TNT1 A 1 { A_WeaponOffset(3,32); Draw(invoker.skinSpriteOff3); } //FLIT J
+            
             TNT1 A 0
             {
+                A_WeaponOffset(3,32);
                 invoker.battery.UseRecharger();
-                if (FlashlightConfig.GetAutoUse())
-                {
-                    invoker.TryTurnOn(invoker);
-                }
+                invoker.TryTurnOn(invoker,true);
             }
             Goto RealReady;
 	}

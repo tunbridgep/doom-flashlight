@@ -16,7 +16,7 @@ class Battery : Inventory
         updateFromCVars();
         battery_level = GetMax();
     }
-
+    
     protected int numBatteryRecharges()
     {
         int re;

@@ -28,14 +28,51 @@ class Math
             return clamp_max;
         return value;
     }
+    
+    static int Lerp(int start, int end, int interp)
+    {
+        if (end > start)
+            return Math.ClampMax(start + interp,end);
+        else if (end < start)
+            return Math.ClampMin(start - interp,end);
+        else
+            return start;
+    }
 }
 
 class Mathf
 {
+
+    static int Clamp (float value, float clamp_min, float clamp_max)
+    {
+        if (value < clamp_min)
+            return clamp_min;
+        if (value > clamp_max)
+            return clamp_max;
+        return value;
+    }
+
     static float ClampMin(double value, double clamp_min)
     {
         if (value < clamp_min)
             return clamp_min;
         return value;
+    }
+    
+    static float ClampMax(double value, double clamp_max)
+    {
+        if (value > clamp_max)
+            return clamp_max;
+        return value;
+    }
+    
+    static float Lerp(double start, double end, double interp)
+    {
+        if (end > start)
+            return Mathf.ClampMax(start + interp,end);
+        else if (end < start)
+            return Mathf.ClampMin(start - interp,end);
+        else
+            return start;
     }
 }

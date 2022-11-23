@@ -1,0 +1,54 @@
+class OptionMenuItemFlashlightResetAll : OptionMenuItemStaticText
+{
+    bool confirm;
+    string ResetText;
+
+    override bool Selectable()
+	{
+    	return true;
+	}
+	
+	override bool Activate()
+	{
+		Menu.MenuSound("menu/choose");
+		Reset();
+		return true;
+    }
+    
+    override int Draw(OptionMenuDescriptor desc, int y, int indent, bool selected)
+    {
+        if (mLabel.Length() > 0)
+		{
+            indent += Menu.OptionFont().StringWidth(mLabel) * CleanXfac_1;
+		}
+    
+        return drawLabel(indent, y, selected? OptionMenuSettings.mFontColorSelection : mColor) + 35;
+    }
+    
+    OptionMenuItemFlashlightResetAll Init(String text, String resetText, int color = -1)
+    {
+        confirm = false;
+        ResetText = resetText;
+        Super.Init(text,color);
+        return self;
+    }
+    
+    void Reset()
+    {
+        if (confirm)
+        {
+            ResetValues();
+        }
+        else
+        {
+            mLabel = ResetText;
+            confirm = true;
+        }
+    }
+    
+    void ResetValues()
+    {
+        CVar.GetCvar("flashlight_profile").ResetToDefault();
+        ResetConfig.ResetAllDefaults();
+    }
+}

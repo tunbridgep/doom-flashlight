@@ -26,13 +26,15 @@ This started as an exploration of zscript and it's features, especially with dyn
 
 ## Installation ##
 
-Premade release versions are ready to go. The repository doesn't contain anything other than the core source files, with all generated/compiled files not included.
+Please note that the repository only contains source code with no transient data (no zscript include files or compiled ACS script)
+**Premade release versions are ready to go on the [Releases page](https://github.com/tunbridgep/doom-flashlight/releases).**
 
 If you wish to build it yourself you can do so using the following steps:
 
-1. Compile ACS Scripts. This can be done using [acc](https://zdoom.org/wiki/ACC)
-2. Create an include file for all files in the zsc directory. Zscript includes are discussed in detail [here](https://zdoom.org/wiki/ZScript)
-3. [Zip the contents of the src directory as a pk3](https://zdoom.org/wiki/Using_ZIPs_as_WAD_replacement), then run in GZDoom using the -file parameter or using another method.
+1. Clone or download the repository
+2. Compile ACS Scripts. This can be done using [acc](https://zdoom.org/wiki/ACC)
+3. Create an include file for all files in the zsc directory. Zscript includes are discussed in detail [here](https://zdoom.org/wiki/ZScript)
+4. [Zip the contents of the src directory as a pk3](https://zdoom.org/wiki/Using_ZIPs_as_WAD_replacement), then run in GZDoom by dragging and dropping it onto gzdoom.exe, using the -file parameter or using another method.
 
 Alternatively, for a much quicker build experience, a config file is included for use with my [doom_quickbuild](https://github.com/tunbridgep/doom_quickbuild) utility.
 
@@ -62,6 +64,8 @@ There are many ways to contribute to the project. The easiest way is by filing a
 4. Almost no thought has been put into multiplayer. This mod has not been tested at all with multiplayer. It is not required for contributions to consider multiplayer, however some consideration would be appreciated. A good example of small considerations is considering whether a console command should exist within the user or server space, and whether or not ACS scripts should have the "net" keyword.
 5. Consideration should be made for hubs. There is not a significant number of popular hub maps for Doom, however this mod is intended to eventually support Hexen, at which point hub map support will be required. A new event handler called FlashlightEventHandler was made specifically to handle this situation, which implements it's own UniqueWorldLoaded function, designed to be a hub-friendly version of WorldLoaded. You should use this as a base for all EventHandlers that need to do something when a map is loaded. This is important to prevent hub maps from being darkened multiple times as players enter and leave them, for example.
 
+For questions or feature suggestions, feel free to create an issue on the issues page, or email me at tunbridge.p+doom@gmail.com
+
 ## Credits ##
 
 Credits are available via the in-game menu. Detailed credits are available in CREDITS.TXT. Below is a brief list of the assets used and their authors
@@ -69,3 +73,13 @@ Credits are available via the in-game menu. Detailed credits are available in CR
 - [Flashlight by Steve](https://forum.zdoom.org/viewtopic.php?t=59429)
 - [Flare by scalliano](https://www.realm667.com/index.php/en/item-store-mainmenu-169/others-mainmenu-172/1001-flares#credits)
 - [Flashlight by idGamer](https://realm667.com/index.php/en/armory-mainmenu-157-97317/doom-style-mainmenu-158-94349?start=30#description-2)
+
+## Other Stuff ##
+
+Checkout my other mods on github
+
+* [Simple Teleporter Effects](https://github.com/tunbridgep/doom-simpleteleportereffects) - add particle effects to any teleporter in any map in a compatible way
+* [Simple Saving](https://github.com/tunbridgep/doom-simplesaving) - remove save scumming and tie saving to resource usage.
+* [Simple Inventory Items](https://github.com/tunbridgep/doom-inventoryitems) - make most Doom powerups usable from the inventory bar in a compatible way.
+* [Simple Completion Rewards](https://github.com/tunbridgep/doom-simplecompletionrewards) - be rewarded for getting 100% completion in a map. Highly configurable.
+* [Flashlight Mod](https://github.com/tunbridgep/doom-flashlight) - adds a usable flashlight, the ability to darken the map, a dynamic system for enemy and player stealth, and more.

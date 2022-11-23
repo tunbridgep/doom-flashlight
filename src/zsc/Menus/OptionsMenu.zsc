@@ -29,7 +29,7 @@ mixin class Conditional
         {
             int val = conditional.GetInt();
             bool conditional_min = val >= condition_min;
-            bool conditional_max = condition_max <= 0 ? true : val <= condition_max;
+            bool conditional_max = condition_max <= -1 ? true : val <= condition_max;
        	    return conditional_min && conditional_max;
        	}
        	return true;
@@ -69,7 +69,7 @@ class OptionMenuItemFlashlightDynamicText : OptionMenuItemStaticText
     Cvar c;
     Array<String> labels;
 
-    OptionMenuItemFlashlightDynamicText Init(int color, CVar condition, String l0, String l1, String l2, String l3 = "", String l4 = "", String l5 = "", String l6 = "", String l7 = "", String l8 = "")
+    OptionMenuItemFlashlightDynamicText Init(int color, CVar condition, String l0, String l1, String l2 = "", String l3 = "", String l4 = "", String l5 = "", String l6 = "", String l7 = "", String l8 = "", String l9 = "",  String l10 = "")
     {
         c = condition;
         labels.push(l0);
@@ -81,6 +81,8 @@ class OptionMenuItemFlashlightDynamicText : OptionMenuItemStaticText
         labels.push(l6);
         labels.push(l7);
         labels.push(l8);
+        labels.push(l9);
+        labels.push(l10);
     
         Super.Init(l0,color);
         return self;
@@ -111,7 +113,7 @@ class OptionMenuItemFlashlightOption : OptionMenuItemOption
 {
     mixin Conditional;
 
-	OptionMenuItemFlashlightOption Init(String label, Name command, Name values, Cvar conditionalcmd = null, String disabledtext = "", int conditionmin = 1, int conditionmax = 0, CVar graycheck = null, int center = 0 )
+	OptionMenuItemFlashlightOption Init(String label, Name command, Name values, Cvar conditionalcmd = null, String disabledtext = "", int conditionmin = 1, int conditionmax = -1, CVar graycheck = null, int center = 0 )
 	{
   	    conditional = conditionalcmd;
 	    condition_min = conditionmin;
@@ -123,11 +125,27 @@ class OptionMenuItemFlashlightOption : OptionMenuItemOption
 	}
 }
 
+class OptionMenuItemFlashlightColorPicker : OptionMenuItemColorPicker
+{
+    mixin Conditional;
+
+	OptionMenuItemColorPicker Init(String label, Name command, Cvar conditionalcmd = null, String disabledtext = "", int conditionmin = 1, int conditionmax = -1)
+	{
+  	    conditional = conditionalcmd;
+	    condition_min = conditionmin;
+	    condition_max = conditionmax;
+	    disabled_text = disabledtext;
+	
+		Super.Init(label, command);
+		return self;
+	}
+}
+
 class OptionMenuItemFlashlightSlider : OptionMenuItemSlider
 { 
 	mixin Conditional;
 	
-	OptionMenuItemFlashlightSlider Init(String label, Name command, double min, double max, double step, int showval = 1, Cvar conditionalcmd = null, String disabledtext = "", int conditionmin = 1, int conditionmax = 0)
+	OptionMenuItemFlashlightSlider Init(String label, Name command, double min, double max, double step, int showval = 1, Cvar conditionalcmd = null, String disabledtext = "", int conditionmin = 1, int conditionmax = -1)
 	{
 	    conditional = conditionalcmd;
 	    condition_min = conditionmin;

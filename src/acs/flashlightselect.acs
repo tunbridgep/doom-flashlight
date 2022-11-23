@@ -20,17 +20,19 @@ script "FlashlightStart" ENTER
 
 script "UseFlare" (void) net
 {
+    UseInventory(FLARE_OBJECT);
     if (GetCVar(CVAR_SHOW_MSG))
     {
         str printstring;
         int flares = CheckInventory(FLARE_OBJECT);
-        if (flares)
-            printstring = StrParam(d:flares - 1,s:" ",l:"FLASHLIGHT_FLARES_REMAIN");
+        if (flares > 1)
+            printstring = StrParam(d:flares,s:" ",l:"FLASHLIGHT_FLARES_REMAIN");
+        else if (flares == 1)
+            printstring = StrParam(d:flares,s:" ",l:"FLASHLIGHT_ONE_FLARE_REMAIN");
         else
             printstring = StrParam(l:"FLASHLIGHT_NO_FLARES_REMAIN");
         print(s:printstring);
     }
-    UseInventory(FLARE_OBJECT);
 }
 
 script "ToggleFlashlight" (void) net

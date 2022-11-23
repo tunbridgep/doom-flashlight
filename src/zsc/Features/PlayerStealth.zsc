@@ -1,0 +1,64 @@
+class PlayerStealth : FlashlightEventHandler
+{
+    override void UniquePlayerEntered(Actor Player, bool reentered)
+    {
+        if (!reentered)
+        {
+            if (Player.CheckInventory("PlayerStealthItem",1))
+                return;
+            else
+            {
+                player.GiveInventory("PlayerStealthItem",1);
+            }
+        }
+    }
+}
+
+class PlayerStealthItem : PermanentItem
+{
+    int stealth_time; //need to be in a dark area for long enough to trigger stealth
+    const STEALTH_THRESHOLD = 35 * 2; //two seconds
+	const DESTEALTH_THRESHOLD = 35 / 2; //0.5 seconds
+	const STEALTH_DECAY_RATE = 4; //how fast we lose our built-up stealth time if we are in a stealth-ineligible area.
+	const STEALTH_LENIENCY = 20; //how far above the acceptable light level are we allowed to be, if we are already stealthed
+    
+    void DrawOverlay(bool yes = true)
+    {
+		if (yes)
+			owner.ACS_ScriptCall("DrawStealthOverlay");
+		else
+			owner.ACS_ScriptCall("HideStealthOverlay");
+    }
+    
+    override void DoEffect()
+    {
+        //If we have an invisibility item or turn off the feature, don't try and change our shadow flag
+        if (owner.CheckInventory("PowerInvisibility",1) || !flashlight_stealth_player_enabled)
+        {
+            owner.ACS_ScriptCall("HideStealthOverlay");
+			stealth_time = 0;
+            return;
+        }
+         
+        int light_level = owner.cursector.lightlevel;
+		bool in_stealth = owner.bSHADOW;
+		
+		if (in_stealth)
+			light_level -= STEALTH_LENIENCY; //if we are already stealthed, allow us to remain stealthed if we enter a sector that's within 5 light level of the threshold
+		
+        bool stealth_eligible = !owner.CheckInventory("StealthRemover",1) && flashlight_stealth_player_enabled && light_level <= flashlight_stealth_player_threshold;
+        
+		if (stealth_eligible && !in_stealth)
+		{
+			stealth_time++;
+			Debug.LogVerbose("Player Stealth Timer:"..stealth_time.."/"..STEALTH_THRESHOLD);
+		}
+		
+		if (stealth_time >= STEALTH_THRESHOLD || !stealth_eligible)
+		{
+			stealth_time = Math.ClampMin(stealth_time - STEALTH_DECAY_RATE,0);
+			owner.bSHADOW = stealth_eligible;
+			DrawOverlay(stealth_eligible);
+		}
+    }
+}
