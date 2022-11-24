@@ -177,7 +177,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 				SetNight();
 				EnableStealthMode();
 				SetStartingItems(false,5);
-				SetFlareProperties(12,3,3,32);
+				SetFlareProperties(12,3,3,24);
 				SetStealthDetection(true,true);
 				EnableDropFlashlight(0,10);
 				EnableSpawnFlashlight(10,5);

@@ -27,10 +27,11 @@ class FlareRecharger : PermanentItem
 	int flares_current;
 	int flares_prev;
 	
-	override void postBeginPlay()
+	override void AttachToOwner(Actor other)
     {
-        super.postbeginplay();
-		charges = owner.CountInv("Flare");
+        super.AttachToOwner(other);
+		int max_charges = Math.ClampMax(flashlight_flare_recharge_max_amount,flashlight_flare_max_amount);
+		charges = max_charges;
     }
 
 	void PlayRechargeSound()
@@ -83,7 +84,7 @@ class FlareRecharger : PermanentItem
         int max_charges = Math.ClampMax(flashlight_flare_recharge_max_amount,flashlight_flare_max_amount);
 		
         bool enabled = flashlight_flare_recharge_enabled;
-		        
+		
         if (tics == 0 || !enabled)
             return;
 				
