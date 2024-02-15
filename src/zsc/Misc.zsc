@@ -83,6 +83,9 @@ class FlareRecharger : PermanentItem
         int tics = FlareConfig.GetRechargeTime();
         int max_charges = Math.ClampMax(flashlight_flare_recharge_max_amount,flashlight_flare_max_amount);
 		
+		if (charges > max_charges)
+			charges = max_charges;
+		
         bool enabled = flashlight_flare_recharge_enabled;
 		
         if (tics == 0 || !enabled)
