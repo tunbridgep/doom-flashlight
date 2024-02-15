@@ -4,6 +4,7 @@
 #define ONE_TIC 1873
 
 #define CVAR_BATTERY_POSITION "flashlight_battery_display"
+#define CVAR_ASHES "flashlight_replace_ashes"
 #define BATTERY_POSITION_NONE 0
 #define BATTERY_POSITION_LEFT_CORNER 1
 #define BATTERY_POSITION_RIGHT_CORNER 2
@@ -79,8 +80,9 @@ function void DrawBatteryIcon(str icon)
 {
 
     int position = GetCVar(CVAR_BATTERY_POSITION);  
+    int ashes = GetCVar(CVAR_ASHES);  
     
-    if (position == BATTERY_POSITION_NONE)
+    if (position == BATTERY_POSITION_NONE || ashes)
         return;
     
     int separation = 0.01;

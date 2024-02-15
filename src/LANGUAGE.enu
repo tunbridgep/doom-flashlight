@@ -274,6 +274,12 @@ FLASHLIGHT_PROFILE_DRAIN_MODE = "Drain Mode";
 //FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT = "Drain Mode (Night)";
 FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT = "Drain Mode";
 FLASHLIGHT_PROFILE_HELL = "The Long Dark";
+FLASHLIGHT_PROFILE_ASHES_VANILLA = "Ashes 2063 (Vanilla-Like Mode - Recommended)";
+FLASHLIGHT_PROFILE_ASHES_EASY = "Ashes 2063 (Easy Mode)";
+FLASHLIGHT_PROFILE_ASHES_TACTICAL = "Ashes 2063 (Tactical)";
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE = "Ashes 2063 (Drain Mode)";
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_NIGHT = "Ashes 2063 (Drain Mode Night)";
+FLASHLIGHT_PROFILE_ASHES_HELL = "Ashes 2063 (The Long Dark)";
 
 FLASHLIGHT_PROFILE_NOTFAIR = "This profile isn't even remotely fair!";
 FLASHLIGHT_PROFILE_DISABLED = "All features disabled";
@@ -316,6 +322,36 @@ FLASHLIGHT_PROFILE_HELL_LINE1 = "The world will be pitch black. Long-use battery
 FLASHLIGHT_PROFILE_HELL_LINE2 = "does not recharge. Flares are disabled. You will";
 FLASHLIGHT_PROFILE_HELL_LINE3 = "need to find Battery Rechargers and Upgrades to survive.";
 FLASHLIGHT_PROFILE_HELL_LINE4 = "All enemies will be stealthed, but can be revealed with the Flashlight!";
+
+FLASHLIGHT_PROFILE_ASHES_VANILLA_LINE1 = "Flashlights will replace Ashes Lanterns.";
+FLASHLIGHT_PROFILE_ASHES_VANILLA_LINE2 = "The world will remain mostly unchanged,";
+FLASHLIGHT_PROFILE_ASHES_VANILLA_LINE3 = "Long-Use Battery does not recharge. Flares are rare. You will";
+FLASHLIGHT_PROFILE_ASHES_VANILLA_LINE4 = "need to find Battery Rechargers and Upgrades to survive.";
+
+FLASHLIGHT_PROFILE_ASHES_EASY_LINE1 = "Flashlights will replace Ashes Lanterns.";
+FLASHLIGHT_PROFILE_ASHES_EASY_LINE2 = "The world will remain mostly unchanged,";
+FLASHLIGHT_PROFILE_ASHES_EASY_LINE3 = "but enemies will occasionally drop Flares.";
+FLASHLIGHT_PROFILE_ASHES_EASY_LINE4 = "Flashlight recharges automatically.";
+
+FLASHLIGHT_PROFILE_ASHES_TACTICAL_LINE1 = "The world will be very dark. Flashlights replace Lanterns.";
+FLASHLIGHT_PROFILE_ASHES_TACTICAL_LINE2 = "Start with 3 regenerating quick-burn Flares.";
+FLASHLIGHT_PROFILE_ASHES_TACTICAL_LINE3 = "Small enemies are stealthed, but can be revealed by Flares.";
+FLASHLIGHT_PROFILE_ASHES_TACTICAL_LINE4 = "Embrace the darkness to survive!";
+
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_LINE1 = "Flashlights will replace Ashes Lanterns.";
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_LINE2 = "Long-Use Battery does not recharge. Flares are rare. You will";
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_LINE3 = "need to find Battery Rechargers and Upgrades to survive.";
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_LINE4 = "Small enemies are stealthed, but can be revealed by Flares and Flashlights!";
+
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_NIGHT_LINE1 = "The world will be very dark, Long-use battery";
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_NIGHT_LINE2 = "does not recharge. Flares are rare. You will";
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_NIGHT_LINE3 = "need to find Battery Rechargers and Upgrades to survive.";
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed, but can be revealed by Flares and Flashlights!";
+
+FLASHLIGHT_PROFILE_ASHES_HELL_LINE1 = "The world will be pitch black. Long-use battery";
+FLASHLIGHT_PROFILE_ASHES_HELL_LINE2 = "does not recharge. Flares are disabled. You will";
+FLASHLIGHT_PROFILE_ASHES_HELL_LINE3 = "need to find Battery Rechargers and Upgrades to survive.";
+FLASHLIGHT_PROFILE_ASHES_HELL_LINE4 = "All enemies will be stealthed, but can be revealed with the Flashlight!";
 
 FLASHLIGHT_PROFILE_WARNING = "Warning: Applying a profile will overwrite advanced settings!";
 FLASHLIGHT_PROFILE_WARNING2 = "Some Settings will take effect on next map load";

@@ -59,6 +59,11 @@ class ReplacerConfig : ConfigBase
         c.SetChance(CVar.GetCVar("flashlight_spawn_battery_upgrade_chance").GetInt());
         return c;
     }
+	
+	static int GetAshesReplacement()
+	{
+		return CVar.GetCVar("flashlight_replace_ashes").GetInt();
+	}
 }
 
 enum FlashlightReplacement

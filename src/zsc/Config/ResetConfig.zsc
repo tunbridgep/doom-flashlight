@@ -61,6 +61,9 @@ class ResetConfig : ConfigBase
         CVar.GetCvar("flashlight_darken_divide_additional").ResetToDefault();
         CVar.GetCvar("flashlight_replace_sky").ResetToDefault();
 		CVar.GetCvar("flashlight_darken_max_brightness").ResetToDefault();
+		
+		//misc
+		CVar.GetCvar("flashlight_replace_ashes").ResetToDefault();
     }
 
     //For some reason, this crashes the game

@@ -12,7 +12,13 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 		AMBUSH_MODE = 7,
 		DRAIN_MODE = 8,
 		DRAIN_MODE_NIGHT = 9,
-		HELL_MODE = 10
+		HELL_MODE = 10,
+		ASHES_VANILLA = 11,
+		ASHES_EASY = 12,
+		ASHES_TACTICAL = 13,
+		ASHES_DRAIN_MODE = 14,
+		ASHES_DRAIN_MODE_NIGHT = 15,
+		ASHES_HELL = 16,
 	};
 
     OptionMenuItemFlashlightApplyProfile Init(String text, int color = -1)
@@ -47,6 +53,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 	{
 		CVar.GetCvar("flashlight_darken_mode").SetInt(3);
 		CVar.GetCvar("flashlight_darken_divide_amount").SetFloat(darken_amount);
+		ReplaceSky(true);
 	}
 	
 	void SetDarkerDark()
@@ -59,6 +66,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 		CVar.GetCvar("flashlight_darken_mode").SetInt(4);
 		CVar.GetCvar("flashlight_darken_proportional_amount").SetFloat(0.350);
 		CVar.GetCvar("flashlight_darken_max_brightness").SetInt(140);
+		ReplaceSky(true);
 	}
 	
 	void EnableStealthMode(int chance = 100, bool allowPlayer = true, int mode = 3)
@@ -138,6 +146,16 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 		CVar.GetCvar("flashlight_flare_reveal_stealth").SetBool(flare);
 	}
 	
+	void SetAshesReplacement(int replace)
+	{
+		CVar.GetCvar("flashlight_replace_ashes").SetInt(replace);
+	}
+	
+	void ReplaceSky(bool replace)
+	{
+		CVar.GetCvar("flashlight_replace_sky").SetBool(replace);
+	}
+	
     void SelectProfile(Profile p)
     {
         //This is our display variable for our current profile
@@ -148,11 +166,11 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 		switch (p)
 		{
 			case DISABLED:
-				CVar.GetCvar("flashlight_replace_sky").SetBool(false);
+				ReplaceSky(false);
 				EnableDropFlashlight(0,0);
 			break;
 			case VANILLA_MODE:
-				CVar.GetCvar("flashlight_replace_sky").SetBool(false);
+				ReplaceSky(false);
 				EnableDropFlashlight();
 				EnableSpawnFlareBox(5);
 			break;
@@ -176,7 +194,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 			case TACTICAL:
 				SetNight();
 				EnableStealthMode();
-				SetStartingItems(false,5);
+				SetStartingItems(false,3);
 				SetFlareProperties(12,3,3,24);
 				SetStealthDetection(true,true);
 				EnableDropFlashlight(0,10);
@@ -184,6 +202,7 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 			break;
 			case DRAIN_MODE_NIGHT:
 				SetNight();
+			case DRAIN_MODE:
 				SetStartingItems(true,3);
 				EnableStealthMode(100);
 				EnableDropBatteries(8,8);
@@ -199,6 +218,46 @@ class OptionMenuItemFlashlightApplyProfile : OptionMenuItemStaticText
 				EnableDropBatteries(1,1);
 				SetBatteryUse(1,0,0,30000);
 				EnableSpawnBatteries(5,1,100,25);
+				EnableDropFlashlight(50,0);
+			break;
+			case ASHES_EASY:
+				ReplaceSky(false);
+				SetAshesReplacement(1);
+				EnableDropFlashlight(0,15);
+				EnableDropBatteries(0,15);
+			break;
+			case ASHES_TACTICAL:
+				SetNight();
+				SetAshesReplacement(2);
+				EnableStealthMode();
+				SetStartingItems(false,3);
+				SetFlareProperties(12,3,3,24);
+				SetStealthDetection(true,true);
+				EnableDropFlashlight(0,15);
+			break;
+			case ASHES_VANILLA:
+				ReplaceSky(false);
+				SetAshesReplacement(1);
+				EnableDropBatteries(10,10);
+				SetBatteryUse(1,0,0,35000);
+				EnableDropFlashlight(0,15);
+			case ASHES_DRAIN_MODE_NIGHT:
+				SetNight();
+			case ASHES_DRAIN_MODE:
+				SetStartingItems(true,3);
+				EnableStealthMode(100);
+				SetAshesReplacement(1);
+				EnableDropBatteries(10,10);
+				SetBatteryUse(1,0,0,35000);
+				EnableDropFlashlight(0,15);
+			break;
+			case ASHES_HELL:
+				SetNight(10);
+				SetAshesReplacement(1);
+				SetStartingItems(false,0);
+				EnableStealthMode(100,true,2);
+				EnableDropBatteries(1,1);
+				SetBatteryUse(1,0,0,30000);
 				EnableDropFlashlight(50,0);
 			break;
 		}

@@ -36,6 +36,14 @@ FLASHLIGHT_PROFILE_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed, but ca
 
 FLASHLIGHT_PROFILE_HELL_LINE4 = "All enemies will be stealthed, but can be revealed the Torch!";
 
+FLASHLIGHT_PROFILE_ASHES_VANILLA_LINE1 = "Torches will replace Ashes Lanterns.";
+FLASHLIGHT_PROFILE_ASHES_EASY_LINE1 = "Torches will replace Ashes Lanterns";
+FLASHLIGHT_PROFILE_ASHES_EASY_LINE4 = "Torch recharges automatically.";
+FLASHLIGHT_PROFILE_ASHES_TACTICAL_LINE1 = "The world will be very dark. Torches replace Lanterns.";
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_LINE1 = "Torches will replace Ashes Lanterns.";
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_LINE4 = "Small enemies are stealthed, but can be revealed by Flares and Torches!";
+FLASHLIGHT_PROFILE_ASHES_DRAIN_MODE_NIGHT_LINE4 = "Small enemies are stealthed, but can be revealed by Flares and Torches!";
+
 //Advanced Options
 FLASHLIGHT_AUTO_USE_DESC = "Automatically turn on the Torch when selecting it";
 FLASHLIGHT_STYLE = "Torch Style";

@@ -64,6 +64,7 @@ server int flashlight_spawn_flashlight = 0;
 server int flashlight_spawn_flashlight_chance = 25;
 server int flashlight_spawn_headlamp = 0;
 server int flashlight_spawn_headlamp_chance = 25;
+server int flashlight_replace_ashes = 0; //0 = no replace, 1 = replace with flashlight, 2 = replace with flare
 server int flashlight_spawn_flare = 0;
 server int flashlight_spawn_flare_chance = 25;
 server int flashlight_spawn_flare_box = 0;

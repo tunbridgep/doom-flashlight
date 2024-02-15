@@ -103,7 +103,7 @@ class Battery : Inventory
         return battery_max + (1 * numBatteryUpgrades());
     }
     
-    override void Tick()
+    override void DoEffect()
     {
         updateFromCvars();
         if (battery_mode == 0)
@@ -115,6 +115,22 @@ class Battery : Inventory
             battery_level = Math.Clamp(battery_level - battery_use_per_tic,0,GetMax());
         else
             battery_level = Math.Clamp(battery_level + battery_charge_per_tic,0,GetMax());
-        super.Tick();
+			
+		//Set Ashes Battery Level, for UI display
+		string ashesbattery = "Batteries";
+		Class<Ammo> batteries = ashesbattery;
+		if (owner != null && flashlight_replace_ashes && ashesbattery)
+		{
+			//Set to a value between 0 and 100
+			owner.TakeInventory(ashesbattery,100);
+			
+			float level = battery_level; //Do this in 2 steps to force float division
+			level = (level / GetMax()) * 100;
+			
+			if (level >= 1)
+				owner.GiveInventory(ashesbattery,level);
+			//Console.printf("Giving " .. level .. " battery");
+		}
+        super.DoEffect();
     }
 }

@@ -66,10 +66,10 @@ class DropItems : EventHandler
     //So now we have this big list of garbage
     private bool IsZombieman(Actor a)
     {
-        //Doom
+        //Doom and Ashes
         return a.bIsMonster && ( a is "ZombieMan" || a is "ShotgunGuy" || a is "ChaingunGuy"
         || a is zombieman || a is chaingunguy || a is shotgunguy
-        || a.Species == "Former Human" || ActorUtil.isClass(a,"SuicideBomber")
+        || a.Species == "Former Human" || ActorUtil.isClass(a,"ScabbieSavage") || ActorUtil.isClass(a,"SuicideBomber")
         || ActorUtil.isClass(a,"ZombieMan1") || ActorUtil.isClass(a,"ShotgunGuy1") || ActorUtil.isClass(a,"ChaingunGuy1")
         || ActorUtil.isClass(a,"PB_ZombieMan") || ActorUtil.isClass(a,"PB_ShotgunGuy") || ActorUtil.isClass(a,"PB_ChaingunGuy")
         || ActorUtil.isClass(a,"PB_ZombieScientist") || ActorUtil.isClass(a,"ZSpecOpsMachinegun")
@@ -79,7 +79,8 @@ class DropItems : EventHandler
         
         //Hexen
         || a is Ettin || a is FireDemon || a is Demon1
-        
+		
+		
         );
     }
 

@@ -29,6 +29,10 @@ class FlashlightReplacers : FlashlightEventHandler
     Class<Actor> shadowsphereclass;
     Class<Actor> ringofinvincibilityclass;
     Class<Actor> wandcrystalclass;
+	
+	//Ashes 2063 Classes
+	//Used to replace the lantern with a flashlight
+	Class<Actor> lanternclass;
     
     //Hexen Actors - mostly shares Heretic actors
     //TODO!
@@ -80,6 +84,8 @@ class FlashlightReplacers : FlashlightEventHandler
         
         clipclass = "Clip";
         wandcrystalclass = "GoldWandAmmo";
+		
+		lanternclass = "LanternPickup";
     }
       
     override void CheckReplacement(ReplaceEvent e)
@@ -181,7 +187,6 @@ class FlashlightReplacers : FlashlightEventHandler
         || (ac is infraredclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_NVG))
             ActorUtil.ReplaceActor(a,"Flashlight",chanceFlash);
         
-        
         if ((ac is rocketammoclass && ReplacerConfig.GetFlareItem() == REPLACE_FLARE_ROCKET)
         || (ac is clipclass && ReplacerConfig.GetFlareItem() == REPLACE_FLARE_CLIP))
             ActorUtil.ReplaceActor(a,"Flare",chanceFlare);
@@ -204,6 +209,13 @@ class FlashlightReplacers : FlashlightEventHandler
 		|| (ac is megasphereclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_MEGASPHERE)
         || (ac is infraredclass && ReplacerConfig.GetBatteryUpgradeItem() == REPLACE_BATTERY_NVG))
             ActorUtil.ReplaceActor(a,"FlashlightBatteryUpgrade",chanceBatterUp);
+			
+		//Ashes
+		if (ac is lanternclass && ReplacerConfig.GetAshesReplacement() == 1)
+			ActorUtil.ReplaceActor(a,"Flashlight");
+		
+		if (ac is lanternclass && ReplacerConfig.GetAshesReplacement() == 2)
+			ActorUtil.ReplaceActor(a,"FlareBox");
         
         //Heretic/Hexen
         if ((ac is crossbowclass && ReplacerConfig.GetFlashlightItem() == REPLACE_FLASHLIGHT_SHOTGUN)
